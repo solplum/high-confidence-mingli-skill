@@ -66,7 +66,7 @@
 
 ```bash
 # 1. 克隆到 agent CLI 的 skills 目录（以 Claude Code 为例）
-git clone https://github.com/2021291696/high-confidence-mingli-skill.git ~/.claude/skills/fortune-telling
+git clone https://github.com/solplum/high-confidence-mingli-skill.git ~/.claude/skills/fortune-telling
 
 # 2. 启用紫微引擎（一次性；不装则紫微盘自动降级）
 cd ~/.claude/skills/fortune-telling/scripts/pai_pan_ziwei && npm install
@@ -174,7 +174,7 @@ project, file the report, ask decision-makers for a formal review.
 
 ```bash
 # 1. Clone into your agent CLI's skills directory (Claude Code shown)
-git clone https://github.com/2021291696/high-confidence-mingli-skill.git ~/.claude/skills/fortune-telling
+git clone https://github.com/solplum/high-confidence-mingli-skill.git ~/.claude/skills/fortune-telling
 
 # 2. Enable the Ziwei engine (once; skipped gracefully if absent)
 cd ~/.claude/skills/fortune-telling/scripts/pai_pan_ziwei && npm install
