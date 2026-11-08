@@ -1,0 +1,982 @@
+{
+  "source_commit": "c49e6a5",
+  "purpose": "synthetic public dates; regression only, known bugs retained",
+  "cases": [
+    {
+      "args": [
+        [
+          1900,
+          1,
+          1
+        ],
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected": {
+        "jd_ut": 2415020.1666666665,
+        "ayanamsa": 199.9017255805461,
+        "bodies": {
+          "日": {
+            "tropical": 279.8137318158697,
+            "sidereal": 79.91200623532359,
+            "ayanamsa": 199.9017255805461,
+            "mansion": "斗",
+            "mansion_deg": 6.412006235323588,
+            "mansion_wx": "木",
+            "star": "φ Sgr"
+          },
+          "月": {
+            "tropical": 267.65329094126355,
+            "sidereal": 67.75156536071745,
+            "ayanamsa": 199.9017255805461,
+            "mansion": "箕",
+            "mansion_deg": 5.25156536071745,
+            "mansion_wx": "水",
+            "star": "γ Sgr"
+          },
+          "木": {
+            "tropical": 240.86427120969773,
+            "sidereal": 40.962545629151634,
+            "ayanamsa": 199.9017255805461,
+            "mansion": "心",
+            "mansion_deg": 2.9625456291516343,
+            "mansion_wx": "月",
+            "star": "σ Sco"
+          },
+          "火": {
+            "tropical": 283.6144361699376,
+            "sidereal": 83.71271058939152,
+            "ayanamsa": 199.9017255805461,
+            "mansion": "斗",
+            "mansion_deg": 10.21271058939152,
+            "mansion_wx": "木",
+            "star": "φ Sgr"
+          },
+          "土": {
+            "tropical": 267.62951230312706,
+            "sidereal": 67.72778672258096,
+            "ayanamsa": 199.9017255805461,
+            "mansion": "箕",
+            "mansion_deg": 5.227786722580959,
+            "mansion_wx": "水",
+            "star": "γ Sgr"
+          },
+          "金": {
+            "tropical": 305.9672265436258,
+            "sidereal": 106.06550096307973,
+            "ayanamsa": 199.9017255805461,
+            "mansion": "牛",
+            "mansion_deg": 6.565500963079728,
+            "mansion_wx": "金",
+            "star": "β Cap"
+          },
+          "水": {
+            "tropical": 258.57680251243323,
+            "sidereal": 58.67507693188713,
+            "ayanamsa": 199.9017255805461,
+            "mansion": "尾",
+            "mansion_deg": 14.175076931887133,
+            "mansion_wx": "火",
+            "star": "μ Sco"
+          },
+          "罗睺": {
+            "tropical": 259.1740872640221,
+            "sidereal": 59.27236168347599,
+            "ayanamsa": 199.9017255805461,
+            "mansion": "尾",
+            "mansion_deg": 14.772361683475992,
+            "mansion_wx": "火",
+            "star": "μ Sco"
+          },
+          "计都": {
+            "tropical": 79.17408726402209,
+            "sidereal": 239.272361683476,
+            "ayanamsa": 199.9017255805461,
+            "mansion": "觜",
+            "mansion_deg": 1.7723616834759923,
+            "mansion_wx": "火",
+            "star": "λ Ori"
+          },
+          "月孛": {
+            "tropical": 154.34777208300375,
+            "sidereal": 314.44604650245765,
+            "ayanamsa": 199.9017255805461,
+            "mansion": "星",
+            "mansion_deg": 1.4460465024576479,
+            "mansion_wx": "日",
+            "star": "α Hya"
+          },
+          "紫气": {
+            "tropical": 343.7231589332081,
+            "sidereal": 143.82143335266198,
+            "ayanamsa": 199.9017255805461,
+            "mansion": "危",
+            "mansion_deg": 14.821433352661984,
+            "mansion_wx": "月",
+            "star": "α Aqr"
+          }
+        },
+        "sun_palace_zhi": "丑",
+        "eot_minutes": -3.26679738860832,
+        "ming_du": {
+          "tropical": 248.33648788574254,
+          "sidereal": 48.43476230519644,
+          "mansion": "尾",
+          "mansion_deg": 3.9347623051964433,
+          "wuxing": "火",
+          "star": "μ Sco"
+        },
+        "ming_gong": {
+          "zhi": "辰",
+          "wuxing": "土",
+          "sun_palace": "丑",
+          "hour_zhi": "子"
+        },
+        "day_night": {
+          "type": "昼生",
+          "sunrise_local": 5.988740459387032,
+          "sunset_local": 18.10952296670263
+        },
+        "du_zhu_wuxing": "火",
+        "en_yong": {
+          "恩": [
+            "木",
+            "紫气"
+          ],
+          "用": [
+            "土",
+            "计都"
+          ],
+          "仇": [
+            "金"
+          ],
+          "难": [
+            "月",
+            "水",
+            "月孛"
+          ],
+          "同": [
+            "日",
+            "火",
+            "罗睺"
+          ]
+        }
+      }
+    },
+    {
+      "args": [
+        [
+          1990,
+          5,
+          15
+        ],
+        14,
+        0,
+        31.23,
+        121.47
+      ],
+      "expected": {
+        "jd_ut": 2448026.75,
+        "ayanamsa": 201.1637484426214,
+        "bodies": {
+          "日": {
+            "tropical": 54.15991780051991,
+            "sidereal": 212.9961693578985,
+            "ayanamsa": 201.1637484426214,
+            "mansion": "昴",
+            "mansion_deg": 2.996169357898509,
+            "mansion_wx": "日",
+            "star": "17 Tau"
+          },
+          "月": {
+            "tropical": 294.08429801731836,
+            "sidereal": 92.92054957469696,
+            "ayanamsa": 201.1637484426214,
+            "mansion": "斗",
+            "mansion_deg": 19.420549574696963,
+            "mansion_wx": "木",
+            "star": "φ Sgr"
+          },
+          "木": {
+            "tropical": 99.60895846726055,
+            "sidereal": 258.44521002463915,
+            "ayanamsa": 201.1637484426214,
+            "mansion": "参",
+            "mansion_deg": 18.445210024639152,
+            "mansion_wx": "水",
+            "star": "δ Ori"
+          },
+          "火": {
+            "tropical": 348.1471106073456,
+            "sidereal": 146.9833621647242,
+            "ayanamsa": 201.1637484426214,
+            "mansion": "室",
+            "mansion_deg": 1.4833621647242126,
+            "mansion_wx": "火",
+            "star": "α Peg"
+          },
+          "土": {
+            "tropical": 295.226728081422,
+            "sidereal": 94.06297963880058,
+            "ayanamsa": 201.1637484426214,
+            "mansion": "斗",
+            "mansion_deg": 20.562979638800584,
+            "mansion_wx": "木",
+            "star": "φ Sgr"
+          },
+          "金": {
+            "tropical": 12.54217128942357,
+            "sidereal": 171.37842284680218,
+            "ayanamsa": 201.1637484426214,
+            "mansion": "奎",
+            "mansion_deg": 0.8784228468021809,
+            "mansion_wx": "木",
+            "star": "η And"
+          },
+          "水": {
+            "tropical": 38.04945790754059,
+            "sidereal": 196.8857094649192,
+            "ayanamsa": 201.1637484426214,
+            "mansion": "娄",
+            "mansion_deg": 10.385709464919188,
+            "mansion_wx": "金",
+            "star": "β Ari"
+          },
+          "罗睺": {
+            "tropical": 311.34911816040284,
+            "sidereal": 110.18536971778144,
+            "ayanamsa": 201.1637484426214,
+            "mansion": "女",
+            "mansion_deg": 3.185369717781441,
+            "mansion_wx": "土",
+            "star": "ε Aqr"
+          },
+          "计都": {
+            "tropical": 131.34911816040284,
+            "sidereal": 290.18536971778144,
+            "ayanamsa": 201.1637484426214,
+            "mansion": "井",
+            "mansion_deg": 29.18536971778144,
+            "mansion_wx": "木",
+            "star": "μ Gem"
+          },
+          "月孛": {
+            "tropical": 231.40777439834557,
+            "sidereal": 30.24402595572417,
+            "ayanamsa": 201.1637484426214,
+            "mansion": "氐",
+            "mansion_deg": 2.244025955724169,
+            "mansion_wx": "土",
+            "star": "α Lib"
+          },
+          "紫气": {
+            "tropical": 65.56551718581954,
+            "sidereal": 224.40176874319815,
+            "ayanamsa": 201.1637484426214,
+            "mansion": "毕",
+            "mansion_deg": 3.401768743198147,
+            "mansion_wx": "月",
+            "star": "ε Tau"
+          }
+        },
+        "sun_palace_zhi": "酉",
+        "eot_minutes": 3.688327505728393,
+        "ming_du": {
+          "tropical": 358.15751197140156,
+          "sidereal": 156.99376352878016,
+          "mansion": "室",
+          "mansion_deg": 11.493763528780164,
+          "wuxing": "火",
+          "star": "α Peg"
+        },
+        "ming_gong": {
+          "zhi": "巳",
+          "wuxing": "火",
+          "sun_palace": "酉",
+          "hour_zhi": "未"
+        },
+        "day_night": {
+          "type": "昼生",
+          "sunrise_local": 5.076267124993374,
+          "sunset_local": 18.800736181064266
+        },
+        "du_zhu_wuxing": "火",
+        "en_yong": {
+          "恩": [
+            "木",
+            "紫气"
+          ],
+          "用": [
+            "土",
+            "计都"
+          ],
+          "仇": [
+            "金"
+          ],
+          "难": [
+            "月",
+            "水",
+            "月孛"
+          ],
+          "同": [
+            "日",
+            "火",
+            "罗睺"
+          ]
+        }
+      }
+    },
+    {
+      "args": [
+        [
+          2000,
+          1,
+          1
+        ],
+        20,
+        0,
+        39.9,
+        116.4
+      ],
+      "expected": {
+        "jd_ut": 2451545.0,
+        "ayanamsa": 201.29830002826745,
+        "bodies": {
+          "日": {
+            "tropical": 280.37330822671,
+            "sidereal": 79.07500819844253,
+            "ayanamsa": 201.29830002826745,
+            "mansion": "斗",
+            "mansion_deg": 5.575008198442532,
+            "mansion_wx": "木",
+            "star": "φ Sgr"
+          },
+          "月": {
+            "tropical": 223.32866201951322,
+            "sidereal": 22.03036199124577,
+            "ayanamsa": 201.29830002826745,
+            "mansion": "亢",
+            "mansion_deg": 10.030361991245769,
+            "mansion_wx": "金",
+            "star": "κ Vir"
+          },
+          "木": {
+            "tropical": 25.43595904129409,
+            "sidereal": 184.13765901302665,
+            "ayanamsa": 201.29830002826745,
+            "mansion": "奎",
+            "mansion_deg": 13.63765901302665,
+            "mansion_wx": "木",
+            "star": "η And"
+          },
+          "火": {
+            "tropical": 327.9769732477177,
+            "sidereal": 126.67867321945025,
+            "ayanamsa": 201.29830002826745,
+            "mansion": "虚",
+            "mansion_deg": 7.678673219450246,
+            "mansion_wx": "日",
+            "star": "β Aqr"
+          },
+          "土": {
+            "tropical": 40.36568992841956,
+            "sidereal": 199.0673899001521,
+            "ayanamsa": 201.29830002826745,
+            "mansion": "胃",
+            "mansion_deg": 0.5673899001521079,
+            "mansion_wx": "土",
+            "star": "35 Ari"
+          },
+          "金": {
+            "tropical": 241.58016208728623,
+            "sidereal": 40.28186205901878,
+            "ayanamsa": 201.29830002826745,
+            "mansion": "心",
+            "mansion_deg": 2.2818620590187777,
+            "mansion_wx": "月",
+            "star": "σ Sco"
+          },
+          "水": {
+            "tropical": 271.9081846218011,
+            "sidereal": 70.60988459353368,
+            "ayanamsa": 201.29830002826745,
+            "mansion": "箕",
+            "mansion_deg": 8.109884593533678,
+            "mansion_wx": "水",
+            "star": "γ Sgr"
+          },
+          "罗睺": {
+            "tropical": 125.0445087607909,
+            "sidereal": 283.7462087325234,
+            "ayanamsa": 201.29830002826745,
+            "mansion": "井",
+            "mansion_deg": 22.746208732523428,
+            "mansion_wx": "木",
+            "star": "μ Gem"
+          },
+          "计都": {
+            "tropical": 305.0445087607909,
+            "sidereal": 103.74620873252346,
+            "ayanamsa": 201.29830002826745,
+            "mansion": "牛",
+            "mansion_deg": 4.246208732523456,
+            "mansion_wx": "金",
+            "star": "β Cap"
+          },
+          "月孛": {
+            "tropical": 263.35332884061893,
+            "sidereal": 62.05502881235148,
+            "ayanamsa": 201.29830002826745,
+            "mansion": "尾",
+            "mansion_deg": 17.55502881235148,
+            "mansion_wx": "火",
+            "star": "μ Sco"
+          },
+          "紫气": {
+            "tropical": 189.40904972116414,
+            "sidereal": 348.11074969289666,
+            "ayanamsa": 201.29830002826745,
+            "mansion": "翼",
+            "mansion_deg": 16.11074969289666,
+            "mansion_wx": "火",
+            "star": "α Crt"
+          }
+        },
+        "sun_palace_zhi": "丑",
+        "eot_minutes": -3.301746395099189,
+        "ming_du": {
+          "tropical": 315.2209920409449,
+          "sidereal": 113.92269201267746,
+          "mansion": "女",
+          "mansion_deg": 6.922692012677459,
+          "wuxing": "土",
+          "star": "ε Aqr"
+        },
+        "ming_gong": {
+          "zhi": "午",
+          "wuxing": "火",
+          "sun_palace": "丑",
+          "hour_zhi": "戌"
+        },
+        "day_night": {
+          "type": "夜生",
+          "sunrise_local": 7.358174082679594,
+          "sunset_local": 16.743978639445988
+        },
+        "du_zhu_wuxing": "土",
+        "en_yong": {
+          "恩": [
+            "日",
+            "火",
+            "罗睺"
+          ],
+          "用": [
+            "金"
+          ],
+          "仇": [
+            "月",
+            "水",
+            "月孛"
+          ],
+          "难": [
+            "木",
+            "紫气"
+          ],
+          "同": [
+            "土",
+            "计都"
+          ]
+        }
+      }
+    },
+    {
+      "args": [
+        [
+          2024,
+          6,
+          21
+        ],
+        9,
+        0,
+        80,
+        120
+      ],
+      "expected": {
+        "jd_ut": 2460482.5416666665,
+        "ayanamsa": 201.64013205900602,
+        "bodies": {
+          "日": {
+            "tropical": 90.16683715067848,
+            "sidereal": 248.52670509167245,
+            "ayanamsa": 201.64013205900602,
+            "mansion": "参",
+            "mansion_deg": 8.526705091672454,
+            "mansion_wx": "水",
+            "star": "δ Ori"
+          },
+          "月": {
+            "tropical": 257.6375037879625,
+            "sidereal": 55.997371728956466,
+            "ayanamsa": 201.64013205900602,
+            "mansion": "尾",
+            "mansion_deg": 11.497371728956466,
+            "mansion_wx": "火",
+            "star": "μ Sco"
+          },
+          "木": {
+            "tropical": 66.29534782430524,
+            "sidereal": 224.6552157652992,
+            "ayanamsa": 201.64013205900602,
+            "mansion": "毕",
+            "mansion_deg": 3.6552157652992037,
+            "mansion_wx": "月",
+            "star": "ε Tau"
+          },
+          "火": {
+            "tropical": 38.75209395688995,
+            "sidereal": 197.11196189788393,
+            "ayanamsa": 201.64013205900602,
+            "mansion": "娄",
+            "mansion_deg": 10.61196189788393,
+            "mansion_wx": "金",
+            "star": "β Ari"
+          },
+          "土": {
+            "tropical": 349.34142642696065,
+            "sidereal": 147.70129436795463,
+            "ayanamsa": 201.64013205900602,
+            "mansion": "室",
+            "mansion_deg": 2.201294367954631,
+            "mansion_wx": "火",
+            "star": "α Peg"
+          },
+          "金": {
+            "tropical": 94.65488973227151,
+            "sidereal": 253.01475767326548,
+            "ayanamsa": 201.64013205900602,
+            "mansion": "参",
+            "mansion_deg": 13.014757673265478,
+            "mansion_wx": "水",
+            "star": "δ Ori"
+          },
+          "水": {
+            "tropical": 97.87821057243771,
+            "sidereal": 256.2380785134317,
+            "ayanamsa": 201.64013205900602,
+            "mansion": "参",
+            "mansion_deg": 16.238078513431674,
+            "mansion_wx": "水",
+            "star": "δ Ori"
+          },
+          "罗睺": {
+            "tropical": 11.768140329813434,
+            "sidereal": 170.1280082708074,
+            "ayanamsa": 201.64013205900602,
+            "mansion": "壁",
+            "mansion_deg": 8.628008270807413,
+            "mansion_wx": "水",
+            "star": "γ Peg"
+          },
+          "计都": {
+            "tropical": 191.76814032981343,
+            "sidereal": 350.1280082708074,
+            "ayanamsa": 201.64013205900602,
+            "mansion": "轸",
+            "mansion_deg": 0.12800827080741328,
+            "mansion_wx": "水",
+            "star": "γ Crv"
+          },
+          "月孛": {
+            "tropical": 179.02636477776718,
+            "sidereal": 337.38623271876116,
+            "ayanamsa": 201.64013205900602,
+            "mansion": "翼",
+            "mansion_deg": 5.386232718761164,
+            "mansion_wx": "火",
+            "star": "α Crt"
+          },
+          "紫气": {
+            "tropical": 144.01339340959237,
+            "sidereal": 302.37326135058635,
+            "ayanamsa": 201.64013205900602,
+            "mansion": "柳",
+            "mansion_deg": 4.373261350586347,
+            "mansion_wx": "土",
+            "star": "δ Hya"
+          }
+        },
+        "sun_palace_zhi": "申",
+        "eot_minutes": -1.8252574327121003,
+        "ming_du": {
+          "tropical": 345.72994804120066,
+          "sidereal": 144.08981598219464,
+          "mansion": "危",
+          "mansion_deg": 15.089815982194636,
+          "wuxing": "月",
+          "star": "α Aqr"
+        },
+        "ming_gong": {
+          "zhi": "午",
+          "wuxing": "火",
+          "sun_palace": "申",
+          "hour_zhi": "巳"
+        },
+        "day_night": {
+          "type": "极昼",
+          "note": "极昼/极夜，昼夜生传统口径不适用"
+        },
+        "du_zhu_wuxing": "水",
+        "en_yong": {
+          "恩": [
+            "金"
+          ],
+          "用": [
+            "木",
+            "紫气"
+          ],
+          "仇": [
+            "日",
+            "火",
+            "罗睺"
+          ],
+          "难": [
+            "土",
+            "计都"
+          ],
+          "同": [
+            "月",
+            "水",
+            "月孛"
+          ]
+        }
+      }
+    },
+    {
+      "args": [
+        [
+          2024,
+          12,
+          21
+        ],
+        23,
+        59,
+        -80,
+        -180
+      ],
+      "expected": {
+        "jd_ut": 2460666.165972222,
+        "ayanamsa": 201.64715547958224,
+        "bodies": {
+          "日": {
+            "tropical": 270.28701100867875,
+            "sidereal": 68.63985552909651,
+            "ayanamsa": 201.64715547958224,
+            "mansion": "箕",
+            "mansion_deg": 6.139855529096508,
+            "mansion_wx": "水",
+            "star": "γ Sgr"
+          },
+          "月": {
+            "tropical": 166.48765099648153,
+            "sidereal": 324.8404955168993,
+            "ayanamsa": 201.64715547958224,
+            "mansion": "张",
+            "mansion_deg": 4.840495516899296,
+            "mansion_wx": "月",
+            "star": "υ¹ Hya"
+          },
+          "木": {
+            "tropical": 74.6838867599495,
+            "sidereal": 233.03673128036726,
+            "ayanamsa": 201.64715547958224,
+            "mansion": "毕",
+            "mansion_deg": 12.036731280367263,
+            "mansion_wx": "月",
+            "star": "ε Tau"
+          },
+          "火": {
+            "tropical": 124.69931436029684,
+            "sidereal": 283.0521588807146,
+            "ayanamsa": 201.64715547958224,
+            "mansion": "井",
+            "mansion_deg": 22.052158880714614,
+            "mansion_wx": "木",
+            "star": "μ Gem"
+          },
+          "土": {
+            "tropical": 343.8262196928999,
+            "sidereal": 142.17906421331764,
+            "ayanamsa": 201.64715547958224,
+            "mansion": "危",
+            "mansion_deg": 13.179064213317645,
+            "mansion_wx": "月",
+            "star": "α Aqr"
+          },
+          "金": {
+            "tropical": 316.39399516360066,
+            "sidereal": 114.74683968401843,
+            "ayanamsa": 201.64715547958224,
+            "mansion": "女",
+            "mansion_deg": 7.7468396840184255,
+            "mansion_wx": "土",
+            "star": "ε Aqr"
+          },
+          "水": {
+            "tropical": 248.7855254594245,
+            "sidereal": 47.13836997984225,
+            "ayanamsa": 201.64715547958224,
+            "mansion": "尾",
+            "mansion_deg": 2.6383699798422526,
+            "mansion_wx": "火",
+            "star": "μ Sco"
+          },
+          "罗睺": {
+            "tropical": 2.0445470527869247,
+            "sidereal": 160.3973915732047,
+            "ayanamsa": 201.64715547958224,
+            "mansion": "室",
+            "mansion_deg": 14.897391573204686,
+            "mansion_wx": "火",
+            "star": "α Peg"
+          },
+          "计都": {
+            "tropical": 182.04454705278692,
+            "sidereal": 340.3973915732047,
+            "ayanamsa": 201.64715547958224,
+            "mansion": "翼",
+            "mansion_deg": 8.397391573204686,
+            "mansion_wx": "火",
+            "star": "α Crt"
+          },
+          "月孛": {
+            "tropical": 199.48273391891644,
+            "sidereal": 357.8355784393342,
+            "ayanamsa": 201.64715547958224,
+            "mansion": "轸",
+            "mansion_deg": 7.835578439334199,
+            "mansion_wx": "水",
+            "star": "γ Crv"
+          },
+          "紫气": {
+            "tropical": 150.4770280743702,
+            "sidereal": 308.82987259478796,
+            "ayanamsa": 201.64715547958224,
+            "mansion": "柳",
+            "mansion_deg": 10.829872594787957,
+            "mansion_wx": "土",
+            "star": "δ Hya"
+          }
+        },
+        "sun_palace_zhi": "寅",
+        "eot_minutes": 1.5957554925262725,
+        "ming_du": {
+          "tropical": 154.17833567089164,
+          "sidereal": 312.53118019130943,
+          "mansion": "柳",
+          "mansion_deg": 14.531180191309431,
+          "wuxing": "土",
+          "star": "δ Hya"
+        },
+        "ming_gong": {
+          "zhi": "巳",
+          "wuxing": "火",
+          "sun_palace": "寅",
+          "hour_zhi": "子"
+        },
+        "day_night": {
+          "type": "极昼",
+          "note": "极昼/极夜，昼夜生传统口径不适用"
+        },
+        "du_zhu_wuxing": "土",
+        "en_yong": {
+          "恩": [
+            "日",
+            "火",
+            "罗睺"
+          ],
+          "用": [
+            "金"
+          ],
+          "仇": [
+            "月",
+            "水",
+            "月孛"
+          ],
+          "难": [
+            "木",
+            "紫气"
+          ],
+          "同": [
+            "土",
+            "计都"
+          ]
+        }
+      }
+    },
+    {
+      "args": [
+        [
+          2100,
+          12,
+          31
+        ],
+        12,
+        0,
+        -35,
+        180
+      ],
+      "expected": {
+        "jd_ut": 2488433.6666666665,
+        "ayanamsa": 202.70940947906558,
+        "bodies": {
+          "日": {
+            "tropical": 279.51300077096676,
+            "sidereal": 76.80359129190117,
+            "ayanamsa": 202.70940947906558,
+            "mansion": "斗",
+            "mansion_deg": 3.3035912919011707,
+            "mansion_wx": "木",
+            "star": "φ Sgr"
+          },
+          "月": {
+            "tropical": 281.8298110272153,
+            "sidereal": 79.12040154814974,
+            "ayanamsa": 202.70940947906558,
+            "mansion": "斗",
+            "mansion_deg": 5.620401548149744,
+            "mansion_wx": "木",
+            "star": "φ Sgr"
+          },
+          "木": {
+            "tropical": 227.3622056543475,
+            "sidereal": 24.652796175281907,
+            "ayanamsa": 202.70940947906558,
+            "mansion": "亢",
+            "mansion_deg": 12.652796175281907,
+            "mansion_wx": "金",
+            "star": "κ Vir"
+          },
+          "火": {
+            "tropical": 253.42331110648627,
+            "sidereal": 50.71390162742068,
+            "ayanamsa": 202.70940947906558,
+            "mansion": "尾",
+            "mansion_deg": 6.213901627420682,
+            "mansion_wx": "火",
+            "star": "μ Sco"
+          },
+          "土": {
+            "tropical": 216.8920970639812,
+            "sidereal": 14.182687584915612,
+            "ayanamsa": 202.70940947906558,
+            "mansion": "亢",
+            "mansion_deg": 2.1826875849156124,
+            "mansion_wx": "金",
+            "star": "κ Vir"
+          },
+          "金": {
+            "tropical": 264.7768080431525,
+            "sidereal": 62.06739856408694,
+            "ayanamsa": 202.70940947906558,
+            "mansion": "尾",
+            "mansion_deg": 17.567398564086943,
+            "mansion_wx": "火",
+            "star": "μ Sco"
+          },
+          "水": {
+            "tropical": 297.1204958490183,
+            "sidereal": 94.41108636995273,
+            "ayanamsa": 202.70940947906558,
+            "mansion": "斗",
+            "mansion_deg": 20.911086369952727,
+            "mansion_wx": "木",
+            "star": "φ Sgr"
+          },
+          "罗睺": {
+            "tropical": 331.6527342345139,
+            "sidereal": 128.94332475544832,
+            "ayanamsa": 202.70940947906558,
+            "mansion": "虚",
+            "mansion_deg": 9.943324755448316,
+            "mansion_wx": "日",
+            "star": "β Aqr"
+          },
+          "计都": {
+            "tropical": 151.6527342345139,
+            "sidereal": 308.9433247554483,
+            "ayanamsa": 202.70940947906558,
+            "mansion": "柳",
+            "mansion_deg": 10.943324755448316,
+            "mansion_wx": "土",
+            "star": "δ Hya"
+          },
+          "月孛": {
+            "tropical": 52.87044564131156,
+            "sidereal": 210.16103616224598,
+            "ayanamsa": 202.70940947906558,
+            "mansion": "昴",
+            "mansion_deg": 0.16103616224597772,
+            "mansion_wx": "日",
+            "star": "17 Tau"
+          },
+          "紫气": {
+            "tropical": 47.90199096149604,
+            "sidereal": 205.19258148243046,
+            "ayanamsa": 202.70940947906558,
+            "mansion": "胃",
+            "mansion_deg": 6.692581482430455,
+            "mansion_wx": "土",
+            "star": "35 Ari"
+          }
+        },
+        "sun_palace_zhi": "丑",
+        "eot_minutes": -2.6671010775467017,
+        "ming_du": {
+          "tropical": 235.32942904816963,
+          "sidereal": 32.620019569104045,
+          "mansion": "氐",
+          "mansion_deg": 4.620019569104045,
+          "wuxing": "土",
+          "star": "α Lib"
+        },
+        "ming_gong": {
+          "zhi": "戌",
+          "wuxing": "土",
+          "sun_palace": "丑",
+          "hour_zhi": "午"
+        },
+        "day_night": {
+          "type": "昼生",
+          "sunrise_local": 4.807324968308349,
+          "sunset_local": 19.278931866913677
+        },
+        "du_zhu_wuxing": "土",
+        "en_yong": {
+          "恩": [
+            "日",
+            "火",
+            "罗睺"
+          ],
+          "用": [
+            "金"
+          ],
+          "仇": [
+            "月",
+            "水",
+            "月孛"
+          ],
+          "难": [
+            "木",
+            "紫气"
+          ],
+          "同": [
+            "土",
+            "计都"
+          ]
+        }
+      }
+    }
+  ]
+}

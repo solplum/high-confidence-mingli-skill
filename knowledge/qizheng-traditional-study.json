@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "license": "CC-BY-SA-4.0",
+  "license_path": "knowledge/licenses/qizheng-study-CC-BY-SA-4.0.txt",
+  "attribution": "项目七政研究包；万民英及维基文库贡献者的数字资料；舒继英著国家图书馆藏本",
+  "changes": "自编释义、条件、反例和结构化登记；非整本转录；保留版本分歧",
+  "sources": [
+    {
+      "id": "qy-ncl-scan",
+      "url": "https://commons.wikimedia.org/wiki/File:NCL-06601_乾元秘旨.pdf",
+      "title": "乾元秘旨",
+      "edition": "清舒城程枚覆刊讀畫齋叢書本，國家圖書館306.5 06601",
+      "kind": "single_edition_scan_inspected",
+      "sha256": "1fffb642558dc78810446822a182c8550d811ed337f4e5835168500cf0674aa5",
+      "pdf_pages": 46,
+      "checked_pages": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "inspection": "逐页查看渲染影像中登记的小节；不是全书校勘，不采用眉批或残损不明字",
+      "license": "Public-domain original and mechanical scan per Commons; US tag incomplete on file page; scan not redistributed",
+      "classical_quote_authorized": false
+    },
+    {
+      "id": "xd-digital-v2",
+      "url": "https://zh.wikisource.org/w/index.php?oldid=784372&title=星學大成_(四庫全書本)/卷04",
+      "title": "星學大成（四庫全書本）卷四",
+      "edition": "维基文库数字转录，oldid=784372；声称四库本，未对该卷影像",
+      "kind": "unverified_digital_transcription",
+      "license": "CC-BY-SA-4.0 digital text; original public domain",
+      "attribution": "萬民英；维基文库贡献者",
+      "history_url": "https://zh.wikisource.org/w/index.php?title=星學大成_(四庫全書本)/卷04&action=history",
+      "classical_quote_authorized": false
+    },
+    {
+      "id": "project-editorial",
+      "url": "https://github.com/2021291696/high-confidence-mingli-skill",
+      "title": "项目方法比较与输入校验",
+      "kind": "modern_project_interpretation",
+      "license": "CC-BY-SA-4.0 for this study pack; code MIT",
+      "classical_quote_authorized": false
+    }
+  ],
+  "rule_cards": [
+    {
+      "id": "QZT01",
+      "selector": "palace_identity",
+      "title": "宫支五行不能代替宫主",
+      "source_ids": [
+        "xd-digital-v2",
+        "project-editorial"
+      ],
+      "conditions": [
+        "明确宫支",
+        "保持地支五行、宫主、宫主折合五行三字段"
+      ],
+      "counterconditions": [
+        "误把卯木当卯宫主",
+        "把日/月折五行当原书逐字规则"
+      ],
+      "plain_language": "同一个卯字可表示不同分类：地支属木，本项目七政宫主表却取火。先问正在算哪个概念，再谈生克；本卡不判庙旺。",
+      "locators": [
+        "卷四·星盤或問：十二宫与地支五行不同的问答；日月折火水仅项目约定"
+      ],
+      "positive_example": {
+        "branch": "卯"
+      },
+      "counterexample": {
+        "branch": "卯",
+        "palace_lord": "木"
+      },
+      "scope": "traditional_structure_study_only",
+      "personal_ledger_authorized": false,
+      "predictive_validity": "unvalidated"
+    },
+    {
+      "id": "QZT02",
+      "selector": "dignity_terminology",
+      "title": "庙乐垣的同名规则冲突门",
+      "source_ids": [
+        "project-editorial"
+      ],
+      "conditions": [
+        "明确词项庙、乐或垣",
+        "明确采用尚未校勘的旧整理体系"
+      ],
+      "counterconditions": [
+        "把本宫、入庙表、乐宫表自动合成统一强弱分",
+        "仅有宫支无法说明采用哪张表"
+      ],
+      "plain_language": "旧整理同时使用关系律与不同歌表。本卡的有用结果是指出缺少哪项选择，并拒绝给虚假的庙旺评分；不是删去异说。",
+      "locators": [
+        "references/qizheng/states-tables.md：喜宫歌关系律、入庙、乘旺·乐宫；只登记矛盾，不复制正文"
+      ],
+      "positive_example": {
+        "term": "庙",
+        "scheme": "unresolved-legacy-compilation"
+      },
+      "counterexample": {
+        "term": "庙",
+        "scheme": "universal"
+      },
+      "scope": "traditional_structure_study_only",
+      "personal_ledger_authorized": false,
+      "predictive_validity": "unvalidated"
+    },
+    {
+      "id": "QZT03",
+      "selector": "aspect_vs_branch",
+      "title": "宫位关系与角距离分开核对",
+      "source_ids": [
+        "qy-ncl-scan",
+        "project-editorial"
+      ],
+      "conditions": [
+        "两黄经采用同一声明坐标框架",
+        "明确双方宫支",
+        "只计算与60/90/120/180度的残差，不私造容许度"
+      ],
+      "counterconditions": [
+        "隔宫关系不保证精确角距",
+        "近似宿宫模型不能换成等分十二宫",
+        "原书吉凶结果不由几何独立推出"
+      ],
+      "plain_language": "本书先用角度说明相照，后面冲、钓又说明不必拘于精确角度。软件分别列出宫位关系和实际角差，不能因一个满足而声称另一个也满足。",
+      "locators": [
+        "PDF17右页·十二宮分度數相照",
+        "PDF21左页·沖",
+        "PDF22右页·鈎"
+      ],
+      "positive_example": {
+        "longitude_a": 10,
+        "longitude_b": 185,
+        "branch_a": "子",
+        "branch_b": "午",
+        "coordinate_frame": "ecliptic-of-date"
+      },
+      "counterexample": {
+        "longitude_a": 10,
+        "longitude_b": 185,
+        "branch_a": "子",
+        "branch_b": "午",
+        "coordinate_frame": "mixed"
+      },
+      "scope": "traditional_structure_study_only",
+      "personal_ledger_authorized": false,
+      "predictive_validity": "unvalidated"
+    },
+    {
+      "id": "QZT04",
+      "selector": "qianyuan_natal_palace",
+      "title": "乾元定命取宫与果老论度保留分歧",
+      "source_ids": [
+        "qy-ncl-scan",
+        "xd-digital-v2",
+        "project-editorial"
+      ],
+      "conditions": [
+        "context为natal",
+        "reference_basis明确palace_lord",
+        "明确宫支和另一五行"
+      ],
+      "counterconditions": [
+        "以度主为我不能标为乾元宫主卡",
+        "未知宫主不能用地支五行填充",
+        "单一生克不证明人生吉凶"
+      ],
+      "plain_language": "选择乾元这段的定命口径时，先取宫主。本书同时承认果老论度不同；《星学大成》卷四又收度主为要的条文。本卡只是把不同参照对象摊开，不裁定唯一正确学派。",
+      "locators": [
+        "PDF19左页·定命",
+        "卷四·看星節要八十一條第一条（数字转录未校勘）"
+      ],
+      "positive_example": {
+        "context": "natal",
+        "reference_basis": "palace_lord",
+        "branch": "卯",
+        "other_element": "金"
+      },
+      "counterexample": {
+        "context": "natal",
+        "reference_basis": "mansion_lord",
+        "branch": "卯",
+        "other_element": "金"
+      },
+      "scope": "traditional_structure_study_only",
+      "personal_ledger_authorized": false,
+      "predictive_validity": "unvalidated"
+    },
+    {
+      "id": "QZT05",
+      "selector": "qianyuan_limit_mansion",
+      "title": "行限论宿主的条件演示",
+      "source_ids": [
+        "qy-ncl-scan",
+        "project-editorial"
+      ],
+      "conditions": [
+        "context为limit",
+        "reference_basis明确mansion_lord",
+        "调用者给定宿名及另一五行"
+      ],
+      "counterconditions": [
+        "当前程序未计算古法限度，不能将本命宿冒充行限宿",
+        "不得用宫木覆盖心宿月/尾宿火等宿主",
+        "时间、起限与宿界未定则不能给应期"
+      ],
+      "plain_language": "同一宫中的不同宿可有不同宿主，行限段举例正为防止宫和度混论。给定心宿时以月为宿主，折水仅为本项目演算约定；这不等于已经算出某人正在行心宿。",
+      "locators": [
+        "PDF19左页·行限：房、心、尾、箕逐宿分论的例子"
+      ],
+      "positive_example": {
+        "context": "limit",
+        "reference_basis": "mansion_lord",
+        "mansion": "心",
+        "other_element": "土"
+      },
+      "counterexample": {
+        "context": "limit",
+        "reference_basis": "palace_lord",
+        "mansion": "心",
+        "other_element": "土"
+      },
+      "scope": "traditional_structure_study_only",
+      "personal_ledger_authorized": false,
+      "predictive_validity": "unvalidated"
+    }
+  ],
+  "conflicts": [
+    {
+      "id": "QC01",
+      "topic": "宫支五行与宫主",
+      "resolution": "separate_fields",
+      "rule_ids": [
+        "QZT01"
+      ]
+    },
+    {
+      "id": "QC02",
+      "topic": "庙乐垣同词不同表",
+      "resolution": "withhold_unified_dignity",
+      "rule_ids": [
+        "QZT02"
+      ]
+    },
+    {
+      "id": "QC03",
+      "topic": "隔宫与精确角距",
+      "resolution": "separate_measurements",
+      "rule_ids": [
+        "QZT03"
+      ]
+    },
+    {
+      "id": "QC04",
+      "topic": "定命论宫与果老论度",
+      "resolution": "explicit_context_and_basis",
+      "rule_ids": [
+        "QZT04",
+        "QZT05"
+      ]
+    }
+  ]
+}

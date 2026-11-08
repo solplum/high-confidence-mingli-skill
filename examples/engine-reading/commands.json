@@ -1,0 +1,140 @@
+[
+  {
+    "scenario_id": "summer",
+    "argv": [
+      "python3",
+      "scripts/build_chart.py",
+      "--solar",
+      "2000-05-15",
+      "--hour",
+      "12:00",
+      "--sex",
+      "男",
+      "--lat",
+      "31.23",
+      "--lon",
+      "121.47",
+      "--analysis-year",
+      "2026",
+      "--time-basis",
+      "civil",
+      "--format",
+      "json"
+    ]
+  },
+  {
+    "scenario_id": "before-zi",
+    "argv": [
+      "python3",
+      "scripts/build_chart.py",
+      "--solar",
+      "2000-05-15",
+      "--hour",
+      "22:59",
+      "--sex",
+      "男",
+      "--lat",
+      "31.23",
+      "--lon",
+      "121.47",
+      "--analysis-year",
+      "2026",
+      "--time-basis",
+      "civil",
+      "--format",
+      "json"
+    ]
+  },
+  {
+    "scenario_id": "after-zi",
+    "argv": [
+      "python3",
+      "scripts/build_chart.py",
+      "--solar",
+      "2000-05-15",
+      "--hour",
+      "23:01",
+      "--sex",
+      "男",
+      "--lat",
+      "31.23",
+      "--lon",
+      "121.47",
+      "--analysis-year",
+      "2026",
+      "--time-basis",
+      "civil",
+      "--format",
+      "json"
+    ]
+  },
+  {
+    "scenario_id": "solar-zi",
+    "argv": [
+      "python3",
+      "scripts/build_chart.py",
+      "--solar",
+      "2000-05-15",
+      "--hour",
+      "22:59",
+      "--sex",
+      "男",
+      "--lat",
+      "31.23",
+      "--lon",
+      "121.47",
+      "--analysis-year",
+      "2026",
+      "--time-basis",
+      "apparent-solar",
+      "--format",
+      "json"
+    ]
+  },
+  {
+    "scenario_id": "before-term",
+    "argv": [
+      "python3",
+      "scripts/build_chart.py",
+      "--solar",
+      "2000-02-04",
+      "--hour",
+      "20:33",
+      "--sex",
+      "男",
+      "--lat",
+      "31.23",
+      "--lon",
+      "121.47",
+      "--analysis-year",
+      "2026",
+      "--time-basis",
+      "civil",
+      "--format",
+      "json"
+    ]
+  },
+  {
+    "scenario_id": "after-term",
+    "argv": [
+      "python3",
+      "scripts/build_chart.py",
+      "--solar",
+      "2000-02-04",
+      "--hour",
+      "20:37",
+      "--sex",
+      "男",
+      "--lat",
+      "31.23",
+      "--lon",
+      "121.47",
+      "--analysis-year",
+      "2026",
+      "--time-basis",
+      "civil",
+      "--format",
+      "json"
+    ]
+  }
+]

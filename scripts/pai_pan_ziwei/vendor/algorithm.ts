@@ -35,6 +35,11 @@ function mapBrightness(b?: string): 'bright' | 'normal' | 'dim' {
   return 'normal';
 }
 
+// Preserve source labels without guessing a level for missing/unknown values.
+function rawBrightness(b: unknown): string | null {
+  return typeof b === 'string' && b.length > 0 ? b : null;
+}
+
 // ─── 星曜类型映射 ────────────────────────────────────────────────
 const SHA_STARS = new Set(['擎羊', '陀罗', '火星', '铃星', '地空', '地劫',
   '天空', '旬空', '截路', '大耗', '天使', '天伤']);
@@ -63,7 +68,7 @@ function parseWuxingJu(name: string): number {
 }
 
 // ─── 主函数：生成命盘 ────────────────────────────────────────────
-export function generateChart(birthInfo: BirthInfo): ZiweiChart {
+export function generateChart(birthInfo: BirthInfo, ageYear = new Date().getFullYear(), civilBirthYear = birthInfo.year): ZiweiChart {
   const { year, month, day, hour, gender } = birthInfo;
 
   // 调用 iztro 排盘
@@ -82,16 +87,19 @@ export function generateChart(birthInfo: BirthInfo): ZiweiChart {
         name:       s.name as string,
         type:       'major' as const,
         brightness: mapBrightness(s.brightness as string),
+        brightnessRaw: rawBrightness(s.brightness),
         siHua:      s.mutagen as Star['siHua'],
       })),
       ...(p.minorStars ?? []).map(s => ({
         name:  s.name as string,
         type:  mapStarType(s.name as string, s.type as string),
+        brightnessRaw: rawBrightness(s.brightness),
         siHua: s.mutagen as Star['siHua'],
       })),
       ...(p.adjectiveStars ?? []).map(s => ({
         name:  s.name as string,
         type:  'minor' as const,
+        brightnessRaw: rawBrightness(s.brightness),
         siHua: s.mutagen as Star['siHua'],
       })),
     ];
@@ -110,8 +118,11 @@ export function generateChart(birthInfo: BirthInfo): ZiweiChart {
   });
 
   // ── 当前年龄 & 大限 ──
-  const currentYear = new Date().getFullYear();
-  const currentAge  = currentYear - year;
+  if (!Number.isInteger(ageYear) || ageYear < civilBirthYear || ageYear > 9999) {
+    throw new Error('目标年份须为不早于出生年的有效公历年份');
+  }
+  // 年度虚岁口径，与 CLI 一致；不使用运行机器的当前日期复算。
+  const currentAge = ageYear - civilBirthYear + 1;
 
   palaces.forEach(p => {
     if (p.daXianAge && currentAge >= p.daXianAge[0] && currentAge <= p.daXianAge[1]) {

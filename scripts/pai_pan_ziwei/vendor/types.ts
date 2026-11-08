@@ -25,7 +25,8 @@ export interface Star {
   name: string;
   type: 'major' | 'minor' | 'lucky' | 'sha';
   siHua?: SiHua;
-  brightness?: 'bright' | 'normal' | 'dim';  // 庙旺利陷
+  brightness?: 'bright' | 'normal' | 'dim';  // 旧压缩分组，不能反推精确庙旺等级
+  brightnessRaw?: string | null;  // iztro zh-CN 原始亮度；null=源数据未提供（不等于平）
 }
 
 export interface SelfSihuaMark {

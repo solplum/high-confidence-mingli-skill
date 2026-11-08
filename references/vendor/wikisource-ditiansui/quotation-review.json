@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "review_scope": "All packet files manually reviewed. Hash/file changes require renewed quotation review; this is not semantic quotation detection.",
+  "source_url": "https://zh.wikisource.org/w/index.php?title=滴天髓&oldid=844410",
+  "max_quoted_characters": 88,
+  "reviewed_quoted_characters": 88,
+  "files": {
+    "LICENSE.md": {
+      "sha256": "e72752648433057d482b3a64d3ded2c625b5c0e3ff6e3a982db7ade41dff0928",
+      "quote_spans": []
+    },
+    "short-excerpts.md": {
+      "sha256": "6a7dd15075551b09cf987e60c8829150b25e89ed17acfd15ad14701d973dabc8",
+      "quote_spans": [
+        {
+          "line": 6,
+          "prefix": "- geju / 页面L411："
+        },
+        {
+          "line": 7,
+          "prefix": "- conghua / 页面L431："
+        },
+        {
+          "line": 8,
+          "prefix": "- tiyong / 页面L484："
+        },
+        {
+          "line": 9,
+          "prefix": "- shuaiwang / 页面L507："
+        },
+        {
+          "line": 10,
+          "prefix": "- yueling / 页面L546："
+        },
+        {
+          "line": 11,
+          "prefix": "- yuanliu / 页面L561："
+        },
+        {
+          "line": 12,
+          "prefix": "- tongguan / 页面L578："
+        },
+        {
+          "line": 13,
+          "prefix": "- qingzhuo / 页面L587："
+        },
+        {
+          "line": 14,
+          "prefix": "- yinxian / 页面L610："
+        },
+        {
+          "line": 15,
+          "prefix": "- xianshen / 页面L798："
+        }
+      ]
+    },
+    "study-cards.md": {
+      "sha256": "d5f0b9a81eb2bdaa5ca6f3ac37ea216094a006838abc8e83f7a360c38160438e",
+      "quote_spans": []
+    }
+  }
+}

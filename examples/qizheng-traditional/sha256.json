@@ -1,0 +1,8 @@
+{
+  "valid.json": "b06dd28101d8375ee2756392280b8d6b52b3b15e82806b06cac14b8f9374cac7",
+  "valid.txt": "5aca6c63ef59e1122228e428d4bf9808e9dd99f89a1aad25d3a7cd020dca64bc",
+  "absent-location.json": "ca1f7264f3e3fc79e6dead08366ac8e52b9e6965235e3f8000c227b2bd1578b7",
+  "absent-location.txt": "a79bfb81957759b62cf38e6ca7e6734eea9f53ee68c4ac4212926cf02eef3166",
+  "uncertain-time.json": "e42e8969965428738e7fe2483b16b0469c49f724463ffc48e0cff202ea34a0b7",
+  "uncertain-time.txt": "6cfc09b54340cae3bd92e2aa1abb8ebe78cfacae50932a52f1c2ae2acccdbfff"
+}

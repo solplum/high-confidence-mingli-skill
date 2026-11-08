@@ -1,0 +1,66 @@
+[
+  {
+    "path": "references/bazi/classical-texts.md",
+    "bytes": 6916,
+    "lines": 175,
+    "sha256": "c62267d5a7c8c252dcf07544397be144c8d1b5475241b050701b0a2b27ec59d3",
+    "matches_observatory": true,
+    "upstream_copy": "/workspace/scratch/10337929cf9d/fortune-observatory-audit/skills/bazi/references/classical-texts.md"
+  },
+  {
+    "path": "references/bazi/dayun-rules.md",
+    "bytes": 3546,
+    "lines": 100,
+    "sha256": "70e35df806e7d6ede9e3ab6524bd2088d3ce9ac8a8e8d6177c84abe0e2b03562",
+    "matches_observatory": true,
+    "upstream_copy": "/workspace/scratch/10337929cf9d/fortune-observatory-audit/skills/bazi/references/dayun-rules.md"
+  },
+  {
+    "path": "references/bazi/shensha-table.md",
+    "bytes": 7592,
+    "lines": 175,
+    "sha256": "832da1c02ee67e804e6f15aae1fbdc047564d8222b703e8e8982f533652a9e4c",
+    "matches_observatory": true,
+    "upstream_copy": "/workspace/scratch/10337929cf9d/fortune-observatory-audit/skills/bazi/references/shensha-table.md"
+  },
+  {
+    "path": "references/bazi/shichen-table.md",
+    "bytes": 2840,
+    "lines": 63,
+    "sha256": "bcddb4c87d179d52ea15740c75edcfa2f99f89aef23bc5068fc88c87b4068768",
+    "matches_observatory": true,
+    "upstream_copy": "/workspace/scratch/10337929cf9d/fortune-observatory-audit/skills/bazi/references/shichen-table.md"
+  },
+  {
+    "path": "references/bazi/wuxing-tables.md",
+    "bytes": 6318,
+    "lines": 174,
+    "sha256": "167982bb7fd5ddc0f3dcfafe6ec377c92fa2d4bd90153b72c89d65888a7d419f",
+    "matches_observatory": true,
+    "upstream_copy": "/workspace/scratch/10337929cf9d/fortune-observatory-audit/skills/bazi/references/wuxing-tables.md"
+  },
+  {
+    "path": "references/ziwei/classics.md",
+    "bytes": 15629,
+    "lines": 154,
+    "sha256": "2da4a957367f2586d13bf4da1799d63cd97808337d2180a1f214f8cbdd48bcbc",
+    "matches_observatory": true,
+    "upstream_copy": "/workspace/scratch/10337929cf9d/fortune-observatory-audit/skills/ziwei-doushu/references/classics.md"
+  },
+  {
+    "path": "references/ziwei/patterns.md",
+    "bytes": 18599,
+    "lines": 350,
+    "sha256": "93cb2ce89b8576871d8d8422713f7bd23d1a53fca49a75ae418cbee071c6e4d8",
+    "matches_observatory": true,
+    "upstream_copy": "/workspace/scratch/10337929cf9d/fortune-observatory-audit/skills/ziwei-doushu/references/patterns.md"
+  },
+  {
+    "path": "references/ziwei/sihua-tables.md",
+    "bytes": 1543,
+    "lines": 37,
+    "sha256": "eadcf681a948a193516a55ebcf30560c8ee8dba2dd8acc4b6a121818e9e9336a",
+    "matches_observatory": true,
+    "upstream_copy": "/workspace/scratch/10337929cf9d/fortune-observatory-audit/skills/ziwei-doushu/references/sihua-tables.md"
+  }
+]

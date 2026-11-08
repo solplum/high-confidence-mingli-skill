@@ -4,7 +4,7 @@
  * [来源] 拷贝自 ziwei-doushu skill (~/.agents/skills/ziwei-doushu/scripts/pai_pan.ts)，2026-10-01。
  * 本仓为独立副本（mingli v4 三盘引擎之一），上游修复不同步至此；本副本专属改动见 git log。
  * 引擎：vendor/（Renhuai123/ziwei-doushu@88194a4，MIT），底层排盘 iztro 2.6.1。
- * 输出以脚本 stdout 为准：十二宫、大限、格局、四化均由引擎计算，禁止口算覆盖。
+ * 输出以脚本 stdout 为准：十二宫、大限、四化均由引擎计算，禁止口算覆盖；格局仅为实现规则匹配。
  *
  * 用法（在本目录先 npm install 一次）：
  *   npx tsx pai_pan.ts --solar 1990-05-15 --shichen 午 --sex 男
@@ -17,11 +17,14 @@
  *   --sex 男|女           必填（决定大限顺逆）
  *   --name  姓名（可选，仅展示）
  *   --place 出生地（可选，仅展示）
+ *   --explain-rules     显示实现规则的解释及局限（不启用事件预测）
+ *   --format text|json  默认 text；两种格式共享 rule_output
  *   --age-year YYYY      以该年份计算当前年龄/当前大限（默认当年，供流年复核）
  */
 
 import { generateChart, getLunarInfo } from './vendor/algorithm';
-import { detectPatterns, getMingGongSummary } from './vendor/patterns';
+import { renderDomainReading } from './domain_reading';
+import { buildRuleOutput } from './rule_output';
 import { getSiHuaByStem, getLiuNianSiHua, getYearStemIndex, getYearBranchIndex } from './vendor/sihua';
 import { STEMS, BRANCHES } from './vendor/constants';
 
@@ -33,6 +36,9 @@ interface Args {
   name?: string;
   place?: string;
   ageYear?: number;
+  birthYear?: number;
+  format?: string;
+  explainRules?: boolean;
 }
 
 class UsageError extends Error {}
@@ -47,13 +53,16 @@ function parseArgs(argv: string[]): Args {
     const key = argv[i];
     const value = argv[i + 1];
     switch (key) {
+      case '--explain-rules': args.explainRules = true; break;
+      case '--format': args.format = value; i++; break;
       case '--solar': args.solar = value; i++; break;
       case '--hour': args.hour = value; i++; break;
       case '--shichen': args.shichen = value; i++; break;
       case '--sex': args.sex = value; i++; break;
       case '--name': args.name = value; i++; break;
       case '--place': args.place = value; i++; break;
-      case '--age-year': args.ageYear = parseInt(value, 10); i++; break;
+      case '--age-year': args.ageYear = Number(value); i++; break;
+      case '--birth-year': args.birthYear = Number(value); i++; break;
       default: fail('未知参数（仅支持 --solar --hour --shichen --sex --name --place --age-year）');
     }
   }
@@ -66,21 +75,17 @@ function hourToShichenIndex(hhmm: string | undefined): number {
   if (!m) fail('--hour 格式应为 HH:MM');
   const h = parseInt(m[1], 10);
   if (Number.isNaN(h) || h < 0 || h > 23) fail('--hour 小时应为 0-23');
+  if (Number(m[2]) > 59) fail('--hour 分钟应为 00-59');
   return Math.floor(((h + 1) % 24) / 2);
 }
 
 const SHICHEN_NAMES = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'];
-const LEVEL_NAMES: Record<string, string> = {
-  excellent: '上格',
-  good: '良格',
-  neutral: '中性',
-  caution: '警示',
-};
 
-function starText(star: { name: string; type: string; brightness?: string; siHua?: string }): string {
+function starText(star: { name: string; type: string; brightness?: string; brightnessRaw?: string | null; siHua?: string }): string {
   const parts = [star.name];
-  if (star.type === 'major' && star.brightness === 'bright') parts.push('(庙旺)');
-  if (star.type === 'major' && star.brightness === 'dim') parts.push('(落陷)');
+  if (star.type === 'major') {
+    parts.push('(' + (star.brightnessRaw || '亮度未提供') + ')');
+  }
   if (star.siHua) parts.push('化' + star.siHua);
   return parts.join(' ');
 }
@@ -92,6 +97,7 @@ function palaceNameOf(chart: ReturnType<typeof generateChart>, starName: string)
 
 function run() {
   const args = parseArgs(process.argv.slice(2));
+  if (args.format !== undefined && !['text', 'json'].includes(args.format)) fail('--format 应为 text 或 json');
 
   if (!args.solar || !args.sex) {
     fail('必填: --solar YYYY-MM-DD --sex 男|女，时辰用 --hour HH:MM 或 --shichen 子');
@@ -101,6 +107,15 @@ function run() {
   const year = parseInt(dateMatch[1], 10);
   const month = parseInt(dateMatch[2], 10);
   const day = parseInt(dateMatch[3], 10);
+
+  const checkedDate = new Date(0);
+  checkedDate.setUTCFullYear(year, month - 1, day);
+  if (year < 1 || checkedDate.getUTCFullYear() !== year || checkedDate.getUTCMonth() !== month - 1 || checkedDate.getUTCDate() !== day) fail('--solar 不是有效公历日期');
+  if (args.hour && args.shichen) fail('--hour 与 --shichen 互斥');
+  const ageYear = args.ageYear ?? new Date().getFullYear();
+  const birthYear = args.birthYear ?? year;
+  if (!Number.isInteger(birthYear) || Math.abs(birthYear - year) > 1 || birthYear < 1) fail('--birth-year 须为原始民用出生年，仅允许跨年校正');
+  if (!Number.isInteger(ageYear) || ageYear < birthYear || ageYear > 9999) fail('--age-year 须为不早于出生年的有效年份');
 
   let shichenIndex: number;
   if (args.hour) {
@@ -118,12 +133,16 @@ function run() {
   const chart = generateChart({
     year, month, day, hour: shichenIndex, gender,
     name: args.name, city: args.place,
-  });
+  }, ageYear, birthYear);
 
   const lunar = getLunarInfo(year, month, day);
-  const ageYear = args.ageYear ?? new Date().getFullYear();
-  const nowYear = new Date().getFullYear();
 
+  const ruleOutput = buildRuleOutput(chart, args.explainRules);
+  if (args.format === 'json') {
+    console.log(JSON.stringify({ schema_version: 1, engine: 'iztro 2.6.1 / vendored wrapper',
+      input: { solar: args.solar, shichenIndex, gender, ageYear, birthYear }, lunar, chart, rule_output: ruleOutput }, null, 2));
+    return;
+  }
   // ── 输出 ──
   console.log('## 输入');
   console.log('阳历：' + year + '-' + String(month).padStart(2, '0') + '-' + String(day).padStart(2, '0'));
@@ -154,7 +173,7 @@ function run() {
     if (p.daXianAge) line += '｜大限' + p.daXianAge[0] + '-' + p.daXianAge[1];
     const marks: string[] = [];
     if (p.isShenGong) marks.push('身宫');
-    if (p.isCurrentDaXian && ageYear === nowYear) marks.push('当前大限');
+    if (p.isCurrentDaXian) marks.push('当前大限');
     if (marks.length) line += '｜' + marks.join('/');
     console.log(line);
   }
@@ -165,31 +184,32 @@ function run() {
     console.log('化' + type + '：' + nativeSiHua[type] + '（落 ' + palaceNameOf(chart, nativeSiHua[type]) + '）');
   }
 
-  console.log('\n## 大限');
+  console.log('\n## 大限（目标 ' + ageYear + ' 年，公历年差加一虚岁 ' + chart.currentAge + '）');
   chart.daXians.forEach((dx, i) => {
     const marker = i === chart.currentDaXianIndex ? ' ←当前' : '';
     console.log(dx.startAge + '-' + dx.endAge + '　' + dx.palaceName + '(' + BRANCHES[dx.palaceBranch] + ')' + marker);
   });
 
-  const patterns = detectPatterns(chart);
-  console.log('\n## 格局');
-  if (patterns.length === 0) {
-    console.log('（无匹配格局）');
+  console.log('\n## 格局（实现规则匹配）');
+  console.log(ruleOutput.scope);
+  console.log('实现来源：' + ruleOutput.source);
+  console.log(ruleOutput.terminology);
+  if (!ruleOutput.patterns.length) console.log('（无匹配格局，不表示现实中缺乏某种能力或机会）');
+  for (const pat of ruleOutput.patterns) {
+    console.log(pat.name + '｜旧规则分类 ' + pat.level + '（不是风险或置信度评级）');
+    console.log('  ' + pat.description);
+    if (pat.conditions.bonus.length) console.log('  附加条件：' + pat.conditions.bonus.join('；'));
+    if (pat.conditions.breaking.length) console.log('  限制条件：' + pat.conditions.breaking.join('；'));
+    if (pat.explanation) {
+      for (const value of Object.values(pat.explanation)) console.log('  说明：' + value);
+    }
   }
-  for (const pat of patterns) {
-    console.log('[' + (LEVEL_NAMES[pat.level] ?? pat.level) + '] ' + pat.name + ' — ' + pat.description);
-    console.log('  出处：' + (pat.source ?? '未标注'));
-    const cond = pat.conditions;
-    if (cond?.bonus?.length) console.log('  加分：' + cond.bonus.join('；'));
-    if (cond?.breaking?.length) console.log('  破格警示：' + cond.breaking.join('；'));
-  }
+  console.log(renderDomainReading(ruleOutput.domain_reading));
+  console.log('\n## 命宫小结（排布事实）');
+  console.log('主星：' + (ruleOutput.ming_summary.stars.join('、') || '空宫（借星另列）'));
+  console.log(ruleOutput.ming_summary.meaning);
 
-  const summary = getMingGongSummary(chart);
-  console.log('\n## 命宫小结');
-  console.log('主星：' + (summary.stars.length ? summary.stars.join('、') : '空宫（借对宫）'));
-  console.log('星性：' + summary.nature + '｜关键词：' + summary.keywords.join('、'));
-
-  console.log('\n## 流年（' + ageYear + ' 年，虚岁口径：' + (ageYear - year + 1) + '）');
+  console.log('\n## 流年（' + ageYear + ' 年，虚岁口径：' + chart.currentAge + '）');
   const ln = getLiuNianSiHua(ageYear);
   const lnBranch = BRANCHES[getYearBranchIndex(ageYear)];
   console.log(ageYear + ' ' + ln.stemName + lnBranch + '年｜流年四化：禄-' + ln.transforms['禄'] + ' 权-' + ln.transforms['权'] + ' 科-' + ln.transforms['科'] + ' 忌-' + ln.transforms['忌']);

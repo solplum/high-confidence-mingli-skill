@@ -1,0 +1,20 @@
+[
+  "python3",
+  "scripts/build_chart.py",
+  "--solar",
+  "2000-05-15",
+  "--hour",
+  "12:00",
+  "--sex",
+  "男",
+  "--lat",
+  "31.23",
+  "--lon",
+  "121.47",
+  "--timezone",
+  "Asia/Shanghai",
+  "--analysis-year",
+  "2026",
+  "--format",
+  "json"
+]

@@ -19,3 +19,23 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Third-party exception: references/vendor/wikisource-ditiansui/ and the
+identified bazi-dts-study-* / bazi-dts-interpret-* adaptations in knowledge/catalog.json are
+provided separately under CC BY-SA 4.0. See that directory's LICENSE.md.
+The MIT grant above does not relicense this independent material.
+
+The generated examples/bazi-conditional ledger and its explanation adaptation are also CC BY-SA 4.0; the generator code remains MIT.
+
+Qizheng study-material exception: knowledge/qizheng-traditional-study.json and
+docs/qizheng-traditional-study.md are separately licensed under CC BY-SA 4.0.
+The same separate license applies to their adapted study-card descriptions,
+conditions, counterconditions, attribution, and other adapted expressive material
+included in generated JSON or text readings. Preserve the source attribution,
+revision/history links and change notices supplied with the study material.
+See knowledge/licenses/qizheng-study-CC-BY-SA-4.0.txt for the full license.
+The MIT grant above does not relicense this material. The evaluator and tests
+remain MIT. This exception does not claim new rights in public-domain originals,
+factual measurements, or mathematical results, and no source scan is bundled.
+The generated examples/qizheng-traditional text/JSON study expressions are
+covered by the same separate CC BY-SA 4.0 exception; their generator remains MIT.

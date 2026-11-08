@@ -1,0 +1,195 @@
+{
+  "sources": [
+    "https://www.hko.gov.hk/en/gts/astron2026/files/2026SolarTerms24.pdf",
+    "https://www.hko.gov.hk/en/gts/astron2026/files/2026cal02.pdf",
+    "https://www.hko.gov.hk/en/gts/astron2014/Solar_Term_2014.htm"
+  ],
+  "resolution": "1 minute, not exact-second ground truth",
+  "rows": [
+    {
+      "year": 2026,
+      "longitude": 300,
+      "reference_minute": "2026-01-20T09:45:00+08:00"
+    },
+    {
+      "year": 2026,
+      "longitude": 315,
+      "reference_minute": "2026-02-04T04:02:00+08:00"
+    },
+    {
+      "year": 2026,
+      "longitude": 330,
+      "reference_minute": "2026-02-18T23:52:00+08:00"
+    },
+    {
+      "year": 2026,
+      "longitude": 0,
+      "reference_minute": "2026-03-20T22:46:00+08:00"
+    },
+    {
+      "year": 2026,
+      "longitude": 30,
+      "reference_minute": "2026-04-20T09:39:00+08:00"
+    },
+    {
+      "year": 2026,
+      "longitude": 60,
+      "reference_minute": "2026-05-21T08:37:00+08:00"
+    },
+    {
+      "year": 2026,
+      "longitude": 90,
+      "reference_minute": "2026-06-21T16:25:00+08:00"
+    },
+    {
+      "year": 2026,
+      "longitude": 120,
+      "reference_minute": "2026-07-23T03:13:00+08:00"
+    },
+    {
+      "year": 2026,
+      "longitude": 150,
+      "reference_minute": "2026-08-23T10:19:00+08:00"
+    },
+    {
+      "year": 2026,
+      "longitude": 180,
+      "reference_minute": "2026-09-23T08:05:00+08:00"
+    },
+    {
+      "year": 2026,
+      "longitude": 210,
+      "reference_minute": "2026-10-23T17:38:00+08:00"
+    },
+    {
+      "year": 2026,
+      "longitude": 240,
+      "reference_minute": "2026-11-22T15:23:00+08:00"
+    },
+    {
+      "year": 2026,
+      "longitude": 270,
+      "reference_minute": "2026-12-22T04:50:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 285,
+      "reference_minute": "2014-01-05T18:24:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 300,
+      "reference_minute": "2014-01-20T11:51:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 315,
+      "reference_minute": "2014-02-04T06:03:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 330,
+      "reference_minute": "2014-02-19T01:59:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 345,
+      "reference_minute": "2014-03-06T00:02:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 0,
+      "reference_minute": "2014-03-21T00:57:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 15,
+      "reference_minute": "2014-04-05T04:47:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 30,
+      "reference_minute": "2014-04-20T11:56:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 45,
+      "reference_minute": "2014-05-05T21:59:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 60,
+      "reference_minute": "2014-05-21T10:59:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 75,
+      "reference_minute": "2014-06-06T02:03:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 90,
+      "reference_minute": "2014-06-21T18:51:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 105,
+      "reference_minute": "2014-07-07T12:15:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 120,
+      "reference_minute": "2014-07-23T05:41:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 135,
+      "reference_minute": "2014-08-07T22:02:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 150,
+      "reference_minute": "2014-08-23T12:46:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 165,
+      "reference_minute": "2014-09-08T01:01:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 180,
+      "reference_minute": "2014-09-23T10:29:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 195,
+      "reference_minute": "2014-10-08T16:47:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 210,
+      "reference_minute": "2014-10-23T19:57:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 225,
+      "reference_minute": "2014-11-07T20:07:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 240,
+      "reference_minute": "2014-11-22T17:38:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 255,
+      "reference_minute": "2014-12-07T13:04:00+08:00"
+    },
+    {
+      "year": 2014,
+      "longitude": 270,
+      "reference_minute": "2014-12-22T07:03:00+08:00"
+    }
+  ]
+}

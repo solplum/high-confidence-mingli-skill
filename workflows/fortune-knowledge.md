@@ -1,5 +1,8 @@
 # Fortune-Knowledge — 通用知识 Workflow
 
+> **知识来源门（所有引用必读）**：先读 `knowledge/README.md` 并验证 `knowledge/catalog.json`。这条约束优先于下文旧的“原典/权威/书名章节”说法；旧摘要仅作有来源的现代整理，隔离条目不用于解读，未核版本不作逐字古籍引用。直接读旧 references 也必须过此门。
+
+
 > 由 SKILL.md §0 路由触发。处理脱离个人盘面的命理知识问答。
 > 输入: concept
 > 数据: SKILL.md 通用规则（§6/§7/§13）+ 可选对照 `~/.claude/fortune-telling/chart.md`

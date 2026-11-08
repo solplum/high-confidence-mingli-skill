@@ -3,17 +3,18 @@
 """七政四余排盘（纯标准库，无第三方依赖）。
 
 [来源] high-confidence-mingli-skill v4 自研引擎，2026-10-01。
-天文算法：Meeus《Astronomical Algorithms》+ Schlyter 行星要素（角分级精度，
-1900–2100 适用）；罗睺=月亮平升交点（Meeus 47.7）；月孛=月亮平远地点；
+天文算法：Meeus《Astronomical Algorithms》+ Schlyter 行星要素（简化模型；
+测试覆盖不等于 1900–2100 全域精度保证）；罗睺=月亮平升交点（Meeus 47.7）；月孛=月亮平远地点；
 计都=罗睺对冲；紫气=二十八岁周天虚拟星（口径见下）。
-对拍基准：stem-branch 开源实现（JPL DE441 校正级）黄金值 + 古典安命例。
+旧 stem-branch 同源数值只作回归；独立几何/星历检查另见测试与 docs/qizheng-horizon-contract.md。
 
 ═══ 口径声明（学派选择，全部标注出处）═══
 1. 盘制：恒星制（sidereal）。恒星原点 = 角宿一（Spica，α Vir）；
-   ayanamsa = Spica 黄经（J2000 = 201.2983° + 经度岁差）。参考 stem-branch 同原点。
-   注意：果老星宗一派软件（guolaoxing）用回归制——两派宿度会差约 24°，本仓固定恒星制。
-2. 二十八宿边界：Hipparcos 实测距星（Pan Nai/Sun & Kistemaker 数据，
-   经 stem-branch 整理，作者自注 approximate）。岁差随动（宿界贴星）。
+   physical-v2: ICRS J2000 RA/Dec + 自行 + 岁差 → 日期平黄经（J2000≈203.84136°）。
+   legacy-v1: 201.2983° 为赤经误作黄经，仅用于历史重放。
+   此为角宿一相对黄经，不等同通用黄道十二宫约 24° 的岁差值；跨软件须先对齐原点/宿界定义。
+2. 二十八宿边界：沿用近似偏移表，尚未逐星核实来源/历元/赤经或黄经定义。
+   原点修正不等于宿界校准，不声称表中距星与所列偏移匹配。
 3. 十二支宫：按经典分野聚合宿度——辰=角亢、卯=氐房心、寅=尾箕、丑=斗牛、
    子=女虚、亥=危室壁、戌=奎娄、酉=胃昴毕、申=觜参、未=井鬼、午=柳星张、巳=翼轸
    （次序依《汉书·律历志》十二次，边界继承第 2 条星表）。
@@ -26,12 +27,15 @@
    （金星例：土计为恩、水孛月为用、日罗火为难、木炁为仇）。十一曜五行：
    日=火、月=水、木=木、火=火、土=土、金=金、水=水、罗睺=火、计都=土、月孛=水、紫气=木。
 8. 命度：真升点（tropical ascendant）→ 换恒星黄经 → 落宿；与立命宫（第 4 条）是两个口径，
-   同时输出。真太阳时口径：升度计算含均时差校正。
+   同时输出。physical-v2 用 UT1 的 GMST 与平黄道/地平圈东方上升交点，不加均时差。
+   legacy-v1 只为复现旧版已知错误（西方交点、均时差单位和昼夜混时钟）；不是传统学派认证。
 """
 
 import argparse
 import math
 import sys
+from qizheng_provenance import model_provenance
+from qizheng_star_frame import spica_mean_longitude, star_frame_contract, boundary_diagnostic
 from datetime import datetime, timedelta, timezone
 
 BJ = timezone(timedelta(hours=8))
@@ -57,7 +61,7 @@ MANSION_WX_TO_PHASE = {"木": "木", "火": "火", "土": "土", "金": "金", "
                        "日": "火", "月": "水"}
 
 # 二十八宿：宿名、距星、恒星黄经起点（Spica=0°）、宿主（五行取宿主之字）
-# 来源：Hipparcos/Pan Nai，经 stem-branch 整理（其自注 approximate）
+# 来源待逐星核实：历史实现近似表，不是已校准距星黄经星表。
 MANSIONS = (
     ("角", "α Vir", 0.0, "木"), ("亢", "κ Vir", 12.0, "金"), ("氐", "α Lib", 28.0, "土"),
     ("房", "π Sco", 33.0, "日"), ("心", "σ Sco", 38.0, "月"), ("尾", "μ Sco", 44.5, "火"),
@@ -198,8 +202,16 @@ MOON_TERMS = (
 )
 
 
-def moon_longitude(jd_tt):
-    """月亮视黄经。Meeus AA ch.47 截断式（~0.05°）。"""
+def moon_longitude(jd_tt, model="meeus-truncated-geometric-v2"):
+    """Geocentric geometric longitude in mean ecliptic/equinox of date.
+
+    Truncated Meeus AA ch.47, without nutation, light-time or aberration.
+    legacy-v1 preserves the original table and omitted eccentricity factors.
+    """
+    if model not in ("meeus-truncated-geometric-v2", "legacy-v1"):
+        raise ValueError("unknown Moon model: " + str(model))
+    if not math.isfinite(jd_tt):
+        raise ValueError("jd_tt must be finite")
     T = (jd_tt - J2000) / 36525.0
     Lp = (
         218.3164477 + 481267.88123421 * T - 0.0015786 * T * T
@@ -222,7 +234,15 @@ def moon_longitude(jd_tt):
     A2 = 53.09 + 479264.290 * T
     lam = Lp
     rad = math.radians
-    for coef, cd, cm, cmp_, cf in MOON_TERMS:
+    terms = MOON_TERMS
+    if model != "legacy-v1":
+        # Meeus Table 47.A rows 34–35; v1 duplicated D/M' and reversed signs.
+        terms = MOON_TERMS[:-2] + ((-0.002069, 0, 2, 0, 0),
+                                  (0.002048, 2, -2, -1, 0))
+    E = 1.0 - 0.002516 * T - 0.0000074 * T * T
+    for coef, cd, cm, cmp_, cf in terms:
+        if model != "legacy-v1":
+            coef *= E ** abs(cm)
         arg = cd * D + cm * M + cmp_ * Mp + cf * F
         lam += coef * math.sin(rad(arg))
     lam += 0.003958 * math.sin(rad(A1))
@@ -288,8 +308,8 @@ def _days_since_2000(jd_ut):
     return jd_ut + delta_t_seconds(2000.0 + (jd_ut - J2000) / 365.242189) / 86400.0 - 2451543.5
 
 
-def planet_longitude(planet, jd_ut):
-    """行星地心视黄经。Schlyter 要素 + 木土互相摄动（~角分级）。"""
+def _planet_longitude_legacy(planet, jd_ut):
+    """Frozen v1 numerics, including known sign/frame errors; replay only."""
     d = _days_since_2000(jd_ut)
     el = _schlyter_elements(planet, d)
     xh, yh, _ = _helio_rect(el)
@@ -332,6 +352,70 @@ def planet_longitude(planet, jd_ut):
     return norm_deg(lon)
 
 
+PLANET_MODEL = "schlyter-geometric-v2"
+
+
+def _perturbed_helio_rect(planet, d):
+    """Schlyter sections 7–9: perturb HELIOCENTRIC longitude/latitude first.
+
+    Source: https://stjarnhimlen.se/comp/ppcomp.html (Paul Schlyter).
+    Independent transcription of published formulae; no external runtime code.
+    """
+    x, y, z = _helio_rect(_schlyter_elements(planet, d))
+    if planet not in ("jupiter", "saturn"):
+        return x, y, z
+    r = math.sqrt(x*x + y*y + z*z)
+    lon = math.degrees(math.atan2(y, x))
+    lat = math.degrees(math.atan2(z, math.hypot(x, y)))
+    j = _schlyter_elements("jupiter", d)["M"] % 360.0
+    s = _schlyter_elements("saturn", d)["M"] % 360.0
+    sin = lambda a: math.sin(math.radians(a))
+    cos = lambda a: math.cos(math.radians(a))
+    if planet == "jupiter":
+        lon += (-0.332*sin(2*j-5*s-67.6) - 0.056*sin(2*j-2*s+21)
+                + 0.042*sin(3*j-5*s+21) - 0.036*sin(j-2*s)
+                + 0.022*cos(j-s) + 0.023*sin(2*j-3*s+52)
+                - 0.016*sin(j-5*s-69))
+    else:
+        lon += (0.812*sin(2*j-5*s-67.6) - 0.229*cos(2*j-4*s-2)
+                + 0.119*sin(j-2*s-3) + 0.046*sin(2*j-6*s-69)
+                + 0.014*sin(j-3*s+32))
+        lat += -0.020*cos(2*j-4*s-2) + 0.018*sin(2*j-6*s-49)
+    return r*cos(lon)*cos(lat), r*sin(lon)*cos(lat), r*sin(lat)
+
+
+def planet_longitude_tt(planet, jd_tt):
+    """V2 geocentric GEOMETRIC longitude, mean ecliptic/equinox of date.
+
+    TT input; no light time, annual aberration, nutation, or topocentric parallax.
+    Low-precision model, validated on a sparse 1900–2100 grid, not an accuracy
+    guarantee near classification boundaries. See docs/qizheng-ephemeris.md.
+    """
+    if not math.isfinite(jd_tt):
+        raise ValueError("jd_tt must be finite")
+    d = jd_tt - 2451543.5
+    xh, yh, _ = _perturbed_helio_rect(planet, d)
+    sun = _sun_elements(d)
+    E = math.radians(_kepler_E(sun["M"], sun["e"]))
+    w = math.radians(sun["w"])
+    x = math.cos(E) - sun["e"]
+    y = math.sqrt(1 - sun["e"]**2) * math.sin(E)
+    return norm_deg(math.degrees(math.atan2(
+        yh + x*math.sin(w) + y*math.cos(w),
+        xh + x*math.cos(w) - y*math.sin(w))))
+
+
+def planet_longitude(planet, jd_ut, model=PLANET_MODEL):
+    """Compatibility UT≈UTC entrypoint; prefer explicit TT in physical-v2."""
+    if not math.isfinite(jd_ut):
+        raise ValueError("jd_ut must be finite")
+    if model == "legacy-v1":
+        return _planet_longitude_legacy(planet, jd_ut)
+    if model != PLANET_MODEL:
+        raise ValueError("unknown planet model: " + str(model))
+    return planet_longitude_tt(planet, _days_since_2000(jd_ut) + 2451543.5)
+
+
 # ---------------------------------------------------------------------------
 # 四余
 # ---------------------------------------------------------------------------
@@ -369,15 +453,19 @@ def purple_qi_longitude(jd_ut):
 # 恒星制换算 / 宿度 / 支宫
 # ---------------------------------------------------------------------------
 
-def spica_ayanamsa(jd_tt):
-    """恒星原点偏移 = 角宿一黄经（J2000 = 201.2983° + 经度岁差）。"""
+def spica_ayanamsa(jd_tt, profile="legacy-v1"):
+    """Explicit physical origin or historical RA-as-longitude replay."""
+    if profile == "physical-v2":
+        return spica_mean_longitude(jd_tt)
+    if profile != "legacy-v1":
+        raise ValueError("unknown star-frame profile")
     T = (jd_tt - J2000) / 36525.0
     p_arcsec = 5028.796195 * T + 1.1054348 * T * T + 0.00007964 * T**3
     return 201.2983 + p_arcsec / 3600.0
 
 
-def to_sidereal(lon_tropical, jd_tt):
-    return norm_deg(lon_tropical - spica_ayanamsa(jd_tt))
+def to_sidereal(lon_tropical, jd_tt, profile="legacy-v1"):
+    return norm_deg(lon_tropical - spica_ayanamsa(jd_tt, profile=profile))
 
 
 def mansion_of(sidereal_lon):
@@ -445,7 +533,7 @@ def equation_of_time_minutes(jd_ut):
     return eot_minutes
 
 
-def ascendant_tropical(jd_ut, jd_tt, lat_deg, lon_deg, eot_minutes):
+def legacy_ascendant_tropical(jd_ut, jd_tt, lat_deg, lon_deg, eot_minutes):
     """真升点（tropical ascendant）。
 
     LST 用真太阳时口径（LST += 均时差），与古典「真太阳定时」一致（口径声明第 8 条）。
@@ -459,6 +547,62 @@ def ascendant_tropical(jd_ut, jd_tt, lat_deg, lon_deg, eot_minutes):
         math.sin(lst_rad) * math.cos(eps) + math.tan(lat) * math.sin(eps),
     )
     return norm_deg(math.degrees(asc))
+
+
+def _validate_location(lat_deg, lon_deg):
+    if not (math.isfinite(lat_deg) and -90 <= lat_deg <= 90):
+        raise ValueError("latitude must be finite and in [-90, 90]")
+    if not (math.isfinite(lon_deg) and -180 <= lon_deg <= 180):
+        raise ValueError("longitude must be finite and in [-180, 180]")
+
+
+def ascendant_tropical(jd_ut, jd_tt, lat_deg, lon_deg, eot_minutes=0.0):
+    """Eastern rising intersection of mean ecliptic and geometric horizon.
+
+    jd_ut is UT1, jd_tt is TT; longitude is east-positive. The retained
+    eot_minutes argument is ignored: EOT belongs to solar clocks, not GMST.
+    Return None where rising is undefined (pole, tangency, coincident planes).
+    This is a mean-frame geometric quantity, not an apparent/refracted angle.
+    """
+    _validate_location(lat_deg, lon_deg)
+    theta = math.radians(norm_deg(gmst_degrees(jd_ut) + lon_deg))
+    eps = math.radians(mean_obliquity_deg(jd_tt))
+    phi = math.radians(lat_deg)
+    if abs(math.cos(phi)) < 1e-12:
+        return None
+    # Horizon normal dotted into (cos(lambda), cos(eps)*sin(lambda),
+    # sin(eps)*sin(lambda)) gives A*cos(lambda)+B*sin(lambda)=0.
+    a = math.cos(phi) * math.cos(theta)
+    b = math.cos(phi) * math.sin(theta) * math.cos(eps) + math.sin(phi) * math.sin(eps)
+    length = math.hypot(a, b)
+    if length < 1e-12:
+        return None
+    x, y = b / length, -a / length
+    east = -math.sin(theta) * x + math.cos(theta) * math.cos(eps) * y
+    if abs(east) < 1e-12:
+        return None
+    if east < 0:
+        x, y = -x, -y
+    return norm_deg(math.degrees(math.atan2(y, x)))
+
+
+def solar_altitude_deg(jd_ut, jd_tt, lat_deg, lon_deg):
+    """Approximate geometric geocentric solar-centre altitude, degrees.
+
+    Undo the simple apparent-longitude correction to pair mean coordinates
+    with GMST. No atmospheric refraction, terrain, dip or parallax model.
+    """
+    _validate_location(lat_deg, lon_deg)
+    t = (jd_tt - J2000) / 36525.0
+    lam = math.radians(sun_apparent_longitude(jd_tt) + 0.00569 +
+                       0.00478 * math.sin(math.radians(125.04 - 1934.136 * t)))
+    eps = math.radians(mean_obliquity_deg(jd_tt))
+    theta = math.radians(norm_deg(gmst_degrees(jd_ut) + lon_deg))
+    phi = math.radians(lat_deg)
+    up = (math.cos(phi) * (math.cos(theta) * math.cos(lam) +
+          math.sin(theta) * math.cos(eps) * math.sin(lam)) +
+          math.sin(phi) * math.sin(eps) * math.sin(lam))
+    return math.degrees(math.asin(max(-1.0, min(1.0, up))))
 
 
 def sunrise_sunset_utc(jd_ut_noon, lat_deg, lon_deg):
@@ -531,45 +675,96 @@ def en_yong_chou_nan(du_zhu_wuxing):
 # 主流程
 # ---------------------------------------------------------------------------
 
-def compute(solar_date, hour, minute, lat, lon, place=None):
+def compute(solar_date, hour, minute, lat, lon, place=None, birth_instant=None,
+            profile="physical-v2", dut1_seconds=0.0):
     """排七政四余盘。solar_date=(y,m,d) 公历；hour/minute 北京钟表；lat/lon 度。
 
     缺 lat/lon 时不计命度/立命宫/昼夜生/恩用难仇，只出十一曜躔度。
     """
-    warnings = []
+    if profile not in ("physical-v2", "legacy-v1"):
+        raise ValueError("unknown qizheng calculation profile")
+    if (type(dut1_seconds) not in (int, float)
+            or not -0.9 <= dut1_seconds <= 0.9
+            or not math.isfinite(dut1_seconds)):
+        raise ValueError("dut1_seconds must be finite and within +/-0.9 s (modern UTC)")
+    if profile == "legacy-v1" and dut1_seconds != 0:
+        raise ValueError("legacy-v1 requires dut1_seconds=0 for reproducibility")
+    warnings = ["physical-v2 materially changes old 命度/恩用难仇/昼夜 results; legacy-v1 only reproduces known bugs"
+                if profile == "physical-v2" else "legacy-v1: known incorrect horizon and clock calculations retained for reproduction only"]
     dt_bj = datetime(solar_date[0], solar_date[1], solar_date[2], hour, minute, tzinfo=BJ)
+    if birth_instant is not None:
+        if birth_instant.utcoffset() is None:
+            raise ValueError("birth_instant 必须带明确 UTC 偏移")
+        dt_bj = birth_instant.astimezone(BJ)
+        hour, minute = dt_bj.hour, dt_bj.minute
     dt_utc = dt_bj.astimezone(timezone.utc)
-    jd_ut = jd_from_utc(dt_utc)
+    jd_utc = jd_from_utc(dt_utc)
+    jd_ut = jd_utc + dut1_seconds / 86400.0
     jd_tt = jd_ut + delta_t_seconds(dt_utc.year) / 86400.0
 
     sun = sun_apparent_longitude(jd_tt)
-    moon = moon_longitude(jd_tt)
+    if profile == "physical-v2":
+        t = (jd_tt - J2000) / 36525.0
+        sun = norm_deg(sun + 0.00569 + 0.00478 * math.sin(math.radians(125.04 - 1934.136*t)))
+    moon = moon_longitude(jd_tt, model="legacy-v1" if profile == "legacy-v1" else "meeus-truncated-geometric-v2")
+    def planet_at_instant(name):
+        return (planet_longitude(name, jd_ut, model="legacy-v1") if profile == "legacy-v1"
+                else planet_longitude_tt(name, jd_tt))
     bodies_tropical = {
         "日": sun, "月": moon,
-        "木": planet_longitude("jupiter", jd_ut),
-        "火": planet_longitude("mars", jd_ut),
-        "土": planet_longitude("saturn", jd_ut),
-        "金": planet_longitude("venus", jd_ut),
-        "水": planet_longitude("mercury", jd_ut),
+        "木": planet_at_instant("jupiter"),
+        "火": planet_at_instant("mars"),
+        "土": planet_at_instant("saturn"),
+        "金": planet_at_instant("venus"),
+        "水": planet_at_instant("mercury"),
         "罗睺": rahu_longitude(jd_tt),
         "计都": ketu_longitude(jd_tt),
         "月孛": yuebei_longitude(jd_tt),
         "紫气": purple_qi_longitude(jd_ut),
     }
-    ayan = spica_ayanamsa(jd_tt)
+    ayan = spica_ayanamsa(jd_tt, profile=profile)
+    frame_contract = star_frame_contract(jd_tt, legacy=profile == "legacy-v1")
+    if profile == "physical-v2":
+        warnings.append("角宿一原点已修正；二十八宿/支宫仍为独立近似边界，误差未知，不能视为已校准传统宿界")
+        if not frame_contract["within_validated_range"]:
+            warnings.append("角宿一原点超出 1900–2100 验证范围")
     bodies = {}
     for name, trop in bodies_tropical.items():
-        sid = to_sidereal(trop, jd_tt)
+        sid = to_sidereal(trop, jd_tt, profile=profile)
         m_name, m_deg, m_wx, m_star = mansion_of(sid)
         bodies[name] = {
             "tropical": trop, "sidereal": sid, "ayanamsa": ayan,
             "mansion": m_name, "mansion_deg": m_deg, "mansion_wx": m_wx, "star": m_star,
         }
 
-    sun_palace = palace_of(to_sidereal(sun, jd_tt))
+        if profile == "physical-v2":
+            bodies[name]["classification_quality"] = boundary_diagnostic(sid, [m[2] for m in MANSIONS])
+            if bodies[name]["classification_quality"]["near_boundary"]:
+                warnings.append("%s接近近似宿界（0.1°敏感性筛查，非误差上限）；躔宿/躔宫不可作确定判断" % name)
+
+    sun_palace = palace_of(to_sidereal(sun, jd_tt, profile=profile))
 
     result = {
         "jd_ut": jd_ut,
+        "jd_utc": jd_utc,
+        "calculation_profile": profile,
+        "model_provenance": model_provenance(profile),
+        "star_frame_contract": frame_contract,
+        "ephemeris_contract": {
+            "planets": "legacy-v1" if profile == "legacy-v1" else "schlyter-geometric-v2",
+            "moon": "legacy-v1" if profile == "legacy-v1" else "meeus-truncated-geometric-v2",
+            "sun": "Meeus low-order approximate apparent longitude" if profile == "legacy-v1" else "Meeus low-order geometric mean-ecliptic-of-date",
+            "frame_note": "legacy mixed frame" if profile == "legacy-v1" else "mean ecliptic/equinox of date; approximate geometric models, not apparent astrometry; virtual points remain conventions",
+        },
+        "horizon_contract": {
+            "frame": "mean equator/ecliptic of date; geometric horizon",
+            "sidereal_time": "GMST(UT1)+east longitude; no EOT" if profile == "physical-v2" else "legacy mixed units",
+            "dut1_seconds": dut1_seconds,
+            "utc_is_ut1_approximation": dut1_seconds == 0.0,
+            "tt_source": "UT1 + polynomial Delta T estimate (not measured EOP)",
+            "day_night": "instant geometric solar-centre altitude >= -0.833 deg" if profile == "physical-v2" else "legacy mixed clocks",
+            "ming_gong_clock": "Beijing civil hour, independent traditional rule",
+        },
         "ayanamsa": ayan,
         "bodies": bodies,
         "sun_palace_zhi": sun_palace,
@@ -581,40 +776,65 @@ def compute(solar_date, hour, minute, lat, lon, place=None):
         result.update({"ming_du": None, "ming_gong": None, "day_night": None, "en_yong": None})
         return result, warnings
 
+    _validate_location(lat, lon)
     if lat < 0:
-        warnings.append("南半球出生：昼夜判定与部分口径无传统定则，结果按北半球公式计算并整体标注")
+        warnings.append("南半球几何可计算；传统命理解读适用性未验证")
 
-    asc_trop = ascendant_tropical(jd_ut, jd_tt, lat, lon, result["eot_minutes"])
-    asc_sid = to_sidereal(asc_trop, jd_tt)
-    m_name, m_deg, m_wx, m_star = mansion_of(asc_sid)
-    ming_du = {
-        "tropical": asc_trop, "sidereal": asc_sid,
-        "mansion": m_name, "mansion_deg": m_deg, "wuxing": m_wx, "star": m_star,
-    }
+    asc_func = legacy_ascendant_tropical if profile == "legacy-v1" else ascendant_tropical
+    asc_trop = asc_func(jd_ut, jd_tt, lat, lon, result["eot_minutes"])
+    ming_du = None
+    m_wx = None
+    if asc_trop is not None:
+        asc_sid = to_sidereal(asc_trop, jd_tt, profile=profile)
+        m_name, m_deg, m_wx, m_star = mansion_of(asc_sid)
+        ming_du = {
+            "tropical": asc_trop, "sidereal": asc_sid,
+            "mansion": m_name, "mansion_deg": m_deg, "wuxing": m_wx, "star": m_star,
+        }
+        if profile == "physical-v2":
+            ming_du["classification_quality"] = boundary_diagnostic(asc_sid, [m[2] for m in MANSIONS])
+    else:
+        warnings.append("东方上升交点在极点/相切/重合地平几何下未定义；不输出命度或恩用难仇")
     hour_zhi = _hour_to_shichen(hour, minute)
     ming_gong = ming_gong_zhi(sun_palace, hour_zhi)
 
-    jd_noon = jd_ut  # 附近正午即可，公式内部再取当日 0 点
-    sr, ss, polar = sunrise_sunset_utc(jd_noon, lat, lon)
-    utc_hours = ((jd_ut + 0.5) % 1.0) * 24.0  # JD 自正午起算，先转自 0 点起算
-    local_hours = utc_hours + lon / 15.0  # 当地平太阳时（近似，用于昼夜粗判）
-    if polar:
-        day_night = {"type": polar, "note": "极昼/极夜，昼夜生传统口径不适用"}
+    if profile == "physical-v2":
+        altitude = solar_altitude_deg(jd_ut, jd_tt, lat, lon)
+        day_night = {"type": "昼生" if altitude >= -0.833 else "夜生",
+                     "solar_altitude_deg": altitude, "threshold_deg": -0.833,
+                     "method": "instant-geometric-solar-centre",
+                     "note": "标准日出阈值近似，不含实测大气、地形或海拔；不据单个时刻宣称极昼极夜"}
     else:
-        local_apparent = local_hours + result["eot_minutes"] / 60.0
-        sr_local = (sr + lon / 15.0) % 24.0
-        ss_local = (ss + lon / 15.0) % 24.0
-        if sr_local <= local_apparent < ss_local:
-            day_night = {"type": "昼生", "sunrise_local": sr_local, "sunset_local": ss_local}
+        jd_noon = jd_ut  # 附近正午即可，公式内部再取当日 0 点
+        sr, ss, polar = sunrise_sunset_utc(jd_noon, lat, lon)
+        utc_hours = ((jd_ut + 0.5) % 1.0) * 24.0  # JD 自正午起算，先转自 0 点起算
+        local_hours = utc_hours + lon / 15.0  # 当地平太阳时（近似，用于昼夜粗判）
+        if polar:
+            day_night = {"type": polar, "note": "极昼/极夜，昼夜生传统口径不适用"}
         else:
-            day_night = {"type": "夜生", "sunrise_local": sr_local, "sunset_local": ss_local}
+            local_apparent = local_hours + result["eot_minutes"] / 60.0
+            sr_local = (sr + lon / 15.0) % 24.0
+            ss_local = (ss + lon / 15.0) % 24.0
+            if sr_local <= local_apparent < ss_local:
+                day_night = {"type": "昼生", "sunrise_local": sr_local, "sunset_local": ss_local}
+            else:
+                day_night = {"type": "夜生", "sunrise_local": sr_local, "sunset_local": ss_local}
 
     result["ming_du"] = ming_du
     result["ming_gong"] = {"zhi": ming_gong, "wuxing": PALACE_WUXING[ming_gong],
                            "sun_palace": sun_palace, "hour_zhi": hour_zhi}
     result["day_night"] = day_night
-    result["du_zhu_wuxing"] = MANSION_WX_TO_PHASE[m_wx]
-    result["en_yong"] = en_yong_chou_nan(result["du_zhu_wuxing"])
+    result["du_zhu_wuxing"] = MANSION_WX_TO_PHASE[m_wx] if m_wx is not None else None
+    result["en_yong"] = en_yong_chou_nan(result["du_zhu_wuxing"]) if m_wx is not None else None
+    if profile == "physical-v2":
+        result["classification_contract"] = {
+            "mansion_and_palace": "approximate-unvalidated",
+            "ming_gong": "conditional on approximate solar palace and traditional clock rule",
+            "en_yong": "conditional on approximate mansion element, not an established physical property",
+            "near_boundary": bool(ming_du and ming_du["classification_quality"]["near_boundary"]),
+        }
+        if result["classification_contract"]["near_boundary"]:
+            warnings.append("命度接近近似宿界；度主/恩用难仇为条件结果，不作确定判读")
     return result, warnings
 
 
@@ -631,13 +851,15 @@ def format_report(result, warnings, meta):
     lines.append("- 阳历：%s %02d:%02d（北京时间）" % (meta["solar"], meta["hour"], meta["minute"]))
     if meta.get("place"):
         lines.append("- 出生地：%s（纬 %.2f，经 %.2f）" % (meta["place"], meta["lat"], meta["lon"]))
-    else:
+    elif meta.get("lat") is not None and meta.get("lon") is not None:
         lines.append("- 经纬度：纬 %.2f，经 %.2f" % (meta["lat"], meta["lon"]))
+    else:
+        lines.append("- 经纬度：未提供")
     lines.append("")
     lines.append("## 口径声明（详见文件头）")
     lines.append("- 恒星制，角宿一=0°，ayanamsa=%.4f°" % result["ayanamsa"])
     lines.append("- 计都=罗睺对冲；紫气=28岁周天锚点 1975-03-13 16:00 UT=230.5°")
-    lines.append("- 精度：日月 0.05° / 行星角分级 / 升度含均时差校正")
+    lines.append("- 计算配置：%s；几何/时间近似见 horizon_contract，不承诺统一角分精度" % result["calculation_profile"])
     lines.append("")
     lines.append("## 七政四余躔度")
     lines.append("| 星 | 黄道经度 | 恒星黄经 | 躔宿 | 入宿度 | 宿五行 | 躔宫 |")
@@ -652,6 +874,13 @@ def format_report(result, warnings, meta):
         )
     lines.append("")
     if result.get("ming_du") is None:
+        lines.append("- 命度/恩用难仇：未计算或东方上升交点未定义")
+        if result.get("day_night") and "solar_altitude_deg" in result["day_night"]:
+            dn = result["day_night"]
+            lines.append("- 昼夜生：%s；太阳中心几何高度 %.4f°，阈值 %.3f°" %
+                         (dn["type"], dn["solar_altitude_deg"], dn["threshold_deg"]))
+        if result.get("ming_gong"):
+            lines.append("- 独立传统立命宫：%s宫（北京时间时辰口径）" % result["ming_gong"]["zhi"])
         lines.append("## 警告")
         for w in warnings:
             lines.append("- %s" % w)
@@ -671,7 +900,9 @@ def format_report(result, warnings, meta):
     lines.append("")
     dn = result["day_night"]
     lines.append("## 昼夜生")
-    if dn["type"] in ("极昼", "极夜"):
+    if "solar_altitude_deg" in dn:
+        lines.append("- %s；太阳中心几何高度 %.4f°，阈值 %.3f°；%s" % (dn["type"], dn["solar_altitude_deg"], dn["threshold_deg"], dn["note"]))
+    elif dn["type"] in ("极昼", "极夜"):
         lines.append("- %s：%s" % (dn["type"], dn.get("note", "")))
     else:
         lines.append("- 日出（当地平太阳时）：%02d:%02d｜日落：%02d:%02d" % (
@@ -713,6 +944,8 @@ def build_parser():
     p.add_argument("--hour", required=True, help="出生钟点 HH:MM（北京时间）")
     p.add_argument("--lat", type=float, default=None, help="出生纬度（度，北正）")
     p.add_argument("--lon", type=float, default=None, help="出生经度（度，东正）")
+    p.add_argument("--profile", choices=("physical-v2", "legacy-v1"), default="physical-v2")
+    p.add_argument("--dut1-seconds", type=float, default=0.0, help="UT1−UTC 秒；默认 0 是近似，不是 EOP 实测")
     p.add_argument("--place", help="出生地名称（仅展示）")
     return p
 
@@ -733,7 +966,10 @@ def run(argv=None):
         parser.error("--hour 需要 HH:MM")
         return 2
 
-    result, warnings = compute((y, m, d), hh, mm, args.lat, args.lon, args.place)
+    try:
+        result, warnings = compute((y, m, d), hh, mm, args.lat, args.lon, args.place, profile=args.profile, dut1_seconds=args.dut1_seconds)
+    except (ValueError, OverflowError) as exc:
+        parser.error(str(exc))
     report = format_report(result, warnings, {"solar": args.solar, "hour": hh, "minute": mm,
                                               "lat": args.lat, "lon": args.lon, "place": args.place})
     sys.stdout.write(report)

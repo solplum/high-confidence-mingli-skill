@@ -1,0 +1,630 @@
+{
+  "schema_version": 1,
+  "purpose": "synthetic_test",
+  "sources": [
+    {
+      "id": "summer-bazi",
+      "kind": "chart",
+      "path": "summer.json",
+      "sha256": "abaa6da451eff0c7658c6f9e589a4dd00232ed015df6c58efa288c662570fdfb",
+      "system": "bazi",
+      "scenario_id": "summer",
+      "pointer_prefix": "/bazi"
+    },
+    {
+      "id": "summer-ziwei",
+      "kind": "chart",
+      "path": "summer.json",
+      "sha256": "abaa6da451eff0c7658c6f9e589a4dd00232ed015df6c58efa288c662570fdfb",
+      "system": "ziwei",
+      "scenario_id": "summer",
+      "pointer_prefix": "/ziwei"
+    },
+    {
+      "id": "summer-qizheng",
+      "kind": "chart",
+      "path": "summer.json",
+      "sha256": "abaa6da451eff0c7658c6f9e589a4dd00232ed015df6c58efa288c662570fdfb",
+      "system": "qizheng",
+      "scenario_id": "summer",
+      "pointer_prefix": "/qizheng"
+    },
+    {
+      "id": "before-zi-bazi",
+      "kind": "chart",
+      "path": "before-zi.json",
+      "sha256": "639a11bb72f841ba225a3fbc2e773e96a71aa8ee49296c7ecf02e1e376c31e21",
+      "system": "bazi",
+      "scenario_id": "before-zi",
+      "pointer_prefix": "/bazi"
+    },
+    {
+      "id": "before-zi-ziwei",
+      "kind": "chart",
+      "path": "before-zi.json",
+      "sha256": "639a11bb72f841ba225a3fbc2e773e96a71aa8ee49296c7ecf02e1e376c31e21",
+      "system": "ziwei",
+      "scenario_id": "before-zi",
+      "pointer_prefix": "/ziwei"
+    },
+    {
+      "id": "before-zi-qizheng",
+      "kind": "chart",
+      "path": "before-zi.json",
+      "sha256": "639a11bb72f841ba225a3fbc2e773e96a71aa8ee49296c7ecf02e1e376c31e21",
+      "system": "qizheng",
+      "scenario_id": "before-zi",
+      "pointer_prefix": "/qizheng"
+    },
+    {
+      "id": "after-zi-bazi",
+      "kind": "chart",
+      "path": "after-zi.json",
+      "sha256": "496c13503a433196c86e877f2c19c23070de140d3b85165d9f8e4ea34e07e949",
+      "system": "bazi",
+      "scenario_id": "after-zi",
+      "pointer_prefix": "/bazi"
+    },
+    {
+      "id": "after-zi-ziwei",
+      "kind": "chart",
+      "path": "after-zi.json",
+      "sha256": "496c13503a433196c86e877f2c19c23070de140d3b85165d9f8e4ea34e07e949",
+      "system": "ziwei",
+      "scenario_id": "after-zi",
+      "pointer_prefix": "/ziwei"
+    },
+    {
+      "id": "after-zi-qizheng",
+      "kind": "chart",
+      "path": "after-zi.json",
+      "sha256": "496c13503a433196c86e877f2c19c23070de140d3b85165d9f8e4ea34e07e949",
+      "system": "qizheng",
+      "scenario_id": "after-zi",
+      "pointer_prefix": "/qizheng"
+    },
+    {
+      "id": "solar-zi-bazi",
+      "kind": "chart",
+      "path": "solar-zi.json",
+      "sha256": "abf10e460d4a6cc9e6367d7678c8e5e19559768062b7b3f391414400ed25738c",
+      "system": "bazi",
+      "scenario_id": "solar-zi",
+      "pointer_prefix": "/bazi"
+    },
+    {
+      "id": "solar-zi-ziwei",
+      "kind": "chart",
+      "path": "solar-zi.json",
+      "sha256": "abf10e460d4a6cc9e6367d7678c8e5e19559768062b7b3f391414400ed25738c",
+      "system": "ziwei",
+      "scenario_id": "solar-zi",
+      "pointer_prefix": "/ziwei"
+    },
+    {
+      "id": "solar-zi-qizheng",
+      "kind": "chart",
+      "path": "solar-zi.json",
+      "sha256": "abf10e460d4a6cc9e6367d7678c8e5e19559768062b7b3f391414400ed25738c",
+      "system": "qizheng",
+      "scenario_id": "solar-zi",
+      "pointer_prefix": "/qizheng"
+    },
+    {
+      "id": "before-term-bazi",
+      "kind": "chart",
+      "path": "before-term.json",
+      "sha256": "508db915ad8565829c7ad97e8ba1b08eef275d5972fe2de4220b5fac58b44124",
+      "system": "bazi",
+      "scenario_id": "before-term",
+      "pointer_prefix": "/bazi"
+    },
+    {
+      "id": "before-term-ziwei",
+      "kind": "chart",
+      "path": "before-term.json",
+      "sha256": "508db915ad8565829c7ad97e8ba1b08eef275d5972fe2de4220b5fac58b44124",
+      "system": "ziwei",
+      "scenario_id": "before-term",
+      "pointer_prefix": "/ziwei"
+    },
+    {
+      "id": "before-term-qizheng",
+      "kind": "chart",
+      "path": "before-term.json",
+      "sha256": "508db915ad8565829c7ad97e8ba1b08eef275d5972fe2de4220b5fac58b44124",
+      "system": "qizheng",
+      "scenario_id": "before-term",
+      "pointer_prefix": "/qizheng"
+    },
+    {
+      "id": "after-term-bazi",
+      "kind": "chart",
+      "path": "after-term.json",
+      "sha256": "f563d96c0c623d8b1c1949ac1878deaf01dbe8af8b15b9b76888a6f6e69b35c5",
+      "system": "bazi",
+      "scenario_id": "after-term",
+      "pointer_prefix": "/bazi"
+    },
+    {
+      "id": "after-term-ziwei",
+      "kind": "chart",
+      "path": "after-term.json",
+      "sha256": "f563d96c0c623d8b1c1949ac1878deaf01dbe8af8b15b9b76888a6f6e69b35c5",
+      "system": "ziwei",
+      "scenario_id": "after-term",
+      "pointer_prefix": "/ziwei"
+    },
+    {
+      "id": "after-term-qizheng",
+      "kind": "chart",
+      "path": "after-term.json",
+      "sha256": "f563d96c0c623d8b1c1949ac1878deaf01dbe8af8b15b9b76888a6f6e69b35c5",
+      "system": "qizheng",
+      "scenario_id": "after-term",
+      "pointer_prefix": "/qizheng"
+    },
+    {
+      "id": "bazi-source",
+      "kind": "reference",
+      "path": "bazi-source.md",
+      "sha256": "c62267d5a7c8c252dcf07544397be144c8d1b5475241b050701b0a2b27ec59d3"
+    },
+    {
+      "id": "ziwei-source",
+      "kind": "reference",
+      "path": "ziwei-source.md",
+      "sha256": "2da4a957367f2586d13bf4da1799d63cd97808337d2180a1f214f8cbdd48bcbc"
+    },
+    {
+      "id": "qizheng-source",
+      "kind": "reference",
+      "path": "qizheng-source.md",
+      "sha256": "d02db26b1b265f6f5aa5f42eb9553c8c3d5d4660c356cbc9c2a74cc5bbd926c5"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "summer",
+      "label": "虚构输入 summer",
+      "time_basis": "civil",
+      "assumptions": "工程案例；非真实人。固定 UTC+08；经纬度为上海附近公共坐标。节气候选由同一引擎定位，不是外部天文黄金值。"
+    },
+    {
+      "id": "before-zi",
+      "label": "虚构输入 before-zi",
+      "time_basis": "civil",
+      "assumptions": "工程案例；非真实人。固定 UTC+08；经纬度为上海附近公共坐标。节气候选由同一引擎定位，不是外部天文黄金值。"
+    },
+    {
+      "id": "after-zi",
+      "label": "虚构输入 after-zi",
+      "time_basis": "civil",
+      "assumptions": "工程案例；非真实人。固定 UTC+08；经纬度为上海附近公共坐标。节气候选由同一引擎定位，不是外部天文黄金值。"
+    },
+    {
+      "id": "solar-zi",
+      "label": "虚构输入 solar-zi",
+      "time_basis": "apparent-solar",
+      "assumptions": "工程案例；非真实人。固定 UTC+08；经纬度为上海附近公共坐标。节气候选由同一引擎定位，不是外部天文黄金值。"
+    },
+    {
+      "id": "before-term",
+      "label": "虚构输入 before-term",
+      "time_basis": "civil",
+      "assumptions": "工程案例；非真实人。固定 UTC+08；经纬度为上海附近公共坐标。节气候选由同一引擎定位，不是外部天文黄金值。"
+    },
+    {
+      "id": "after-term",
+      "label": "虚构输入 after-term",
+      "time_basis": "civil",
+      "assumptions": "工程案例；非真实人。固定 UTC+08；经纬度为上海附近公共坐标。节气候选由同一引擎定位，不是外部天文黄金值。"
+    }
+  ],
+  "facts": [
+    {
+      "id": "f0",
+      "system": "bazi",
+      "scenario_id": "summer",
+      "source_id": "summer-bazi",
+      "pointer": "/bazi/pillars/month",
+      "value": [
+        "辛",
+        "巳",
+        "偏印",
+        "丙火、庚金、戊土"
+      ]
+    },
+    {
+      "id": "f1",
+      "system": "bazi",
+      "scenario_id": "summer",
+      "source_id": "summer-bazi",
+      "pointer": "/bazi/pillars/day",
+      "value": [
+        "癸",
+        "酉",
+        "—",
+        "辛金"
+      ]
+    },
+    {
+      "id": "f2",
+      "system": "bazi",
+      "scenario_id": "summer",
+      "source_id": "summer-bazi",
+      "pointer": "/bazi/pillars/hour",
+      "value": [
+        "戊",
+        "午",
+        "正官",
+        "丁火、己土"
+      ]
+    },
+    {
+      "id": "f3",
+      "system": "bazi",
+      "scenario_id": "before-zi",
+      "source_id": "before-zi-bazi",
+      "pointer": "/bazi/pillars/month",
+      "value": [
+        "辛",
+        "巳",
+        "偏印",
+        "丙火、庚金、戊土"
+      ]
+    },
+    {
+      "id": "f4",
+      "system": "bazi",
+      "scenario_id": "before-zi",
+      "source_id": "before-zi-bazi",
+      "pointer": "/bazi/pillars/day",
+      "value": [
+        "癸",
+        "酉",
+        "—",
+        "辛金"
+      ]
+    },
+    {
+      "id": "f5",
+      "system": "bazi",
+      "scenario_id": "before-zi",
+      "source_id": "before-zi-bazi",
+      "pointer": "/bazi/pillars/hour",
+      "value": [
+        "癸",
+        "亥",
+        "比肩",
+        "壬水、甲木"
+      ]
+    },
+    {
+      "id": "f6",
+      "system": "bazi",
+      "scenario_id": "after-zi",
+      "source_id": "after-zi-bazi",
+      "pointer": "/bazi/pillars/month",
+      "value": [
+        "辛",
+        "巳",
+        "正官",
+        "丙火、庚金、戊土"
+      ]
+    },
+    {
+      "id": "f7",
+      "system": "bazi",
+      "scenario_id": "after-zi",
+      "source_id": "after-zi-bazi",
+      "pointer": "/bazi/pillars/day",
+      "value": [
+        "甲",
+        "戌",
+        "—",
+        "戊土、辛金、丁火"
+      ]
+    },
+    {
+      "id": "f8",
+      "system": "bazi",
+      "scenario_id": "after-zi",
+      "source_id": "after-zi-bazi",
+      "pointer": "/bazi/pillars/hour",
+      "value": [
+        "甲",
+        "子",
+        "比肩",
+        "癸水"
+      ]
+    },
+    {
+      "id": "f9",
+      "system": "bazi",
+      "scenario_id": "solar-zi",
+      "source_id": "solar-zi-bazi",
+      "pointer": "/bazi/pillars/month",
+      "value": [
+        "辛",
+        "巳",
+        "正官",
+        "丙火、庚金、戊土"
+      ]
+    },
+    {
+      "id": "f10",
+      "system": "bazi",
+      "scenario_id": "solar-zi",
+      "source_id": "solar-zi-bazi",
+      "pointer": "/bazi/pillars/day",
+      "value": [
+        "甲",
+        "戌",
+        "—",
+        "戊土、辛金、丁火"
+      ]
+    },
+    {
+      "id": "f11",
+      "system": "bazi",
+      "scenario_id": "solar-zi",
+      "source_id": "solar-zi-bazi",
+      "pointer": "/bazi/pillars/hour",
+      "value": [
+        "甲",
+        "子",
+        "比肩",
+        "癸水"
+      ]
+    },
+    {
+      "id": "f12",
+      "system": "ziwei",
+      "scenario_id": "summer",
+      "source_id": "summer-ziwei",
+      "pointer": "/ziwei/chart/palaces/0/name",
+      "value": "田宅"
+    },
+    {
+      "id": "f13",
+      "system": "ziwei",
+      "scenario_id": "summer",
+      "source_id": "summer-ziwei",
+      "pointer": "/ziwei/chart/palaces/0/isEmpty",
+      "value": true
+    },
+    {
+      "id": "f14",
+      "system": "ziwei",
+      "scenario_id": "summer",
+      "source_id": "summer-ziwei",
+      "pointer": "/ziwei/chart/palaces/0/stars",
+      "value": [
+        {
+          "name": "天马",
+          "type": "lucky"
+        },
+        {
+          "name": "恩光",
+          "type": "minor"
+        },
+        {
+          "name": "天厨",
+          "type": "minor"
+        },
+        {
+          "name": "天月",
+          "type": "minor"
+        },
+        {
+          "name": "天哭",
+          "type": "minor"
+        }
+      ]
+    },
+    {
+      "id": "f15",
+      "system": "ziwei",
+      "scenario_id": "summer",
+      "source_id": "summer-ziwei",
+      "pointer": "/ziwei/chart/palaces/0/borrowedStars",
+      "value": [
+        "天同",
+        "天梁"
+      ]
+    },
+    {
+      "id": "f16",
+      "system": "ziwei",
+      "scenario_id": "summer",
+      "source_id": "summer-ziwei",
+      "pointer": "/ziwei/chart/palaces/0/borrowedFromName",
+      "value": "子女"
+    },
+    {
+      "id": "f17",
+      "system": "qizheng",
+      "scenario_id": "before-zi",
+      "source_id": "before-zi-qizheng",
+      "pointer": "/qizheng/day_night/type",
+      "value": "夜生"
+    },
+    {
+      "id": "f18",
+      "system": "qizheng",
+      "scenario_id": "after-zi",
+      "source_id": "after-zi-qizheng",
+      "pointer": "/qizheng/day_night/type",
+      "value": "夜生"
+    },
+    {
+      "id": "f19",
+      "system": "qizheng",
+      "scenario_id": "solar-zi",
+      "source_id": "solar-zi-qizheng",
+      "pointer": "/qizheng/day_night/type",
+      "value": "夜生"
+    }
+  ],
+  "rules": [
+    {
+      "id": "bazi-rule",
+      "system": "bazi",
+      "source_id": "bazi-source",
+      "school": "本仓整理资料，未核原刊本",
+      "locator": "references/bazi/classical-texts.md:22",
+      "start_line": 22,
+      "end_line": 22,
+      "quote": "- 夏生火旺，须用水调候；冬生水旺，须用火调候。",
+      "attribution_kind": "registered_source_excerpt",
+      "source_label": "本地上游整理资料（未核原典版本）"
+    },
+    {
+      "id": "ziwei-rule",
+      "system": "ziwei",
+      "source_id": "ziwei-source",
+      "school": "本仓整理资料，未核原刊本",
+      "locator": "references/ziwei/classics.md:63",
+      "start_line": 63,
+      "end_line": 63,
+      "quote": "- 空宫借对宫论事——某宫无主星时，借其对宫主星论该宫之事。如命宫空宫，借迁移宫主星定命格。（gsf-9-4）",
+      "attribution_kind": "registered_source_excerpt",
+      "source_label": "本地上游整理资料（未核原典版本）"
+    },
+    {
+      "id": "qizheng-rule",
+      "system": "qizheng",
+      "source_id": "qizheng-source",
+      "school": "本仓整理资料，未核原刊本",
+      "locator": "references/qizheng/reading.md:27",
+      "start_line": 27,
+      "end_line": 27,
+      "quote": "2. **身宫/身主引擎未算**：「第一重身主」之断（宫度主论）存参不引；夜生盘按典籍注明「重身度主」之限，",
+      "attribution_kind": "caller_declared_unverified",
+      "source_label": "调用方提供的未核验资料（非核验古籍原文）"
+    }
+  ],
+  "claims": [
+    {
+      "id": "bazi-season",
+      "system": "bazi",
+      "domain": "解释范围",
+      "time_scope": "本命传统解释",
+      "statement": "夏季调候仅是候选观察角度，不据此确定喜用或性格。",
+      "status": "conditional",
+      "fact_ids": [
+        "f0",
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7",
+        "f8",
+        "f9",
+        "f10",
+        "f11"
+      ],
+      "rule_ids": [
+        "bazi-rule"
+      ],
+      "depends_on": [],
+      "scenario_ids": [
+        "summer",
+        "before-zi",
+        "after-zi",
+        "solar-zi"
+      ],
+      "conditions": "仅限所列虚构候选与本仓口径；不能据此推断真实人的经历。",
+      "counterevidence": "日柱在 23 点前后改变；月柱相同不能证明完整格局相同。未完成通根强弱及破格逐项评估。",
+      "alternatives": "旺衰或格局体系需另行评估；季节总则不能替代各日干十二月细则。",
+      "boundary": "conditional",
+      "explanation": {
+        "plain": "出生时间靠近一天的分界时，部分计算可能改变，解释需要重新检查。本例不足以确定两个候选是否支持同一套性格描述。",
+        "technical": "四个五月候选均巳月；日时字段不同。摘要中的夏生总则只支持开始检查季节，不支持确定用神。",
+        "action": "先核对出生记录；现实决定以实际情况为准。"
+      },
+      "limitations": "可追溯的有限解释，不是完整详批或预测效力评测。"
+    },
+    {
+      "id": "ziwei-borrow",
+      "system": "ziwei",
+      "domain": "解释范围",
+      "time_scope": "本命传统解释",
+      "statement": "空宫的借星是解释关系，不是原宫实有，也不是该生活领域为空。",
+      "status": "conditional",
+      "fact_ids": [
+        "f12",
+        "f13",
+        "f14",
+        "f15",
+        "f16"
+      ],
+      "rule_ids": [
+        "ziwei-rule"
+      ],
+      "depends_on": [],
+      "scenario_ids": [
+        "summer"
+      ],
+      "conditions": "仅限所列虚构候选与本仓口径；不能据此推断真实人的经历。",
+      "counterevidence": "本宫仍有辅星；没有主星不等于没有信息。这里只检查空宫字段和借星来源，未判吉凶。",
+      "alternatives": "不采用借星的派别需另行说明；三方四正与四化尚未完整分析。",
+      "boundary": "unassessed",
+      "explanation": {
+        "plain": "图上有些位置没有主要标记，不代表生活里缺少这件事；这里不据此判断家庭或财产好坏。",
+        "technical": "实际快照田宅为空宫，借子女宫天同、天梁；借用不改写原宫 stars。",
+        "action": "先核对出生记录；现实决定以实际情况为准。"
+      },
+      "limitations": "可追溯的有限解释，不是完整详批或预测效力评测。"
+    },
+    {
+      "id": "qizheng-limit",
+      "system": "qizheng",
+      "domain": "解释范围",
+      "time_scope": "本命传统解释",
+      "statement": "夜生所重身度主字段未计算，相关综合判断暂不作出。",
+      "status": "withheld",
+      "fact_ids": [
+        "f17",
+        "f18",
+        "f19"
+      ],
+      "rule_ids": [
+        "qizheng-rule"
+      ],
+      "depends_on": [],
+      "scenario_ids": [
+        "before-zi",
+        "after-zi",
+        "solar-zi"
+      ],
+      "conditions": "仅限所列虚构候选与本仓口径；不能据此推断真实人的经历。",
+      "counterevidence": "现有命度、宫主数据不能替代缺失的身主；已有其他字段不消除这项缺口。",
+      "alternatives": "可只描述十一曜位置；若需完整身主解释须另有核实过的算法和资料。",
+      "boundary": "conditional",
+      "explanation": {
+        "plain": "这部分缺少关键计算，暂时不下结论；不能把缺数据说成对你不利。",
+        "technical": "夜生三个候选触发 reading.md 的身宫/身主未算限制。",
+        "action": "先核对出生记录；现实决定以实际情况为准。"
+      },
+      "limitations": "可追溯的有限解释，不是完整详批或预测效力评测。"
+    }
+  ],
+  "syntheses": [
+    {
+      "id": "comparison",
+      "claim_ids": [
+        "bazi-season",
+        "ziwei-borrow",
+        "qizheng-limit"
+      ],
+      "relation": "insufficient",
+      "explanation": "各盘只完成不同范围的局部检查，不能据此合成个人性格或事件结论。",
+      "shared_inputs": "共用出生输入、地点、程序及本仓整理资料。",
+      "limits": "没有可称独立验证的现实结果。"
+    }
+  ]
+}

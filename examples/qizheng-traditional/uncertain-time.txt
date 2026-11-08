@@ -1,0 +1,5 @@
+### 七政传统参照比较（条件式，非人生预测）
+暂不判：出生时间不确定，须先逐一比较候选场景；本段暂不判。
+未启用：QZT02庙乐评定；QZT03相会判断；QZT05实际行限；四余取主；人生事件预测
+引擎提示：physical-v2 materially changes old 命度/恩用难仇/昼夜 results; legacy-v1 only reproduces known bugs
+引擎提示：角宿一原点已修正；二十八宿/支宫仍为独立近似边界，误差未知，不能视为已校准传统宿界

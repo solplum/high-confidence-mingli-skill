@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "qizheng-project-rules",
+      "path": "docs/qizheng-rule-profiles.md",
+      "sha256": "d19b3598262e2cd47baece19e506f58bf05b1f49271cb7470b5073289856828f",
+      "kind": "project_guidance",
+      "section": "QZ01–QZ04",
+      "authenticity": "project_original",
+      "classical_quote_authorized": false
+    },
+    {
+      "id": "qizheng-states-local",
+      "path": "references/qizheng/states-tables.md",
+      "sha256": "712a5c05fcbca7c58e2b87c727e1644186e55af0f1d8d95cf3893d72fe4b8303",
+      "kind": "unverified_local_compilation",
+      "section": "一、喜宫歌关系律",
+      "authenticity": "edition_unverified",
+      "classical_quote_authorized": false
+    }
+  ]
+}

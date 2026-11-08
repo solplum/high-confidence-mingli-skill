@@ -1,0 +1,1505 @@
+[
+  {
+    "id": "strong",
+    "synthetic": true,
+    "input": {
+      "solar": "1987-07-07",
+      "hour": 10,
+      "minute": 0,
+      "clock": "引擎默认北京时间钟面，非个人出生信息"
+    },
+    "pillars": {
+      "year": "丁卯",
+      "month": "丙午",
+      "day": "丁巳",
+      "hour": "乙巳"
+    },
+    "strength_reasoning": {
+      "rule_version": "bazi-strength-evidence-v1",
+      "decision": "strong_tendency",
+      "status": "conditional",
+      "facts": [
+        {
+          "id": "month.branch",
+          "position": "month",
+          "branch": "午",
+          "seasonal_element": "火"
+        },
+        {
+          "id": "year.stem",
+          "position": "year",
+          "layer": "visible",
+          "stem": "丁",
+          "element": "火",
+          "relation": "peer",
+          "text": "年干丁火（比肩）"
+        },
+        {
+          "id": "year.hidden.乙",
+          "position": "year",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "乙",
+          "element": "木",
+          "relation": "resource",
+          "text": "年支卯藏乙木"
+        },
+        {
+          "id": "month.stem",
+          "position": "month",
+          "layer": "visible",
+          "stem": "丙",
+          "element": "火",
+          "relation": "peer",
+          "text": "月干丙火（劫财）"
+        },
+        {
+          "id": "month.hidden.丁",
+          "position": "month",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "丁",
+          "element": "火",
+          "relation": "peer",
+          "text": "月支午藏丁火"
+        },
+        {
+          "id": "month.hidden.己",
+          "position": "month",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "己",
+          "element": "土",
+          "relation": "output",
+          "text": "月支午藏己土"
+        },
+        {
+          "id": "day.hidden.丙",
+          "position": "day",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "丙",
+          "element": "火",
+          "relation": "peer",
+          "text": "日支巳藏丙火"
+        },
+        {
+          "id": "day.hidden.庚",
+          "position": "day",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "庚",
+          "element": "金",
+          "relation": "wealth",
+          "text": "日支巳藏庚金"
+        },
+        {
+          "id": "day.hidden.戊",
+          "position": "day",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "戊",
+          "element": "土",
+          "relation": "output",
+          "text": "日支巳藏戊土"
+        },
+        {
+          "id": "hour.stem",
+          "position": "hour",
+          "layer": "visible",
+          "stem": "乙",
+          "element": "木",
+          "relation": "resource",
+          "text": "时干乙木（偏印）"
+        },
+        {
+          "id": "hour.hidden.丙",
+          "position": "hour",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "丙",
+          "element": "火",
+          "relation": "peer",
+          "text": "时支巳藏丙火"
+        },
+        {
+          "id": "hour.hidden.庚",
+          "position": "hour",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "庚",
+          "element": "金",
+          "relation": "wealth",
+          "text": "时支巳藏庚金"
+        },
+        {
+          "id": "hour.hidden.戊",
+          "position": "hour",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "戊",
+          "element": "土",
+          "relation": "output",
+          "text": "时支巳藏戊土"
+        }
+      ],
+      "supporting_fact_ids": [
+        "year.stem",
+        "year.hidden.乙",
+        "month.stem",
+        "month.hidden.丁",
+        "day.hidden.丙",
+        "hour.stem",
+        "hour.hidden.丙"
+      ],
+      "counterevidence_fact_ids": [
+        "month.hidden.己",
+        "day.hidden.庚",
+        "day.hidden.戊",
+        "hour.hidden.庚",
+        "hour.hidden.戊"
+      ],
+      "root_fact_ids": [
+        "month.hidden.丁",
+        "day.hidden.丙",
+        "hour.hidden.丙"
+      ],
+      "support_paths": [
+        {
+          "visible_id": "year.stem",
+          "root_ids": [
+            "month.hidden.丁",
+            "day.hidden.丙",
+            "hour.hidden.丙"
+          ],
+          "text": "年干丁火（比肩）在支有同五行藏干支持"
+        },
+        {
+          "visible_id": "month.stem",
+          "root_ids": [
+            "month.hidden.丁",
+            "day.hidden.丙",
+            "hour.hidden.丙"
+          ],
+          "text": "月干丙火（劫财）在支有同五行藏干支持"
+        },
+        {
+          "visible_id": "hour.stem",
+          "root_ids": [
+            "year.hidden.乙"
+          ],
+          "text": "时干乙木（偏印）在支有同五行藏干支持"
+        }
+      ],
+      "pressure_paths": [],
+      "contested_effects": [],
+      "unassessed_interactions": [],
+      "source_model_conflicts": [],
+      "missing_conditions": [],
+      "unresolved_effects": [
+        "未建模司令、相对作用效力和特殊格；趋势只在本项目窄条件内成立",
+        "根气有字不保证有效；没有以数量或固定兑换权重比较"
+      ],
+      "conditions": {
+        "season_matches": true,
+        "month_main_root": true,
+        "rooted_external_support": true,
+        "no_visible_opposition": true,
+        "season_controls": false,
+        "no_same_element_roots": false,
+        "no_visible_support": false,
+        "no_hidden_resource": false,
+        "rooted_visible_officer": false
+      },
+      "rules": [
+        {
+          "id": "ST01",
+          "facts": [
+            "month.branch"
+          ],
+          "counterevidence": [],
+          "missing_conditions": [
+            "得令与失令均不足以单独定强弱"
+          ],
+          "source_pages": [
+            21
+          ],
+          "status": "conditional"
+        },
+        {
+          "id": "ST02",
+          "facts": [
+            "month.hidden.丁",
+            "day.hidden.丙",
+            "hour.hidden.丙"
+          ],
+          "counterevidence": [],
+          "missing_conditions": [
+            "同五行藏干根不是原书全部根义；主藏顺序不等于司令"
+          ],
+          "source_pages": [
+            21,
+            22
+          ],
+          "status": "conditional"
+        },
+        {
+          "id": "ST03",
+          "facts": [
+            "year.stem",
+            "month.stem",
+            "hour.stem"
+          ],
+          "counterevidence": [],
+          "missing_conditions": [
+            "透干和根不能按固定数量兑换"
+          ],
+          "source_pages": [
+            21,
+            22
+          ],
+          "status": "conditional"
+        },
+        {
+          "id": "ST04",
+          "facts": [
+            "year.stem",
+            "year.hidden.乙",
+            "month.stem",
+            "month.hidden.丁",
+            "day.hidden.丙",
+            "hour.stem",
+            "hour.hidden.丙"
+          ],
+          "counterevidence": [
+            "month.hidden.己",
+            "day.hidden.庚",
+            "day.hidden.戊",
+            "hour.hidden.庚",
+            "hour.hidden.戊"
+          ],
+          "missing_conditions": [
+            "相生相克方向不保证有效，克泄耗不等于现实凶事"
+          ],
+          "source_pages": [
+            21,
+            25
+          ],
+          "status": "conditional"
+        },
+        {
+          "id": "ST05",
+          "facts": [],
+          "counterevidence": [],
+          "missing_conditions": [
+            "合冲效力尚未裁决，所有原事实保留"
+          ],
+          "source_pages": [
+            20,
+            21,
+            22,
+            23
+          ],
+          "status": "conditional"
+        }
+      ],
+      "text": "日干丁火：窄条件下偏强趋势。理由：月令同气且有月支主根，外部印比透干有根，未见外部克泄耗透干；隐藏反向线索仍保留。午月的本模块核心旺气为火，不把得令当成全盘强弱。同五行藏干根：月支午藏丁火、日支巳藏丙火、时支巳藏丙火。支持偏强的生扶线索：年干丁火（比肩）、年支卯藏乙木、月干丙火（劫财）、月支午藏丁火、日支巳藏丙火、时干乙木（偏印）、时支巳藏丙火。支持偏弱的反向线索：月支午藏己土、日支巳藏庚金、日支巳藏戊土、时支巳藏庚金、时支巳藏戊土。透干支持检查：年干丁火（比肩）在支有同五行藏干支持；月干丙火（劫财）在支有同五行藏干支持；时干乙木（偏印）在支有同五行藏干支持。未建模司令、相对作用效力和特殊格；本趋势仅对当前输入候选成立，改时、跨节令或跨日须重算。这是传统结构的项目条件假说，不是人生预测；月令用神不自动等于有利五行，不指定唯一喜忌。",
+      "attribution": {
+        "source_id": "bazi-strength-project",
+        "mode": "paraphrase",
+        "label": "1926单版影像参照的项目释义（非古文算法、非预测验证）",
+        "path": "docs/bazi-strength-evidence.md",
+        "sha256": "84248740b941e1d146c64b6a8ee840a27d39a67e832bf0b971f824a08fdafd65",
+        "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-13jh002326-46443_淵海子平_子平真詮_第2卷.pdf&oldid=752877821",
+        "edition": "文明書局1926年，第2卷；单版影像检查，非校勘定本",
+        "provenance_status": "primary_scan_inspected_project_paraphrase",
+        "warning": "Hash and text matching do not authenticate a classical edition or prove predictive validity.",
+        "license_path": "LICENSE",
+        "license_scope": "Original project paraphrase: MIT. No scan redistribution; existing CC BY-SA adaptations remain separately licensed.",
+        "license_notice": "MIT License\n\nCopyright (c) 2026 solplum\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n\nThird-party exception: references/vendor/wikisource-ditiansui/ and the\nidentified bazi-dts-study-* / bazi-dts-interpret-* adaptations in knowledge/catalog.json are\nprovided separately under CC BY-SA 4.0. See that directory's LICENSE.md.\nThe MIT grant above does not relicense this independent material.\n\nThe generated examples/bazi-conditional ledger and its explanation adaptation are also CC BY-SA 4.0; the generator code remains MIT.\n",
+        "revision": "752877821",
+        "pdf_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+        "passage": "論十干有得時不旺失時不弱；合冲与用神成败相关语境",
+        "pdf_pages_one_based": {
+          "ST01": [
+            21
+          ],
+          "ST02": [
+            21,
+            22
+          ],
+          "ST03": [
+            21,
+            22
+          ],
+          "ST04": [
+            21,
+            25
+          ],
+          "ST05": [
+            20,
+            21,
+            22,
+            23
+          ]
+        },
+        "adaptation": "项目窄条件比较，不是古文原句或普遍判强弱算法",
+        "output_license": "MIT"
+      },
+      "changing_conditions": [
+        "补全或改动时柱须重查两侧及所有根",
+        "跨节令须重算月令；跨日须重算十神与根",
+        "加入或移除印比、克泄耗透干或合冲关系须重新比较，不能沿用本次趋势"
+      ],
+      "temporal_scope": "single_input_candidate",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "scope": "日主承受证据比较；非完整强弱、成格、调候或喜忌算法"
+    }
+  },
+  {
+    "id": "weak",
+    "synthetic": true,
+    "input": {
+      "solar": "1978-09-09",
+      "hour": 12,
+      "minute": 0,
+      "clock": "引擎默认北京时间钟面，非个人出生信息"
+    },
+    "pillars": {
+      "year": "戊午",
+      "month": "辛酉",
+      "day": "甲戌",
+      "hour": "庚午"
+    },
+    "strength_reasoning": {
+      "rule_version": "bazi-strength-evidence-v1",
+      "decision": "weak_tendency",
+      "status": "conditional",
+      "facts": [
+        {
+          "id": "month.branch",
+          "position": "month",
+          "branch": "酉",
+          "seasonal_element": "金"
+        },
+        {
+          "id": "year.stem",
+          "position": "year",
+          "layer": "visible",
+          "stem": "戊",
+          "element": "土",
+          "relation": "wealth",
+          "text": "年干戊土（偏财）"
+        },
+        {
+          "id": "year.hidden.丁",
+          "position": "year",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "丁",
+          "element": "火",
+          "relation": "output",
+          "text": "年支午藏丁火"
+        },
+        {
+          "id": "year.hidden.己",
+          "position": "year",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "己",
+          "element": "土",
+          "relation": "wealth",
+          "text": "年支午藏己土"
+        },
+        {
+          "id": "month.stem",
+          "position": "month",
+          "layer": "visible",
+          "stem": "辛",
+          "element": "金",
+          "relation": "officer",
+          "text": "月干辛金（正官）"
+        },
+        {
+          "id": "month.hidden.辛",
+          "position": "month",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "辛",
+          "element": "金",
+          "relation": "officer",
+          "text": "月支酉藏辛金"
+        },
+        {
+          "id": "day.hidden.戊",
+          "position": "day",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "戊",
+          "element": "土",
+          "relation": "wealth",
+          "text": "日支戌藏戊土"
+        },
+        {
+          "id": "day.hidden.辛",
+          "position": "day",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "辛",
+          "element": "金",
+          "relation": "officer",
+          "text": "日支戌藏辛金"
+        },
+        {
+          "id": "day.hidden.丁",
+          "position": "day",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "丁",
+          "element": "火",
+          "relation": "output",
+          "text": "日支戌藏丁火"
+        },
+        {
+          "id": "hour.stem",
+          "position": "hour",
+          "layer": "visible",
+          "stem": "庚",
+          "element": "金",
+          "relation": "officer",
+          "text": "时干庚金（偏官）"
+        },
+        {
+          "id": "hour.hidden.丁",
+          "position": "hour",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "丁",
+          "element": "火",
+          "relation": "output",
+          "text": "时支午藏丁火"
+        },
+        {
+          "id": "hour.hidden.己",
+          "position": "hour",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "己",
+          "element": "土",
+          "relation": "wealth",
+          "text": "时支午藏己土"
+        }
+      ],
+      "supporting_fact_ids": [],
+      "counterevidence_fact_ids": [
+        "year.stem",
+        "year.hidden.丁",
+        "year.hidden.己",
+        "month.stem",
+        "month.hidden.辛",
+        "day.hidden.戊",
+        "day.hidden.辛",
+        "day.hidden.丁",
+        "hour.stem",
+        "hour.hidden.丁",
+        "hour.hidden.己"
+      ],
+      "root_fact_ids": [],
+      "support_paths": [],
+      "pressure_paths": [
+        {
+          "visible_id": "year.stem",
+          "role": "wealth",
+          "root_ids": [
+            "year.hidden.己",
+            "day.hidden.戊",
+            "hour.hidden.己"
+          ],
+          "text": "年干戊土（偏财）"
+        },
+        {
+          "visible_id": "month.stem",
+          "role": "officer",
+          "root_ids": [
+            "month.hidden.辛",
+            "day.hidden.辛"
+          ],
+          "text": "月干辛金（正官）"
+        },
+        {
+          "visible_id": "hour.stem",
+          "role": "officer",
+          "root_ids": [
+            "month.hidden.辛",
+            "day.hidden.辛"
+          ],
+          "text": "时干庚金（偏官）"
+        }
+      ],
+      "contested_effects": [],
+      "unassessed_interactions": [
+        {
+          "kind": "自刑配对",
+          "positions": [
+            "year",
+            "hour"
+          ],
+          "text": "年戊午、时庚午自刑配对：本模块未评估其效力，不能将当前趋势当成含刑害审查的最终判断"
+        },
+        {
+          "kind": "相害",
+          "positions": [
+            "month",
+            "day"
+          ],
+          "text": "月辛酉、日甲戌相害：本模块未评估其效力，不能将当前趋势当成含刑害审查的最终判断"
+        }
+      ],
+      "source_model_conflicts": [],
+      "missing_conditions": [],
+      "unresolved_effects": [
+        "未建模司令、相对作用效力和特殊格；趋势只在本项目窄条件内成立",
+        "根气有字不保证有效；没有以数量或固定兑换权重比较",
+        "年戊午、时庚午自刑配对：本模块未评估其效力，不能将当前趋势当成含刑害审查的最终判断",
+        "月辛酉、日甲戌相害：本模块未评估其效力，不能将当前趋势当成含刑害审查的最终判断"
+      ],
+      "conditions": {
+        "season_matches": false,
+        "month_main_root": false,
+        "rooted_external_support": false,
+        "no_visible_opposition": false,
+        "season_controls": true,
+        "no_same_element_roots": true,
+        "no_visible_support": true,
+        "no_hidden_resource": true,
+        "rooted_visible_officer": true
+      },
+      "rules": [
+        {
+          "id": "ST01",
+          "facts": [
+            "month.branch"
+          ],
+          "counterevidence": [
+            "year.stem",
+            "month.stem",
+            "hour.stem"
+          ],
+          "missing_conditions": [
+            "得令与失令均不足以单独定强弱"
+          ],
+          "source_pages": [
+            21
+          ],
+          "status": "conditional"
+        },
+        {
+          "id": "ST02",
+          "facts": [],
+          "counterevidence": [],
+          "missing_conditions": [
+            "同五行藏干根不是原书全部根义；主藏顺序不等于司令"
+          ],
+          "source_pages": [
+            21,
+            22
+          ],
+          "status": "conditional"
+        },
+        {
+          "id": "ST03",
+          "facts": [],
+          "counterevidence": [
+            "year.stem",
+            "month.stem",
+            "hour.stem"
+          ],
+          "missing_conditions": [
+            "透干和根不能按固定数量兑换"
+          ],
+          "source_pages": [
+            21,
+            22
+          ],
+          "status": "conditional"
+        },
+        {
+          "id": "ST04",
+          "facts": [],
+          "counterevidence": [
+            "year.stem",
+            "year.hidden.丁",
+            "year.hidden.己",
+            "month.stem",
+            "month.hidden.辛",
+            "day.hidden.戊",
+            "day.hidden.辛",
+            "day.hidden.丁",
+            "hour.stem",
+            "hour.hidden.丁",
+            "hour.hidden.己"
+          ],
+          "missing_conditions": [
+            "相生相克方向不保证有效，克泄耗不等于现实凶事"
+          ],
+          "source_pages": [
+            21,
+            25
+          ],
+          "status": "conditional"
+        },
+        {
+          "id": "ST05",
+          "facts": [],
+          "counterevidence": [],
+          "missing_conditions": [
+            "合冲效力尚未裁决，所有原事实保留"
+          ],
+          "source_pages": [
+            20,
+            21,
+            22,
+            23
+          ],
+          "status": "conditional"
+        }
+      ],
+      "text": "日干甲木：窄条件下偏弱趋势。理由：月令旺气克日主，未见同五行根、外部印比或藏印，外部官杀有根；无根不等于从格。酉月的本模块核心旺气为金，不把得令当成全盘强弱。同五行藏干根：已知柱未见。支持偏强的生扶线索：已知柱未见。支持偏弱的反向线索：年干戊土（偏财）、年支午藏丁火、年支午藏己土、月干辛金（正官）、月支酉藏辛金、日支戌藏戊土、日支戌藏辛金、日支戌藏丁火、时干庚金（偏官）、时支午藏丁火、时支午藏己土。透干支持检查：已知柱无外部印比透干。未评估关系：年戊午、时庚午自刑配对：本模块未评估其效力，不能将当前趋势当成含刑害审查的最终判断；月辛酉、日甲戌相害：本模块未评估其效力，不能将当前趋势当成含刑害审查的最终判断。未建模司令、相对作用效力和特殊格；本趋势仅对当前输入候选成立，改时、跨节令或跨日须重算。这是传统结构的项目条件假说，不是人生预测；月令用神不自动等于有利五行，不指定唯一喜忌。",
+      "attribution": {
+        "source_id": "bazi-strength-project",
+        "mode": "paraphrase",
+        "label": "1926单版影像参照的项目释义（非古文算法、非预测验证）",
+        "path": "docs/bazi-strength-evidence.md",
+        "sha256": "84248740b941e1d146c64b6a8ee840a27d39a67e832bf0b971f824a08fdafd65",
+        "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-13jh002326-46443_淵海子平_子平真詮_第2卷.pdf&oldid=752877821",
+        "edition": "文明書局1926年，第2卷；单版影像检查，非校勘定本",
+        "provenance_status": "primary_scan_inspected_project_paraphrase",
+        "warning": "Hash and text matching do not authenticate a classical edition or prove predictive validity.",
+        "license_path": "LICENSE",
+        "license_scope": "Original project paraphrase: MIT. No scan redistribution; existing CC BY-SA adaptations remain separately licensed.",
+        "license_notice": "MIT License\n\nCopyright (c) 2026 solplum\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n\nThird-party exception: references/vendor/wikisource-ditiansui/ and the\nidentified bazi-dts-study-* / bazi-dts-interpret-* adaptations in knowledge/catalog.json are\nprovided separately under CC BY-SA 4.0. See that directory's LICENSE.md.\nThe MIT grant above does not relicense this independent material.\n\nThe generated examples/bazi-conditional ledger and its explanation adaptation are also CC BY-SA 4.0; the generator code remains MIT.\n",
+        "revision": "752877821",
+        "pdf_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+        "passage": "論十干有得時不旺失時不弱；合冲与用神成败相关语境",
+        "pdf_pages_one_based": {
+          "ST01": [
+            21
+          ],
+          "ST02": [
+            21,
+            22
+          ],
+          "ST03": [
+            21,
+            22
+          ],
+          "ST04": [
+            21,
+            25
+          ],
+          "ST05": [
+            20,
+            21,
+            22,
+            23
+          ]
+        },
+        "adaptation": "项目窄条件比较，不是古文原句或普遍判强弱算法",
+        "output_license": "MIT"
+      },
+      "changing_conditions": [
+        "补全或改动时柱须重查两侧及所有根",
+        "跨节令须重算月令；跨日须重算十神与根",
+        "加入或移除印比、克泄耗透干或合冲关系须重新比较，不能沿用本次趋势"
+      ],
+      "temporal_scope": "single_input_candidate",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "scope": "日主承受证据比较；非完整强弱、成格、调候或喜忌算法"
+    }
+  },
+  {
+    "id": "competing",
+    "synthetic": true,
+    "input": {
+      "solar": "1980-01-01",
+      "hour": 10,
+      "minute": 0,
+      "clock": "引擎默认北京时间钟面，非个人出生信息"
+    },
+    "pillars": {
+      "year": "己未",
+      "month": "丙子",
+      "day": "癸酉",
+      "hour": "丁巳"
+    },
+    "strength_reasoning": {
+      "rule_version": "bazi-strength-evidence-v1",
+      "decision": "competing_evidence",
+      "status": "conditional",
+      "facts": [
+        {
+          "id": "month.branch",
+          "position": "month",
+          "branch": "子",
+          "seasonal_element": "水"
+        },
+        {
+          "id": "year.stem",
+          "position": "year",
+          "layer": "visible",
+          "stem": "己",
+          "element": "土",
+          "relation": "officer",
+          "text": "年干己土（偏官）"
+        },
+        {
+          "id": "year.hidden.己",
+          "position": "year",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "己",
+          "element": "土",
+          "relation": "officer",
+          "text": "年支未藏己土"
+        },
+        {
+          "id": "year.hidden.丁",
+          "position": "year",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "丁",
+          "element": "火",
+          "relation": "wealth",
+          "text": "年支未藏丁火"
+        },
+        {
+          "id": "year.hidden.乙",
+          "position": "year",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "乙",
+          "element": "木",
+          "relation": "output",
+          "text": "年支未藏乙木"
+        },
+        {
+          "id": "month.stem",
+          "position": "month",
+          "layer": "visible",
+          "stem": "丙",
+          "element": "火",
+          "relation": "wealth",
+          "text": "月干丙火（正财）"
+        },
+        {
+          "id": "month.hidden.癸",
+          "position": "month",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "癸",
+          "element": "水",
+          "relation": "peer",
+          "text": "月支子藏癸水"
+        },
+        {
+          "id": "day.hidden.辛",
+          "position": "day",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "辛",
+          "element": "金",
+          "relation": "resource",
+          "text": "日支酉藏辛金"
+        },
+        {
+          "id": "hour.stem",
+          "position": "hour",
+          "layer": "visible",
+          "stem": "丁",
+          "element": "火",
+          "relation": "wealth",
+          "text": "时干丁火（偏财）"
+        },
+        {
+          "id": "hour.hidden.丙",
+          "position": "hour",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "丙",
+          "element": "火",
+          "relation": "wealth",
+          "text": "时支巳藏丙火"
+        },
+        {
+          "id": "hour.hidden.庚",
+          "position": "hour",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "庚",
+          "element": "金",
+          "relation": "resource",
+          "text": "时支巳藏庚金"
+        },
+        {
+          "id": "hour.hidden.戊",
+          "position": "hour",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "戊",
+          "element": "土",
+          "relation": "officer",
+          "text": "时支巳藏戊土"
+        }
+      ],
+      "supporting_fact_ids": [
+        "month.hidden.癸",
+        "day.hidden.辛",
+        "hour.hidden.庚"
+      ],
+      "counterevidence_fact_ids": [
+        "year.stem",
+        "year.hidden.己",
+        "year.hidden.丁",
+        "year.hidden.乙",
+        "month.stem",
+        "hour.stem",
+        "hour.hidden.丙",
+        "hour.hidden.戊"
+      ],
+      "root_fact_ids": [
+        "month.hidden.癸"
+      ],
+      "support_paths": [],
+      "pressure_paths": [
+        {
+          "visible_id": "year.stem",
+          "role": "officer",
+          "root_ids": [
+            "year.hidden.己",
+            "hour.hidden.戊"
+          ],
+          "text": "年干己土（偏官）"
+        },
+        {
+          "visible_id": "month.stem",
+          "role": "wealth",
+          "root_ids": [
+            "year.hidden.丁",
+            "hour.hidden.丙"
+          ],
+          "text": "月干丙火（正财）"
+        },
+        {
+          "visible_id": "hour.stem",
+          "role": "wealth",
+          "root_ids": [
+            "year.hidden.丁",
+            "hour.hidden.丙"
+          ],
+          "text": "时干丁火（偏财）"
+        }
+      ],
+      "contested_effects": [],
+      "unassessed_interactions": [
+        {
+          "kind": "相害",
+          "positions": [
+            "year",
+            "month"
+          ],
+          "text": "年己未、月丙子相害：本模块未评估其效力，不能将当前趋势当成含刑害审查的最终判断"
+        }
+      ],
+      "source_model_conflicts": [],
+      "missing_conditions": [],
+      "unresolved_effects": [
+        "未建模司令、相对作用效力和特殊格；趋势只在本项目窄条件内成立",
+        "根气有字不保证有效；没有以数量或固定兑换权重比较",
+        "年己未、月丙子相害：本模块未评估其效力，不能将当前趋势当成含刑害审查的最终判断"
+      ],
+      "conditions": {
+        "season_matches": true,
+        "month_main_root": true,
+        "rooted_external_support": false,
+        "no_visible_opposition": false,
+        "season_controls": false,
+        "no_same_element_roots": false,
+        "no_visible_support": true,
+        "no_hidden_resource": false,
+        "rooted_visible_officer": true
+      },
+      "rules": [
+        {
+          "id": "ST01",
+          "facts": [
+            "month.branch"
+          ],
+          "counterevidence": [
+            "year.stem",
+            "month.stem",
+            "hour.stem"
+          ],
+          "missing_conditions": [
+            "得令与失令均不足以单独定强弱"
+          ],
+          "source_pages": [
+            21
+          ],
+          "status": "conditional"
+        },
+        {
+          "id": "ST02",
+          "facts": [
+            "month.hidden.癸"
+          ],
+          "counterevidence": [],
+          "missing_conditions": [
+            "同五行藏干根不是原书全部根义；主藏顺序不等于司令"
+          ],
+          "source_pages": [
+            21,
+            22
+          ],
+          "status": "conditional"
+        },
+        {
+          "id": "ST03",
+          "facts": [],
+          "counterevidence": [
+            "year.stem",
+            "month.stem",
+            "hour.stem"
+          ],
+          "missing_conditions": [
+            "透干和根不能按固定数量兑换"
+          ],
+          "source_pages": [
+            21,
+            22
+          ],
+          "status": "conditional"
+        },
+        {
+          "id": "ST04",
+          "facts": [
+            "month.hidden.癸",
+            "day.hidden.辛",
+            "hour.hidden.庚"
+          ],
+          "counterevidence": [
+            "year.stem",
+            "year.hidden.己",
+            "year.hidden.丁",
+            "year.hidden.乙",
+            "month.stem",
+            "hour.stem",
+            "hour.hidden.丙",
+            "hour.hidden.戊"
+          ],
+          "missing_conditions": [
+            "相生相克方向不保证有效，克泄耗不等于现实凶事"
+          ],
+          "source_pages": [
+            21,
+            25
+          ],
+          "status": "conditional"
+        },
+        {
+          "id": "ST05",
+          "facts": [],
+          "counterevidence": [],
+          "missing_conditions": [
+            "合冲效力尚未裁决，所有原事实保留"
+          ],
+          "source_pages": [
+            20,
+            21,
+            22,
+            23
+          ],
+          "status": "conditional"
+        }
+      ],
+      "text": "日干癸水：生扶与克泄耗证据相持，尚不能判定强弱。理由：两侧均有具体位置，未满足任何偏强或偏弱的窄条件组合；相持不表示力量相等。子月的本模块核心旺气为水，不把得令当成全盘强弱。同五行藏干根：月支子藏癸水。支持偏强的生扶线索：月支子藏癸水、日支酉藏辛金、时支巳藏庚金。支持偏弱的反向线索：年干己土（偏官）、年支未藏己土、年支未藏丁火、年支未藏乙木、月干丙火（正财）、时干丁火（偏财）、时支巳藏丙火、时支巳藏戊土。透干支持检查：已知柱无外部印比透干。未评估关系：年己未、月丙子相害：本模块未评估其效力，不能将当前趋势当成含刑害审查的最终判断。未建模司令、相对作用效力和特殊格；本趋势仅对当前输入候选成立，改时、跨节令或跨日须重算。这是传统结构的项目条件假说，不是人生预测；月令用神不自动等于有利五行，不指定唯一喜忌。",
+      "attribution": {
+        "source_id": "bazi-strength-project",
+        "mode": "paraphrase",
+        "label": "1926单版影像参照的项目释义（非古文算法、非预测验证）",
+        "path": "docs/bazi-strength-evidence.md",
+        "sha256": "84248740b941e1d146c64b6a8ee840a27d39a67e832bf0b971f824a08fdafd65",
+        "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-13jh002326-46443_淵海子平_子平真詮_第2卷.pdf&oldid=752877821",
+        "edition": "文明書局1926年，第2卷；单版影像检查，非校勘定本",
+        "provenance_status": "primary_scan_inspected_project_paraphrase",
+        "warning": "Hash and text matching do not authenticate a classical edition or prove predictive validity.",
+        "license_path": "LICENSE",
+        "license_scope": "Original project paraphrase: MIT. No scan redistribution; existing CC BY-SA adaptations remain separately licensed.",
+        "license_notice": "MIT License\n\nCopyright (c) 2026 solplum\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n\nThird-party exception: references/vendor/wikisource-ditiansui/ and the\nidentified bazi-dts-study-* / bazi-dts-interpret-* adaptations in knowledge/catalog.json are\nprovided separately under CC BY-SA 4.0. See that directory's LICENSE.md.\nThe MIT grant above does not relicense this independent material.\n\nThe generated examples/bazi-conditional ledger and its explanation adaptation are also CC BY-SA 4.0; the generator code remains MIT.\n",
+        "revision": "752877821",
+        "pdf_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+        "passage": "論十干有得時不旺失時不弱；合冲与用神成败相关语境",
+        "pdf_pages_one_based": {
+          "ST01": [
+            21
+          ],
+          "ST02": [
+            21,
+            22
+          ],
+          "ST03": [
+            21,
+            22
+          ],
+          "ST04": [
+            21,
+            25
+          ],
+          "ST05": [
+            20,
+            21,
+            22,
+            23
+          ]
+        },
+        "adaptation": "项目窄条件比较，不是古文原句或普遍判强弱算法",
+        "output_license": "MIT"
+      },
+      "changing_conditions": [
+        "补全或改动时柱须重查两侧及所有根",
+        "跨节令须重算月令；跨日须重算十神与根",
+        "加入或移除印比、克泄耗透干或合冲关系须重新比较，不能沿用本次趋势"
+      ],
+      "temporal_scope": "single_input_candidate",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "scope": "日主承受证据比较；非完整强弱、成格、调候或喜忌算法"
+    }
+  },
+  {
+    "id": "unresolved",
+    "synthetic": true,
+    "input": {
+      "solar": "1980-01-08",
+      "hour": 10,
+      "minute": 0,
+      "clock": "引擎默认北京时间钟面，非个人出生信息"
+    },
+    "pillars": {
+      "year": "己未",
+      "month": "丁丑",
+      "day": "庚辰",
+      "hour": "辛巳"
+    },
+    "strength_reasoning": {
+      "rule_version": "bazi-strength-evidence-v1",
+      "decision": "conditions_unresolved",
+      "status": "withheld",
+      "facts": [
+        {
+          "id": "month.branch",
+          "position": "month",
+          "branch": "丑",
+          "seasonal_element": null
+        },
+        {
+          "id": "year.stem",
+          "position": "year",
+          "layer": "visible",
+          "stem": "己",
+          "element": "土",
+          "relation": "resource",
+          "text": "年干己土（正印）"
+        },
+        {
+          "id": "year.hidden.己",
+          "position": "year",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "己",
+          "element": "土",
+          "relation": "resource",
+          "text": "年支未藏己土"
+        },
+        {
+          "id": "year.hidden.丁",
+          "position": "year",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "丁",
+          "element": "火",
+          "relation": "officer",
+          "text": "年支未藏丁火"
+        },
+        {
+          "id": "year.hidden.乙",
+          "position": "year",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "乙",
+          "element": "木",
+          "relation": "wealth",
+          "text": "年支未藏乙木"
+        },
+        {
+          "id": "month.stem",
+          "position": "month",
+          "layer": "visible",
+          "stem": "丁",
+          "element": "火",
+          "relation": "officer",
+          "text": "月干丁火（正官）"
+        },
+        {
+          "id": "month.hidden.己",
+          "position": "month",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "己",
+          "element": "土",
+          "relation": "resource",
+          "text": "月支丑藏己土"
+        },
+        {
+          "id": "month.hidden.癸",
+          "position": "month",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "癸",
+          "element": "水",
+          "relation": "output",
+          "text": "月支丑藏癸水"
+        },
+        {
+          "id": "month.hidden.辛",
+          "position": "month",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "辛",
+          "element": "金",
+          "relation": "peer",
+          "text": "月支丑藏辛金"
+        },
+        {
+          "id": "day.hidden.戊",
+          "position": "day",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "戊",
+          "element": "土",
+          "relation": "resource",
+          "text": "日支辰藏戊土"
+        },
+        {
+          "id": "day.hidden.乙",
+          "position": "day",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "乙",
+          "element": "木",
+          "relation": "wealth",
+          "text": "日支辰藏乙木"
+        },
+        {
+          "id": "day.hidden.癸",
+          "position": "day",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "癸",
+          "element": "水",
+          "relation": "output",
+          "text": "日支辰藏癸水"
+        },
+        {
+          "id": "hour.stem",
+          "position": "hour",
+          "layer": "visible",
+          "stem": "辛",
+          "element": "金",
+          "relation": "peer",
+          "text": "时干辛金（劫财）"
+        },
+        {
+          "id": "hour.hidden.丙",
+          "position": "hour",
+          "layer": "hidden",
+          "hidden_role": "first_listed",
+          "stem": "丙",
+          "element": "火",
+          "relation": "officer",
+          "text": "时支巳藏丙火"
+        },
+        {
+          "id": "hour.hidden.庚",
+          "position": "hour",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "庚",
+          "element": "金",
+          "relation": "peer",
+          "text": "时支巳藏庚金"
+        },
+        {
+          "id": "hour.hidden.戊",
+          "position": "hour",
+          "layer": "hidden",
+          "hidden_role": "other_listed",
+          "stem": "戊",
+          "element": "土",
+          "relation": "resource",
+          "text": "时支巳藏戊土"
+        }
+      ],
+      "supporting_fact_ids": [
+        "year.stem",
+        "year.hidden.己",
+        "month.hidden.己",
+        "month.hidden.辛",
+        "day.hidden.戊",
+        "hour.stem",
+        "hour.hidden.庚",
+        "hour.hidden.戊"
+      ],
+      "counterevidence_fact_ids": [
+        "year.hidden.丁",
+        "year.hidden.乙",
+        "month.stem",
+        "month.hidden.癸",
+        "day.hidden.乙",
+        "day.hidden.癸",
+        "hour.hidden.丙"
+      ],
+      "root_fact_ids": [
+        "month.hidden.辛",
+        "hour.hidden.庚"
+      ],
+      "support_paths": [
+        {
+          "visible_id": "year.stem",
+          "root_ids": [
+            "year.hidden.己",
+            "month.hidden.己",
+            "day.hidden.戊",
+            "hour.hidden.戊"
+          ],
+          "text": "年干己土（正印）在支有同五行藏干支持"
+        },
+        {
+          "visible_id": "hour.stem",
+          "root_ids": [
+            "month.hidden.辛",
+            "hour.hidden.庚"
+          ],
+          "text": "时干辛金（劫财）在支有同五行藏干支持"
+        }
+      ],
+      "pressure_paths": [
+        {
+          "visible_id": "month.stem",
+          "role": "officer",
+          "root_ids": [
+            "year.hidden.丁",
+            "hour.hidden.丙"
+          ],
+          "text": "月干丁火（正官）"
+        }
+      ],
+      "contested_effects": [
+        {
+          "kind": "六冲",
+          "positions": [
+            "year",
+            "month"
+          ],
+          "fact_ids": [
+            "year.hidden.己",
+            "year.hidden.丁",
+            "year.hidden.乙",
+            "month.hidden.己",
+            "month.hidden.癸",
+            "month.hidden.辛"
+          ],
+          "text": "年己未、月丁丑六冲：效力待审，未删除藏干或认定合化"
+        }
+      ],
+      "unassessed_interactions": [],
+      "source_model_conflicts": [],
+      "missing_conditions": [
+        "本窄季节模型未处理四季土月或土日主的旺气判定",
+        "存在合冲/齐字的效力争议，未完成制化及根效力审查"
+      ],
+      "unresolved_effects": [
+        "未建模司令、相对作用效力和特殊格；趋势只在本项目窄条件内成立",
+        "根气有字不保证有效；没有以数量或固定兑换权重比较"
+      ],
+      "conditions": {
+        "season_matches": false,
+        "month_main_root": false,
+        "rooted_external_support": true,
+        "no_visible_opposition": false,
+        "season_controls": false,
+        "no_same_element_roots": false,
+        "no_visible_support": false,
+        "no_hidden_resource": false,
+        "rooted_visible_officer": true
+      },
+      "rules": [
+        {
+          "id": "ST01",
+          "facts": [
+            "month.branch"
+          ],
+          "counterevidence": [
+            "month.stem"
+          ],
+          "missing_conditions": [
+            "得令与失令均不足以单独定强弱"
+          ],
+          "source_pages": [
+            21
+          ],
+          "status": "withheld"
+        },
+        {
+          "id": "ST02",
+          "facts": [
+            "month.hidden.辛",
+            "hour.hidden.庚"
+          ],
+          "counterevidence": [],
+          "missing_conditions": [
+            "同五行藏干根不是原书全部根义；主藏顺序不等于司令"
+          ],
+          "source_pages": [
+            21,
+            22
+          ],
+          "status": "withheld"
+        },
+        {
+          "id": "ST03",
+          "facts": [
+            "year.stem",
+            "hour.stem"
+          ],
+          "counterevidence": [
+            "month.stem"
+          ],
+          "missing_conditions": [
+            "透干和根不能按固定数量兑换"
+          ],
+          "source_pages": [
+            21,
+            22
+          ],
+          "status": "withheld"
+        },
+        {
+          "id": "ST04",
+          "facts": [
+            "year.stem",
+            "year.hidden.己",
+            "month.hidden.己",
+            "month.hidden.辛",
+            "day.hidden.戊",
+            "hour.stem",
+            "hour.hidden.庚",
+            "hour.hidden.戊"
+          ],
+          "counterevidence": [
+            "year.hidden.丁",
+            "year.hidden.乙",
+            "month.stem",
+            "month.hidden.癸",
+            "day.hidden.乙",
+            "day.hidden.癸",
+            "hour.hidden.丙"
+          ],
+          "missing_conditions": [
+            "相生相克方向不保证有效，克泄耗不等于现实凶事"
+          ],
+          "source_pages": [
+            21,
+            25
+          ],
+          "status": "withheld"
+        },
+        {
+          "id": "ST05",
+          "facts": [
+            "year.hidden.己",
+            "year.hidden.丁",
+            "year.hidden.乙",
+            "month.hidden.己",
+            "month.hidden.癸",
+            "month.hidden.辛"
+          ],
+          "counterevidence": [],
+          "missing_conditions": [
+            "合冲效力尚未裁决，所有原事实保留"
+          ],
+          "source_pages": [
+            20,
+            21,
+            22,
+            23
+          ],
+          "status": "withheld"
+        }
+      ],
+      "text": "日干庚金：条件未决，暂不判强弱。理由：本窄季节模型未处理四季土月或土日主的旺气判定；存在合冲/齐字的效力争议，未完成制化及根效力审查。丑月的本模块核心旺气为未判，不把得令当成全盘强弱。同五行藏干根：月支丑藏辛金、时支巳藏庚金。支持偏强的生扶线索：年干己土（正印）、年支未藏己土、月支丑藏己土、月支丑藏辛金、日支辰藏戊土、时干辛金（劫财）、时支巳藏庚金、时支巳藏戊土。支持偏弱的反向线索：年支未藏丁火、年支未藏乙木、月干丁火（正官）、月支丑藏癸水、日支辰藏乙木、日支辰藏癸水、时支巳藏丙火。透干支持检查：年干己土（正印）在支有同五行藏干支持；时干辛金（劫财）在支有同五行藏干支持。年己未、月丁丑六冲：效力待审，未删除藏干或认定合化。未建模司令、相对作用效力和特殊格；本趋势仅对当前输入候选成立，改时、跨节令或跨日须重算。这是传统结构的项目条件假说，不是人生预测；月令用神不自动等于有利五行，不指定唯一喜忌。",
+      "attribution": {
+        "source_id": "bazi-strength-project",
+        "mode": "paraphrase",
+        "label": "1926单版影像参照的项目释义（非古文算法、非预测验证）",
+        "path": "docs/bazi-strength-evidence.md",
+        "sha256": "84248740b941e1d146c64b6a8ee840a27d39a67e832bf0b971f824a08fdafd65",
+        "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-13jh002326-46443_淵海子平_子平真詮_第2卷.pdf&oldid=752877821",
+        "edition": "文明書局1926年，第2卷；单版影像检查，非校勘定本",
+        "provenance_status": "primary_scan_inspected_project_paraphrase",
+        "warning": "Hash and text matching do not authenticate a classical edition or prove predictive validity.",
+        "license_path": "LICENSE",
+        "license_scope": "Original project paraphrase: MIT. No scan redistribution; existing CC BY-SA adaptations remain separately licensed.",
+        "license_notice": "MIT License\n\nCopyright (c) 2026 solplum\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n\nThird-party exception: references/vendor/wikisource-ditiansui/ and the\nidentified bazi-dts-study-* / bazi-dts-interpret-* adaptations in knowledge/catalog.json are\nprovided separately under CC BY-SA 4.0. See that directory's LICENSE.md.\nThe MIT grant above does not relicense this independent material.\n\nThe generated examples/bazi-conditional ledger and its explanation adaptation are also CC BY-SA 4.0; the generator code remains MIT.\n",
+        "revision": "752877821",
+        "pdf_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+        "passage": "論十干有得時不旺失時不弱；合冲与用神成败相关语境",
+        "pdf_pages_one_based": {
+          "ST01": [
+            21
+          ],
+          "ST02": [
+            21,
+            22
+          ],
+          "ST03": [
+            21,
+            22
+          ],
+          "ST04": [
+            21,
+            25
+          ],
+          "ST05": [
+            20,
+            21,
+            22,
+            23
+          ]
+        },
+        "adaptation": "项目窄条件比较，不是古文原句或普遍判强弱算法",
+        "output_license": "MIT"
+      },
+      "changing_conditions": [
+        "补全或改动时柱须重查两侧及所有根",
+        "跨节令须重算月令；跨日须重算十神与根",
+        "加入或移除印比、克泄耗透干或合冲关系须重新比较，不能沿用本次趋势"
+      ],
+      "temporal_scope": "single_input_candidate",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "scope": "日主承受证据比较；非完整强弱、成格、调候或喜忌算法"
+    }
+  }
+]

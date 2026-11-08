@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/SylarLong/iztro-docs",
+  "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+  "retrieved_date": "2026-11-07",
+  "upstream_stars_at_retrieval": 9,
+  "related_engine": {
+    "repository": "https://github.com/SylarLong/iztro",
+    "stars": 4354,
+    "revision": "d7df0a54c9f98f916a33ad4b025001a6b0235275"
+  },
+  "license_path": "LICENSE",
+  "license_sha256": "37a7dbd30daa89dca20ca7b860d4ea05e726e6c6ddf36a9b35ee2f3eb3ae31d1",
+  "files": [
+    {
+      "path": "learn/adj-star.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/adj-star.md",
+      "sha256": "5433b72b00b7f86894e2d7c4a83bceb9d4b5c2cfafd1066e9411a4c75f03a702",
+      "bytes": 12942,
+      "source_type": "modern_commentary",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+      ]
+    },
+    {
+      "path": "learn/ancientBook-1.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/ancientBook-1.md",
+      "sha256": "0a309ce3a259387af8665ee9e348e33e3bbd498bb785ccdb8c01d7060405f75c",
+      "bytes": 27068,
+      "source_type": "digital_transcription",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long; 校对：知秋",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "No identified print edition or page-image collation; do not call this facsimile-verified.",
+        "Historical stigmatizing, gendered, health and longevity claims must not be personalized as factual predictions."
+      ]
+    },
+    {
+      "path": "learn/ancientBook-2.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/ancientBook-2.md",
+      "sha256": "b3a2b1c7f59688c3bebf966431d3e7411100972b3c0c3407862b519f116606ea",
+      "bytes": 77444,
+      "source_type": "digital_transcription",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "No identified print edition or page-image collation; do not call this facsimile-verified.",
+        "Historical stigmatizing, gendered, health and longevity claims must not be personalized as factual predictions."
+      ]
+    },
+    {
+      "path": "learn/ancientBook-3.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/ancientBook-3.md",
+      "sha256": "a4decf055537106f56815642319da06d4ae7d313454f2b809e56019f9bf6e9a3",
+      "bytes": 38244,
+      "source_type": "digital_transcription",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "No identified print edition or page-image collation; do not call this facsimile-verified.",
+        "Historical stigmatizing, gendered, health and longevity claims must not be personalized as factual predictions."
+      ]
+    },
+    {
+      "path": "learn/ancientBook-qa.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/ancientBook-qa.md",
+      "sha256": "dc92d10878ab0dacf6e23ef83c6c6eded025d4c036aee70a3d19ad3cb8ab7868",
+      "bytes": 36175,
+      "source_type": "digital_transcription",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "No identified print edition or page-image collation; do not call this facsimile-verified.",
+        "Historical stigmatizing, gendered, health and longevity claims must not be personalized as factual predictions."
+      ]
+    },
+    {
+      "path": "learn/ancientBook.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/ancientBook.md",
+      "sha256": "8e9cda2c878a7e22b250e6020036288740805dd174b6de489ee81dede6b594bf",
+      "bytes": 4689,
+      "source_type": "editorial_index",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement."
+      ]
+    },
+    {
+      "path": "learn/astrolabe.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/astrolabe.md",
+      "sha256": "ab965aa7c352770a2d58991a8c89709b54e156b53774e9e07d56a3d81c629e64",
+      "bytes": 8143,
+      "source_type": "modern_commentary",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "Donation component markup retained in inert source; component implementation and tracking code not imported or executed.",
+        "Linked diagram/components are not vendored; consult pinned upstream for visual context."
+      ]
+    },
+    {
+      "path": "learn/basis.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/basis.md",
+      "sha256": "e31eca2d2bc5cedfb6b88318ea12b567b30807cf0a7d7c5b903ba837630b9aa6",
+      "bytes": 18673,
+      "source_type": "modern_commentary",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "Donation component markup retained in inert source; component implementation and tracking code not imported or executed.",
+        "Linked diagram/components are not vendored; consult pinned upstream for visual context."
+      ]
+    },
+    {
+      "path": "learn/dec-star.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/dec-star.md",
+      "sha256": "cee64eec33cd76ab79e589bf67ce588b0ca45e69b21679173d8aa94c23042769",
+      "bytes": 4931,
+      "source_type": "modern_commentary",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+      ]
+    },
+    {
+      "path": "learn/horoscope.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/horoscope.md",
+      "sha256": "f5f6c531680f8638cb349cc237342c6f6b384fe49cccf3ce1f9d9c7b009b42ac",
+      "bytes": 6689,
+      "source_type": "modern_commentary",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+      ]
+    },
+    {
+      "path": "learn/major-star.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/major-star.md",
+      "sha256": "48fdbebfacdbff74f9285d70d6919226f9ff8d5ffe7c76f848ded6e1cfe429c8",
+      "bytes": 67163,
+      "source_type": "modern_commentary",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+      ]
+    },
+    {
+      "path": "learn/minor-star.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/minor-star.md",
+      "sha256": "2dff797ebac42b36ced16a8bc25024afe30103315500c4f7d4413cb8b8d34dcd",
+      "bytes": 25488,
+      "source_type": "modern_commentary",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+      ]
+    },
+    {
+      "path": "learn/mutagen.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/mutagen.md",
+      "sha256": "936547d655148561f6139f80818909e86046c74fafd60b8c27256fb51cb115dd",
+      "bytes": 15422,
+      "source_type": "modern_commentary",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "Includes palace-stem flying transformations; gate by selected school and supported engine output.",
+        "Donation component markup retained in inert source; component implementation and tracking code not imported or executed.",
+        "Linked diagram/components are not vendored; consult pinned upstream for visual context."
+      ]
+    },
+    {
+      "path": "learn/palace.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/palace.md",
+      "sha256": "6b5459818478421471e86999eef3818035dbcd00f35c53fda429d4ab733e30b8",
+      "bytes": 29612,
+      "source_type": "modern_commentary",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+      ]
+    },
+    {
+      "path": "learn/pattern.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/pattern.md",
+      "sha256": "3f37230be51a819d4d350d8c97fb94a50bd12927b93dd4c46860f8c8db33db09",
+      "bytes": 121701,
+      "source_type": "modern_commentary",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "Upstream explicitly includes internet-derived patterns; individual source rights and textual origin are not independently verified. Not canonical quotations or verified engine rules.",
+        "Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+      ]
+    },
+    {
+      "path": "learn/setup.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/setup.md",
+      "sha256": "1a1b8d8b7d94e8b239bc74531f8a90b9a420d431ea206acb23576588082c1f83",
+      "bytes": 11034,
+      "source_type": "modern_commentary",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+      ]
+    },
+    {
+      "path": "learn/star.md",
+      "source_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/star.md",
+      "sha256": "f367944af562db2bcbbac7e34ca7a2c160b4241df59736578509b2a7c4862323",
+      "bytes": 10120,
+      "source_type": "modern_commentary",
+      "license": "MIT (repository associated documentation; preserve original attribution)",
+      "attribution": "Sylar Long / iztro-docs contributors",
+      "verbatim": true,
+      "facsimile_verified": false,
+      "engine_rule_verified": false,
+      "default_interpretation_eligible": false,
+      "warnings": [
+        "No predictive validity is established by publication, star count, or textual agreement.",
+        "Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+      ]
+    }
+  ]
+}

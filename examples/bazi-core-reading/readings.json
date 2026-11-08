@@ -1,0 +1,2136 @@
+[
+  {
+    "case_id": "S1",
+    "synthetic": true,
+    "analysis": {
+      "schema_version": 1,
+      "rule_version": "bazi-structure-v1",
+      "scope": "单一输入候选的本命结构解释，非完整人生详批、非预测验证",
+      "facts": {
+        "year": {
+          "pillar": "戊辰",
+          "stem": "戊",
+          "branch": "辰",
+          "ten_god": "偏官",
+          "hidden": [
+            {
+              "stem": "戊",
+              "element": "土",
+              "ten_god": "偏官"
+            },
+            {
+              "stem": "乙",
+              "element": "木",
+              "ten_god": "伤官"
+            },
+            {
+              "stem": "癸",
+              "element": "水",
+              "ten_god": "劫财"
+            }
+          ]
+        },
+        "month": {
+          "pillar": "乙卯",
+          "stem": "乙",
+          "branch": "卯",
+          "ten_god": "伤官",
+          "hidden": [
+            {
+              "stem": "乙",
+              "element": "木",
+              "ten_god": "伤官"
+            }
+          ]
+        },
+        "day": {
+          "pillar": "壬申",
+          "stem": "壬",
+          "branch": "申",
+          "ten_god": "—",
+          "hidden": [
+            {
+              "stem": "庚",
+              "element": "金",
+              "ten_god": "偏印"
+            },
+            {
+              "stem": "壬",
+              "element": "水",
+              "ten_god": "比肩"
+            },
+            {
+              "stem": "戊",
+              "element": "土",
+              "ten_god": "偏官"
+            }
+          ]
+        },
+        "hour": {
+          "pillar": "乙巳",
+          "stem": "乙",
+          "branch": "巳",
+          "ten_god": "伤官",
+          "hidden": [
+            {
+              "stem": "丙",
+              "element": "火",
+              "ten_god": "偏财"
+            },
+            {
+              "stem": "庚",
+              "element": "金",
+              "ten_god": "偏印"
+            },
+            {
+              "stem": "戊",
+              "element": "土",
+              "ten_god": "偏官"
+            }
+          ]
+        }
+      },
+      "missing_pillars": [],
+      "relations": [
+        {
+          "kind": "相害",
+          "positions": [
+            "year",
+            "month"
+          ],
+          "symbols": "辰卯",
+          "adjacent": true
+        },
+        {
+          "kind": "六合配对",
+          "positions": [
+            "day",
+            "hour"
+          ],
+          "symbols": "申巳",
+          "adjacent": true
+        }
+      ],
+      "groups": [],
+      "month_exposure": [
+        {
+          "stem": "乙",
+          "element": "木",
+          "ten_god": "伤官",
+          "exposed_at": [
+            "month",
+            "hour"
+          ],
+          "same_as_day": false
+        }
+      ],
+      "paths": [
+        {
+          "from": "year",
+          "to": "month",
+          "relation": "受克于"
+        },
+        {
+          "from": "month",
+          "to": "day",
+          "relation": "受生于"
+        },
+        {
+          "from": "day",
+          "to": "hour",
+          "relation": "生"
+        }
+      ],
+      "support": [
+        "年支辰藏癸水",
+        "日支申藏庚金",
+        "日支申藏壬水",
+        "时支巳藏庚金"
+      ],
+      "opposing": [
+        "年支辰藏戊土",
+        "年支辰藏乙木",
+        "年干戊土（偏官）",
+        "月支卯藏乙木",
+        "月干乙木（伤官）",
+        "日支申藏戊土",
+        "时支巳藏丙火",
+        "时支巳藏戊土",
+        "时干乙木（伤官）"
+      ],
+      "roots": [
+        "年支辰藏癸水",
+        "日支申藏壬水"
+      ],
+      "sections": [
+        {
+          "id": "relations",
+          "title": "核心冲合",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "已知柱的干支有效；两字配对需两个不同柱位，三字组需三种支齐全"
+          ],
+          "counterevidence": [
+            "年、月辰卯相害（相邻）",
+            "日、时申巳六合配对（相邻）"
+          ],
+          "unresolved": [
+            "未判合化、合绊效果与刑冲力度；三刑缺字不按完整三刑输出"
+          ],
+          "text": "按柱位逐对检查，检出：年、月辰卯相害（相邻）、日、时申巳六合配对（相邻）。这些是字与字的关系，不是事情必然发生的信号。同一字可以同时参与合与冲刑害，不能只挑一种来讲；合的配对或三字齐全也不等于已经合化。"
+        },
+        {
+          "id": "ten_gods",
+          "title": "十神链",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "十神与当前引擎按日干重算一致"
+          ],
+          "counterevidence": [
+            "年支辰藏戊土",
+            "年支辰藏乙木",
+            "年干戊土（偏官）",
+            "月支卯藏乙木",
+            "月干乙木（伤官）",
+            "日支申藏戊土",
+            "时支巳藏丙火",
+            "时支巳藏戊土",
+            "时干乙木（伤官）"
+          ],
+          "unresolved": [
+            "邻接关系不是全局作用强弱，也不推出性格、职业或财富"
+          ],
+          "text": "以日干壬水为参照：年干戊为偏官、月干乙为伤官、时干乙为伤官。这些名称用普通话说：克日主的关系（官杀）是约束的符号，不是官非、疾病或必然压力；日主生出的关系（食伤）可理解为由自身向外表达的符号，但不证明才艺或职业。按年、月、日、时的显示顺序，邻接关系为：年干戊土受克于月干乙木、月干乙木受生于日干壬水、日干壬水生时干乙木。“生”是五行关系，“克”是制约关系；这里没有把柱顺序当成人生阶段或真实能量流动。"
+        },
+        {
+          "id": "pattern",
+          "title": "格局",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "只核月支藏干及精确同干透出；日干不当作外部十神透出"
+          ],
+          "counterevidence": [
+            "日主生扶线索：年支辰藏癸水、日支申藏庚金、日支申藏壬水、时支巳藏庚金",
+            "克泄耗线索：年支辰藏戊土、年支辰藏乙木、年干戊土（偏官）、月支卯藏乙木、月干乙木（伤官）、日支申藏戊土、时支巳藏丙火、时支巳藏戊土、时干乙木（伤官）"
+          ],
+          "unresolved": [
+            "未采用分日司令表；未完成格局成败、救应与特殊格适用检查"
+          ],
+          "text": "卯月的藏干逐项对照可见天干：乙木（伤官）：透于月干、时干。这把“月支里有”与“在天干出现”分开了。已完成取格前的候选证据整理，但还不能把某个十神名直接升级为成立的格局。"
+        },
+        {
+          "id": "climate",
+          "title": "调候",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "季节按月支分类，不按公历月份或出生地天气"
+          ],
+          "counterevidence": [
+            "火与水均按透干及藏干保留，没有用计数决定寒暖"
+          ],
+          "unresolved": [
+            "未量化寒暖燥湿；未确定调候用神，不据此推荐颜色、饰物、医疗或投资"
+          ],
+          "text": "卯月属于节气划分的春季。按春季背景观察生发，不能仅凭春月指定喜火或忌水。本盘火的位置：时支巳藏丙；水的位置：日干壬、年支辰藏癸、日支申藏壬。出现的位置不等于实际有效的力量；某元素未出现也不自动构成缺陷。"
+        },
+        {
+          "id": "strength",
+          "title": "日主强弱",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "根气在此仅指地支藏干有日主同五行；生扶含同我与生我"
+          ],
+          "counterevidence": [
+            "生扶与克泄耗同时呈列；有根不能直接等同身强，无根不能直接等同从格"
+          ],
+          "unresolved": [
+            "未计算作用权重、根气受损与从化成立条件；普通结构与特殊结构尚未定案"
+          ],
+          "text": "日干是壬水。月支首列藏干属木，与日主的关系为水生木（仅本气关系，不等于已算司令）。同五行根气位置：年支辰藏癸水、日支申藏壬水。生扶一侧：年支辰藏癸水、日支申藏庚金、日支申藏壬水、时支巳藏庚金。克泄耗一侧：年支辰藏戊土、年支辰藏乙木、年干戊土（偏官）、月支卯藏乙木、月干乙木（伤官）、日支申藏戊土、时支巳藏丙火、时支巳藏戊土、时干乙木（伤官）。两侧要结合季节、位置和制化有效性比较，不按数量投票；本次不强判身强身弱，也不指定唯一喜忌。"
+        }
+      ],
+      "source": {
+        "kind": "project_structural_definitions",
+        "path": "docs/bazi-core-reading.md",
+        "version": "bazi-structure-v1",
+        "sha256": "b11ff0c28d1b654c7b9740716a0b9ed5dacde12fd6cf7a9a05dd2721dcace932"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "case_id": "S2",
+    "synthetic": true,
+    "analysis": {
+      "schema_version": 1,
+      "rule_version": "bazi-structure-v1",
+      "scope": "单一输入候选的本命结构解释，非完整人生详批、非预测验证",
+      "facts": {
+        "year": {
+          "pillar": "辛巳",
+          "stem": "辛",
+          "branch": "巳",
+          "ten_god": "偏财",
+          "hidden": [
+            {
+              "stem": "丙",
+              "element": "火",
+              "ten_god": "劫财"
+            },
+            {
+              "stem": "庚",
+              "element": "金",
+              "ten_god": "正财"
+            },
+            {
+              "stem": "戊",
+              "element": "土",
+              "ten_god": "伤官"
+            }
+          ]
+        },
+        "month": {
+          "pillar": "丙申",
+          "stem": "丙",
+          "branch": "申",
+          "ten_god": "劫财",
+          "hidden": [
+            {
+              "stem": "庚",
+              "element": "金",
+              "ten_god": "正财"
+            },
+            {
+              "stem": "壬",
+              "element": "水",
+              "ten_god": "正官"
+            },
+            {
+              "stem": "戊",
+              "element": "土",
+              "ten_god": "伤官"
+            }
+          ]
+        },
+        "day": {
+          "pillar": "丁巳",
+          "stem": "丁",
+          "branch": "巳",
+          "ten_god": "—",
+          "hidden": [
+            {
+              "stem": "丙",
+              "element": "火",
+              "ten_god": "劫财"
+            },
+            {
+              "stem": "庚",
+              "element": "金",
+              "ten_god": "正财"
+            },
+            {
+              "stem": "戊",
+              "element": "土",
+              "ten_god": "伤官"
+            }
+          ]
+        },
+        "hour": {
+          "pillar": "戊申",
+          "stem": "戊",
+          "branch": "申",
+          "ten_god": "伤官",
+          "hidden": [
+            {
+              "stem": "庚",
+              "element": "金",
+              "ten_god": "正财"
+            },
+            {
+              "stem": "壬",
+              "element": "水",
+              "ten_god": "正官"
+            },
+            {
+              "stem": "戊",
+              "element": "土",
+              "ten_god": "伤官"
+            }
+          ]
+        }
+      },
+      "missing_pillars": [],
+      "relations": [
+        {
+          "kind": "六合配对",
+          "positions": [
+            "year",
+            "month"
+          ],
+          "symbols": "巳申",
+          "adjacent": true
+        },
+        {
+          "kind": "天干五合配对",
+          "positions": [
+            "year",
+            "month"
+          ],
+          "symbols": "辛丙",
+          "adjacent": true
+        },
+        {
+          "kind": "六合配对",
+          "positions": [
+            "year",
+            "hour"
+          ],
+          "symbols": "巳申",
+          "adjacent": false
+        },
+        {
+          "kind": "六合配对",
+          "positions": [
+            "month",
+            "day"
+          ],
+          "symbols": "申巳",
+          "adjacent": true
+        },
+        {
+          "kind": "六合配对",
+          "positions": [
+            "day",
+            "hour"
+          ],
+          "symbols": "巳申",
+          "adjacent": true
+        }
+      ],
+      "groups": [],
+      "month_exposure": [
+        {
+          "stem": "庚",
+          "element": "金",
+          "ten_god": "正财",
+          "exposed_at": [],
+          "same_as_day": false
+        },
+        {
+          "stem": "壬",
+          "element": "水",
+          "ten_god": "正官",
+          "exposed_at": [],
+          "same_as_day": false
+        },
+        {
+          "stem": "戊",
+          "element": "土",
+          "ten_god": "伤官",
+          "exposed_at": [
+            "hour"
+          ],
+          "same_as_day": false
+        }
+      ],
+      "paths": [
+        {
+          "from": "year",
+          "to": "month",
+          "relation": "受克于"
+        },
+        {
+          "from": "month",
+          "to": "day",
+          "relation": "同类"
+        },
+        {
+          "from": "day",
+          "to": "hour",
+          "relation": "生"
+        }
+      ],
+      "support": [
+        "年支巳藏丙火",
+        "月干丙火（劫财）",
+        "日支巳藏丙火"
+      ],
+      "opposing": [
+        "年支巳藏庚金",
+        "年支巳藏戊土",
+        "年干辛金（偏财）",
+        "月支申藏庚金",
+        "月支申藏壬水",
+        "月支申藏戊土",
+        "日支巳藏庚金",
+        "日支巳藏戊土",
+        "时支申藏庚金",
+        "时支申藏壬水",
+        "时支申藏戊土",
+        "时干戊土（伤官）"
+      ],
+      "roots": [
+        "年支巳藏丙火",
+        "日支巳藏丙火"
+      ],
+      "sections": [
+        {
+          "id": "relations",
+          "title": "核心冲合",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "已知柱的干支有效；两字配对需两个不同柱位，三字组需三种支齐全"
+          ],
+          "counterevidence": [
+            "年、月巳申六合配对（相邻）",
+            "年、月辛丙天干五合配对（相邻）",
+            "年、时巳申六合配对（隔柱）",
+            "月、日申巳六合配对（相邻）",
+            "日、时巳申六合配对（相邻）"
+          ],
+          "unresolved": [
+            "未判合化、合绊效果与刑冲力度；三刑缺字不按完整三刑输出"
+          ],
+          "text": "按柱位逐对检查，检出：年、月巳申六合配对（相邻）、年、月辛丙天干五合配对（相邻）、年、时巳申六合配对（隔柱）、月、日申巳六合配对（相邻）、日、时巳申六合配对（相邻）。这些是字与字的关系，不是事情必然发生的信号。同一字可以同时参与合与冲刑害，不能只挑一种来讲；合的配对或三字齐全也不等于已经合化。"
+        },
+        {
+          "id": "ten_gods",
+          "title": "十神链",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "十神与当前引擎按日干重算一致"
+          ],
+          "counterevidence": [
+            "年支巳藏庚金",
+            "年支巳藏戊土",
+            "年干辛金（偏财）",
+            "月支申藏庚金",
+            "月支申藏壬水",
+            "月支申藏戊土",
+            "日支巳藏庚金",
+            "日支巳藏戊土",
+            "时支申藏庚金",
+            "时支申藏壬水",
+            "时支申藏戊土",
+            "时干戊土（伤官）"
+          ],
+          "unresolved": [
+            "邻接关系不是全局作用强弱，也不推出性格、职业或财富"
+          ],
+          "text": "以日干丁火为参照：年干辛为偏财、月干丙为劫财、时干戊为伤官。这些名称用普通话说：日主所克的关系（财）是作用方向的名称，不是收入金额或财富保证；同类关系（比劫）说的是与日主五行相同，不等于现实中一定竞争或破财；日主生出的关系（食伤）可理解为由自身向外表达的符号，但不证明才艺或职业。按年、月、日、时的显示顺序，邻接关系为：年干辛金受克于月干丙火、月干丙火同类日干丁火、日干丁火生时干戊土。“生”是五行关系，“克”是制约关系；这里没有把柱顺序当成人生阶段或真实能量流动。"
+        },
+        {
+          "id": "pattern",
+          "title": "格局",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "只核月支藏干及精确同干透出；日干不当作外部十神透出"
+          ],
+          "counterevidence": [
+            "日主生扶线索：年支巳藏丙火、月干丙火（劫财）、日支巳藏丙火",
+            "克泄耗线索：年支巳藏庚金、年支巳藏戊土、年干辛金（偏财）、月支申藏庚金、月支申藏壬水、月支申藏戊土、日支巳藏庚金、日支巳藏戊土、时支申藏庚金、时支申藏壬水、时支申藏戊土、时干戊土（伤官）"
+          ],
+          "unresolved": [
+            "未采用分日司令表；未完成格局成败、救应与特殊格适用检查"
+          ],
+          "text": "申月的藏干逐项对照可见天干：庚金（正财）：未透于年/月/时干；壬水（正官）：未透于年/月/时干；戊土（伤官）：透于时干。这把“月支里有”与“在天干出现”分开了。已完成取格前的候选证据整理，但还不能把某个十神名直接升级为成立的格局。"
+        },
+        {
+          "id": "climate",
+          "title": "调候",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "季节按月支分类，不按公历月份或出生地天气"
+          ],
+          "counterevidence": [
+            "火与水均按透干及藏干保留，没有用计数决定寒暖"
+          ],
+          "unresolved": [
+            "未量化寒暖燥湿；未确定调候用神，不据此推荐颜色、饰物、医疗或投资"
+          ],
+          "text": "申月属于节气划分的秋季。按秋季背景检查燥润问题，不能把秋季标签等同实际气候。本盘火的位置：月干丙、日干丁、年支巳藏丙、日支巳藏丙；水的位置：月支申藏壬、时支申藏壬。出现的位置不等于实际有效的力量；某元素未出现也不自动构成缺陷。"
+        },
+        {
+          "id": "strength",
+          "title": "日主强弱",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "根气在此仅指地支藏干有日主同五行；生扶含同我与生我"
+          ],
+          "counterevidence": [
+            "生扶与克泄耗同时呈列；有根不能直接等同身强，无根不能直接等同从格"
+          ],
+          "unresolved": [
+            "未计算作用权重、根气受损与从化成立条件；普通结构与特殊结构尚未定案"
+          ],
+          "text": "日干是丁火。月支首列藏干属金，与日主的关系为火克金（仅本气关系，不等于已算司令）。同五行根气位置：年支巳藏丙火、日支巳藏丙火。生扶一侧：年支巳藏丙火、月干丙火（劫财）、日支巳藏丙火。克泄耗一侧：年支巳藏庚金、年支巳藏戊土、年干辛金（偏财）、月支申藏庚金、月支申藏壬水、月支申藏戊土、日支巳藏庚金、日支巳藏戊土、时支申藏庚金、时支申藏壬水、时支申藏戊土、时干戊土（伤官）。两侧要结合季节、位置和制化有效性比较，不按数量投票；本次不强判身强身弱，也不指定唯一喜忌。"
+        }
+      ],
+      "source": {
+        "kind": "project_structural_definitions",
+        "path": "docs/bazi-core-reading.md",
+        "version": "bazi-structure-v1",
+        "sha256": "b11ff0c28d1b654c7b9740716a0b9ed5dacde12fd6cf7a9a05dd2721dcace932"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "case_id": "S3",
+    "synthetic": true,
+    "analysis": {
+      "schema_version": 1,
+      "rule_version": "bazi-structure-v1",
+      "scope": "单一输入候选的本命结构解释，非完整人生详批、非预测验证",
+      "facts": {
+        "year": {
+          "pillar": "乙卯",
+          "stem": "乙",
+          "branch": "卯",
+          "ten_god": "偏财",
+          "hidden": [
+            {
+              "stem": "乙",
+              "element": "木",
+              "ten_god": "偏财"
+            }
+          ]
+        },
+        "month": {
+          "pillar": "戊子",
+          "stem": "戊",
+          "branch": "子",
+          "ten_god": "正印",
+          "hidden": [
+            {
+              "stem": "癸",
+              "element": "水",
+              "ten_god": "食神"
+            }
+          ]
+        },
+        "day": {
+          "pillar": "辛卯",
+          "stem": "辛",
+          "branch": "卯",
+          "ten_god": "—",
+          "hidden": [
+            {
+              "stem": "乙",
+              "element": "木",
+              "ten_god": "偏财"
+            }
+          ]
+        },
+        "hour": {
+          "pillar": "辛卯",
+          "stem": "辛",
+          "branch": "卯",
+          "ten_god": "比肩",
+          "hidden": [
+            {
+              "stem": "乙",
+              "element": "木",
+              "ten_god": "偏财"
+            }
+          ]
+        }
+      },
+      "missing_pillars": [],
+      "relations": [
+        {
+          "kind": "子卯刑",
+          "positions": [
+            "year",
+            "month"
+          ],
+          "symbols": "卯子",
+          "adjacent": true
+        },
+        {
+          "kind": "子卯刑",
+          "positions": [
+            "month",
+            "day"
+          ],
+          "symbols": "子卯",
+          "adjacent": true
+        },
+        {
+          "kind": "子卯刑",
+          "positions": [
+            "month",
+            "hour"
+          ],
+          "symbols": "子卯",
+          "adjacent": false
+        }
+      ],
+      "groups": [],
+      "month_exposure": [
+        {
+          "stem": "癸",
+          "element": "水",
+          "ten_god": "食神",
+          "exposed_at": [],
+          "same_as_day": false
+        }
+      ],
+      "paths": [
+        {
+          "from": "year",
+          "to": "month",
+          "relation": "克"
+        },
+        {
+          "from": "month",
+          "to": "day",
+          "relation": "生"
+        },
+        {
+          "from": "day",
+          "to": "hour",
+          "relation": "同类"
+        }
+      ],
+      "support": [
+        "月干戊土（正印）",
+        "时干辛金（比肩）"
+      ],
+      "opposing": [
+        "年支卯藏乙木",
+        "年干乙木（偏财）",
+        "月支子藏癸水",
+        "日支卯藏乙木",
+        "时支卯藏乙木"
+      ],
+      "roots": [],
+      "sections": [
+        {
+          "id": "relations",
+          "title": "核心冲合",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "已知柱的干支有效；两字配对需两个不同柱位，三字组需三种支齐全"
+          ],
+          "counterevidence": [
+            "年、月卯子子卯刑（相邻）",
+            "月、日子卯子卯刑（相邻）",
+            "月、时子卯子卯刑（隔柱）"
+          ],
+          "unresolved": [
+            "未判合化、合绊效果与刑冲力度；三刑缺字不按完整三刑输出"
+          ],
+          "text": "按柱位逐对检查，检出：年、月卯子子卯刑（相邻）、月、日子卯子卯刑（相邻）、月、时子卯子卯刑（隔柱）。这些是字与字的关系，不是事情必然发生的信号。同一字可以同时参与合与冲刑害，不能只挑一种来讲；合的配对或三字齐全也不等于已经合化。"
+        },
+        {
+          "id": "ten_gods",
+          "title": "十神链",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "十神与当前引擎按日干重算一致"
+          ],
+          "counterevidence": [
+            "年支卯藏乙木",
+            "年干乙木（偏财）",
+            "月支子藏癸水",
+            "日支卯藏乙木",
+            "时支卯藏乙木"
+          ],
+          "unresolved": [
+            "邻接关系不是全局作用强弱，也不推出性格、职业或财富"
+          ],
+          "text": "以日干辛金为参照：年干乙为偏财、月干戊为正印、时干辛为比肩。这些名称用普通话说：日主所克的关系（财）是作用方向的名称，不是收入金额或财富保证；生日主的关系（印）是支持的符号，不是学历、贵人或成功保证；同类关系（比劫）说的是与日主五行相同，不等于现实中一定竞争或破财。按年、月、日、时的显示顺序，邻接关系为：年干乙木克月干戊土、月干戊土生日干辛金、日干辛金同类时干辛金。“生”是五行关系，“克”是制约关系；这里没有把柱顺序当成人生阶段或真实能量流动。"
+        },
+        {
+          "id": "pattern",
+          "title": "格局",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "只核月支藏干及精确同干透出；日干不当作外部十神透出"
+          ],
+          "counterevidence": [
+            "日主生扶线索：月干戊土（正印）、时干辛金（比肩）",
+            "克泄耗线索：年支卯藏乙木、年干乙木（偏财）、月支子藏癸水、日支卯藏乙木、时支卯藏乙木"
+          ],
+          "unresolved": [
+            "未采用分日司令表；未完成格局成败、救应与特殊格适用检查"
+          ],
+          "text": "子月的藏干逐项对照可见天干：癸水（食神）：未透于年/月/时干。这把“月支里有”与“在天干出现”分开了。已完成取格前的候选证据整理，但还不能把某个十神名直接升级为成立的格局。"
+        },
+        {
+          "id": "climate",
+          "title": "调候",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "季节按月支分类，不按公历月份或出生地天气"
+          ],
+          "counterevidence": [
+            "火与水均按透干及藏干保留，没有用计数决定寒暖"
+          ],
+          "unresolved": [
+            "未量化寒暖燥湿；未确定调候用神，不据此推荐颜色、饰物、医疗或投资"
+          ],
+          "text": "子月属于节气划分的冬季。按冬季背景优先检查火与水的并存情况，不能见冬就认定必须补火。本盘火的位置：未见（仅限已知柱）；水的位置：月支子藏癸。出现的位置不等于实际有效的力量；某元素未出现也不自动构成缺陷。"
+        },
+        {
+          "id": "strength",
+          "title": "日主强弱",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "根气在此仅指地支藏干有日主同五行；生扶含同我与生我"
+          ],
+          "counterevidence": [
+            "生扶与克泄耗同时呈列；有根不能直接等同身强，无根不能直接等同从格"
+          ],
+          "unresolved": [
+            "未计算作用权重、根气受损与从化成立条件；普通结构与特殊结构尚未定案"
+          ],
+          "text": "日干是辛金。月支首列藏干属水，与日主的关系为金生水（仅本气关系，不等于已算司令）。同五行根气位置：未见（仅限已知柱）。生扶一侧：月干戊土（正印）、时干辛金（比肩）。克泄耗一侧：年支卯藏乙木、年干乙木（偏财）、月支子藏癸水、日支卯藏乙木、时支卯藏乙木。两侧要结合季节、位置和制化有效性比较，不按数量投票；本次不强判身强身弱，也不指定唯一喜忌。"
+        }
+      ],
+      "source": {
+        "kind": "project_structural_definitions",
+        "path": "docs/bazi-core-reading.md",
+        "version": "bazi-structure-v1",
+        "sha256": "b11ff0c28d1b654c7b9740716a0b9ed5dacde12fd6cf7a9a05dd2721dcace932"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "case_id": "S4-before",
+    "synthetic": true,
+    "analysis": {
+      "schema_version": 1,
+      "rule_version": "bazi-structure-v1",
+      "scope": "单一输入候选的本命结构解释，非完整人生详批、非预测验证",
+      "facts": {
+        "year": {
+          "pillar": "戊寅",
+          "stem": "戊",
+          "branch": "寅",
+          "ten_god": "比肩",
+          "hidden": [
+            {
+              "stem": "甲",
+              "element": "木",
+              "ten_god": "偏官"
+            },
+            {
+              "stem": "丙",
+              "element": "火",
+              "ten_god": "偏印"
+            },
+            {
+              "stem": "戊",
+              "element": "土",
+              "ten_god": "比肩"
+            }
+          ]
+        },
+        "month": {
+          "pillar": "戊午",
+          "stem": "戊",
+          "branch": "午",
+          "ten_god": "比肩",
+          "hidden": [
+            {
+              "stem": "丁",
+              "element": "火",
+              "ten_god": "正印"
+            },
+            {
+              "stem": "己",
+              "element": "土",
+              "ten_god": "劫财"
+            }
+          ]
+        },
+        "day": {
+          "pillar": "戊申",
+          "stem": "戊",
+          "branch": "申",
+          "ten_god": "—",
+          "hidden": [
+            {
+              "stem": "庚",
+              "element": "金",
+              "ten_god": "食神"
+            },
+            {
+              "stem": "壬",
+              "element": "水",
+              "ten_god": "偏财"
+            },
+            {
+              "stem": "戊",
+              "element": "土",
+              "ten_god": "比肩"
+            }
+          ]
+        },
+        "hour": {
+          "pillar": "癸亥",
+          "stem": "癸",
+          "branch": "亥",
+          "ten_god": "正财",
+          "hidden": [
+            {
+              "stem": "壬",
+              "element": "水",
+              "ten_god": "偏财"
+            },
+            {
+              "stem": "甲",
+              "element": "木",
+              "ten_god": "偏官"
+            }
+          ]
+        }
+      },
+      "missing_pillars": [],
+      "relations": [
+        {
+          "kind": "六冲",
+          "positions": [
+            "year",
+            "day"
+          ],
+          "symbols": "寅申",
+          "adjacent": false
+        },
+        {
+          "kind": "六合配对",
+          "positions": [
+            "year",
+            "hour"
+          ],
+          "symbols": "寅亥",
+          "adjacent": false
+        },
+        {
+          "kind": "天干五合配对",
+          "positions": [
+            "year",
+            "hour"
+          ],
+          "symbols": "戊癸",
+          "adjacent": false
+        },
+        {
+          "kind": "天干五合配对",
+          "positions": [
+            "month",
+            "hour"
+          ],
+          "symbols": "戊癸",
+          "adjacent": false
+        },
+        {
+          "kind": "相害",
+          "positions": [
+            "day",
+            "hour"
+          ],
+          "symbols": "申亥",
+          "adjacent": true
+        },
+        {
+          "kind": "天干五合配对",
+          "positions": [
+            "day",
+            "hour"
+          ],
+          "symbols": "戊癸",
+          "adjacent": true
+        }
+      ],
+      "groups": [],
+      "month_exposure": [
+        {
+          "stem": "丁",
+          "element": "火",
+          "ten_god": "正印",
+          "exposed_at": [],
+          "same_as_day": false
+        },
+        {
+          "stem": "己",
+          "element": "土",
+          "ten_god": "劫财",
+          "exposed_at": [],
+          "same_as_day": false
+        }
+      ],
+      "paths": [
+        {
+          "from": "year",
+          "to": "month",
+          "relation": "同类"
+        },
+        {
+          "from": "month",
+          "to": "day",
+          "relation": "同类"
+        },
+        {
+          "from": "day",
+          "to": "hour",
+          "relation": "克"
+        }
+      ],
+      "support": [
+        "年支寅藏丙火",
+        "年支寅藏戊土",
+        "年干戊土（比肩）",
+        "月支午藏丁火",
+        "月支午藏己土",
+        "月干戊土（比肩）",
+        "日支申藏戊土"
+      ],
+      "opposing": [
+        "年支寅藏甲木",
+        "日支申藏庚金",
+        "日支申藏壬水",
+        "时支亥藏壬水",
+        "时支亥藏甲木",
+        "时干癸水（正财）"
+      ],
+      "roots": [
+        "年支寅藏戊土",
+        "月支午藏己土",
+        "日支申藏戊土"
+      ],
+      "sections": [
+        {
+          "id": "relations",
+          "title": "核心冲合",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "已知柱的干支有效；两字配对需两个不同柱位，三字组需三种支齐全"
+          ],
+          "counterevidence": [
+            "年、日寅申六冲（隔柱）",
+            "年、时寅亥六合配对（隔柱）",
+            "年、时戊癸天干五合配对（隔柱）",
+            "月、时戊癸天干五合配对（隔柱）",
+            "日、时申亥相害（相邻）",
+            "日、时戊癸天干五合配对（相邻）"
+          ],
+          "unresolved": [
+            "未判合化、合绊效果与刑冲力度；三刑缺字不按完整三刑输出"
+          ],
+          "text": "按柱位逐对检查，检出：年、日寅申六冲（隔柱）、年、时寅亥六合配对（隔柱）、年、时戊癸天干五合配对（隔柱）、月、时戊癸天干五合配对（隔柱）、日、时申亥相害（相邻）、日、时戊癸天干五合配对（相邻）。这些是字与字的关系，不是事情必然发生的信号。同一字可以同时参与合与冲刑害，不能只挑一种来讲；合的配对或三字齐全也不等于已经合化。"
+        },
+        {
+          "id": "ten_gods",
+          "title": "十神链",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "十神与当前引擎按日干重算一致"
+          ],
+          "counterevidence": [
+            "年支寅藏甲木",
+            "日支申藏庚金",
+            "日支申藏壬水",
+            "时支亥藏壬水",
+            "时支亥藏甲木",
+            "时干癸水（正财）"
+          ],
+          "unresolved": [
+            "邻接关系不是全局作用强弱，也不推出性格、职业或财富"
+          ],
+          "text": "以日干戊土为参照：年干戊为比肩、月干戊为比肩、时干癸为正财。这些名称用普通话说：同类关系（比劫）说的是与日主五行相同，不等于现实中一定竞争或破财；日主所克的关系（财）是作用方向的名称，不是收入金额或财富保证。按年、月、日、时的显示顺序，邻接关系为：年干戊土同类月干戊土、月干戊土同类日干戊土、日干戊土克时干癸水。“生”是五行关系，“克”是制约关系；这里没有把柱顺序当成人生阶段或真实能量流动。"
+        },
+        {
+          "id": "pattern",
+          "title": "格局",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "只核月支藏干及精确同干透出；日干不当作外部十神透出"
+          ],
+          "counterevidence": [
+            "日主生扶线索：年支寅藏丙火、年支寅藏戊土、年干戊土（比肩）、月支午藏丁火、月支午藏己土、月干戊土（比肩）、日支申藏戊土",
+            "克泄耗线索：年支寅藏甲木、日支申藏庚金、日支申藏壬水、时支亥藏壬水、时支亥藏甲木、时干癸水（正财）"
+          ],
+          "unresolved": [
+            "未采用分日司令表；未完成格局成败、救应与特殊格适用检查"
+          ],
+          "text": "午月的藏干逐项对照可见天干：丁火（正印）：未透于年/月/时干；己土（劫财）：未透于年/月/时干。这把“月支里有”与“在天干出现”分开了。已完成取格前的候选证据整理，但还不能把某个十神名直接升级为成立的格局。"
+        },
+        {
+          "id": "climate",
+          "title": "调候",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "季节按月支分类，不按公历月份或出生地天气"
+          ],
+          "counterevidence": [
+            "火与水均按透干及藏干保留，没有用计数决定寒暖"
+          ],
+          "unresolved": [
+            "未量化寒暖燥湿；未确定调候用神，不据此推荐颜色、饰物、医疗或投资"
+          ],
+          "text": "午月属于节气划分的夏季。按夏季背景优先检查火与水的并存情况，不能见夏就认定必须补水。本盘火的位置：年支寅藏丙、月支午藏丁；水的位置：时干癸、日支申藏壬、时支亥藏壬。出现的位置不等于实际有效的力量；某元素未出现也不自动构成缺陷。"
+        },
+        {
+          "id": "strength",
+          "title": "日主强弱",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "根气在此仅指地支藏干有日主同五行；生扶含同我与生我"
+          ],
+          "counterevidence": [
+            "生扶与克泄耗同时呈列；有根不能直接等同身强，无根不能直接等同从格"
+          ],
+          "unresolved": [
+            "未计算作用权重、根气受损与从化成立条件；普通结构与特殊结构尚未定案"
+          ],
+          "text": "日干是戊土。月支首列藏干属火，与日主的关系为土受生于火（仅本气关系，不等于已算司令）。同五行根气位置：年支寅藏戊土、月支午藏己土、日支申藏戊土。生扶一侧：年支寅藏丙火、年支寅藏戊土、年干戊土（比肩）、月支午藏丁火、月支午藏己土、月干戊土（比肩）、日支申藏戊土。克泄耗一侧：年支寅藏甲木、日支申藏庚金、日支申藏壬水、时支亥藏壬水、时支亥藏甲木、时干癸水（正财）。两侧要结合季节、位置和制化有效性比较，不按数量投票；本次不强判身强身弱，也不指定唯一喜忌。"
+        }
+      ],
+      "source": {
+        "kind": "project_structural_definitions",
+        "path": "docs/bazi-core-reading.md",
+        "version": "bazi-structure-v1",
+        "sha256": "b11ff0c28d1b654c7b9740716a0b9ed5dacde12fd6cf7a9a05dd2721dcace932"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "case_id": "S4-after",
+    "synthetic": true,
+    "analysis": {
+      "schema_version": 1,
+      "rule_version": "bazi-structure-v1",
+      "scope": "单一输入候选的本命结构解释，非完整人生详批、非预测验证",
+      "facts": {
+        "year": {
+          "pillar": "戊寅",
+          "stem": "戊",
+          "branch": "寅",
+          "ten_god": "劫财",
+          "hidden": [
+            {
+              "stem": "甲",
+              "element": "木",
+              "ten_god": "正官"
+            },
+            {
+              "stem": "丙",
+              "element": "火",
+              "ten_god": "正印"
+            },
+            {
+              "stem": "戊",
+              "element": "土",
+              "ten_god": "劫财"
+            }
+          ]
+        },
+        "month": {
+          "pillar": "戊午",
+          "stem": "戊",
+          "branch": "午",
+          "ten_god": "劫财",
+          "hidden": [
+            {
+              "stem": "丁",
+              "element": "火",
+              "ten_god": "偏印"
+            },
+            {
+              "stem": "己",
+              "element": "土",
+              "ten_god": "比肩"
+            }
+          ]
+        },
+        "day": {
+          "pillar": "己酉",
+          "stem": "己",
+          "branch": "酉",
+          "ten_god": "—",
+          "hidden": [
+            {
+              "stem": "辛",
+              "element": "金",
+              "ten_god": "食神"
+            }
+          ]
+        },
+        "hour": {
+          "pillar": "甲子",
+          "stem": "甲",
+          "branch": "子",
+          "ten_god": "正官",
+          "hidden": [
+            {
+              "stem": "癸",
+              "element": "水",
+              "ten_god": "偏财"
+            }
+          ]
+        }
+      },
+      "missing_pillars": [],
+      "relations": [
+        {
+          "kind": "六冲",
+          "positions": [
+            "month",
+            "hour"
+          ],
+          "symbols": "午子",
+          "adjacent": false
+        },
+        {
+          "kind": "天干五合配对",
+          "positions": [
+            "day",
+            "hour"
+          ],
+          "symbols": "己甲",
+          "adjacent": true
+        }
+      ],
+      "groups": [],
+      "month_exposure": [
+        {
+          "stem": "丁",
+          "element": "火",
+          "ten_god": "偏印",
+          "exposed_at": [],
+          "same_as_day": false
+        },
+        {
+          "stem": "己",
+          "element": "土",
+          "ten_god": "比肩",
+          "exposed_at": [],
+          "same_as_day": true
+        }
+      ],
+      "paths": [
+        {
+          "from": "year",
+          "to": "month",
+          "relation": "同类"
+        },
+        {
+          "from": "month",
+          "to": "day",
+          "relation": "同类"
+        },
+        {
+          "from": "day",
+          "to": "hour",
+          "relation": "受克于"
+        }
+      ],
+      "support": [
+        "年支寅藏丙火",
+        "年支寅藏戊土",
+        "年干戊土（劫财）",
+        "月支午藏丁火",
+        "月支午藏己土",
+        "月干戊土（劫财）"
+      ],
+      "opposing": [
+        "年支寅藏甲木",
+        "日支酉藏辛金",
+        "时支子藏癸水",
+        "时干甲木（正官）"
+      ],
+      "roots": [
+        "年支寅藏戊土",
+        "月支午藏己土"
+      ],
+      "sections": [
+        {
+          "id": "relations",
+          "title": "核心冲合",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "已知柱的干支有效；两字配对需两个不同柱位，三字组需三种支齐全"
+          ],
+          "counterevidence": [
+            "月、时午子六冲（隔柱）",
+            "日、时己甲天干五合配对（相邻）"
+          ],
+          "unresolved": [
+            "未判合化、合绊效果与刑冲力度；三刑缺字不按完整三刑输出"
+          ],
+          "text": "按柱位逐对检查，检出：月、时午子六冲（隔柱）、日、时己甲天干五合配对（相邻）。这些是字与字的关系，不是事情必然发生的信号。同一字可以同时参与合与冲刑害，不能只挑一种来讲；合的配对或三字齐全也不等于已经合化。"
+        },
+        {
+          "id": "ten_gods",
+          "title": "十神链",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "十神与当前引擎按日干重算一致"
+          ],
+          "counterevidence": [
+            "年支寅藏甲木",
+            "日支酉藏辛金",
+            "时支子藏癸水",
+            "时干甲木（正官）"
+          ],
+          "unresolved": [
+            "邻接关系不是全局作用强弱，也不推出性格、职业或财富"
+          ],
+          "text": "以日干己土为参照：年干戊为劫财、月干戊为劫财、时干甲为正官。这些名称用普通话说：同类关系（比劫）说的是与日主五行相同，不等于现实中一定竞争或破财；克日主的关系（官杀）是约束的符号，不是官非、疾病或必然压力。按年、月、日、时的显示顺序，邻接关系为：年干戊土同类月干戊土、月干戊土同类日干己土、日干己土受克于时干甲木。“生”是五行关系，“克”是制约关系；这里没有把柱顺序当成人生阶段或真实能量流动。"
+        },
+        {
+          "id": "pattern",
+          "title": "格局",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "只核月支藏干及精确同干透出；日干不当作外部十神透出"
+          ],
+          "counterevidence": [
+            "日主生扶线索：年支寅藏丙火、年支寅藏戊土、年干戊土（劫财）、月支午藏丁火、月支午藏己土、月干戊土（劫财）",
+            "克泄耗线索：年支寅藏甲木、日支酉藏辛金、时支子藏癸水、时干甲木（正官）"
+          ],
+          "unresolved": [
+            "未采用分日司令表；未完成格局成败、救应与特殊格适用检查"
+          ],
+          "text": "午月的藏干逐项对照可见天干：丁火（偏印）：未透于年/月/时干；己土（比肩）：未透于年/月/时干，与日干相同。这把“月支里有”与“在天干出现”分开了。已完成取格前的候选证据整理，但还不能把某个十神名直接升级为成立的格局。"
+        },
+        {
+          "id": "climate",
+          "title": "调候",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "季节按月支分类，不按公历月份或出生地天气"
+          ],
+          "counterevidence": [
+            "火与水均按透干及藏干保留，没有用计数决定寒暖"
+          ],
+          "unresolved": [
+            "未量化寒暖燥湿；未确定调候用神，不据此推荐颜色、饰物、医疗或投资"
+          ],
+          "text": "午月属于节气划分的夏季。按夏季背景优先检查火与水的并存情况，不能见夏就认定必须补水。本盘火的位置：年支寅藏丙、月支午藏丁；水的位置：时支子藏癸。出现的位置不等于实际有效的力量；某元素未出现也不自动构成缺陷。"
+        },
+        {
+          "id": "strength",
+          "title": "日主强弱",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "根气在此仅指地支藏干有日主同五行；生扶含同我与生我"
+          ],
+          "counterevidence": [
+            "生扶与克泄耗同时呈列；有根不能直接等同身强，无根不能直接等同从格"
+          ],
+          "unresolved": [
+            "未计算作用权重、根气受损与从化成立条件；普通结构与特殊结构尚未定案"
+          ],
+          "text": "日干是己土。月支首列藏干属火，与日主的关系为土受生于火（仅本气关系，不等于已算司令）。同五行根气位置：年支寅藏戊土、月支午藏己土。生扶一侧：年支寅藏丙火、年支寅藏戊土、年干戊土（劫财）、月支午藏丁火、月支午藏己土、月干戊土（劫财）。克泄耗一侧：年支寅藏甲木、日支酉藏辛金、时支子藏癸水、时干甲木（正官）。两侧要结合季节、位置和制化有效性比较，不按数量投票；本次不强判身强身弱，也不指定唯一喜忌。"
+        }
+      ],
+      "source": {
+        "kind": "project_structural_definitions",
+        "path": "docs/bazi-core-reading.md",
+        "version": "bazi-structure-v1",
+        "sha256": "b11ff0c28d1b654c7b9740716a0b9ed5dacde12fd6cf7a9a05dd2721dcace932"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "case_id": "S5-before",
+    "synthetic": true,
+    "analysis": {
+      "schema_version": 1,
+      "rule_version": "bazi-structure-v1",
+      "scope": "单一输入候选的本命结构解释，非完整人生详批、非预测验证",
+      "facts": {
+        "year": {
+          "pillar": "辛未",
+          "stem": "辛",
+          "branch": "未",
+          "ten_god": "劫财",
+          "hidden": [
+            {
+              "stem": "己",
+              "element": "土",
+              "ten_god": "正印"
+            },
+            {
+              "stem": "丁",
+              "element": "火",
+              "ten_god": "正官"
+            },
+            {
+              "stem": "乙",
+              "element": "木",
+              "ten_god": "正财"
+            }
+          ]
+        },
+        "month": {
+          "pillar": "辛丑",
+          "stem": "辛",
+          "branch": "丑",
+          "ten_god": "劫财",
+          "hidden": [
+            {
+              "stem": "己",
+              "element": "土",
+              "ten_god": "正印"
+            },
+            {
+              "stem": "癸",
+              "element": "水",
+              "ten_god": "伤官"
+            },
+            {
+              "stem": "辛",
+              "element": "金",
+              "ten_god": "劫财"
+            }
+          ]
+        },
+        "day": {
+          "pillar": "庚戌",
+          "stem": "庚",
+          "branch": "戌",
+          "ten_god": "—",
+          "hidden": [
+            {
+              "stem": "戊",
+              "element": "土",
+              "ten_god": "偏印"
+            },
+            {
+              "stem": "辛",
+              "element": "金",
+              "ten_god": "劫财"
+            },
+            {
+              "stem": "丁",
+              "element": "火",
+              "ten_god": "正官"
+            }
+          ]
+        },
+        "hour": {
+          "pillar": "丁亥",
+          "stem": "丁",
+          "branch": "亥",
+          "ten_god": "正官",
+          "hidden": [
+            {
+              "stem": "壬",
+              "element": "水",
+              "ten_god": "食神"
+            },
+            {
+              "stem": "甲",
+              "element": "木",
+              "ten_god": "偏财"
+            }
+          ]
+        }
+      },
+      "missing_pillars": [],
+      "relations": [
+        {
+          "kind": "六冲",
+          "positions": [
+            "year",
+            "month"
+          ],
+          "symbols": "未丑",
+          "adjacent": true
+        }
+      ],
+      "groups": [
+        {
+          "kind": "三刑齐字",
+          "symbols": "丑戌未",
+          "positions": [
+            "year",
+            "month",
+            "day"
+          ]
+        }
+      ],
+      "month_exposure": [
+        {
+          "stem": "己",
+          "element": "土",
+          "ten_god": "正印",
+          "exposed_at": [],
+          "same_as_day": false
+        },
+        {
+          "stem": "癸",
+          "element": "水",
+          "ten_god": "伤官",
+          "exposed_at": [],
+          "same_as_day": false
+        },
+        {
+          "stem": "辛",
+          "element": "金",
+          "ten_god": "劫财",
+          "exposed_at": [
+            "year",
+            "month"
+          ],
+          "same_as_day": false
+        }
+      ],
+      "paths": [
+        {
+          "from": "year",
+          "to": "month",
+          "relation": "同类"
+        },
+        {
+          "from": "month",
+          "to": "day",
+          "relation": "同类"
+        },
+        {
+          "from": "day",
+          "to": "hour",
+          "relation": "受克于"
+        }
+      ],
+      "support": [
+        "年支未藏己土",
+        "年干辛金（劫财）",
+        "月支丑藏己土",
+        "月支丑藏辛金",
+        "月干辛金（劫财）",
+        "日支戌藏戊土",
+        "日支戌藏辛金"
+      ],
+      "opposing": [
+        "年支未藏丁火",
+        "年支未藏乙木",
+        "月支丑藏癸水",
+        "日支戌藏丁火",
+        "时支亥藏壬水",
+        "时支亥藏甲木",
+        "时干丁火（正官）"
+      ],
+      "roots": [
+        "月支丑藏辛金",
+        "日支戌藏辛金"
+      ],
+      "sections": [
+        {
+          "id": "relations",
+          "title": "核心冲合",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "已知柱的干支有效；两字配对需两个不同柱位，三字组需三种支齐全"
+          ],
+          "counterevidence": [
+            "年、月未丑六冲（相邻）",
+            "丑戌未三刑齐字"
+          ],
+          "unresolved": [
+            "未判合化、合绊效果与刑冲力度；三刑缺字不按完整三刑输出"
+          ],
+          "text": "按柱位逐对检查，检出：年、月未丑六冲（相邻）、丑戌未三刑齐字。这些是字与字的关系，不是事情必然发生的信号。同一字可以同时参与合与冲刑害，不能只挑一种来讲；合的配对或三字齐全也不等于已经合化。"
+        },
+        {
+          "id": "ten_gods",
+          "title": "十神链",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "十神与当前引擎按日干重算一致"
+          ],
+          "counterevidence": [
+            "年支未藏丁火",
+            "年支未藏乙木",
+            "月支丑藏癸水",
+            "日支戌藏丁火",
+            "时支亥藏壬水",
+            "时支亥藏甲木",
+            "时干丁火（正官）"
+          ],
+          "unresolved": [
+            "邻接关系不是全局作用强弱，也不推出性格、职业或财富"
+          ],
+          "text": "以日干庚金为参照：年干辛为劫财、月干辛为劫财、时干丁为正官。这些名称用普通话说：同类关系（比劫）说的是与日主五行相同，不等于现实中一定竞争或破财；克日主的关系（官杀）是约束的符号，不是官非、疾病或必然压力。按年、月、日、时的显示顺序，邻接关系为：年干辛金同类月干辛金、月干辛金同类日干庚金、日干庚金受克于时干丁火。“生”是五行关系，“克”是制约关系；这里没有把柱顺序当成人生阶段或真实能量流动。"
+        },
+        {
+          "id": "pattern",
+          "title": "格局",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "只核月支藏干及精确同干透出；日干不当作外部十神透出"
+          ],
+          "counterevidence": [
+            "日主生扶线索：年支未藏己土、年干辛金（劫财）、月支丑藏己土、月支丑藏辛金、月干辛金（劫财）、日支戌藏戊土、日支戌藏辛金",
+            "克泄耗线索：年支未藏丁火、年支未藏乙木、月支丑藏癸水、日支戌藏丁火、时支亥藏壬水、时支亥藏甲木、时干丁火（正官）"
+          ],
+          "unresolved": [
+            "未采用分日司令表；未完成格局成败、救应与特殊格适用检查"
+          ],
+          "text": "丑月的藏干逐项对照可见天干：己土（正印）：未透于年/月/时干；癸水（伤官）：未透于年/月/时干；辛金（劫财）：透于年干、月干。这把“月支里有”与“在天干出现”分开了。已完成取格前的候选证据整理，但还不能把某个十神名直接升级为成立的格局。"
+        },
+        {
+          "id": "climate",
+          "title": "调候",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "季节按月支分类，不按公历月份或出生地天气"
+          ],
+          "counterevidence": [
+            "火与水均按透干及藏干保留，没有用计数决定寒暖"
+          ],
+          "unresolved": [
+            "未量化寒暖燥湿；未确定调候用神，不据此推荐颜色、饰物、医疗或投资"
+          ],
+          "text": "丑月属于节气划分的冬季。按冬季背景优先检查火与水的并存情况，不能见冬就认定必须补火。本盘火的位置：时干丁、年支未藏丁、日支戌藏丁；水的位置：月支丑藏癸、时支亥藏壬。出现的位置不等于实际有效的力量；某元素未出现也不自动构成缺陷。"
+        },
+        {
+          "id": "strength",
+          "title": "日主强弱",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "根气在此仅指地支藏干有日主同五行；生扶含同我与生我"
+          ],
+          "counterevidence": [
+            "生扶与克泄耗同时呈列；有根不能直接等同身强，无根不能直接等同从格"
+          ],
+          "unresolved": [
+            "未计算作用权重、根气受损与从化成立条件；普通结构与特殊结构尚未定案"
+          ],
+          "text": "日干是庚金。月支首列藏干属土，与日主的关系为金受生于土（仅本气关系，不等于已算司令）。同五行根气位置：月支丑藏辛金、日支戌藏辛金。生扶一侧：年支未藏己土、年干辛金（劫财）、月支丑藏己土、月支丑藏辛金、月干辛金（劫财）、日支戌藏戊土、日支戌藏辛金。克泄耗一侧：年支未藏丁火、年支未藏乙木、月支丑藏癸水、日支戌藏丁火、时支亥藏壬水、时支亥藏甲木、时干丁火（正官）。两侧要结合季节、位置和制化有效性比较，不按数量投票；本次不强判身强身弱，也不指定唯一喜忌。"
+        }
+      ],
+      "source": {
+        "kind": "project_structural_definitions",
+        "path": "docs/bazi-core-reading.md",
+        "version": "bazi-structure-v1",
+        "sha256": "b11ff0c28d1b654c7b9740716a0b9ed5dacde12fd6cf7a9a05dd2721dcace932"
+      },
+      "warnings": []
+    }
+  },
+  {
+    "case_id": "S5-after",
+    "synthetic": true,
+    "analysis": {
+      "schema_version": 1,
+      "rule_version": "bazi-structure-v1",
+      "scope": "单一输入候选的本命结构解释，非完整人生详批、非预测验证",
+      "facts": {
+        "year": {
+          "pillar": "壬申",
+          "stem": "壬",
+          "branch": "申",
+          "ten_god": "食神",
+          "hidden": [
+            {
+              "stem": "庚",
+              "element": "金",
+              "ten_god": "比肩"
+            },
+            {
+              "stem": "壬",
+              "element": "水",
+              "ten_god": "食神"
+            },
+            {
+              "stem": "戊",
+              "element": "土",
+              "ten_god": "偏印"
+            }
+          ]
+        },
+        "month": {
+          "pillar": "壬寅",
+          "stem": "壬",
+          "branch": "寅",
+          "ten_god": "食神",
+          "hidden": [
+            {
+              "stem": "甲",
+              "element": "木",
+              "ten_god": "偏财"
+            },
+            {
+              "stem": "丙",
+              "element": "火",
+              "ten_god": "偏官"
+            },
+            {
+              "stem": "戊",
+              "element": "土",
+              "ten_god": "偏印"
+            }
+          ]
+        },
+        "day": {
+          "pillar": "庚戌",
+          "stem": "庚",
+          "branch": "戌",
+          "ten_god": "—",
+          "hidden": [
+            {
+              "stem": "戊",
+              "element": "土",
+              "ten_god": "偏印"
+            },
+            {
+              "stem": "辛",
+              "element": "金",
+              "ten_god": "劫财"
+            },
+            {
+              "stem": "丁",
+              "element": "火",
+              "ten_god": "正官"
+            }
+          ]
+        },
+        "hour": {
+          "pillar": "丁亥",
+          "stem": "丁",
+          "branch": "亥",
+          "ten_god": "正官",
+          "hidden": [
+            {
+              "stem": "壬",
+              "element": "水",
+              "ten_god": "食神"
+            },
+            {
+              "stem": "甲",
+              "element": "木",
+              "ten_god": "偏财"
+            }
+          ]
+        }
+      },
+      "missing_pillars": [],
+      "relations": [
+        {
+          "kind": "六冲",
+          "positions": [
+            "year",
+            "month"
+          ],
+          "symbols": "申寅",
+          "adjacent": true
+        },
+        {
+          "kind": "相害",
+          "positions": [
+            "year",
+            "hour"
+          ],
+          "symbols": "申亥",
+          "adjacent": false
+        },
+        {
+          "kind": "天干五合配对",
+          "positions": [
+            "year",
+            "hour"
+          ],
+          "symbols": "壬丁",
+          "adjacent": false
+        },
+        {
+          "kind": "六合配对",
+          "positions": [
+            "month",
+            "hour"
+          ],
+          "symbols": "寅亥",
+          "adjacent": false
+        },
+        {
+          "kind": "天干五合配对",
+          "positions": [
+            "month",
+            "hour"
+          ],
+          "symbols": "壬丁",
+          "adjacent": false
+        }
+      ],
+      "groups": [],
+      "month_exposure": [
+        {
+          "stem": "甲",
+          "element": "木",
+          "ten_god": "偏财",
+          "exposed_at": [],
+          "same_as_day": false
+        },
+        {
+          "stem": "丙",
+          "element": "火",
+          "ten_god": "偏官",
+          "exposed_at": [],
+          "same_as_day": false
+        },
+        {
+          "stem": "戊",
+          "element": "土",
+          "ten_god": "偏印",
+          "exposed_at": [],
+          "same_as_day": false
+        }
+      ],
+      "paths": [
+        {
+          "from": "year",
+          "to": "month",
+          "relation": "同类"
+        },
+        {
+          "from": "month",
+          "to": "day",
+          "relation": "受生于"
+        },
+        {
+          "from": "day",
+          "to": "hour",
+          "relation": "受克于"
+        }
+      ],
+      "support": [
+        "年支申藏庚金",
+        "年支申藏戊土",
+        "月支寅藏戊土",
+        "日支戌藏戊土",
+        "日支戌藏辛金"
+      ],
+      "opposing": [
+        "年支申藏壬水",
+        "年干壬水（食神）",
+        "月支寅藏甲木",
+        "月支寅藏丙火",
+        "月干壬水（食神）",
+        "日支戌藏丁火",
+        "时支亥藏壬水",
+        "时支亥藏甲木",
+        "时干丁火（正官）"
+      ],
+      "roots": [
+        "年支申藏庚金",
+        "日支戌藏辛金"
+      ],
+      "sections": [
+        {
+          "id": "relations",
+          "title": "核心冲合",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "已知柱的干支有效；两字配对需两个不同柱位，三字组需三种支齐全"
+          ],
+          "counterevidence": [
+            "年、月申寅六冲（相邻）",
+            "年、时申亥相害（隔柱）",
+            "年、时壬丁天干五合配对（隔柱）",
+            "月、时寅亥六合配对（隔柱）",
+            "月、时壬丁天干五合配对（隔柱）"
+          ],
+          "unresolved": [
+            "未判合化、合绊效果与刑冲力度；三刑缺字不按完整三刑输出"
+          ],
+          "text": "按柱位逐对检查，检出：年、月申寅六冲（相邻）、年、时申亥相害（隔柱）、年、时壬丁天干五合配对（隔柱）、月、时寅亥六合配对（隔柱）、月、时壬丁天干五合配对（隔柱）。这些是字与字的关系，不是事情必然发生的信号。同一字可以同时参与合与冲刑害，不能只挑一种来讲；合的配对或三字齐全也不等于已经合化。"
+        },
+        {
+          "id": "ten_gods",
+          "title": "十神链",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "十神与当前引擎按日干重算一致"
+          ],
+          "counterevidence": [
+            "年支申藏壬水",
+            "年干壬水（食神）",
+            "月支寅藏甲木",
+            "月支寅藏丙火",
+            "月干壬水（食神）",
+            "日支戌藏丁火",
+            "时支亥藏壬水",
+            "时支亥藏甲木",
+            "时干丁火（正官）"
+          ],
+          "unresolved": [
+            "邻接关系不是全局作用强弱，也不推出性格、职业或财富"
+          ],
+          "text": "以日干庚金为参照：年干壬为食神、月干壬为食神、时干丁为正官。这些名称用普通话说：日主生出的关系（食伤）可理解为由自身向外表达的符号，但不证明才艺或职业；克日主的关系（官杀）是约束的符号，不是官非、疾病或必然压力。按年、月、日、时的显示顺序，邻接关系为：年干壬水同类月干壬水、月干壬水受生于日干庚金、日干庚金受克于时干丁火。“生”是五行关系，“克”是制约关系；这里没有把柱顺序当成人生阶段或真实能量流动。"
+        },
+        {
+          "id": "pattern",
+          "title": "格局",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "只核月支藏干及精确同干透出；日干不当作外部十神透出"
+          ],
+          "counterevidence": [
+            "日主生扶线索：年支申藏庚金、年支申藏戊土、月支寅藏戊土、日支戌藏戊土、日支戌藏辛金",
+            "克泄耗线索：年支申藏壬水、年干壬水（食神）、月支寅藏甲木、月支寅藏丙火、月干壬水（食神）、日支戌藏丁火、时支亥藏壬水、时支亥藏甲木、时干丁火（正官）"
+          ],
+          "unresolved": [
+            "未采用分日司令表；未完成格局成败、救应与特殊格适用检查"
+          ],
+          "text": "寅月的藏干逐项对照可见天干：甲木（偏财）：未透于年/月/时干；丙火（偏官）：未透于年/月/时干；戊土（偏印）：未透于年/月/时干。这把“月支里有”与“在天干出现”分开了。已完成取格前的候选证据整理，但还不能把某个十神名直接升级为成立的格局。"
+        },
+        {
+          "id": "climate",
+          "title": "调候",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "季节按月支分类，不按公历月份或出生地天气"
+          ],
+          "counterevidence": [
+            "火与水均按透干及藏干保留，没有用计数决定寒暖"
+          ],
+          "unresolved": [
+            "未量化寒暖燥湿；未确定调候用神，不据此推荐颜色、饰物、医疗或投资"
+          ],
+          "text": "寅月属于节气划分的春季。按春季背景观察生发，不能仅凭春月指定喜火或忌水。本盘火的位置：时干丁、月支寅藏丙、日支戌藏丁；水的位置：年干壬、月干壬、年支申藏壬、时支亥藏壬。出现的位置不等于实际有效的力量；某元素未出现也不自动构成缺陷。"
+        },
+        {
+          "id": "strength",
+          "title": "日主强弱",
+          "status": "structural_only",
+          "evidence": [
+            "year",
+            "month",
+            "day",
+            "hour"
+          ],
+          "prerequisites": [
+            "根气在此仅指地支藏干有日主同五行；生扶含同我与生我"
+          ],
+          "counterevidence": [
+            "生扶与克泄耗同时呈列；有根不能直接等同身强，无根不能直接等同从格"
+          ],
+          "unresolved": [
+            "未计算作用权重、根气受损与从化成立条件；普通结构与特殊结构尚未定案"
+          ],
+          "text": "日干是庚金。月支首列藏干属木，与日主的关系为金克木（仅本气关系，不等于已算司令）。同五行根气位置：年支申藏庚金、日支戌藏辛金。生扶一侧：年支申藏庚金、年支申藏戊土、月支寅藏戊土、日支戌藏戊土、日支戌藏辛金。克泄耗一侧：年支申藏壬水、年干壬水（食神）、月支寅藏甲木、月支寅藏丙火、月干壬水（食神）、日支戌藏丁火、时支亥藏壬水、时支亥藏甲木、时干丁火（正官）。两侧要结合季节、位置和制化有效性比较，不按数量投票；本次不强判身强身弱，也不指定唯一喜忌。"
+        }
+      ],
+      "source": {
+        "kind": "project_structural_definitions",
+        "path": "docs/bazi-core-reading.md",
+        "version": "bazi-structure-v1",
+        "sha256": "b11ff0c28d1b654c7b9740716a0b9ed5dacde12fd6cf7a9a05dd2721dcace932"
+      },
+      "warnings": []
+    }
+  }
+]

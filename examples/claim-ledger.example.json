@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "purpose": "synthetic_test",
+  "sources": [
+    {
+      "id": "chart-ziwei",
+      "kind": "chart",
+      "path": "chart.json",
+      "sha256": "b9a6e0fccfb063a7247cc2c90268407aba9b912f1362cdbe03a217b6f8461e3f",
+      "system": "ziwei",
+      "scenario_id": "base",
+      "pointer_prefix": "/ziwei"
+    },
+    {
+      "id": "chart-bazi",
+      "kind": "chart",
+      "path": "chart.json",
+      "sha256": "b9a6e0fccfb063a7247cc2c90268407aba9b912f1362cdbe03a217b6f8461e3f",
+      "system": "bazi",
+      "scenario_id": "base",
+      "pointer_prefix": "/bazi"
+    },
+    {
+      "id": "rules",
+      "kind": "reference",
+      "path": "rules.md",
+      "sha256": "f83d878451cc2d6f663759c88884bd14ea2424731618b7eb2a303655229fce24"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "base",
+      "label": "合成基线",
+      "time_basis": "无出生时间，测试占位",
+      "assumptions": "不对应任何真实人"
+    }
+  ],
+  "facts": [
+    {
+      "id": "bazi-fact",
+      "system": "bazi",
+      "scenario_id": "base",
+      "source_id": "chart-bazi",
+      "pointer": "/bazi/day_pillar",
+      "value": "甲子"
+    },
+    {
+      "id": "ziwei-fact",
+      "system": "ziwei",
+      "scenario_id": "base",
+      "source_id": "chart-ziwei",
+      "pointer": "/ziwei/palace",
+      "value": "命宫"
+    }
+  ],
+  "rules": [
+    {
+      "id": "bazi-rule",
+      "system": "bazi",
+      "source_id": "rules",
+      "school": "合成测试，无学派权威",
+      "locator": "rules.md:2",
+      "start_line": 2,
+      "end_line": 2,
+      "quote": "八字测试规则：仅描述已提供的柱位字段，不由此推导人生事件。",
+      "attribution_kind": "caller_declared_unverified",
+      "source_label": "调用方提供的未核验资料（非核验古籍原文）"
+    },
+    {
+      "id": "ziwei-rule",
+      "system": "ziwei",
+      "source_id": "rules",
+      "school": "合成测试，无学派权威",
+      "locator": "rules.md:3",
+      "start_line": 3,
+      "end_line": 3,
+      "quote": "紫微测试规则：仅描述已提供的宫位字段，不由此推导人生事件。",
+      "attribution_kind": "caller_declared_unverified",
+      "source_label": "调用方提供的未核验资料（非核验古籍原文）"
+    }
+  ],
+  "claims": [
+    {
+      "id": "bazi-claim",
+      "system": "bazi",
+      "domain": "资料完整性",
+      "time_scope": "本次输入",
+      "statement": "该体系存在一个测试字段；不能据此推断人生事件。",
+      "status": "conditional",
+      "fact_ids": [
+        "bazi-fact"
+      ],
+      "rule_ids": [
+        "bazi-rule"
+      ],
+      "depends_on": [],
+      "scenario_ids": [
+        "base"
+      ],
+      "conditions": "仅用于合成样例，不是完整命盘。",
+      "counterevidence": "没有其他字段可检查，不能视为没有反证。",
+      "alternatives": "字段可能只是占位符。",
+      "boundary": "unassessed",
+      "explanation": {
+        "plain": "这里只演示如何检查引用，没有给人算命。",
+        "technical": "字段路径与快照相等；来源规则不支持事件预测。",
+        "action": "真实阅读需换成引擎快照及实际典籍规则。"
+      },
+      "limitations": "文件一致性不证明推断准确。"
+    },
+    {
+      "id": "ziwei-claim",
+      "system": "ziwei",
+      "domain": "资料完整性",
+      "time_scope": "本次输入",
+      "statement": "该体系存在一个测试字段；不能据此推断人生事件。",
+      "status": "conditional",
+      "fact_ids": [
+        "ziwei-fact"
+      ],
+      "rule_ids": [
+        "ziwei-rule"
+      ],
+      "depends_on": [],
+      "scenario_ids": [
+        "base"
+      ],
+      "conditions": "仅用于合成样例，不是完整命盘。",
+      "counterevidence": "没有其他字段可检查，不能视为没有反证。",
+      "alternatives": "字段可能只是占位符。",
+      "boundary": "unassessed",
+      "explanation": {
+        "plain": "这里只演示如何检查引用，没有给人算命。",
+        "technical": "字段路径与快照相等；来源规则不支持事件预测。",
+        "action": "真实阅读需换成引擎快照及实际典籍规则。"
+      },
+      "limitations": "文件一致性不证明推断准确。"
+    }
+  ],
+  "syntheses": [
+    {
+      "id": "coverage",
+      "claim_ids": [
+        "bazi-claim",
+        "ziwei-claim"
+      ],
+      "relation": "insufficient",
+      "explanation": "两个测试字段不是两套充分的独立判断。",
+      "shared_inputs": "同一个合成快照，不能称为独立证实。",
+      "limits": "不可转写为准确率或事件预言。"
+    }
+  ]
+}

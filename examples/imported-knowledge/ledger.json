@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "purpose": "synthetic_test",
+  "scenarios": [
+    {
+      "id": "fictional",
+      "label": "虚构输入：导入知识示例",
+      "time_basis": "civil",
+      "assumptions": "上海附近公共坐标；Asia/Shanghai；显式分析年2026；无现实经历或预测检验。"
+    }
+  ],
+  "sources": [
+    {
+      "id": "chart",
+      "kind": "chart",
+      "path": "examples/imported-knowledge/snapshot.json",
+      "sha256": "0687643cd95e102882afa13086108819b3ee459c5c9e6c17bab93c92afd2ee92",
+      "system": "ziwei",
+      "scenario_id": "fictional",
+      "pointer_prefix": "/ziwei"
+    },
+    {
+      "id": "palace-source",
+      "kind": "reference",
+      "path": "references/vendor/iztro-docs/learn/palace.md",
+      "sha256": "6b5459818478421471e86999eef3818035dbcd00f35c53fda429d4ab733e30b8"
+    }
+  ],
+  "facts": [
+    {
+      "id": "palace-1",
+      "system": "ziwei",
+      "scenario_id": "fictional",
+      "source_id": "chart",
+      "pointer": "/ziwei/chart/palaces/1",
+      "value": {
+        "branch": 3,
+        "stem": 5,
+        "name": "官禄",
+        "stars": [
+          {
+            "name": "天府",
+            "type": "major",
+            "brightness": "normal",
+            "brightnessRaw": "得",
+            "siHua": ""
+          },
+          {
+            "name": "天才",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天寿",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          45,
+          54
+        ],
+        "isMingGong": false,
+        "isShenGong": false,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 9,
+        "isEmpty": false
+      }
+    },
+    {
+      "id": "palace-3",
+      "system": "ziwei",
+      "scenario_id": "fictional",
+      "source_id": "chart",
+      "pointer": "/ziwei/chart/palaces/3",
+      "value": {
+        "branch": 5,
+        "stem": 7,
+        "name": "迁移",
+        "stars": [
+          {
+            "name": "廉贞",
+            "type": "major",
+            "brightness": "dim",
+            "brightnessRaw": "陷",
+            "siHua": ""
+          },
+          {
+            "name": "贪狼",
+            "type": "major",
+            "brightness": "dim",
+            "brightnessRaw": "陷",
+            "siHua": ""
+          },
+          {
+            "name": "地空",
+            "type": "sha",
+            "brightnessRaw": null
+          },
+          {
+            "name": "地劫",
+            "type": "sha",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天喜",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天空",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "孤辰",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          65,
+          74
+        ],
+        "isMingGong": false,
+        "isShenGong": false,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 11,
+        "isEmpty": false
+      }
+    },
+    {
+      "id": "palace-5",
+      "system": "ziwei",
+      "scenario_id": "fictional",
+      "source_id": "chart",
+      "pointer": "/ziwei/chart/palaces/5",
+      "value": {
+        "branch": 7,
+        "stem": 9,
+        "name": "财帛",
+        "stars": [
+          {
+            "name": "天相",
+            "type": "major",
+            "brightness": "normal",
+            "brightnessRaw": "得",
+            "siHua": ""
+          },
+          {
+            "name": "左辅",
+            "type": "lucky",
+            "brightnessRaw": null,
+            "siHua": ""
+          },
+          {
+            "name": "右弼",
+            "type": "lucky",
+            "brightnessRaw": null,
+            "siHua": ""
+          },
+          {
+            "name": "天钺",
+            "type": "lucky",
+            "brightnessRaw": null
+          },
+          {
+            "name": "陀罗",
+            "type": "sha",
+            "brightnessRaw": "庙"
+          },
+          {
+            "name": "空亡",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          85,
+          94
+        ],
+        "isMingGong": false,
+        "isShenGong": false,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 1,
+        "isEmpty": false
+      }
+    },
+    {
+      "id": "palace-9",
+      "system": "ziwei",
+      "scenario_id": "fictional",
+      "source_id": "chart",
+      "pointer": "/ziwei/chart/palaces/9",
+      "value": {
+        "branch": 11,
+        "stem": 3,
+        "name": "命宫",
+        "stars": [
+          {
+            "name": "红鸾",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天巫",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天官",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          5,
+          14
+        ],
+        "isMingGong": true,
+        "isShenGong": true,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 5,
+        "isEmpty": true,
+        "borrowedFromBranch": 5,
+        "borrowedFromName": "迁移",
+        "borrowedStars": [
+          "廉贞",
+          "贪狼"
+        ]
+      }
+    }
+  ],
+  "rules": [
+    {
+      "id": "three-four",
+      "system": "ziwei",
+      "source_id": "palace-source",
+      "school": "固定本命盘关系；不启用宫干飞化",
+      "locator": "references/vendor/iztro-docs/learn/palace.md:378",
+      "start_line": 378,
+      "end_line": 378,
+      "quote": "三方四正不是某一个宫位，而是4个宫位的统称，其中包含 `本宫`，`对宫`（也叫 `四正位`），`三合宫`（也叫`三方位`）。由于 `三方位` 和 `四正位` 对目标宫位影响非常大，故而把它们统合在一起分析。",
+      "attribution_kind": "registered_source_excerpt",
+      "source_label": "Sylar Long / iztro-docs 现代说明"
+    }
+  ],
+  "claims": [
+    {
+      "id": "bounded-relation",
+      "system": "ziwei",
+      "domain": "宫位关系",
+      "time_scope": "本命",
+      "statement": "本例命宫三方四正的四宫已列出实际星曜，仅确认分析范围，不作吉凶或人生事件判断。",
+      "status": "conditional",
+      "boundary": "unassessed",
+      "fact_ids": [
+        "palace-1",
+        "palace-3",
+        "palace-5",
+        "palace-9"
+      ],
+      "rule_ids": [
+        "three-four"
+      ],
+      "depends_on": [],
+      "scenario_ids": [
+        "fictional"
+      ],
+      "conditions": "只适用于这一虚构本命快照和固定关系定义。",
+      "counterevidence": "星曜组合、四化、庙旺、成格破格与运限未综合评估。",
+      "alternatives": "其他学派需另列定义和适用条件，不直接混用。",
+      "limitations": "来源是现代数字说明，不是核验古籍原文；文件与结构一致不能证明预测能力。",
+      "explanation": {
+        "plain": "这里只圈出要一起看的四个位置，不能由此得出你的未来。",
+        "technical": "以命宫地支为基准，取本宫、+6对宫及+4/+8三合宫；下列facts保留四宫真实字段。",
+        "action": "若进一步解释，先逐项核对组合条件、例外和不同学派。"
+      }
+    }
+  ],
+  "syntheses": []
+}

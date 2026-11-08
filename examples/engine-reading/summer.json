@@ -1,0 +1,953 @@
+{
+  "schema_version": 1,
+  "input": {
+    "solar": "2000-05-15",
+    "hour": "12:00",
+    "sex": "男",
+    "lat": 31.23,
+    "lon": 121.47,
+    "place": null,
+    "name": null,
+    "time_basis": "civil",
+    "utc_offset": 8,
+    "uncertainty_minutes": 0,
+    "age_year": null,
+    "analysis_year": 2026,
+    "format": "json"
+  },
+  "provenance": {
+    "resolved_age_year": 2026,
+    "analysis_year": 2026,
+    "resolved_bazi_year": 2026,
+    "source_sha256": {
+      "build_chart.py": "74a7f2b0b8d9fd17c118bf0741d55550a94917e57789c57b905c5e6f8ab2a373",
+      "pai_pan_bazi.py": "78caa0ac2e5c734d1edba9498711cc65163a29d4a6059bcca471a3cba043807b",
+      "pai_pan_qizheng.py": "1f78623b0a4ddbdeb8d2ecb553aa99638eb0c8bf38a92870a90735c05a43c586",
+      "pai_pan_ziwei/pai_pan.ts": "98eef7ad5ea6408a60f6e0a246cea951b91235dfa837c2f08b733b471f1d1383",
+      "pai_pan_ziwei/vendor/algorithm.ts": "c3db3e3c565a3437b0b8243f2ceb166a9149a26e6c79a0412baa46e4c60e12d3",
+      "pai_pan_ziwei/vendor/constants.ts": "a38d083d226529a1b6d41ae148fffb3dcdf84d48045eeb6369260474a851065d",
+      "pai_pan_ziwei/vendor/patterns.ts": "c0866fa76cc67e2d636aeface0016cfb0bc2e08da9b48cca7fcbdd38f814dcce",
+      "pai_pan_ziwei/vendor/sihua.ts": "855f19a77572ac4ecb0e2762cb5ee2d0e11ea3d9165c686ccb13289b1030c494",
+      "pai_pan_ziwei/vendor/types.ts": "134f2cf5a6d7f28fa732eb767b765937dae027b0413feb8785881f5000ce7cdf",
+      "test_pai_pan_bazi.py": "92b890bdd2a1d750bcfa67e32108806d797a563ba2fc0c6bd86cf72de7208564",
+      "test_pai_pan_qizheng.py": "d0dab357204ef7d8884efe169665c59b2d95083b72bc54f695972b93008acb0c",
+      "test_time_contract.py": "7c8e011af21af3b4762afb9ada82cbf99c6830c3c2195516578015783a40227e",
+      "validate_claim_ledger.py": "e5863d7a02e46cbf6fb1e4d2069c92ef4c723ca570d8ff2c931720f761603180"
+    },
+    "ziwei_lock_sha256": "9026117f700a67760c9ef430414bbbc315fa8353c49214e7851929de22e54860",
+    "conventions": "docs/time-contract.md; engine file headers; Qizheng ming-gong retains +08 clock"
+  },
+  "time": {
+    "civil": "2000-05-15T12:00:00+08:00",
+    "instant_bj": "2000-05-15T12:00:00+08:00",
+    "apparent_solar": "2000-05-15T12:09:32.911743",
+    "chart_clock": "2000-05-15T12:00:00"
+  },
+  "bazi": {
+    "solar_text": "2000-05-15 12:00",
+    "lunar_text": "2000年四月十二",
+    "shichen_text": "午 / 12:00",
+    "sex": "男",
+    "place": null,
+    "zishi": "无",
+    "pillars": {
+      "year": [
+        "庚",
+        "辰",
+        "正印",
+        "戊土、乙木、癸水"
+      ],
+      "month": [
+        "辛",
+        "巳",
+        "偏印",
+        "丙火、庚金、戊土"
+      ],
+      "day": [
+        "癸",
+        "酉",
+        "—",
+        "辛金"
+      ],
+      "hour": [
+        "戊",
+        "午",
+        "正官",
+        "丁火、己土"
+      ]
+    },
+    "forward": true,
+    "qiyun_text": "7岁1个月",
+    "qiyun_years": 7,
+    "qiyun_months": 1,
+    "dayun_rows": [
+      [
+        "起运前",
+        "0岁-7岁1个月",
+        "辛巳（小运）"
+      ],
+      [
+        "1",
+        "7-16岁",
+        "壬午"
+      ],
+      [
+        "2",
+        "17-26岁",
+        "癸未"
+      ],
+      [
+        "3",
+        "27-36岁",
+        "甲申"
+      ],
+      [
+        "4",
+        "37-46岁",
+        "乙酉"
+      ],
+      [
+        "5",
+        "47-56岁",
+        "丙戌"
+      ],
+      [
+        "6",
+        "57-66岁",
+        "丁亥"
+      ],
+      [
+        "7",
+        "67-76岁",
+        "戊子"
+      ],
+      [
+        "8",
+        "77-86岁",
+        "己丑"
+      ]
+    ],
+    "liunian_years": [
+      2000,
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "current_year": 2026,
+    "current_gz": "丙午",
+    "warnings": [],
+    "hour_unknown": false,
+    "year_num": 2000,
+    "jie_name": "立夏",
+    "birth_dt": "2000-05-15T12:00:00+08:00",
+    "shensha_lines": [
+      "- 天乙贵人 — 见于月支、时支 — 年干/日干查地支",
+      "- 天德 — 见于月干 — 月支查天干",
+      "- 月德 — 见于年干 — 月支三合",
+      "- 将星 — 见于日支 — 年支/日支三合",
+      "- 华盖 — 见于年支 — 年支/日支",
+      "- 天医 — 见于年支 — 月支前一位",
+      "- 劫煞 — 见于月支 — 年支/日支",
+      "- 灾煞 — 见于时支 — 年支/日支",
+      "- 桃花/咸池 — 见于日支、时支 — 年支/日支",
+      "- 孤辰 — 见于月支 — 年支",
+      "- 血刃 — 见于日支 — 月支"
+    ]
+  },
+  "qizheng": {
+    "jd_ut": 2451679.6666666665,
+    "ayanamsa": 201.30345031931463,
+    "bodies": {
+      "日": {
+        "tropical": 54.63266184063116,
+        "sidereal": 213.32921152131652,
+        "ayanamsa": 201.30345031931463,
+        "mansion": "昴",
+        "mansion_deg": 3.329211521316523,
+        "mansion_wx": "日",
+        "star": "17 Tau"
+      },
+      "月": {
+        "tropical": 198.16981443337113,
+        "sidereal": 356.8663641140565,
+        "ayanamsa": 201.30345031931463,
+        "mansion": "轸",
+        "mansion_deg": 6.866364114056523,
+        "mansion_wx": "水",
+        "star": "γ Crv"
+      },
+      "木": {
+        "tropical": 49.70690587232232,
+        "sidereal": 208.4034555530077,
+        "ayanamsa": 201.30345031931463,
+        "mansion": "胃",
+        "mansion_deg": 9.903455553007689,
+        "mansion_wx": "土",
+        "star": "35 Ari"
+      },
+      "火": {
+        "tropical": 67.94572994969816,
+        "sidereal": 226.64227963038354,
+        "ayanamsa": 201.30345031931463,
+        "mansion": "毕",
+        "mansion_deg": 5.642279630383541,
+        "mansion_wx": "月",
+        "star": "ε Tau"
+      },
+      "土": {
+        "tropical": 51.01346737558156,
+        "sidereal": 209.71001705626693,
+        "ayanamsa": 201.30345031931463,
+        "mansion": "胃",
+        "mansion_deg": 11.210017056266935,
+        "mansion_wx": "土",
+        "star": "35 Ari"
+      },
+      "金": {
+        "tropical": 47.302425841053065,
+        "sidereal": 205.99897552173843,
+        "ayanamsa": 201.30345031931463,
+        "mansion": "胃",
+        "mansion_deg": 7.49897552173843,
+        "mansion_wx": "土",
+        "star": "35 Ari"
+      },
+      "水": {
+        "tropical": 61.8843043534749,
+        "sidereal": 220.58085403416027,
+        "ayanamsa": 201.30345031931463,
+        "mansion": "昴",
+        "mansion_deg": 10.580854034160268,
+        "mansion_wx": "日",
+        "star": "17 Tau"
+      },
+      "罗睺": {
+        "tropical": 117.91340168614734,
+        "sidereal": 276.6099513668327,
+        "ayanamsa": 201.30345031931463,
+        "mansion": "井",
+        "mansion_deg": 15.609951366832718,
+        "mansion_wx": "木",
+        "star": "μ Gem"
+      },
+      "计都": {
+        "tropical": 297.9134016861473,
+        "sidereal": 96.60995136683269,
+        "ayanamsa": 201.30345031931463,
+        "mansion": "斗",
+        "mansion_deg": 23.10995136683269,
+        "mansion_wx": "木",
+        "star": "φ Sgr"
+      },
+      "月孛": {
+        "tropical": 278.3556699861416,
+        "sidereal": 77.05221966682697,
+        "ayanamsa": 201.30345031931463,
+        "mansion": "斗",
+        "mansion_deg": 3.5522196668269714,
+        "mansion_wx": "木",
+        "star": "φ Sgr"
+      },
+      "紫气": {
+        "tropical": 194.14935973743377,
+        "sidereal": 352.84590941811916,
+        "ayanamsa": 201.30345031931463,
+        "mansion": "轸",
+        "mansion_deg": 2.845909418119163,
+        "mansion_wx": "水",
+        "star": "γ Crv"
+      }
+    },
+    "sun_palace_zhi": "酉",
+    "eot_minutes": 3.6685290457478454,
+    "ming_du": {
+      "tropical": 332.8128692142486,
+      "sidereal": 131.509418894934,
+      "mansion": "危",
+      "mansion_deg": 2.5094188949339866,
+      "wuxing": "月",
+      "star": "α Aqr"
+    },
+    "ming_gong": {
+      "zhi": "午",
+      "wuxing": "火",
+      "sun_palace": "酉",
+      "hour_zhi": "午"
+    },
+    "day_night": {
+      "type": "昼生",
+      "sunrise_local": 5.070192529207553,
+      "sunset_local": 18.80745817516691
+    },
+    "du_zhu_wuxing": "水",
+    "en_yong": {
+      "恩": [
+        "金"
+      ],
+      "用": [
+        "木",
+        "紫气"
+      ],
+      "仇": [
+        "日",
+        "火",
+        "罗睺"
+      ],
+      "难": [
+        "土",
+        "计都"
+      ],
+      "同": [
+        "月",
+        "水",
+        "月孛"
+      ]
+    }
+  },
+  "ziwei": {
+    "schema_version": 1,
+    "engine": "iztro 2.6.1 / vendored wrapper",
+    "input": {
+      "solar": "2000-05-15",
+      "shichenIndex": 6,
+      "gender": "male",
+      "ageYear": 2026,
+      "birthYear": 2000
+    },
+    "lunar": {
+      "lunarYear": 2000,
+      "lunarMonth": 4,
+      "lunarDay": 12,
+      "yearStem": 6,
+      "yearBranch": 4,
+      "isLeapMonth": false
+    },
+    "chart": {
+      "birthInfo": {
+        "year": 2000,
+        "month": 5,
+        "day": 15,
+        "hour": 6,
+        "gender": "male"
+      },
+      "lunarInfo": {
+        "lunarYear": 2000,
+        "lunarMonth": 4,
+        "lunarDay": 12,
+        "yearStem": 6,
+        "yearBranch": 4,
+        "isLeapMonth": false
+      },
+      "mingGongBranch": 11,
+      "shenGongBranch": 11,
+      "wuxingJu": 5,
+      "wuxingJuName": "土五局",
+      "ziweiPos": 1,
+      "palaces": [
+        {
+          "branch": 2,
+          "stem": 4,
+          "name": "田宅",
+          "stars": [
+            {
+              "name": "天马",
+              "type": "lucky"
+            },
+            {
+              "name": "恩光",
+              "type": "minor"
+            },
+            {
+              "name": "天厨",
+              "type": "minor"
+            },
+            {
+              "name": "天月",
+              "type": "minor"
+            },
+            {
+              "name": "天哭",
+              "type": "minor"
+            }
+          ],
+          "daXianAge": [
+            35,
+            44
+          ],
+          "isMingGong": false,
+          "isShenGong": false,
+          "isCurrentDaXian": false,
+          "oppositeBranch": 8,
+          "isEmpty": true,
+          "borrowedFromBranch": 8,
+          "borrowedFromName": "子女",
+          "borrowedStars": [
+            "天同",
+            "天梁"
+          ]
+        },
+        {
+          "branch": 3,
+          "stem": 5,
+          "name": "官禄",
+          "stars": [
+            {
+              "name": "天府",
+              "type": "major",
+              "brightness": "normal",
+              "siHua": ""
+            },
+            {
+              "name": "天才",
+              "type": "minor"
+            },
+            {
+              "name": "天寿",
+              "type": "minor"
+            }
+          ],
+          "daXianAge": [
+            45,
+            54
+          ],
+          "isMingGong": false,
+          "isShenGong": false,
+          "isCurrentDaXian": false,
+          "oppositeBranch": 9,
+          "isEmpty": false
+        },
+        {
+          "branch": 4,
+          "stem": 6,
+          "name": "仆役",
+          "stars": [
+            {
+              "name": "太阴",
+              "type": "major",
+              "brightness": "dim",
+              "siHua": "科"
+            },
+            {
+              "name": "文昌",
+              "type": "lucky",
+              "siHua": ""
+            },
+            {
+              "name": "铃星",
+              "type": "sha"
+            },
+            {
+              "name": "天姚",
+              "type": "minor"
+            },
+            {
+              "name": "华盖",
+              "type": "minor"
+            },
+            {
+              "name": "天伤",
+              "type": "minor"
+            }
+          ],
+          "daXianAge": [
+            55,
+            64
+          ],
+          "isMingGong": false,
+          "isShenGong": false,
+          "isCurrentDaXian": false,
+          "oppositeBranch": 10,
+          "isEmpty": false
+        },
+        {
+          "branch": 5,
+          "stem": 7,
+          "name": "迁移",
+          "stars": [
+            {
+              "name": "廉贞",
+              "type": "major",
+              "brightness": "dim",
+              "siHua": ""
+            },
+            {
+              "name": "贪狼",
+              "type": "major",
+              "brightness": "dim",
+              "siHua": ""
+            },
+            {
+              "name": "地空",
+              "type": "sha"
+            },
+            {
+              "name": "地劫",
+              "type": "sha"
+            },
+            {
+              "name": "天喜",
+              "type": "minor"
+            },
+            {
+              "name": "天空",
+              "type": "minor"
+            },
+            {
+              "name": "孤辰",
+              "type": "minor"
+            }
+          ],
+          "daXianAge": [
+            65,
+            74
+          ],
+          "isMingGong": false,
+          "isShenGong": false,
+          "isCurrentDaXian": false,
+          "oppositeBranch": 11,
+          "isEmpty": false
+        },
+        {
+          "branch": 6,
+          "stem": 8,
+          "name": "疾厄",
+          "stars": [
+            {
+              "name": "巨门",
+              "type": "major",
+              "brightness": "bright",
+              "siHua": ""
+            },
+            {
+              "name": "三台",
+              "type": "minor"
+            },
+            {
+              "name": "凤阁",
+              "type": "minor"
+            },
+            {
+              "name": "天福",
+              "type": "minor"
+            },
+            {
+              "name": "截路",
+              "type": "minor"
+            },
+            {
+              "name": "蜚廉",
+              "type": "minor"
+            },
+            {
+              "name": "天使",
+              "type": "minor"
+            },
+            {
+              "name": "年解",
+              "type": "minor"
+            }
+          ],
+          "daXianAge": [
+            75,
+            84
+          ],
+          "isMingGong": false,
+          "isShenGong": false,
+          "isCurrentDaXian": false,
+          "oppositeBranch": 0,
+          "isEmpty": false
+        },
+        {
+          "branch": 7,
+          "stem": 9,
+          "name": "财帛",
+          "stars": [
+            {
+              "name": "天相",
+              "type": "major",
+              "brightness": "normal",
+              "siHua": ""
+            },
+            {
+              "name": "左辅",
+              "type": "lucky",
+              "siHua": ""
+            },
+            {
+              "name": "右弼",
+              "type": "lucky",
+              "siHua": ""
+            },
+            {
+              "name": "天钺",
+              "type": "lucky"
+            },
+            {
+              "name": "陀罗",
+              "type": "sha"
+            },
+            {
+              "name": "空亡",
+              "type": "minor"
+            }
+          ],
+          "daXianAge": [
+            85,
+            94
+          ],
+          "isMingGong": false,
+          "isShenGong": false,
+          "isCurrentDaXian": false,
+          "oppositeBranch": 1,
+          "isEmpty": false
+        },
+        {
+          "branch": 8,
+          "stem": 0,
+          "name": "子女",
+          "stars": [
+            {
+              "name": "天同",
+              "type": "major",
+              "brightness": "bright",
+              "siHua": "忌"
+            },
+            {
+              "name": "天梁",
+              "type": "major",
+              "brightness": "dim",
+              "siHua": ""
+            },
+            {
+              "name": "禄存",
+              "type": "lucky"
+            },
+            {
+              "name": "火星",
+              "type": "sha"
+            },
+            {
+              "name": "八座",
+              "type": "minor"
+            },
+            {
+              "name": "天贵",
+              "type": "minor"
+            },
+            {
+              "name": "龙池",
+              "type": "minor"
+            },
+            {
+              "name": "封诰",
+              "type": "minor"
+            },
+            {
+              "name": "旬空",
+              "type": "minor"
+            },
+            {
+              "name": "阴煞",
+              "type": "minor"
+            }
+          ],
+          "daXianAge": [
+            95,
+            104
+          ],
+          "isMingGong": false,
+          "isShenGong": false,
+          "isCurrentDaXian": false,
+          "oppositeBranch": 2,
+          "isEmpty": false
+        },
+        {
+          "branch": 9,
+          "stem": 1,
+          "name": "夫妻",
+          "stars": [
+            {
+              "name": "武曲",
+              "type": "major",
+              "brightness": "normal",
+              "siHua": "权"
+            },
+            {
+              "name": "七杀",
+              "type": "major",
+              "brightness": "bright",
+              "siHua": ""
+            },
+            {
+              "name": "擎羊",
+              "type": "sha"
+            },
+            {
+              "name": "咸池",
+              "type": "minor"
+            },
+            {
+              "name": "月德",
+              "type": "minor"
+            }
+          ],
+          "daXianAge": [
+            105,
+            114
+          ],
+          "isMingGong": false,
+          "isShenGong": false,
+          "isCurrentDaXian": false,
+          "oppositeBranch": 3,
+          "isEmpty": false
+        },
+        {
+          "branch": 10,
+          "stem": 2,
+          "name": "兄弟",
+          "stars": [
+            {
+              "name": "太阳",
+              "type": "major",
+              "brightness": "dim",
+              "siHua": "禄"
+            },
+            {
+              "name": "文曲",
+              "type": "lucky",
+              "siHua": ""
+            },
+            {
+              "name": "解神",
+              "type": "minor"
+            },
+            {
+              "name": "天虚",
+              "type": "minor"
+            }
+          ],
+          "daXianAge": [
+            115,
+            124
+          ],
+          "isMingGong": false,
+          "isShenGong": false,
+          "isCurrentDaXian": false,
+          "oppositeBranch": 4,
+          "isEmpty": false
+        },
+        {
+          "branch": 11,
+          "stem": 3,
+          "name": "命宫",
+          "stars": [
+            {
+              "name": "红鸾",
+              "type": "minor"
+            },
+            {
+              "name": "天巫",
+              "type": "minor"
+            },
+            {
+              "name": "天官",
+              "type": "minor"
+            }
+          ],
+          "daXianAge": [
+            5,
+            14
+          ],
+          "isMingGong": true,
+          "isShenGong": true,
+          "isCurrentDaXian": false,
+          "oppositeBranch": 5,
+          "isEmpty": true,
+          "borrowedFromBranch": 5,
+          "borrowedFromName": "迁移",
+          "borrowedStars": [
+            "廉贞",
+            "贪狼"
+          ]
+        },
+        {
+          "branch": 0,
+          "stem": 4,
+          "name": "父母",
+          "stars": [
+            {
+              "name": "天机",
+              "type": "major",
+              "brightness": "bright",
+              "siHua": ""
+            },
+            {
+              "name": "台辅",
+              "type": "minor"
+            },
+            {
+              "name": "天刑",
+              "type": "minor"
+            }
+          ],
+          "daXianAge": [
+            15,
+            24
+          ],
+          "isMingGong": false,
+          "isShenGong": false,
+          "isCurrentDaXian": false,
+          "oppositeBranch": 6,
+          "isEmpty": false
+        },
+        {
+          "branch": 1,
+          "stem": 5,
+          "name": "福德",
+          "stars": [
+            {
+              "name": "紫微",
+              "type": "major",
+              "brightness": "bright",
+              "siHua": ""
+            },
+            {
+              "name": "破军",
+              "type": "major",
+              "brightness": "bright",
+              "siHua": ""
+            },
+            {
+              "name": "天魁",
+              "type": "lucky"
+            },
+            {
+              "name": "天德",
+              "type": "minor"
+            },
+            {
+              "name": "寡宿",
+              "type": "minor"
+            },
+            {
+              "name": "破碎",
+              "type": "minor"
+            }
+          ],
+          "daXianAge": [
+            25,
+            34
+          ],
+          "isMingGong": false,
+          "isShenGong": false,
+          "isCurrentDaXian": true,
+          "oppositeBranch": 7,
+          "isEmpty": false
+        }
+      ],
+      "daXians": [
+        {
+          "startAge": 5,
+          "endAge": 14,
+          "palaceBranch": 11,
+          "palaceName": "命宫"
+        },
+        {
+          "startAge": 15,
+          "endAge": 24,
+          "palaceBranch": 0,
+          "palaceName": "父母"
+        },
+        {
+          "startAge": 25,
+          "endAge": 34,
+          "palaceBranch": 1,
+          "palaceName": "福德"
+        },
+        {
+          "startAge": 35,
+          "endAge": 44,
+          "palaceBranch": 2,
+          "palaceName": "田宅"
+        },
+        {
+          "startAge": 45,
+          "endAge": 54,
+          "palaceBranch": 3,
+          "palaceName": "官禄"
+        },
+        {
+          "startAge": 55,
+          "endAge": 64,
+          "palaceBranch": 4,
+          "palaceName": "仆役"
+        },
+        {
+          "startAge": 65,
+          "endAge": 74,
+          "palaceBranch": 5,
+          "palaceName": "迁移"
+        },
+        {
+          "startAge": 75,
+          "endAge": 84,
+          "palaceBranch": 6,
+          "palaceName": "疾厄"
+        },
+        {
+          "startAge": 85,
+          "endAge": 94,
+          "palaceBranch": 7,
+          "palaceName": "财帛"
+        },
+        {
+          "startAge": 95,
+          "endAge": 104,
+          "palaceBranch": 8,
+          "palaceName": "子女"
+        },
+        {
+          "startAge": 105,
+          "endAge": 114,
+          "palaceBranch": 9,
+          "palaceName": "夫妻"
+        },
+        {
+          "startAge": 115,
+          "endAge": 124,
+          "palaceBranch": 10,
+          "palaceName": "兄弟"
+        }
+      ],
+      "currentAge": 27,
+      "currentDaXianIndex": 2
+    }
+  },
+  "degradation": {
+    "ziwei": null
+  },
+  "warnings": []
+}

@@ -1,0 +1,2016 @@
+{
+  "schema_version": 1,
+  "description": "Provenance and retrieval gate, not predictive validation.",
+  "sources": [
+    {
+      "id": "bazi-classical-texts",
+      "path": "references/bazi/classical-texts.md",
+      "sha256": "c62267d5a7c8c252dcf07544397be144c8d1b5475241b050701b0a2b27ec59d3",
+      "system": "bazi",
+      "title": "classical-texts.md",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "local_copy_verified_only",
+      "upstream_url": "https://github.com/jinchenma94/bazi-skill",
+      "revision": null,
+      "license_path": "knowledge/licenses/bazi-skill-MIT.txt",
+      "license_scope": "License preserved from observatory copy; does not certify third-party quoted text rights.",
+      "citation_label": "本地上游整理资料（未核原典版本）",
+      "notes": "The printed book titles are attribution claims, not verified editions."
+    },
+    {
+      "id": "bazi-dayun-rules",
+      "path": "references/bazi/dayun-rules.md",
+      "sha256": "70e35df806e7d6ede9e3ab6524bd2088d3ce9ac8a8e8d6177c84abe0e2b03562",
+      "system": "bazi",
+      "title": "dayun-rules.md",
+      "kind": "implementation_reference",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "local_copy_verified_only",
+      "upstream_url": "https://github.com/jinchenma94/bazi-skill",
+      "revision": null,
+      "license_path": "knowledge/licenses/bazi-skill-MIT.txt",
+      "license_scope": "License preserved from observatory copy; does not certify third-party quoted text rights.",
+      "citation_label": "本地上游整理资料（未核原典版本）",
+      "notes": "The printed book titles are attribution claims, not verified editions."
+    },
+    {
+      "id": "bazi-shensha-table",
+      "path": "references/bazi/shensha-table.md",
+      "sha256": "832da1c02ee67e804e6f15aae1fbdc047564d8222b703e8e8982f533652a9e4c",
+      "system": "bazi",
+      "title": "shensha-table.md",
+      "kind": "implementation_reference",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "local_copy_verified_only",
+      "upstream_url": "https://github.com/jinchenma94/bazi-skill",
+      "revision": null,
+      "license_path": "knowledge/licenses/bazi-skill-MIT.txt",
+      "license_scope": "License preserved from observatory copy; does not certify third-party quoted text rights.",
+      "citation_label": "本地上游整理资料（未核原典版本）",
+      "notes": "The printed book titles are attribution claims, not verified editions."
+    },
+    {
+      "id": "bazi-shichen-table",
+      "path": "references/bazi/shichen-table.md",
+      "sha256": "bcddb4c87d179d52ea15740c75edcfa2f99f89aef23bc5068fc88c87b4068768",
+      "system": "bazi",
+      "title": "shichen-table.md",
+      "kind": "implementation_reference",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "local_copy_verified_only",
+      "upstream_url": "https://github.com/jinchenma94/bazi-skill",
+      "revision": null,
+      "license_path": "knowledge/licenses/bazi-skill-MIT.txt",
+      "license_scope": "License preserved from observatory copy; does not certify third-party quoted text rights.",
+      "citation_label": "本地上游整理资料（未核原典版本）",
+      "notes": "The printed book titles are attribution claims, not verified editions."
+    },
+    {
+      "id": "bazi-wuxing-tables",
+      "path": "references/bazi/wuxing-tables.md",
+      "sha256": "167982bb7fd5ddc0f3dcfafe6ec377c92fa2d4bd90153b72c89d65888a7d419f",
+      "system": "bazi",
+      "title": "wuxing-tables.md",
+      "kind": "implementation_reference",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "local_copy_verified_only",
+      "upstream_url": "https://github.com/jinchenma94/bazi-skill",
+      "revision": null,
+      "license_path": "knowledge/licenses/bazi-skill-MIT.txt",
+      "license_scope": "License preserved from observatory copy; does not certify third-party quoted text rights.",
+      "citation_label": "本地上游整理资料（未核原典版本）",
+      "notes": "The printed book titles are attribution claims, not verified editions."
+    },
+    {
+      "id": "ziwei-classics",
+      "path": "references/ziwei/classics.md",
+      "sha256": "2da4a957367f2586d13bf4da1799d63cd97808337d2180a1f214f8cbdd48bcbc",
+      "system": "ziwei",
+      "title": "classics.md",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "local_copy_verified_only",
+      "upstream_url": "https://github.com/Renhuai123/ziwei-doushu/tree/88194a404242bfe5c6d5cc512e4117e3e245cdd5",
+      "revision": "88194a404242bfe5c6d5cc512e4117e3e245cdd5",
+      "license_path": "knowledge/licenses/ziwei-doushu-MIT.txt",
+      "license_scope": "License preserved from observatory copy; does not certify third-party quoted text rights.",
+      "citation_label": "本地上游整理资料（未核原典版本）",
+      "notes": "The printed book titles are attribution claims, not verified editions."
+    },
+    {
+      "id": "ziwei-patterns",
+      "path": "references/ziwei/patterns.md",
+      "sha256": "93cb2ce89b8576871d8d8422713f7bd23d1a53fca49a75ae418cbee071c6e4d8",
+      "system": "ziwei",
+      "title": "patterns.md",
+      "kind": "implementation_reference",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "local_copy_verified_only",
+      "upstream_url": "https://github.com/Renhuai123/ziwei-doushu/tree/88194a404242bfe5c6d5cc512e4117e3e245cdd5",
+      "revision": "88194a404242bfe5c6d5cc512e4117e3e245cdd5",
+      "license_path": "knowledge/licenses/ziwei-doushu-MIT.txt",
+      "license_scope": "License preserved from observatory copy; does not certify third-party quoted text rights.",
+      "citation_label": "本地上游整理资料（未核原典版本）",
+      "notes": "The printed book titles are attribution claims, not verified editions."
+    },
+    {
+      "id": "ziwei-sihua-tables",
+      "path": "references/ziwei/sihua-tables.md",
+      "sha256": "eadcf681a948a193516a55ebcf30560c8ee8dba2dd8acc4b6a121818e9e9336a",
+      "system": "ziwei",
+      "title": "sihua-tables.md",
+      "kind": "implementation_reference",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "local_copy_verified_only",
+      "upstream_url": "https://github.com/Renhuai123/ziwei-doushu/tree/88194a404242bfe5c6d5cc512e4117e3e245cdd5",
+      "revision": "88194a404242bfe5c6d5cc512e4117e3e245cdd5",
+      "license_path": "knowledge/licenses/ziwei-doushu-MIT.txt",
+      "license_scope": "License preserved from observatory copy; does not certify third-party quoted text rights.",
+      "citation_label": "本地上游整理资料（未核原典版本）",
+      "notes": "The printed book titles are attribution claims, not verified editions."
+    },
+    {
+      "id": "iztro-docs-adj-star",
+      "path": "references/vendor/iztro-docs/learn/adj-star.md",
+      "sha256": "5433b72b00b7f86894e2d7c4a83bceb9d4b5c2cfafd1066e9411a4c75f03a702",
+      "system": "ziwei",
+      "title": "adj-star",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/adj-star.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "Sylar Long / iztro-docs 现代说明",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+    },
+    {
+      "id": "iztro-docs-ancientBook-1",
+      "path": "references/vendor/iztro-docs/learn/ancientBook-1.md",
+      "sha256": "0a309ce3a259387af8665ee9e348e33e3bbd498bb785ccdb8c01d7060405f75c",
+      "system": "ziwei",
+      "title": "ancientBook-1",
+      "kind": "digital_transcription",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/ancientBook-1.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "iztro-docs 数字录文（底本未核）",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; No identified print edition or page-image collation; do not call this facsimile-verified.; Historical stigmatizing, gendered, health and longevity claims must not be personalized as factual predictions."
+    },
+    {
+      "id": "iztro-docs-ancientBook-2",
+      "path": "references/vendor/iztro-docs/learn/ancientBook-2.md",
+      "sha256": "b3a2b1c7f59688c3bebf966431d3e7411100972b3c0c3407862b519f116606ea",
+      "system": "ziwei",
+      "title": "ancientBook-2",
+      "kind": "digital_transcription",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/ancientBook-2.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "iztro-docs 数字录文（底本未核）",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; No identified print edition or page-image collation; do not call this facsimile-verified.; Historical stigmatizing, gendered, health and longevity claims must not be personalized as factual predictions."
+    },
+    {
+      "id": "iztro-docs-ancientBook-3",
+      "path": "references/vendor/iztro-docs/learn/ancientBook-3.md",
+      "sha256": "a4decf055537106f56815642319da06d4ae7d313454f2b809e56019f9bf6e9a3",
+      "system": "ziwei",
+      "title": "ancientBook-3",
+      "kind": "digital_transcription",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/ancientBook-3.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "iztro-docs 数字录文（底本未核）",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; No identified print edition or page-image collation; do not call this facsimile-verified.; Historical stigmatizing, gendered, health and longevity claims must not be personalized as factual predictions."
+    },
+    {
+      "id": "iztro-docs-ancientBook-qa",
+      "path": "references/vendor/iztro-docs/learn/ancientBook-qa.md",
+      "sha256": "dc92d10878ab0dacf6e23ef83c6c6eded025d4c036aee70a3d19ad3cb8ab7868",
+      "system": "ziwei",
+      "title": "ancientBook-qa",
+      "kind": "digital_transcription",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/ancientBook-qa.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "iztro-docs 数字录文（底本未核）",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; No identified print edition or page-image collation; do not call this facsimile-verified.; Historical stigmatizing, gendered, health and longevity claims must not be personalized as factual predictions."
+    },
+    {
+      "id": "iztro-docs-ancientBook",
+      "path": "references/vendor/iztro-docs/learn/ancientBook.md",
+      "sha256": "8e9cda2c878a7e22b250e6020036288740805dd174b6de489ee81dede6b594bf",
+      "system": "ziwei",
+      "title": "ancientBook",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/ancientBook.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "Sylar Long / iztro-docs 现代说明",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement."
+    },
+    {
+      "id": "iztro-docs-astrolabe",
+      "path": "references/vendor/iztro-docs/learn/astrolabe.md",
+      "sha256": "ab965aa7c352770a2d58991a8c89709b54e156b53774e9e07d56a3d81c629e64",
+      "system": "ziwei",
+      "title": "astrolabe",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/astrolabe.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "Sylar Long / iztro-docs 现代说明",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; Donation component markup retained in inert source; component implementation and tracking code not imported or executed.; Linked diagram/components are not vendored; consult pinned upstream for visual context."
+    },
+    {
+      "id": "iztro-docs-basis",
+      "path": "references/vendor/iztro-docs/learn/basis.md",
+      "sha256": "e31eca2d2bc5cedfb6b88318ea12b567b30807cf0a7d7c5b903ba837630b9aa6",
+      "system": "ziwei",
+      "title": "basis",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/basis.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "Sylar Long / iztro-docs 现代说明",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; Donation component markup retained in inert source; component implementation and tracking code not imported or executed.; Linked diagram/components are not vendored; consult pinned upstream for visual context."
+    },
+    {
+      "id": "iztro-docs-dec-star",
+      "path": "references/vendor/iztro-docs/learn/dec-star.md",
+      "sha256": "cee64eec33cd76ab79e589bf67ce588b0ca45e69b21679173d8aa94c23042769",
+      "system": "ziwei",
+      "title": "dec-star",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/dec-star.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "Sylar Long / iztro-docs 现代说明",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+    },
+    {
+      "id": "iztro-docs-horoscope",
+      "path": "references/vendor/iztro-docs/learn/horoscope.md",
+      "sha256": "f5f6c531680f8638cb349cc237342c6f6b384fe49cccf3ce1f9d9c7b009b42ac",
+      "system": "ziwei",
+      "title": "horoscope",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/horoscope.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "Sylar Long / iztro-docs 现代说明",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+    },
+    {
+      "id": "iztro-docs-major-star",
+      "path": "references/vendor/iztro-docs/learn/major-star.md",
+      "sha256": "48fdbebfacdbff74f9285d70d6919226f9ff8d5ffe7c76f848ded6e1cfe429c8",
+      "system": "ziwei",
+      "title": "major-star",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/major-star.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "Sylar Long / iztro-docs 现代说明",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+    },
+    {
+      "id": "iztro-docs-minor-star",
+      "path": "references/vendor/iztro-docs/learn/minor-star.md",
+      "sha256": "2dff797ebac42b36ced16a8bc25024afe30103315500c4f7d4413cb8b8d34dcd",
+      "system": "ziwei",
+      "title": "minor-star",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/minor-star.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "Sylar Long / iztro-docs 现代说明",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+    },
+    {
+      "id": "iztro-docs-mutagen",
+      "path": "references/vendor/iztro-docs/learn/mutagen.md",
+      "sha256": "936547d655148561f6139f80818909e86046c74fafd60b8c27256fb51cb115dd",
+      "system": "ziwei",
+      "title": "mutagen",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/mutagen.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "Sylar Long / iztro-docs 现代说明",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; Includes palace-stem flying transformations; gate by selected school and supported engine output.; Donation component markup retained in inert source; component implementation and tracking code not imported or executed.; Linked diagram/components are not vendored; consult pinned upstream for visual context."
+    },
+    {
+      "id": "iztro-docs-palace",
+      "path": "references/vendor/iztro-docs/learn/palace.md",
+      "sha256": "6b5459818478421471e86999eef3818035dbcd00f35c53fda429d4ab733e30b8",
+      "system": "ziwei",
+      "title": "palace",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/palace.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "Sylar Long / iztro-docs 现代说明",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+    },
+    {
+      "id": "iztro-docs-pattern",
+      "path": "references/vendor/iztro-docs/learn/pattern.md",
+      "sha256": "3f37230be51a819d4d350d8c97fb94a50bd12927b93dd4c46860f8c8db33db09",
+      "system": "ziwei",
+      "title": "pattern",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/pattern.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "Sylar Long / iztro-docs 现代说明",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; Upstream explicitly includes internet-derived patterns; individual source rights and textual origin are not independently verified. Not canonical quotations or verified engine rules.; Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+    },
+    {
+      "id": "iztro-docs-setup",
+      "path": "references/vendor/iztro-docs/learn/setup.md",
+      "sha256": "1a1b8d8b7d94e8b239bc74531f8a90b9a420d431ea206acb23576588082c1f83",
+      "system": "ziwei",
+      "title": "setup",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/setup.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "Sylar Long / iztro-docs 现代说明",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+    },
+    {
+      "id": "iztro-docs-star",
+      "path": "references/vendor/iztro-docs/learn/star.md",
+      "sha256": "f367944af562db2bcbbac7e34ca7a2c160b4241df59736578509b2a7c4862323",
+      "system": "ziwei",
+      "title": "star",
+      "kind": "modern_compilation",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "pinned_digital_source_only",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/star.md",
+      "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "license_path": "references/vendor/iztro-docs/LICENSE",
+      "license_scope": "MIT (repository associated documentation; preserve original attribution)",
+      "citation_label": "Sylar Long / iztro-docs 现代说明",
+      "notes": "No predictive validity is established by publication, star count, or textual agreement.; Donation component markup retained in inert source; component implementation and tracking code not imported or executed."
+    },
+    {
+      "id": "bazi-dts-short-excerpts",
+      "path": "references/vendor/wikisource-ditiansui/short-excerpts.md",
+      "sha256": "6a7dd15075551b09cf987e60c8829150b25e89ed17acfd15ad14701d973dabc8",
+      "system": "bazi",
+      "title": "滴天髓辑要：short-excerpts",
+      "kind": "digital_transcription",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "fixed_web_revision_not_print_collated",
+      "upstream_url": "https://zh.wikisource.org/w/index.php?title=滴天髓&oldid=844410",
+      "revision": "844410",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "license_scope": "Separate CC BY-SA 4.0 packet; excluded from project MIT; see packet license.",
+      "citation_label": "维基文库844410数字短引",
+      "notes": "No authenticated printed edition. Page admits missing leaves supplied from another unspecified copy.",
+      "license_id": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Chinese Wikisource contributors, 滴天髓, revision 844410 (2017-03-24); project study-card adaptation, 2026. Printed authorship not independently authenticated.",
+      "contributors_url": "https://zh.wikisource.org/w/index.php?title=滴天髓&action=history",
+      "change_notice": "Ten very short fragments selected with labels and source references; project-organized study cards, prerequisites and exclusions. No full chapters redistributed. This independent packet and identified catalog adaptations are CC BY-SA 4.0, not MIT."
+    },
+    {
+      "id": "bazi-dts-study-cards",
+      "path": "references/vendor/wikisource-ditiansui/study-cards.md",
+      "sha256": "d5f0b9a81eb2bdaa5ca6f3ac37ea216094a006838abc8e83f7a360c38160438e",
+      "system": "bazi",
+      "title": "滴天髓辑要：study-cards",
+      "kind": "project_guidance",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "fixed_web_revision_not_print_collated",
+      "upstream_url": "https://zh.wikisource.org/w/index.php?title=滴天髓&oldid=844410",
+      "revision": "844410",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "license_scope": "Separate CC BY-SA 4.0 packet; excluded from project MIT; see packet license.",
+      "citation_label": "项目传统理论学习卡（CC BY-SA 4.0，非个人预测依据）",
+      "notes": "No authenticated printed edition. Page admits missing leaves supplied from another unspecified copy.",
+      "license_id": "CC-BY-SA-4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Chinese Wikisource contributors, 滴天髓, revision 844410 (2017-03-24); project study-card adaptation, 2026. Printed authorship not independently authenticated.",
+      "contributors_url": "https://zh.wikisource.org/w/index.php?title=滴天髓&action=history",
+      "change_notice": "Ten very short fragments selected with labels and source references; project-organized study cards, prerequisites and exclusions. No full chapters redistributed. This independent packet and identified catalog adaptations are CC BY-SA 4.0, not MIT."
+    },
+    {
+      "id": "bazi-strength-project",
+      "path": "docs/bazi-strength-evidence.md",
+      "sha256": "84248740b941e1d146c64b6a8ee840a27d39a67e832bf0b971f824a08fdafd65",
+      "system": "bazi",
+      "title": "子平真诠单版扫描的日主承受证据释义",
+      "kind": "project_guidance",
+      "classical_quote_verified": false,
+      "edition": "文明書局1926年，第2卷；单版影像检查，非校勘定本",
+      "provenance_status": "primary_scan_inspected_project_paraphrase",
+      "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-13jh002326-46443_淵海子平_子平真詮_第2卷.pdf&oldid=752877821",
+      "revision": "752877821",
+      "license_path": "LICENSE",
+      "license_scope": "Original project paraphrase: MIT. No scan redistribution; existing CC BY-SA adaptations remain separately licensed.",
+      "citation_label": "1926单版影像参照的项目释义（非古文算法、非预测验证）"
+    },
+    {
+      "id": "qizheng-project-rules",
+      "path": "docs/qizheng-rule-profiles.md",
+      "sha256": "d19b3598262e2cd47baece19e506f58bf05b1f49271cb7470b5073289856828f",
+      "system": "qizheng",
+      "title": "七政规则版本与有条件解释 v1",
+      "kind": "project_guidance",
+      "classical_quote_verified": false,
+      "edition": null,
+      "provenance_status": "project_authored",
+      "upstream_url": "local:docs/qizheng-rule-profiles.md",
+      "revision": "qizheng-degree-relations-v1",
+      "license_path": "LICENSE",
+      "license_scope": "Project-authored explanation only; no relicensing of unverified classical transcriptions.",
+      "citation_label": "七政规则项目释义（非古籍定本，非预测验证）"
+    }
+  ],
+  "records": [
+    {
+      "id": "bazi-ten-gods",
+      "system": "bazi",
+      "source_id": "bazi-wuxing-tables",
+      "title": "十神是关系标签",
+      "summary": "以日干为参照读取引擎的十神字段。十神名称是传统关系分类，不能单凭一个名称断定人格或现实事件。",
+      "topics": [
+        "十神",
+        "日干"
+      ],
+      "profile": "bazi-current",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "limitations": "这是传统解释或操作约定，不证明预测效力；具体命盘仍须检查成立条件和反证。"
+    },
+    {
+      "id": "bazi-hidden-stems",
+      "system": "bazi",
+      "source_id": "bazi-wuxing-tables",
+      "title": "藏干与透干分开",
+      "summary": "地支藏干和天干出现是不同事实。引用藏干表解释关系时，明确该字藏于何支，不能把藏干写成已经透干。",
+      "topics": [
+        "藏干",
+        "透干"
+      ],
+      "profile": "bazi-current",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "limitations": "这是传统解释或操作约定，不证明预测效力；具体命盘仍须检查成立条件和反证。"
+    },
+    {
+      "id": "bazi-dayun-direction",
+      "system": "bazi",
+      "source_id": "bazi-dayun-rules",
+      "title": "大运顺逆的当前口径",
+      "summary": "当前规则按年干阴阳与排盘所用性别参数定顺逆，从月柱向前或向后排。直接使用引擎输出，不由解读重算。",
+      "topics": [
+        "大运",
+        "顺逆"
+      ],
+      "profile": "bazi-current",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "limitations": "这是传统解释或操作约定，不证明预测效力；具体命盘仍须检查成立条件和反证。"
+    },
+    {
+      "id": "bazi-dayun-layer",
+      "system": "bazi",
+      "source_id": "bazi-dayun-rules",
+      "title": "原局、大运、流年分层",
+      "summary": "原局是所选出生场景，大运和流年是不同时间层。先描述各层可见关系，再说明传统规则如何解释，不能由一个引动直接保证某件事发生。",
+      "topics": [
+        "大运",
+        "流年"
+      ],
+      "profile": "bazi-current",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "limitations": "这是传统解释或操作约定，不证明预测效力；具体命盘仍须检查成立条件和反证。"
+    },
+    {
+      "id": "bazi-shensha-auxiliary",
+      "system": "bazi",
+      "source_id": "bazi-shensha-table",
+      "title": "神煞只作辅助",
+      "summary": "先核对本引擎的查法与命中字段。神煞是辅助标签，须与原局关系及其他条件一同讨论，不独立推出吉凶事件。",
+      "topics": [
+        "神煞",
+        "辅助"
+      ],
+      "profile": "bazi-current",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "limitations": "这是传统解释或操作约定，不证明预测效力；具体命盘仍须检查成立条件和反证。"
+    },
+    {
+      "id": "ziwei-fixed-sihua",
+      "system": "ziwei",
+      "source_id": "ziwei-sihua-tables",
+      "title": "固定生年四化",
+      "summary": "本口径按出生年干确定四化星，解释大限流年时区分时间层，不把宫干飞化、自化或另一套四化表混入。",
+      "topics": [
+        "四化",
+        "生年"
+      ],
+      "profile": "ziwei-fixed-natal",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "limitations": "这是传统解释或操作约定，不证明预测效力；具体命盘仍须检查成立条件和反证。"
+    },
+    {
+      "id": "ziwei-pattern-conditions",
+      "system": "ziwei",
+      "source_id": "ziwei-patterns",
+      "title": "格局须看成立与破格",
+      "summary": "格局名称、成立条件、加分与破格是不同信息。以脚本实际命中为起点，逐项说明条件；名称相同不表示不同学派的定义一致。",
+      "topics": [
+        "格局",
+        "破格"
+      ],
+      "profile": "ziwei-fixed-natal",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "limitations": "这是传统解释或操作约定，不证明预测效力；具体命盘仍须检查成立条件和反证。"
+    },
+    {
+      "id": "ziwei-star-keywords",
+      "system": "ziwei",
+      "source_id": "ziwei-sihua-tables",
+      "title": "星性关键词不是单星断命",
+      "summary": "十四主星速查只提供传统关键词。具体解释必须同时看宫位、会照、四化和庙旺字段，不把一颗星的标签写成现实结论。",
+      "topics": [
+        "主星",
+        "星性"
+      ],
+      "profile": "ziwei-fixed-natal",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "limitations": "这是传统解释或操作约定，不证明预测效力；具体命盘仍须检查成立条件和反证。"
+    },
+    {
+      "id": "legacy-ziwei-huaji",
+      "system": "ziwei",
+      "source_id": "ziwei-classics",
+      "title": "紫微化忌疑错",
+      "summary": "原整理文件 gsf-2-4 提及紫微化忌，但当前十干四化表不含此组合。",
+      "topics": [
+        "紫微",
+        "化忌"
+      ],
+      "profile": "ziwei-fixed-natal",
+      "status": "quarantined",
+      "reason": "Conflicts with current sihua table; not a verified original quotation.",
+      "content_kind": "project_paraphrase",
+      "limitations": "这是传统解释或操作约定，不证明预测效力；具体命盘仍须检查成立条件和反证。",
+      "source_span": {
+        "start_line": 20,
+        "end_line": 20
+      }
+    },
+    {
+      "id": "legacy-ziwei-placement",
+      "system": "ziwei",
+      "source_id": "ziwei-classics",
+      "title": "年干起紫微缺失前提",
+      "summary": "原整理文件 qj-1-2 的安星说明缺少当前引擎所需的生日、五行局等前提。",
+      "topics": [
+        "安星",
+        "年干"
+      ],
+      "profile": "ziwei-fixed-natal",
+      "status": "quarantined",
+      "reason": "Incomplete and incompatible computational description.",
+      "content_kind": "project_paraphrase",
+      "limitations": "这是传统解释或操作约定，不证明预测效力；具体命盘仍须检查成立条件和反证。",
+      "source_span": {
+        "start_line": 72,
+        "end_line": 72
+      }
+    },
+    {
+      "id": "legacy-ziwei-double-lu",
+      "system": "ziwei",
+      "source_id": "ziwei-classics",
+      "title": "双禄定义冲突",
+      "summary": "原整理文件 qj-3-1 与其他双禄条目的成立条件不一致。",
+      "topics": [
+        "双禄"
+      ],
+      "profile": "ziwei-fixed-natal",
+      "status": "quarantined",
+      "reason": "Internal definition conflict; requires edition verification.",
+      "content_kind": "project_paraphrase",
+      "limitations": "这是传统解释或操作约定，不证明预测效力；具体命盘仍须检查成立条件和反证。",
+      "source_span": {
+        "start_line": 84,
+        "end_line": 84
+      }
+    },
+    {
+      "id": "legacy-ziwei-juri",
+      "system": "ziwei",
+      "source_id": "ziwei-classics",
+      "title": "巨日宫位与格名疑混",
+      "summary": "原整理文件 qj-3-4 将巨日组合、丑未宫和日月反背混写，尚未核原典。",
+      "topics": [
+        "巨日",
+        "日月反背"
+      ],
+      "profile": "ziwei-fixed-natal",
+      "status": "quarantined",
+      "reason": "Suspected conflation; not usable before verification.",
+      "content_kind": "project_paraphrase",
+      "limitations": "这是传统解释或操作约定，不证明预测效力；具体命盘仍须检查成立条件和反证。",
+      "source_span": {
+        "start_line": 87,
+        "end_line": 87
+      }
+    },
+    {
+      "id": "legacy-bazi-extreme-weak",
+      "system": "bazi",
+      "source_id": "bazi-classical-texts",
+      "title": "衰极条文自相矛盾",
+      "summary": "原摘要的宜扶措辞与不能再帮扶的解释冲突。",
+      "topics": [
+        "旺衰",
+        "从弱"
+      ],
+      "profile": "bazi-current",
+      "status": "quarantined",
+      "reason": "Internal contradiction in source summary.",
+      "content_kind": "project_paraphrase",
+      "limitations": "这是传统解释或操作约定，不证明预测效力；具体命盘仍须检查成立条件和反证。",
+      "source_span": {
+        "start_line": 71,
+        "end_line": 71
+      }
+    },
+    {
+      "id": "ziwei-three-four",
+      "system": "ziwei",
+      "source_id": "iztro-docs-palace",
+      "title": "三方四正是四宫关系",
+      "summary": "三方四正由本宫、对宫和两个三合宫组成。详批应先列出实际四宫及其星曜，再讨论会照，不能只给格名而省略盘面关系。",
+      "topics": [
+        "三方四正",
+        "会照"
+      ],
+      "profile": "ziwei-fixed-natal",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "三方四正；line 378",
+      "limitations": "仅启用这条经人工阅读的概念释义，不启用整篇规则；不改变当前引擎口径，不证明预测效力。"
+    },
+    {
+      "id": "ziwei-palace-labels",
+      "system": "ziwei",
+      "source_id": "iztro-docs-palace",
+      "title": "地支位置和宫名分开",
+      "summary": "地支是固定位置标识，命宫、财帛宫等宫名会随命盘改变。引用某宫时同时写宫名和地支，可以避免把不同人的同名宫误认作同一位置。",
+      "topics": [
+        "宫位",
+        "地支"
+      ],
+      "profile": "ziwei-fixed-natal",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "前言；line 47",
+      "limitations": "仅启用这条经人工阅读的概念释义，不启用整篇规则；不改变当前引擎口径，不证明预测效力。"
+    },
+    {
+      "id": "ziwei-brightness-schools",
+      "system": "ziwei",
+      "source_id": "iztro-docs-star",
+      "title": "庙旺等级先确认版本",
+      "summary": "不同门派可采用不同亮度等级。本项目解释庙旺时以快照字段和登记表版本为准，外部文档的亮度表只供比较，不覆盖当前排盘。",
+      "topics": [
+        "庙旺",
+        "亮度"
+      ],
+      "profile": "ziwei-fixed-natal",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "星曜的亮度；lines 118-128",
+      "limitations": "仅启用这条经人工阅读的概念释义，不启用整篇规则；不改变当前引擎口径，不证明预测效力。"
+    },
+    {
+      "id": "ziwei-time-layers",
+      "system": "ziwei",
+      "source_id": "iztro-docs-horoscope",
+      "title": "运限分层而不无限细分",
+      "summary": "大限、流年、流月等是不同时间尺度，解释必须注明所用层级。细到分钟或秒并不意味着更可信；未计算的时间层不可从文字资料补造。",
+      "topics": [
+        "运限",
+        "流年",
+        "大限"
+      ],
+      "profile": "ziwei-fixed-natal",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "运限的分类；lines 13-27",
+      "limitations": "仅启用这条经人工阅读的概念释义，不启用整篇规则；不改变当前引擎口径，不证明预测效力。"
+    },
+    {
+      "id": "ziwei-pattern-source-limits",
+      "system": "ziwei",
+      "source_id": "iztro-docs-pattern",
+      "title": "格局文档含现代整理",
+      "summary": "这份格局文档不全来自古籍，部分是现代整理。引用时说明来自 iztro-docs，不把其所有条件冠以古书原文；与本项目程序格局有差异时并列记录。",
+      "topics": [
+        "格局",
+        "来源"
+      ],
+      "profile": "ziwei-fixed-natal",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "前言",
+      "limitations": "仅启用这条经人工阅读的概念释义，不启用整篇规则；不改变当前引擎口径，不证明预测效力。"
+    },
+    {
+      "id": "bazi-dts-short-excerpts-quarantine",
+      "source_id": "bazi-dts-short-excerpts",
+      "system": "bazi",
+      "title": "学习资料不得支持个人断语",
+      "status": "quarantined",
+      "profile": "bazi-classical-study",
+      "content_kind": "project_paraphrase",
+      "summary": "可研究阅读，不用于个人预测。",
+      "limitations": "未核古籍版本，未验证适用性或预测效果。",
+      "reason": "Research-only source; no personal claims authorized.",
+      "topics": [
+        "版本",
+        "学习"
+      ],
+      "source_span": {
+        "start_line": 1,
+        "end_line": 15
+      }
+    },
+    {
+      "id": "bazi-dts-study-cards-quarantine",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "学习资料不得支持个人断语",
+      "status": "quarantined",
+      "profile": "bazi-classical-study",
+      "content_kind": "project_paraphrase",
+      "summary": "可研究阅读，不用于个人预测。",
+      "limitations": "未核古籍版本，未验证适用性或预测效果。",
+      "reason": "Research-only source; no personal claims authorized.",
+      "topics": [
+        "版本",
+        "学习"
+      ],
+      "source_span": {
+        "start_line": 1,
+        "end_line": 75
+      }
+    },
+    {
+      "id": "bazi-dts-study-geju",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "格局：先月令与透干，再讨论成败",
+      "status": "usable",
+      "profile": "bazi-classical-study",
+      "content_kind": "project_paraphrase",
+      "summary": "先列月支藏干与各柱透干，说明所选格名的月令依据；再分别检查日主承受、财印食伤和官杀之间的关系。此页还反对用遥合的虚神直接立格。",
+      "limitations": "仅理论学习；不可支持个人预测，不是自动判格规则。详见独立CC BY-SA 4.0学习卡。",
+      "topics": [
+        "格局",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "引擎四柱和藏干已核对",
+        "明确采用本录文的取格口径",
+        "官杀混杂、伤官见官必须分情况"
+      ],
+      "exclusions": [
+        "不能仅因两个十神共现就下凶断",
+        "此页四季月取格说法不能当成各家共识"
+      ],
+      "actionable_output": "列出月令候选、透干证据、救应条件及另一种可能解释。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:6",
+      "source_web_line": 411,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "theory_study_only_not_personal_reading"
+    },
+    {
+      "id": "bazi-dts-study-conghua",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "从与化：不是弱就从、合就化",
+      "status": "usable",
+      "profile": "bazi-classical-study",
+      "content_kind": "project_paraphrase",
+      "summary": "从格要求检查日主是否确实失去生扶；化格另外要求合神、季节与阻碍条件。必须将普通偏弱、从势、干合和化气分成不同假设。",
+      "limitations": "仅理论学习；不可支持个人预测，不是自动判格规则。详见独立CC BY-SA 4.0学习卡。",
+      "topics": [
+        "从与化",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "检查天干、地支、藏干的生扶",
+        "合神位置和月令可核",
+        "明示否决从化的反证"
+      ],
+      "exclusions": [
+        "有印比或根气不能直接略去",
+        "此页甲己化土例含特殊限制，不应扩展为所有合干自动化"
+      ],
+      "actionable_output": "为每一从化候选列支持与反对证据；证据不足保留普通格解释。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:13",
+      "source_web_line": 431,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "theory_study_only_not_personal_reading"
+    },
+    {
+      "id": "bazi-dts-study-tiyong",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "体用：先说明比较对象",
+      "status": "usable",
+      "profile": "bazi-classical-study",
+      "content_kind": "project_paraphrase",
+      "summary": "同一个用字在不同论述中可以指不同关系。先说以日主、月令还是全局为观察中心，再解释哪一环节需要扶助或疏泄；不要把月令取格用神与平衡所需之物无标记合并。",
+      "limitations": "仅理论学习；不可支持个人预测，不是自动判格规则。详见独立CC BY-SA 4.0学习卡。",
+      "topics": [
+        "体用",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "明确体所指对象",
+        "列出候选用神的作用路径",
+        "检查用神是否受制或相互冲突"
+      ],
+      "exclusions": [
+        "不能只说喜某五行却不解释作用",
+        "多个候选并存不等于能用数量投票决定"
+      ],
+      "actionable_output": "输出观察中心、作用链、失败条件和尚待判断的轻重。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:20",
+      "source_web_line": 484,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "theory_study_only_not_personal_reading"
+    },
+    {
+      "id": "bazi-dts-study-shuaiwang",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "旺衰：数量不是结论",
+      "status": "usable",
+      "profile": "bazi-classical-study",
+      "content_kind": "project_paraphrase",
+      "summary": "先用时令、根气、透干与生克关系描述局部强弱，再区分普通偏旺偏弱与极端结构。本文对衰极的字句存在疑似缺字，不从该句制造精确规则。",
+      "limitations": "仅理论学习；不可支持个人预测，不是自动判格规则。详见独立CC BY-SA 4.0学习卡。",
+      "topics": [
+        "旺衰",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "四柱与季节可核",
+        "说明根气与生扶克泄路径",
+        "能指出可能逆转初判的条件"
+      ],
+      "exclusions": [
+        "不采用五行计数直接等同旺衰",
+        "衰极句待版本校勘",
+        "旺弱不是经过验证的人生好坏指标"
+      ],
+      "actionable_output": "并列普通扶抑与特殊结构两个假设，不确定时不指定唯一喜忌。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:27",
+      "source_web_line": 507,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "theory_study_only_not_personal_reading"
+    },
+    {
+      "id": "bazi-dts-study-yueling",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "月令：藏干与司令要分开",
+      "status": "usable",
+      "profile": "bazi-classical-study",
+      "content_kind": "project_paraphrase",
+      "summary": "月支藏干清单只说明有哪些干；按入节后天数指定谁司令是另一层学派规则。此录文给出寅月分日示例，但没有足以独立验证全年的表与精确边界。",
+      "limitations": "仅理论学习；不可支持个人预测，不是自动判格规则。详见独立CC BY-SA 4.0学习卡。",
+      "topics": [
+        "月令",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "月柱来自当前引擎",
+        "若谈司令，另登记分日表及边界算法",
+        "区分节气瞬间与民用日期"
+      ],
+      "exclusions": [
+        "不将寅月示例外推为完整十二月规则",
+        "不覆盖现有节气与时间契约"
+      ],
+      "actionable_output": "可讨论月令的重要性；缺司令表时明确只用月支、藏干、透干，不声称已算司令。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:34",
+      "source_web_line": 546,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "theory_study_only_not_personal_reading"
+    },
+    {
+      "id": "bazi-dts-study-yuanliu",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "源流：把生克关系画成可复查路径",
+      "status": "usable",
+      "profile": "bazi-classical-study",
+      "content_kind": "project_paraphrase",
+      "summary": "用一条有依据的元素关系链表示主要结构，再指出在哪个环节停止或受阻。原页面的命例按时、日、月、年列出，读取时必须防止按年、月、日、时倒置；这些命例并非有结果验证的样本。",
+      "limitations": "仅理论学习；不可支持个人预测，不是自动判格规则。详见独立CC BY-SA 4.0学习卡。",
+      "topics": [
+        "源流",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "每个节点都能定位到四柱或藏干",
+        "标清源头选择理由",
+        "采用命例时核对列顺序"
+      ],
+      "exclusions": [
+        "局部相生链不能替代全局制约",
+        "例中富贵或出家标签不当作经验验证"
+      ],
+      "actionable_output": "输出节点、支持的柱位、阻断条件，以及其他同样可能的路径。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:41",
+      "source_web_line": 561,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "theory_study_only_not_personal_reading"
+    },
+    {
+      "id": "bazi-dts-study-tongguan",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "通关：中介必须实际有效",
+      "status": "usable",
+      "profile": "bazi-classical-study",
+      "content_kind": "project_paraphrase",
+      "summary": "两端相克时，中介元素可能构成连续相生关系，但这只是传统理论中的结构候选。需要检查中介是否真实存在、是否有根、是否被合绊或克制，并说明它为何能联系两端。",
+      "limitations": "仅理论学习；不可支持个人预测，不是自动判格规则。详见独立CC BY-SA 4.0学习卡。",
+      "topics": [
+        "通关",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "两端关系和中介有实际字段依据",
+        "检查中介的受制情况",
+        "区分本命已有与岁运新增"
+      ],
+      "exclusions": [
+        "缺失元素不可凭愿望补入命盘",
+        "出现中介不等于现实矛盾必然解决"
+      ],
+      "actionable_output": "列两端、中介、阻碍和成立条件；不直接给出吉凶或事件承诺。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:48",
+      "source_web_line": 578,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "theory_study_only_not_personal_reading"
+    },
+    {
+      "id": "bazi-dts-study-qingzhuo",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "清浊：讨论作用是否一致",
+      "status": "usable",
+      "profile": "bazi-classical-study",
+      "content_kind": "project_paraphrase",
+      "summary": "清在此论述中并不简单等于五行少；关键是各要素是否能协同所选结构。浊也不等于五行齐全。解释时应将功能冲突说清，而不是给人格或社会地位贴标签。",
+      "limitations": "仅理论学习；不可支持个人预测，不是自动判格规则。详见独立CC BY-SA 4.0学习卡。",
+      "topics": [
+        "清浊",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "先有明确格局或观察中心",
+        "分别列每一要素的支持与破坏作用",
+        "检查清而弱、混而有救的反例"
+      ],
+      "exclusions": [
+        "不能把清浊用于人的道德评判",
+        "不得从这一称谓推定财富等级"
+      ],
+      "actionable_output": "列出协同关系、冲突点、解冲突所需条件，不给人物定性。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:55",
+      "source_web_line": 587,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "theory_study_only_not_personal_reading"
+    },
+    {
+      "id": "bazi-dts-study-yinxian",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "隐显：透出与伏藏并非固定吉凶",
+      "status": "usable",
+      "profile": "bazi-classical-study",
+      "content_kind": "project_paraphrase",
+      "summary": "先辨透干与支藏，再分别讨论被岁运加强或损伤的候选路径。可见度不是吉凶排序：本条的推理前提是先有可靠的喜忌假设；该前提未成立，就只能做关系描述。",
+      "limitations": "仅理论学习；不可支持个人预测，不是自动判格规则。详见独立CC BY-SA 4.0学习卡。",
+      "topics": [
+        "隐显",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "透干与藏干事实可核",
+        "喜忌仅作明确标注的学派假设",
+        "流年字段有固定分析年"
+      ],
+      "exclusions": [
+        "不能把藏干直接当成隐藏灾难",
+        "透出不保证吉象兑现"
+      ],
+      "actionable_output": "分别列本命状态、岁运变化和前提依赖，不断言发生事件。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:62",
+      "source_web_line": 610,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "theory_study_only_not_personal_reading"
+    },
+    {
+      "id": "bazi-dts-study-xianshen",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "闲神：不必为每个字强造故事",
+      "status": "usable",
+      "profile": "bazi-classical-study",
+      "content_kind": "project_paraphrase",
+      "summary": "某个元素若对当前解释的主要关系没有清楚作用，可以暂不赋予喜忌。闲是相对于当前模型而言，不是永久属性；后续岁运改变关系时需要重新审视。",
+      "limitations": "仅理论学习；不可支持个人预测，不是自动判格规则。详见独立CC BY-SA 4.0学习卡。",
+      "topics": [
+        "闲神",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "先界定本次分析的主问题",
+        "说明未参与主要作用链的理由",
+        "允许以后因结构变化重新分类"
+      ],
+      "exclusions": [
+        "不能把未解释等同没有影响",
+        "不能为凑完整详批给每字编造人生事件"
+      ],
+      "actionable_output": "将不确定或暂不相关的字段单列，交代哪些新信息会改变判断。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:69",
+      "source_web_line": 798,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "theory_study_only_not_personal_reading"
+    },
+    {
+      "id": "bazi-dts-interpret-geju",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "格局：先月令与透干，再讨论成败",
+      "status": "usable",
+      "profile": "bazi-traditional-conditional",
+      "content_kind": "project_paraphrase",
+      "summary": "先列月支藏干与各柱透干，说明所选格名的月令依据；再分别检查日主承受、财印食伤和官杀之间的关系。此页还反对用遥合的虚神直接立格。",
+      "limitations": "只允许条件式传统结构解释；必须逐项绑定盘面事实、前提与反证，不能升级为预测保证、已核古籍原话或supported结论。",
+      "topics": [
+        "格局",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "引擎四柱和藏干已核对",
+        "明确采用本录文的取格口径",
+        "官杀混杂、伤官见官必须分情况"
+      ],
+      "exclusions": [
+        "不能仅因两个十神共现就下凶断",
+        "此页四季月取格说法不能当成各家共识"
+      ],
+      "actionable_output": "列出月令候选、透干证据、救应条件及另一种可能解释。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:6",
+      "source_web_line": 411,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "conditional_traditional_interpretation",
+      "interpretation_label": "未校勘数字转录的传统规则释义（项目整理，非预测验证）",
+      "source_span": {
+        "start_line": 8,
+        "end_line": 8
+      }
+    },
+    {
+      "id": "bazi-dts-interpret-conghua",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "从与化：不是弱就从、合就化",
+      "status": "usable",
+      "profile": "bazi-traditional-conditional",
+      "content_kind": "project_paraphrase",
+      "summary": "从格要求检查日主是否确实失去生扶；化格另外要求合神、季节与阻碍条件。必须将普通偏弱、从势、干合和化气分成不同假设。",
+      "limitations": "只允许条件式传统结构解释；必须逐项绑定盘面事实、前提与反证，不能升级为预测保证、已核古籍原话或supported结论。",
+      "topics": [
+        "从与化",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "检查天干、地支、藏干的生扶",
+        "合神位置和月令可核",
+        "明示否决从化的反证"
+      ],
+      "exclusions": [
+        "有印比或根气不能直接略去",
+        "此页甲己化土例含特殊限制，不应扩展为所有合干自动化"
+      ],
+      "actionable_output": "为每一从化候选列支持与反对证据；证据不足保留普通格解释。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:13",
+      "source_web_line": 431,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "conditional_traditional_interpretation",
+      "interpretation_label": "未校勘数字转录的传统规则释义（项目整理，非预测验证）",
+      "source_span": {
+        "start_line": 15,
+        "end_line": 15
+      }
+    },
+    {
+      "id": "bazi-dts-interpret-tiyong",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "体用：先说明比较对象",
+      "status": "usable",
+      "profile": "bazi-traditional-conditional",
+      "content_kind": "project_paraphrase",
+      "summary": "同一个用字在不同论述中可以指不同关系。先说以日主、月令还是全局为观察中心，再解释哪一环节需要扶助或疏泄；不要把月令取格用神与平衡所需之物无标记合并。",
+      "limitations": "只允许条件式传统结构解释；必须逐项绑定盘面事实、前提与反证，不能升级为预测保证、已核古籍原话或supported结论。",
+      "topics": [
+        "体用",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "明确体所指对象",
+        "列出候选用神的作用路径",
+        "检查用神是否受制或相互冲突"
+      ],
+      "exclusions": [
+        "不能只说喜某五行却不解释作用",
+        "多个候选并存不等于能用数量投票决定"
+      ],
+      "actionable_output": "输出观察中心、作用链、失败条件和尚待判断的轻重。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:20",
+      "source_web_line": 484,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "conditional_traditional_interpretation",
+      "interpretation_label": "未校勘数字转录的传统规则释义（项目整理，非预测验证）",
+      "source_span": {
+        "start_line": 22,
+        "end_line": 22
+      }
+    },
+    {
+      "id": "bazi-dts-interpret-shuaiwang",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "旺衰：数量不是结论",
+      "status": "usable",
+      "profile": "bazi-traditional-conditional",
+      "content_kind": "project_paraphrase",
+      "summary": "先用时令、根气、透干与生克关系描述局部强弱，再区分普通偏旺偏弱与极端结构。本文对衰极的字句存在疑似缺字，不从该句制造精确规则。",
+      "limitations": "只允许条件式传统结构解释；必须逐项绑定盘面事实、前提与反证，不能升级为预测保证、已核古籍原话或supported结论。",
+      "topics": [
+        "旺衰",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "四柱与季节可核",
+        "说明根气与生扶克泄路径",
+        "能指出可能逆转初判的条件"
+      ],
+      "exclusions": [
+        "不采用五行计数直接等同旺衰",
+        "衰极句待版本校勘",
+        "旺弱不是经过验证的人生好坏指标"
+      ],
+      "actionable_output": "并列普通扶抑与特殊结构两个假设，不确定时不指定唯一喜忌。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:27",
+      "source_web_line": 507,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "conditional_traditional_interpretation",
+      "interpretation_label": "未校勘数字转录的传统规则释义（项目整理，非预测验证）",
+      "source_span": {
+        "start_line": 29,
+        "end_line": 29
+      }
+    },
+    {
+      "id": "bazi-dts-interpret-yueling",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "月令：藏干与司令要分开",
+      "status": "usable",
+      "profile": "bazi-traditional-conditional",
+      "content_kind": "project_paraphrase",
+      "summary": "月支藏干清单只说明有哪些干；按入节后天数指定谁司令是另一层学派规则。此录文给出寅月分日示例，但没有足以独立验证全年的表与精确边界。",
+      "limitations": "只允许条件式传统结构解释；必须逐项绑定盘面事实、前提与反证，不能升级为预测保证、已核古籍原话或supported结论。",
+      "topics": [
+        "月令",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "月柱来自当前引擎",
+        "若谈司令，另登记分日表及边界算法",
+        "区分节气瞬间与民用日期"
+      ],
+      "exclusions": [
+        "不将寅月示例外推为完整十二月规则",
+        "不覆盖现有节气与时间契约"
+      ],
+      "actionable_output": "可讨论月令的重要性；缺司令表时明确只用月支、藏干、透干，不声称已算司令。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:34",
+      "source_web_line": 546,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "conditional_traditional_interpretation",
+      "interpretation_label": "未校勘数字转录的传统规则释义（项目整理，非预测验证）",
+      "source_span": {
+        "start_line": 36,
+        "end_line": 36
+      }
+    },
+    {
+      "id": "bazi-dts-interpret-yuanliu",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "源流：把生克关系画成可复查路径",
+      "status": "usable",
+      "profile": "bazi-traditional-conditional",
+      "content_kind": "project_paraphrase",
+      "summary": "用一条有依据的元素关系链表示主要结构，再指出在哪个环节停止或受阻。原页面的命例按时、日、月、年列出，读取时必须防止按年、月、日、时倒置；这些命例并非有结果验证的样本。",
+      "limitations": "只允许条件式传统结构解释；必须逐项绑定盘面事实、前提与反证，不能升级为预测保证、已核古籍原话或supported结论。",
+      "topics": [
+        "源流",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "每个节点都能定位到四柱或藏干",
+        "标清源头选择理由",
+        "采用命例时核对列顺序"
+      ],
+      "exclusions": [
+        "局部相生链不能替代全局制约",
+        "例中富贵或出家标签不当作经验验证"
+      ],
+      "actionable_output": "输出节点、支持的柱位、阻断条件，以及其他同样可能的路径。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:41",
+      "source_web_line": 561,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "conditional_traditional_interpretation",
+      "interpretation_label": "未校勘数字转录的传统规则释义（项目整理，非预测验证）",
+      "source_span": {
+        "start_line": 43,
+        "end_line": 43
+      }
+    },
+    {
+      "id": "bazi-dts-interpret-tongguan",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "通关：中介必须实际有效",
+      "status": "usable",
+      "profile": "bazi-traditional-conditional",
+      "content_kind": "project_paraphrase",
+      "summary": "两端相克时，中介元素可能构成连续相生关系，但这只是传统理论中的结构候选。需要检查中介是否真实存在、是否有根、是否被合绊或克制，并说明它为何能联系两端。",
+      "limitations": "只允许条件式传统结构解释；必须逐项绑定盘面事实、前提与反证，不能升级为预测保证、已核古籍原话或supported结论。",
+      "topics": [
+        "通关",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "两端关系和中介有实际字段依据",
+        "检查中介的受制情况",
+        "区分本命已有与岁运新增"
+      ],
+      "exclusions": [
+        "缺失元素不可凭愿望补入命盘",
+        "出现中介不等于现实矛盾必然解决"
+      ],
+      "actionable_output": "列两端、中介、阻碍和成立条件；不直接给出吉凶或事件承诺。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:48",
+      "source_web_line": 578,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "conditional_traditional_interpretation",
+      "interpretation_label": "未校勘数字转录的传统规则释义（项目整理，非预测验证）",
+      "source_span": {
+        "start_line": 50,
+        "end_line": 50
+      }
+    },
+    {
+      "id": "bazi-dts-interpret-qingzhuo",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "清浊：讨论作用是否一致",
+      "status": "usable",
+      "profile": "bazi-traditional-conditional",
+      "content_kind": "project_paraphrase",
+      "summary": "清在此论述中并不简单等于五行少；关键是各要素是否能协同所选结构。浊也不等于五行齐全。解释时应将功能冲突说清，而不是给人格或社会地位贴标签。",
+      "limitations": "只允许条件式传统结构解释；必须逐项绑定盘面事实、前提与反证，不能升级为预测保证、已核古籍原话或supported结论。",
+      "topics": [
+        "清浊",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "先有明确格局或观察中心",
+        "分别列每一要素的支持与破坏作用",
+        "检查清而弱、混而有救的反例"
+      ],
+      "exclusions": [
+        "不能把清浊用于人的道德评判",
+        "不得从这一称谓推定财富等级"
+      ],
+      "actionable_output": "列出协同关系、冲突点、解冲突所需条件，不给人物定性。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:55",
+      "source_web_line": 587,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "conditional_traditional_interpretation",
+      "interpretation_label": "未校勘数字转录的传统规则释义（项目整理，非预测验证）",
+      "source_span": {
+        "start_line": 57,
+        "end_line": 57
+      }
+    },
+    {
+      "id": "bazi-dts-interpret-yinxian",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "隐显：透出与伏藏并非固定吉凶",
+      "status": "usable",
+      "profile": "bazi-traditional-conditional",
+      "content_kind": "project_paraphrase",
+      "summary": "先辨透干与支藏，再分别讨论被岁运加强或损伤的候选路径。可见度不是吉凶排序：本条的推理前提是先有可靠的喜忌假设；该前提未成立，就只能做关系描述。",
+      "limitations": "只允许条件式传统结构解释；必须逐项绑定盘面事实、前提与反证，不能升级为预测保证、已核古籍原话或supported结论。",
+      "topics": [
+        "隐显",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "透干与藏干事实可核",
+        "喜忌仅作明确标注的学派假设",
+        "流年字段有固定分析年"
+      ],
+      "exclusions": [
+        "不能把藏干直接当成隐藏灾难",
+        "透出不保证吉象兑现"
+      ],
+      "actionable_output": "分别列本命状态、岁运变化和前提依赖，不断言发生事件。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:62",
+      "source_web_line": 610,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "conditional_traditional_interpretation",
+      "interpretation_label": "未校勘数字转录的传统规则释义（项目整理，非预测验证）",
+      "source_span": {
+        "start_line": 64,
+        "end_line": 64
+      }
+    },
+    {
+      "id": "bazi-dts-interpret-xianshen",
+      "source_id": "bazi-dts-study-cards",
+      "system": "bazi",
+      "title": "闲神：不必为每个字强造故事",
+      "status": "usable",
+      "profile": "bazi-traditional-conditional",
+      "content_kind": "project_paraphrase",
+      "summary": "某个元素若对当前解释的主要关系没有清楚作用，可以暂不赋予喜忌。闲是相对于当前模型而言，不是永久属性；后续岁运改变关系时需要重新审视。",
+      "limitations": "只允许条件式传统结构解释；必须逐项绑定盘面事实、前提与反证，不能升级为预测保证、已核古籍原话或supported结论。",
+      "topics": [
+        "闲神",
+        "滴天髓",
+        "理论学习"
+      ],
+      "conditions": [
+        "先界定本次分析的主问题",
+        "说明未参与主要作用链的理由",
+        "允许以后因结构变化重新分类"
+      ],
+      "exclusions": [
+        "不能把未解释等同没有影响",
+        "不能为凑完整详批给每字编造人生事件"
+      ],
+      "actionable_output": "将不确定或暂不相关的字段单列，交代哪些新信息会改变判断。",
+      "study_locator": "references/vendor/wikisource-ditiansui/study-cards.md:69",
+      "source_web_line": 798,
+      "license": "CC-BY-SA-4.0",
+      "license_path": "references/vendor/wikisource-ditiansui/LICENSE.md",
+      "usage_scope": "conditional_traditional_interpretation",
+      "interpretation_label": "未校勘数字转录的传统规则释义（项目整理，非预测验证）",
+      "source_span": {
+        "start_line": 71,
+        "end_line": 71
+      }
+    },
+    {
+      "id": "bazi-strength-ST01",
+      "source_id": "bazi-strength-project",
+      "system": "bazi",
+      "status": "usable",
+      "profile": "bazi-strength-evidence",
+      "content_kind": "project_paraphrase",
+      "title": "ST01",
+      "summary": "季节不等于全盘强弱",
+      "limitations": "仅限有界证据模块；不开放古文引用、个人ledger、成格或喜忌定案",
+      "topics": [
+        "强弱",
+        "ST01"
+      ]
+    },
+    {
+      "id": "bazi-strength-ST02",
+      "source_id": "bazi-strength-project",
+      "system": "bazi",
+      "status": "usable",
+      "profile": "bazi-strength-evidence",
+      "content_kind": "project_paraphrase",
+      "title": "ST02",
+      "summary": "同五行藏干根为操作性定义",
+      "limitations": "仅限有界证据模块；不开放古文引用、个人ledger、成格或喜忌定案",
+      "topics": [
+        "强弱",
+        "ST02"
+      ]
+    },
+    {
+      "id": "bazi-strength-ST03",
+      "source_id": "bazi-strength-project",
+      "system": "bazi",
+      "status": "usable",
+      "profile": "bazi-strength-evidence",
+      "content_kind": "project_paraphrase",
+      "title": "ST03",
+      "summary": "有根支持与无根透干分开",
+      "limitations": "仅限有界证据模块；不开放古文引用、个人ledger、成格或喜忌定案",
+      "topics": [
+        "强弱",
+        "ST03"
+      ]
+    },
+    {
+      "id": "bazi-strength-ST04",
+      "source_id": "bazi-strength-project",
+      "system": "bazi",
+      "status": "usable",
+      "profile": "bazi-strength-evidence",
+      "content_kind": "project_paraphrase",
+      "title": "ST04",
+      "summary": "生扶和克泄耗竞争路径",
+      "limitations": "仅限有界证据模块；不开放古文引用、个人ledger、成格或喜忌定案",
+      "topics": [
+        "强弱",
+        "ST04"
+      ]
+    },
+    {
+      "id": "bazi-strength-ST05",
+      "source_id": "bazi-strength-project",
+      "system": "bazi",
+      "status": "usable",
+      "profile": "bazi-strength-evidence",
+      "content_kind": "project_paraphrase",
+      "title": "ST05",
+      "summary": "合冲标记效力争议而不删除事实",
+      "limitations": "仅限有界证据模块；不开放古文引用、个人ledger、成格或喜忌定案",
+      "topics": [
+        "强弱",
+        "ST05"
+      ]
+    },
+    {
+      "id": "ziwei-domain-star-0",
+      "system": "ziwei",
+      "source_id": "iztro-docs-major-star",
+      "title": "紫微的有限主题",
+      "summary": "仅将紫微作为“统筹目标与调配支持”的传统讨论主题，同时核对“目标是否有相应的知识、权限和资源支撑”；不是个人性格、能力或经历判定。",
+      "topics": [
+        "紫微",
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "紫微星特性；lines 66-68",
+      "limitations": "仅启用此主题与核对问题；不启用同节的性别、家庭、职业、健康、财富或命运断语。现代说明，未经预测验证。",
+      "star": "紫微",
+      "theme": "统筹目标与调配支持",
+      "question": "目标是否有相应的知识、权限和资源支撑"
+    },
+    {
+      "id": "ziwei-domain-star-1",
+      "system": "ziwei",
+      "source_id": "iztro-docs-major-star",
+      "title": "天机的有限主题",
+      "summary": "仅将天机作为“构想方案与寻找变化”的传统讨论主题，同时核对“方案是否转化为可执行步骤，还是持续改动而难以收束”；不是个人性格、能力或经历判定。",
+      "topics": [
+        "天机",
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "天机星特性；lines 152-156",
+      "limitations": "仅启用此主题与核对问题；不启用同节的性别、家庭、职业、健康、财富或命运断语。现代说明，未经预测验证。",
+      "star": "天机",
+      "theme": "构想方案与寻找变化",
+      "question": "方案是否转化为可执行步骤，还是持续改动而难以收束"
+    },
+    {
+      "id": "ziwei-domain-star-2",
+      "system": "ziwei",
+      "source_id": "iztro-docs-major-star",
+      "title": "太阳的有限主题",
+      "summary": "仅将太阳作为“公开表达与组织推动”的传统讨论主题，同时核对“主动承担是否得到授权，还是替别人决定”；不是个人性格、能力或经历判定。",
+      "topics": [
+        "太阳",
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "太阳星特性；lines 223-229",
+      "limitations": "仅启用此主题与核对问题；不启用同节的性别、家庭、职业、健康、财富或命运断语。现代说明，未经预测验证。",
+      "star": "太阳",
+      "theme": "公开表达与组织推动",
+      "question": "主动承担是否得到授权，还是替别人决定"
+    },
+    {
+      "id": "ziwei-domain-star-3",
+      "system": "ziwei",
+      "source_id": "iztro-docs-major-star",
+      "title": "武曲的有限主题",
+      "summary": "仅将武曲作为“直接行动与落实任务”的传统讨论主题，同时核对“执行前是否充分比较方向，是否听取了不同意见”；不是个人性格、能力或经历判定。",
+      "topics": [
+        "武曲",
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "武曲星特性；lines 290-294",
+      "limitations": "仅启用此主题与核对问题；不启用同节的性别、家庭、职业、健康、财富或命运断语。现代说明，未经预测验证。",
+      "star": "武曲",
+      "theme": "直接行动与落实任务",
+      "question": "执行前是否充分比较方向，是否听取了不同意见"
+    },
+    {
+      "id": "ziwei-domain-star-4",
+      "system": "ziwei",
+      "source_id": "iztro-docs-major-star",
+      "title": "天同的有限主题",
+      "summary": "仅将天同作为“配合协作与保持稳定”的传统讨论主题，同时核对“维持和气是否掩盖了需要明确表达的边界”；不是个人性格、能力或经历判定。",
+      "topics": [
+        "天同",
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "天同星特性；lines 379-385",
+      "limitations": "仅启用此主题与核对问题；不启用同节的性别、家庭、职业、健康、财富或命运断语。现代说明，未经预测验证。",
+      "star": "天同",
+      "theme": "配合协作与保持稳定",
+      "question": "维持和气是否掩盖了需要明确表达的边界"
+    },
+    {
+      "id": "ziwei-domain-star-5",
+      "system": "ziwei",
+      "source_id": "iztro-docs-major-star",
+      "title": "廉贞的有限主题",
+      "summary": "仅将廉贞作为“认真要求与自我保护”的传统讨论主题，同时核对“高标准是否有资源支持，是否妨碍必要的沟通”；不是个人性格、能力或经历判定。",
+      "topics": [
+        "廉贞",
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "廉贞星特性；lines 452-460",
+      "limitations": "仅启用此主题与核对问题；不启用同节的性别、家庭、职业、健康、财富或命运断语。现代说明，未经预测验证。",
+      "star": "廉贞",
+      "theme": "认真要求与自我保护",
+      "question": "高标准是否有资源支持，是否妨碍必要的沟通"
+    },
+    {
+      "id": "ziwei-domain-star-6",
+      "system": "ziwei",
+      "source_id": "iztro-docs-major-star",
+      "title": "天府的有限主题",
+      "summary": "仅将天府作为“务实安排与守住范围”的传统讨论主题，同时核对“保留余地是否变成了回避必须承担的事情”；不是个人性格、能力或经历判定。",
+      "topics": [
+        "天府",
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "天府星特性；lines 543-547",
+      "limitations": "仅启用此主题与核对问题；不启用同节的性别、家庭、职业、健康、财富或命运断语。现代说明，未经预测验证。",
+      "star": "天府",
+      "theme": "务实安排与守住范围",
+      "question": "保留余地是否变成了回避必须承担的事情"
+    },
+    {
+      "id": "ziwei-domain-star-7",
+      "system": "ziwei",
+      "source_id": "iztro-docs-major-star",
+      "title": "太阴的有限主题",
+      "summary": "仅将太阴作为“细致照顾与重视感受”的传统讨论主题，同时核对“照顾细节是否同时保留了明确的取舍”；不是个人性格、能力或经历判定。",
+      "topics": [
+        "太阴",
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "太阴星特性；lines 596-600",
+      "limitations": "仅启用此主题与核对问题；不启用同节的性别、家庭、职业、健康、财富或命运断语。现代说明，未经预测验证。",
+      "star": "太阴",
+      "theme": "细致照顾与重视感受",
+      "question": "照顾细节是否同时保留了明确的取舍"
+    },
+    {
+      "id": "ziwei-domain-star-8",
+      "system": "ziwei",
+      "source_id": "iztro-docs-major-star",
+      "title": "贪狼的有限主题",
+      "summary": "仅将贪狼作为“探索兴趣与拓展接触”的传统讨论主题，同时核对“投入兴趣是否有清楚的边界和持续投入条件”；不是个人性格、能力或经历判定。",
+      "topics": [
+        "贪狼",
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "贪狼星特性；lines 649-651",
+      "limitations": "仅启用此主题与核对问题；不启用同节的性别、家庭、职业、健康、财富或命运断语。现代说明，未经预测验证。",
+      "star": "贪狼",
+      "theme": "探索兴趣与拓展接触",
+      "question": "投入兴趣是否有清楚的边界和持续投入条件"
+    },
+    {
+      "id": "ziwei-domain-star-9",
+      "system": "ziwei",
+      "source_id": "iztro-docs-major-star",
+      "title": "巨门的有限主题",
+      "summary": "仅将巨门作为“语言表达与说明理由”的传统讨论主题，同时核对“表达的清晰程度是否等于证据充分，是否留出倾听空间”；不是个人性格、能力或经历判定。",
+      "topics": [
+        "巨门",
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "巨门星特性；lines 702-702",
+      "limitations": "仅启用此主题与核对问题；不启用同节的性别、家庭、职业、健康、财富或命运断语。现代说明，未经预测验证。",
+      "star": "巨门",
+      "theme": "语言表达与说明理由",
+      "question": "表达的清晰程度是否等于证据充分，是否留出倾听空间"
+    },
+    {
+      "id": "ziwei-domain-star-10",
+      "system": "ziwei",
+      "source_id": "iztro-docs-major-star",
+      "title": "天相的有限主题",
+      "summary": "仅将天相作为“协调关系与组织安排”的传统讨论主题，同时核对“协调是否解决实际问题，还是只让局面看起来平稳”；不是个人性格、能力或经历判定。",
+      "topics": [
+        "天相",
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "天相星特性；lines 757-761",
+      "limitations": "仅启用此主题与核对问题；不启用同节的性别、家庭、职业、健康、财富或命运断语。现代说明，未经预测验证。",
+      "star": "天相",
+      "theme": "协调关系与组织安排",
+      "question": "协调是否解决实际问题，还是只让局面看起来平稳"
+    },
+    {
+      "id": "ziwei-domain-star-11",
+      "system": "ziwei",
+      "source_id": "iztro-docs-major-star",
+      "title": "天梁的有限主题",
+      "summary": "仅将天梁作为“坚持原则与照应他人”的传统讨论主题，同时核对“提供支持时是否核实了需求和责任边界”；不是个人性格、能力或经历判定。",
+      "topics": [
+        "天梁",
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "天梁星特性；lines 810-812",
+      "limitations": "仅启用此主题与核对问题；不启用同节的性别、家庭、职业、健康、财富或命运断语。现代说明，未经预测验证。",
+      "star": "天梁",
+      "theme": "坚持原则与照应他人",
+      "question": "提供支持时是否核实了需求和责任边界"
+    },
+    {
+      "id": "ziwei-domain-star-12",
+      "system": "ziwei",
+      "source_id": "iztro-docs-major-star",
+      "title": "七杀的有限主题",
+      "summary": "仅将七杀作为“坚定推进与持续执行”的传统讨论主题，同时核对“坚持之前是否充分筹划，遇到反证是否愿意修正”；不是个人性格、能力或经历判定。",
+      "topics": [
+        "七杀",
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "七杀星特性；lines 865-865",
+      "limitations": "仅启用此主题与核对问题；不启用同节的性别、家庭、职业、健康、财富或命运断语。现代说明，未经预测验证。",
+      "star": "七杀",
+      "theme": "坚定推进与持续执行",
+      "question": "坚持之前是否充分筹划，遇到反证是否愿意修正"
+    },
+    {
+      "id": "ziwei-domain-star-13",
+      "system": "ziwei",
+      "source_id": "iztro-docs-major-star",
+      "title": "破军的有限主题",
+      "summary": "仅将破军作为“改变旧安排与重新建立”的传统讨论主题，同时核对“拆掉原安排之前是否有可用的替代方案”；不是个人性格、能力或经历判定。",
+      "topics": [
+        "破军",
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "破军星特性；lines 920-920",
+      "limitations": "仅启用此主题与核对问题；不启用同节的性别、家庭、职业、健康、财富或命运断语。现代说明，未经预测验证。",
+      "star": "破军",
+      "theme": "改变旧安排与重新建立",
+      "question": "拆掉原安排之前是否有可用的替代方案"
+    },
+    {
+      "id": "ziwei-domain-domains",
+      "system": "ziwei",
+      "source_id": "iztro-docs-palace",
+      "title": "四宫分工",
+      "summary": "命宫讨论自身取向，财帛讨论资源安排，官禄讨论做事方式，迁移讨论对外互动；四者连读不等于财富、职业或人格测量。",
+      "topics": [
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "命宫/财帛宫/迁移宫/官禄宫；lines 55-95",
+      "limitations": "项目有限释义，现代学派约定，不证明预测效果；不混用飞化或运限。"
+    },
+    {
+      "id": "ziwei-domain-brightness",
+      "system": "ziwei",
+      "source_id": "iztro-docs-star",
+      "title": "亮度只作表达差异",
+      "summary": "以当前引擎原始等级讨论主题的直接表达或保留表达；庙旺不等于成功，陷不等于失败，中间等级不强分。",
+      "topics": [
+        "四宫联读"
+      ],
+      "profile": "ziwei-domain-conditional",
+      "status": "usable",
+      "reason": null,
+      "content_kind": "project_paraphrase",
+      "locator": "星曜的亮度；lines 118-130",
+      "limitations": "项目有限释义，现代学派约定，不证明预测效果；不混用飞化或运限。"
+    },
+    {
+      "id": "qizheng-QZ01",
+      "source_id": "qizheng-project-rules",
+      "system": "qizheng",
+      "status": "usable",
+      "profile": "qizheng-degree-relations-v1",
+      "content_kind": "project_paraphrase",
+      "title": "QZ01",
+      "summary": "命度宿主为我，不能改用宫主",
+      "limitations": "仅限项目结构释义；不授权古籍逐字引用、个人ledger或人生事件预测。",
+      "topics": [
+        "七政",
+        "宫主",
+        "恩用",
+        "口径"
+      ]
+    },
+    {
+      "id": "qizheng-QZ02",
+      "source_id": "qizheng-project-rules",
+      "system": "qizheng",
+      "status": "usable",
+      "profile": "qizheng-degree-relations-v1",
+      "content_kind": "project_paraphrase",
+      "title": "QZ02",
+      "summary": "宫支、宫主与宫主五行分别输出",
+      "limitations": "仅限项目结构释义；不授权古籍逐字引用、个人ledger或人生事件预测。",
+      "topics": [
+        "七政",
+        "宫主",
+        "恩用",
+        "口径"
+      ]
+    },
+    {
+      "id": "qizheng-QZ03",
+      "source_id": "qizheng-project-rules",
+      "system": "qizheng",
+      "status": "usable",
+      "profile": "qizheng-degree-relations-v1",
+      "content_kind": "project_paraphrase",
+      "title": "QZ03",
+      "summary": "物理计算与传统规则分别版本化",
+      "limitations": "仅限项目结构释义；不授权古籍逐字引用、个人ledger或人生事件预测。",
+      "topics": [
+        "七政",
+        "宫主",
+        "恩用",
+        "口径"
+      ]
+    },
+    {
+      "id": "qizheng-QZ04",
+      "source_id": "qizheng-project-rules",
+      "system": "qizheng",
+      "status": "usable",
+      "profile": "qizheng-degree-relations-v1",
+      "content_kind": "project_paraphrase",
+      "title": "QZ04",
+      "summary": "缺条件及来源未核时保留具体推演边界",
+      "limitations": "仅限项目结构释义；不授权古籍逐字引用、个人ledger或人生事件预测。",
+      "topics": [
+        "七政",
+        "宫主",
+        "恩用",
+        "口径"
+      ]
+    },
+    {
+      "id": "qizheng-project-ledger-quarantine",
+      "source_id": "qizheng-project-rules",
+      "system": "qizheng",
+      "status": "quarantined",
+      "profile": "qizheng-personal-ledger",
+      "content_kind": "project_paraphrase",
+      "title": "规则说明不授权个人ledger",
+      "summary": "QZ01–QZ04是条件结构说明，不授权个人事件断语或完整来源摘录。",
+      "limitations": "仅通过独立有条件规则模块输出；不能将文档摘录洗成个人ledger依据。",
+      "topics": [
+        "七政",
+        "ledger",
+        "来源"
+      ],
+      "reason": "Project guidance is not an authorized personal-reading rule packet.",
+      "source_span": {
+        "start_line": 1,
+        "end_line": 58
+      }
+    }
+  ],
+  "quotation_packets": [
+    {
+      "manifest_path": "references/vendor/wikisource-ditiansui/quotation-review.json",
+      "sha256": "ff74c943b655de2f6d735d48a4f339c35705903c9f67ca3da2845a6aa32d0603"
+    }
+  ]
+}

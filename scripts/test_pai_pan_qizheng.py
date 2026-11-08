@@ -46,14 +46,17 @@ def jd_of(iso_utc):
 
 
 class AstronomyTests(unittest.TestCase):
-    def test_sun_matches_bazi_engine(self):
-        """太阳黄经与已验证的 pai_pan_bazi 同式实现一致。"""
-        sys.path.insert(0, HERE)
+    def test_separate_solar_models_preserve_regressions(self):
+        """七政旧模型保持原值；八字新级数对照既有黄金值，不再要求同式相等。"""
         import pai_pan_bazi as b
-        for iso in ("1990-05-15T06:00:00Z", "2000-01-01T12:00:00Z", "2024-01-11T11:57:00Z"):
+        cases = (("A", "1990-05-15T06:00:00Z", 54.15992048602038),
+                 ("B", "2000-01-01T12:00:00Z", 280.37330822671),
+                 ("C", "2024-01-11T11:57:00Z", 290.7425510553476))
+        for key, iso, legacy in cases:
             jd = jd_of(iso)
             jd_tt = jd + b.delta_t_seconds(2000 + (jd - 2451545.0) / 365.242189) / 86400.0
-            self.assertAlmostEqual(q.sun_apparent_longitude(jd_tt), b.sun_apparent_longitude(jd_tt), places=6)
+            self.assertAlmostEqual(q.sun_apparent_longitude(jd_tt), legacy, places=6)
+            self.assertAlmostEqual(b.sun_apparent_longitude(jd_tt), GOLDEN[key]["sun"], delta=0.0001)
 
     def test_golden_sun_moon(self):
         """日月黄经对 stem-branch（容差 0.05°）。"""
@@ -96,8 +99,8 @@ class AstronomyTests(unittest.TestCase):
         jd = q.jd_from_utc(datetime(1975, 3, 13, 16, 0, tzinfo=timezone.utc))
         self.assertAlmostEqual(q.purple_qi_longitude(jd), 230.5, places=4)
 
-    def test_ascendant_golden(self):
-        """真升点（tropical）对 stem-branch（0.05°；含均时差项，允许小差）。"""
+    def test_legacy_ascendant_regression(self):
+        """旧错误公式回归；这些同源值不是物理升点准确性证据。"""
         cases = (("A", "1990-05-15T06:00:00Z", 31.23, 121.47), ("B", "2000-01-01T12:00:00Z", 39.90, 116.40))
         for key, iso, lat, lon in cases:
             jd = jd_of(iso)
@@ -105,7 +108,7 @@ class AstronomyTests(unittest.TestCase):
             eot = q.equation_of_time_minutes(jd)
             # 同一升度公式；残差来自 GMST 公式变体（IAU82 vs 新式），实测 ≤0.21°
             self.assertAlmostEqual(
-                q.ascendant_tropical(jd, jd_tt, lat, lon, 0.0), GOLDEN[key]["asc_tropical"],
+                q.legacy_ascendant_tropical(jd, jd_tt, lat, lon, 0.0), GOLDEN[key]["asc_tropical"],
                 delta=0.35, msg=key)
             self.assertLess(abs(eot), 20.0, "均时差应在意料范围内")
 
@@ -134,7 +137,7 @@ class MansionPalaceTests(unittest.TestCase):
         self.assertEqual(q.palace_of(359.0), "巳")
 
     def test_sidereal_conversion_j2000(self):
-        """J2000 时刻 ayanamsa = 201.2983°（Spica 锚点）。"""
+        """legacy-v1 回归：201.2983° 赤经误作黄经，不是物理角宿一黄经。"""
         self.assertAlmostEqual(q.spica_ayanamsa(2451545.0), 201.2983, places=4)
 
 
@@ -181,7 +184,7 @@ class EndToEndTests(unittest.TestCase):
             self.assertEqual(got, expect[name], msg=f"{name}宿起点 {start}°")
 
     def test_palace_boundaries_twelve_ci(self):
-        """十二次宫界边界点（引擎口径 3，宿界继承 Hipparcos 表）。"""
+        """十二次宫界边界点（引擎口径 3，未校准的近似宿界表）。"""
         cases = ((0.0, "辰"), (27.9, "辰"), (28.0, "卯"), (44.4, "卯"), (44.5, "寅"),
                  (73.4, "寅"), (73.5, "丑"), (106.9, "丑"), (107.0, "子"),
                  (128.9, "子"), (129.0, "亥"), (170.4, "亥"), (170.5, "戌"),

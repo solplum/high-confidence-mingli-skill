@@ -1,0 +1,1206 @@
+{
+  "schema_version": 1,
+  "engine": "iztro 2.6.1 / vendored wrapper",
+  "input": {
+    "solar": "1998-06-30",
+    "shichenIndex": 0,
+    "gender": "female",
+    "ageYear": 2026,
+    "birthYear": 1998
+  },
+  "lunar": {
+    "lunarYear": 1998,
+    "lunarMonth": 5,
+    "lunarDay": 7,
+    "yearStem": 4,
+    "yearBranch": 2,
+    "isLeapMonth": true
+  },
+  "chart": {
+    "birthInfo": {
+      "year": 1998,
+      "month": 6,
+      "day": 30,
+      "hour": 0,
+      "gender": "female"
+    },
+    "lunarInfo": {
+      "lunarYear": 1998,
+      "lunarMonth": 5,
+      "lunarDay": 7,
+      "yearStem": 4,
+      "yearBranch": 2,
+      "isLeapMonth": true
+    },
+    "mingGongBranch": 6,
+    "shenGongBranch": 6,
+    "wuxingJu": 6,
+    "wuxingJuName": "火六局",
+    "ziweiPos": 10,
+    "palaces": [
+      {
+        "branch": 2,
+        "stem": 0,
+        "name": "财帛",
+        "stars": [
+          {
+            "name": "廉贞",
+            "type": "major",
+            "brightness": "bright",
+            "brightnessRaw": "庙",
+            "siHua": ""
+          },
+          {
+            "name": "三台",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "封诰",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          46,
+          55
+        ],
+        "isMingGong": false,
+        "isShenGong": false,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 8,
+        "isEmpty": false
+      },
+      {
+        "branch": 3,
+        "stem": 1,
+        "name": "子女",
+        "stars": [
+          {
+            "name": "铃星",
+            "type": "sha",
+            "brightnessRaw": "利"
+          },
+          {
+            "name": "咸池",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "恩光",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天官",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天福",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天空",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          36,
+          45
+        ],
+        "isMingGong": false,
+        "isShenGong": false,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 9,
+        "isEmpty": true,
+        "borrowedFromBranch": 9,
+        "borrowedFromName": "田宅",
+        "borrowedStars": [
+          "天机",
+          "巨门"
+        ]
+      },
+      {
+        "branch": 4,
+        "stem": 2,
+        "name": "夫妻",
+        "stars": [
+          {
+            "name": "破军",
+            "type": "major",
+            "brightness": "bright",
+            "brightnessRaw": "旺",
+            "siHua": ""
+          },
+          {
+            "name": "文曲",
+            "type": "lucky",
+            "brightnessRaw": "得",
+            "siHua": ""
+          },
+          {
+            "name": "陀罗",
+            "type": "sha",
+            "brightnessRaw": "庙"
+          },
+          {
+            "name": "天哭",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          26,
+          35
+        ],
+        "isMingGong": false,
+        "isShenGong": false,
+        "isCurrentDaXian": true,
+        "oppositeBranch": 10,
+        "isEmpty": false
+      },
+      {
+        "branch": 5,
+        "stem": 3,
+        "name": "兄弟",
+        "stars": [
+          {
+            "name": "天同",
+            "type": "major",
+            "brightness": "bright",
+            "brightnessRaw": "庙",
+            "siHua": ""
+          },
+          {
+            "name": "禄存",
+            "type": "lucky",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天姚",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天巫",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "孤辰",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          16,
+          25
+        ],
+        "isMingGong": false,
+        "isShenGong": false,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 11,
+        "isEmpty": false
+      },
+      {
+        "branch": 6,
+        "stem": 4,
+        "name": "命宫",
+        "stars": [
+          {
+            "name": "武曲",
+            "type": "major",
+            "brightness": "bright",
+            "brightnessRaw": "旺",
+            "siHua": ""
+          },
+          {
+            "name": "天府",
+            "type": "major",
+            "brightness": "bright",
+            "brightnessRaw": "旺",
+            "siHua": ""
+          },
+          {
+            "name": "右弼",
+            "type": "lucky",
+            "brightnessRaw": null,
+            "siHua": "科"
+          },
+          {
+            "name": "擎羊",
+            "type": "sha",
+            "brightnessRaw": "陷"
+          },
+          {
+            "name": "龙池",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "台辅",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天厨",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "阴煞",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          6,
+          15
+        ],
+        "isMingGong": true,
+        "isShenGong": true,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 0,
+        "isEmpty": false
+      },
+      {
+        "branch": 7,
+        "stem": 5,
+        "name": "父母",
+        "stars": [
+          {
+            "name": "太阳",
+            "type": "major",
+            "brightness": "normal",
+            "brightnessRaw": "得",
+            "siHua": ""
+          },
+          {
+            "name": "太阴",
+            "type": "major",
+            "brightness": "dim",
+            "brightnessRaw": "不",
+            "siHua": "权"
+          },
+          {
+            "name": "天钺",
+            "type": "lucky",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天喜",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天月",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "月德",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          116,
+          125
+        ],
+        "isMingGong": false,
+        "isShenGong": false,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 1,
+        "isEmpty": false
+      },
+      {
+        "branch": 8,
+        "stem": 6,
+        "name": "福德",
+        "stars": [
+          {
+            "name": "贪狼",
+            "type": "major",
+            "brightness": "normal",
+            "brightnessRaw": "平",
+            "siHua": "禄"
+          },
+          {
+            "name": "左辅",
+            "type": "lucky",
+            "brightnessRaw": null,
+            "siHua": ""
+          },
+          {
+            "name": "天马",
+            "type": "lucky",
+            "brightnessRaw": null
+          },
+          {
+            "name": "凤阁",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天才",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天寿",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "旬空",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天虚",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "年解",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          106,
+          115
+        ],
+        "isMingGong": false,
+        "isShenGong": false,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 2,
+        "isEmpty": false
+      },
+      {
+        "branch": 9,
+        "stem": 7,
+        "name": "田宅",
+        "stars": [
+          {
+            "name": "天机",
+            "type": "major",
+            "brightness": "bright",
+            "brightnessRaw": "旺",
+            "siHua": "忌"
+          },
+          {
+            "name": "巨门",
+            "type": "major",
+            "brightness": "bright",
+            "brightnessRaw": "庙",
+            "siHua": ""
+          },
+          {
+            "name": "天贵",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "破碎",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          96,
+          105
+        ],
+        "isMingGong": false,
+        "isShenGong": false,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 3,
+        "isEmpty": false
+      },
+      {
+        "branch": 10,
+        "stem": 8,
+        "name": "官禄",
+        "stars": [
+          {
+            "name": "紫微",
+            "type": "major",
+            "brightness": "normal",
+            "brightnessRaw": "得",
+            "siHua": ""
+          },
+          {
+            "name": "天相",
+            "type": "major",
+            "brightness": "normal",
+            "brightnessRaw": "得",
+            "siHua": ""
+          },
+          {
+            "name": "文昌",
+            "type": "lucky",
+            "brightnessRaw": "陷",
+            "siHua": ""
+          },
+          {
+            "name": "华盖",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "蜚廉",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          86,
+          95
+        ],
+        "isMingGong": false,
+        "isShenGong": false,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 4,
+        "isEmpty": false
+      },
+      {
+        "branch": 11,
+        "stem": 9,
+        "name": "仆役",
+        "stars": [
+          {
+            "name": "天梁",
+            "type": "major",
+            "brightness": "dim",
+            "brightnessRaw": "陷",
+            "siHua": ""
+          },
+          {
+            "name": "地空",
+            "type": "sha",
+            "brightnessRaw": null
+          },
+          {
+            "name": "地劫",
+            "type": "sha",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天德",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天伤",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          76,
+          85
+        ],
+        "isMingGong": false,
+        "isShenGong": false,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 5,
+        "isEmpty": false
+      },
+      {
+        "branch": 0,
+        "stem": 0,
+        "name": "迁移",
+        "stars": [
+          {
+            "name": "七杀",
+            "type": "major",
+            "brightness": "bright",
+            "brightnessRaw": "旺",
+            "siHua": ""
+          },
+          {
+            "name": "解神",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "八座",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "截路",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          66,
+          75
+        ],
+        "isMingGong": false,
+        "isShenGong": false,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 6,
+        "isEmpty": false
+      },
+      {
+        "branch": 1,
+        "stem": 1,
+        "name": "疾厄",
+        "stars": [
+          {
+            "name": "天魁",
+            "type": "lucky",
+            "brightnessRaw": null
+          },
+          {
+            "name": "火星",
+            "type": "sha",
+            "brightnessRaw": "得"
+          },
+          {
+            "name": "红鸾",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "空亡",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "寡宿",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天刑",
+            "type": "minor",
+            "brightnessRaw": null
+          },
+          {
+            "name": "天使",
+            "type": "minor",
+            "brightnessRaw": null
+          }
+        ],
+        "daXianAge": [
+          56,
+          65
+        ],
+        "isMingGong": false,
+        "isShenGong": false,
+        "isCurrentDaXian": false,
+        "oppositeBranch": 7,
+        "isEmpty": true,
+        "borrowedFromBranch": 7,
+        "borrowedFromName": "父母",
+        "borrowedStars": [
+          "太阳",
+          "太阴"
+        ]
+      }
+    ],
+    "daXians": [
+      {
+        "startAge": 6,
+        "endAge": 15,
+        "palaceBranch": 6,
+        "palaceName": "命宫"
+      },
+      {
+        "startAge": 16,
+        "endAge": 25,
+        "palaceBranch": 5,
+        "palaceName": "兄弟"
+      },
+      {
+        "startAge": 26,
+        "endAge": 35,
+        "palaceBranch": 4,
+        "palaceName": "夫妻"
+      },
+      {
+        "startAge": 36,
+        "endAge": 45,
+        "palaceBranch": 3,
+        "palaceName": "子女"
+      },
+      {
+        "startAge": 46,
+        "endAge": 55,
+        "palaceBranch": 2,
+        "palaceName": "财帛"
+      },
+      {
+        "startAge": 56,
+        "endAge": 65,
+        "palaceBranch": 1,
+        "palaceName": "疾厄"
+      },
+      {
+        "startAge": 66,
+        "endAge": 75,
+        "palaceBranch": 0,
+        "palaceName": "迁移"
+      },
+      {
+        "startAge": 76,
+        "endAge": 85,
+        "palaceBranch": 11,
+        "palaceName": "仆役"
+      },
+      {
+        "startAge": 86,
+        "endAge": 95,
+        "palaceBranch": 10,
+        "palaceName": "官禄"
+      },
+      {
+        "startAge": 96,
+        "endAge": 105,
+        "palaceBranch": 9,
+        "palaceName": "田宅"
+      },
+      {
+        "startAge": 106,
+        "endAge": 115,
+        "palaceBranch": 8,
+        "palaceName": "福德"
+      },
+      {
+        "startAge": 116,
+        "endAge": 125,
+        "palaceBranch": 7,
+        "palaceName": "父母"
+      }
+    ],
+    "currentAge": 29,
+    "currentDaXianIndex": 2
+  },
+  "rule_output": {
+    "kind": "implementation_rule_matches",
+    "domain_reading": {
+      "version": "ziwei-domain-v1",
+      "status": "conditional",
+      "scope": "以下是现代紫微资料支持的传统主题推演，不是已经证实的个人特征；现实经历可以直接否定它。只用固定本命星位，不混入宫干自化、大限或流年。",
+      "domains": [
+        {
+          "domain": "命宫",
+          "palace": "命宫（午）",
+          "status": "conditional",
+          "facts": [
+            {
+              "name": "武曲",
+              "brightness": "旺",
+              "natal_transform": "",
+              "path": "chart.palaces[4].stars[0]"
+            },
+            {
+              "name": "天府",
+              "brightness": "旺",
+              "natal_transform": "",
+              "path": "chart.palaces[4].stars[1]"
+            },
+            {
+              "name": "右弼",
+              "brightness": null,
+              "natal_transform": "科",
+              "path": "chart.palaces[4].stars[2]"
+            },
+            {
+              "name": "擎羊",
+              "brightness": "陷",
+              "natal_transform": null,
+              "path": "chart.palaces[4].stars[3]"
+            },
+            {
+              "name": "龙池",
+              "brightness": null,
+              "natal_transform": null,
+              "path": "chart.palaces[4].stars[4]"
+            },
+            {
+              "name": "台辅",
+              "brightness": null,
+              "natal_transform": null,
+              "path": "chart.palaces[4].stars[5]"
+            },
+            {
+              "name": "天厨",
+              "brightness": null,
+              "natal_transform": null,
+              "path": "chart.palaces[4].stars[6]"
+            },
+            {
+              "name": "阴煞",
+              "brightness": null,
+              "natal_transform": null,
+              "path": "chart.palaces[4].stars[7]"
+            }
+          ],
+          "interpretation": "这里讨论的是自身如何选择和定方向。武曲、天府落在本宫，因此可把“直接行动与落实任务；务实安排与守住范围”作为这一领域的观察假设。同宫两颗主星的主题须并列，不能只取喜欢的一面，也没有把两者量化相加。",
+          "brightness_checks": [
+            "武曲亮度旺：按这份现代说明可优先讨论主动、直接表达主题。",
+            "天府亮度旺：按这份现代说明可优先讨论主动、直接表达主题。"
+          ],
+          "transform_check": "本宫本命四化为右弼化科，仅保留事实；尚无本版已核读的四化组合规则，不能据此把主题升级为结果。",
+          "counterchecks": [
+            "执行前是否充分比较方向，是否听取了不同意见？",
+            "保留余地是否变成了回避必须承担的事情？"
+          ],
+          "missing_conditions": [
+            "缺少本人实际选择、资源条件和他人反馈，不能确认主题适用于本人。",
+            "辅煞与完整组合权重尚未建模，不以没有触发旧格局限制充当排除反证。"
+          ],
+          "citations": [
+            {
+              "record_id": "ziwei-domain-star-3",
+              "source_label": "Sylar Long / iztro-docs 现代说明",
+              "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+              "locator": "references/vendor/iztro-docs/learn/major-star.md / 武曲星特性；lines 290-294",
+              "attribution_kind": "project_paraphrase",
+              "url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/major-star.md",
+              "license_path": "references/vendor/iztro-docs/LICENSE"
+            },
+            {
+              "record_id": "ziwei-domain-star-6",
+              "source_label": "Sylar Long / iztro-docs 现代说明",
+              "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+              "locator": "references/vendor/iztro-docs/learn/major-star.md / 天府星特性；lines 543-547",
+              "attribution_kind": "project_paraphrase",
+              "url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/major-star.md",
+              "license_path": "references/vendor/iztro-docs/LICENSE"
+            }
+          ],
+          "theme": "直接行动与落实任务；务实安排与守住范围"
+        },
+        {
+          "domain": "财帛",
+          "palace": "财帛宫（寅）",
+          "status": "conditional",
+          "facts": [
+            {
+              "name": "廉贞",
+              "brightness": "庙",
+              "natal_transform": "",
+              "path": "chart.palaces[0].stars[0]"
+            },
+            {
+              "name": "三台",
+              "brightness": null,
+              "natal_transform": null,
+              "path": "chart.palaces[0].stars[1]"
+            },
+            {
+              "name": "封诰",
+              "brightness": null,
+              "natal_transform": null,
+              "path": "chart.palaces[0].stars[2]"
+            }
+          ],
+          "interpretation": "这里讨论的是怎样分配与使用资源。廉贞落在本宫，因此可把“认真要求与自我保护”作为这一领域的观察假设。",
+          "brightness_checks": [
+            "廉贞亮度庙：按这份现代说明可优先讨论主动、直接表达主题。"
+          ],
+          "transform_check": "本宫无本命四化标记，不等于此领域没有助力或阻力。",
+          "counterchecks": [
+            "高标准是否有资源支持，是否妨碍必要的沟通？"
+          ],
+          "missing_conditions": [
+            "缺少本人实际选择、资源条件和他人反馈，不能确认主题适用于本人。",
+            "辅煞与完整组合权重尚未建模，不以没有触发旧格局限制充当排除反证。"
+          ],
+          "citations": [
+            {
+              "record_id": "ziwei-domain-star-5",
+              "source_label": "Sylar Long / iztro-docs 现代说明",
+              "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+              "locator": "references/vendor/iztro-docs/learn/major-star.md / 廉贞星特性；lines 452-460",
+              "attribution_kind": "project_paraphrase",
+              "url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/major-star.md",
+              "license_path": "references/vendor/iztro-docs/LICENSE"
+            }
+          ],
+          "theme": "认真要求与自我保护"
+        },
+        {
+          "domain": "官禄",
+          "palace": "官禄宫（戌）",
+          "status": "conditional",
+          "facts": [
+            {
+              "name": "紫微",
+              "brightness": "得",
+              "natal_transform": "",
+              "path": "chart.palaces[8].stars[0]"
+            },
+            {
+              "name": "天相",
+              "brightness": "得",
+              "natal_transform": "",
+              "path": "chart.palaces[8].stars[1]"
+            },
+            {
+              "name": "文昌",
+              "brightness": "陷",
+              "natal_transform": "",
+              "path": "chart.palaces[8].stars[2]"
+            },
+            {
+              "name": "华盖",
+              "brightness": null,
+              "natal_transform": null,
+              "path": "chart.palaces[8].stars[3]"
+            },
+            {
+              "name": "蜚廉",
+              "brightness": null,
+              "natal_transform": null,
+              "path": "chart.palaces[8].stars[4]"
+            }
+          ],
+          "interpretation": "这里讨论的是怎样把事情做成。紫微、天相落在本宫，因此可把“统筹目标与调配支持；协调关系与组织安排”作为这一领域的观察假设。同宫两颗主星的主题须并列，不能只取喜欢的一面，也没有把两者量化相加。",
+          "brightness_checks": [
+            "紫微亮度得：属于中间等级，本版不进一步强分表达强弱。",
+            "天相亮度得：属于中间等级，本版不进一步强分表达强弱。"
+          ],
+          "transform_check": "本宫无本命四化标记，不等于此领域没有助力或阻力。",
+          "counterchecks": [
+            "目标是否有相应的知识、权限和资源支撑？",
+            "协调是否解决实际问题，还是只让局面看起来平稳？"
+          ],
+          "missing_conditions": [
+            "缺少本人实际选择、资源条件和他人反馈，不能确认主题适用于本人。",
+            "辅煞与完整组合权重尚未建模，不以没有触发旧格局限制充当排除反证。"
+          ],
+          "citations": [
+            {
+              "record_id": "ziwei-domain-star-0",
+              "source_label": "Sylar Long / iztro-docs 现代说明",
+              "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+              "locator": "references/vendor/iztro-docs/learn/major-star.md / 紫微星特性；lines 66-68",
+              "attribution_kind": "project_paraphrase",
+              "url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/major-star.md",
+              "license_path": "references/vendor/iztro-docs/LICENSE"
+            },
+            {
+              "record_id": "ziwei-domain-star-10",
+              "source_label": "Sylar Long / iztro-docs 现代说明",
+              "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+              "locator": "references/vendor/iztro-docs/learn/major-star.md / 天相星特性；lines 757-761",
+              "attribution_kind": "project_paraphrase",
+              "url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/major-star.md",
+              "license_path": "references/vendor/iztro-docs/LICENSE"
+            }
+          ],
+          "theme": "统筹目标与调配支持；协调关系与组织安排"
+        },
+        {
+          "domain": "迁移",
+          "palace": "迁移宫（子）",
+          "status": "conditional",
+          "facts": [
+            {
+              "name": "七杀",
+              "brightness": "旺",
+              "natal_transform": "",
+              "path": "chart.palaces[10].stars[0]"
+            },
+            {
+              "name": "解神",
+              "brightness": null,
+              "natal_transform": null,
+              "path": "chart.palaces[10].stars[1]"
+            },
+            {
+              "name": "八座",
+              "brightness": null,
+              "natal_transform": null,
+              "path": "chart.palaces[10].stars[2]"
+            },
+            {
+              "name": "截路",
+              "brightness": null,
+              "natal_transform": null,
+              "path": "chart.palaces[10].stars[3]"
+            }
+          ],
+          "interpretation": "这里讨论的是怎样面对外部环境与合作对象。七杀落在本宫，因此可把“坚定推进与持续执行”作为这一领域的观察假设。",
+          "brightness_checks": [
+            "七杀亮度旺：按这份现代说明可优先讨论主动、直接表达主题。"
+          ],
+          "transform_check": "本宫无本命四化标记，不等于此领域没有助力或阻力。",
+          "counterchecks": [
+            "坚持之前是否充分筹划，遇到反证是否愿意修正？"
+          ],
+          "missing_conditions": [
+            "缺少本人实际选择、资源条件和他人反馈，不能确认主题适用于本人。",
+            "辅煞与完整组合权重尚未建模，不以没有触发旧格局限制充当排除反证。"
+          ],
+          "citations": [
+            {
+              "record_id": "ziwei-domain-star-12",
+              "source_label": "Sylar Long / iztro-docs 现代说明",
+              "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+              "locator": "references/vendor/iztro-docs/learn/major-star.md / 七杀星特性；lines 865-865",
+              "attribution_kind": "project_paraphrase",
+              "url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/major-star.md",
+              "license_path": "references/vendor/iztro-docs/LICENSE"
+            }
+          ],
+          "theme": "坚定推进与持续执行"
+        }
+      ],
+      "relations": [
+        {
+          "title": "方向与资源",
+          "status": "conditional",
+          "reasoning": "命宫（午）讨论“直接行动与落实任务；务实安排与守住范围”，财帛宫（寅）讨论“认真要求与自我保护”。二者分别落在命宫与财帛，不是同一件事的重复证明。要检验的是：前者的做法能否给后者提供条件，还是在时间、资源或沟通上互相牵制；不能从任一宫直接推出另一领域的成绩。",
+          "reality_check": "请分别找一个支持和一个不支持上述两宫主题的实际例子；若差别只来自岗位要求、预算或熟悉程度，应优先采用这些现实解释。"
+        },
+        {
+          "title": "资源与落实",
+          "status": "conditional",
+          "reasoning": "财帛宫（寅）讨论“认真要求与自我保护”，官禄宫（戌）讨论“统筹目标与调配支持；协调关系与组织安排”。二者分别落在财帛与官禄，不是同一件事的重复证明。要检验的是：前者的做法能否给后者提供条件，还是在时间、资源或沟通上互相牵制；不能从任一宫直接推出另一领域的成绩。",
+          "reality_check": "请分别找一个支持和一个不支持上述两宫主题的实际例子；若差别只来自岗位要求、预算或熟悉程度，应优先采用这些现实解释。"
+        },
+        {
+          "title": "自身与对外",
+          "status": "conditional",
+          "reasoning": "命宫（午）讨论“直接行动与落实任务；务实安排与守住范围”，迁移宫（子）讨论“坚定推进与持续执行”。二者分别落在命宫与迁移，不是同一件事的重复证明。要检验的是：前者的做法能否给后者提供条件，还是在时间、资源或沟通上互相牵制；不能从任一宫直接推出另一领域的成绩。",
+          "reality_check": "请分别找一个支持和一个不支持上述两宫主题的实际例子；若差别只来自岗位要求、预算或熟悉程度，应优先采用这些现实解释。"
+        }
+      ],
+      "clusters": [
+        {
+          "name": "统筹、执行与要求",
+          "status": "conditional",
+          "placements": [
+            {
+              "star": "紫微",
+              "palace": "官禄宫（戌）",
+              "domain": "官禄",
+              "fact": "chart.palaces[8].stars[0]"
+            },
+            {
+              "star": "武曲",
+              "palace": "命宫（午）",
+              "domain": "命宫",
+              "fact": "chart.palaces[4].stars[0]"
+            },
+            {
+              "star": "廉贞",
+              "palace": "财帛宫（寅）",
+              "domain": "财帛",
+              "fact": "chart.palaces[0].stars[0]"
+            }
+          ],
+          "reasoning": "紫微在官禄宫（戌），武曲在命宫（午），廉贞在财帛宫（寅）。把三处主题连起来，需要核对：统筹的目标是否给执行留足资源，而认真的标准是在帮助验收，还是让执行反复返工？这是把已登记的单星讨论主题按实际宫位连接的项目推演，不是新认定的传统格局，也不证明本人具有这些特点。",
+          "counterevidence": "宫位只提供讨论位置，不能证明现实因果；若实际决定主要受外部制度或资源限制，或实际做法与主题相反，就应撤回这组解释。",
+          "missing_conditions": "未建模辅煞、夹宫与完整同宫组合，不能断成格，也不能据此预测成败。",
+          "citations": [
+            {
+              "record_id": "ziwei-domain-star-0",
+              "source_label": "Sylar Long / iztro-docs 现代说明",
+              "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+              "locator": "references/vendor/iztro-docs/learn/major-star.md / 紫微星特性；lines 66-68",
+              "attribution_kind": "project_paraphrase",
+              "url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/major-star.md",
+              "license_path": "references/vendor/iztro-docs/LICENSE"
+            },
+            {
+              "record_id": "ziwei-domain-star-3",
+              "source_label": "Sylar Long / iztro-docs 现代说明",
+              "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+              "locator": "references/vendor/iztro-docs/learn/major-star.md / 武曲星特性；lines 290-294",
+              "attribution_kind": "project_paraphrase",
+              "url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/major-star.md",
+              "license_path": "references/vendor/iztro-docs/LICENSE"
+            },
+            {
+              "record_id": "ziwei-domain-star-5",
+              "source_label": "Sylar Long / iztro-docs 现代说明",
+              "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+              "locator": "references/vendor/iztro-docs/learn/major-star.md / 廉贞星特性；lines 452-460",
+              "attribution_kind": "project_paraphrase",
+              "url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/major-star.md",
+              "license_path": "references/vendor/iztro-docs/LICENSE"
+            }
+          ]
+        },
+        {
+          "name": "探索、坚持与重建",
+          "status": "withheld",
+          "placements": [
+            {
+              "star": "贪狼",
+              "palace": null,
+              "domain": null,
+              "fact": null
+            },
+            {
+              "star": "七杀",
+              "palace": "迁移宫（子）",
+              "domain": "迁移",
+              "fact": "chart.palaces[10].stars[0]"
+            },
+            {
+              "star": "破军",
+              "palace": null,
+              "domain": null,
+              "fact": null
+            }
+          ],
+          "reasoning": "四宫中未齐备：贪狼、破军。不能因部分星曜出现就套用整组主题。",
+          "counterevidence": "宫位只提供讨论位置，不能证明现实因果；若实际决定主要受外部制度或资源限制，或实际做法与主题相反，就应撤回这组解释。",
+          "missing_conditions": "未建模辅煞、夹宫与完整同宫组合，不能断成格，也不能据此预测成败。",
+          "citations": [
+            {
+              "record_id": "ziwei-domain-star-8",
+              "source_label": "Sylar Long / iztro-docs 现代说明",
+              "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+              "locator": "references/vendor/iztro-docs/learn/major-star.md / 贪狼星特性；lines 649-651",
+              "attribution_kind": "project_paraphrase",
+              "url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/major-star.md",
+              "license_path": "references/vendor/iztro-docs/LICENSE"
+            },
+            {
+              "record_id": "ziwei-domain-star-12",
+              "source_label": "Sylar Long / iztro-docs 现代说明",
+              "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+              "locator": "references/vendor/iztro-docs/learn/major-star.md / 七杀星特性；lines 865-865",
+              "attribution_kind": "project_paraphrase",
+              "url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/major-star.md",
+              "license_path": "references/vendor/iztro-docs/LICENSE"
+            },
+            {
+              "record_id": "ziwei-domain-star-13",
+              "source_label": "Sylar Long / iztro-docs 现代说明",
+              "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+              "locator": "references/vendor/iztro-docs/learn/major-star.md / 破军星特性；lines 920-920",
+              "attribution_kind": "project_paraphrase",
+              "url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/major-star.md",
+              "license_path": "references/vendor/iztro-docs/LICENSE"
+            }
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "record_id": "ziwei-domain-domains",
+          "source_label": "Sylar Long / iztro-docs 现代说明",
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+          "locator": "references/vendor/iztro-docs/learn/palace.md / 命宫/财帛宫/迁移宫/官禄宫；lines 55-95",
+          "attribution_kind": "project_paraphrase",
+          "url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/palace.md",
+          "license_path": "references/vendor/iztro-docs/LICENSE"
+        },
+        {
+          "record_id": "ziwei-domain-brightness",
+          "source_label": "Sylar Long / iztro-docs 现代说明",
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789",
+          "locator": "references/vendor/iztro-docs/learn/star.md / 星曜的亮度；lines 118-130",
+          "attribution_kind": "project_paraphrase",
+          "url": "https://github.com/SylarLong/iztro-docs/blob/1beef80029cd3f1a40b769d3b1c911004ecb9789/learn/star.md",
+          "license_path": "references/vendor/iztro-docs/LICENSE"
+        }
+      ],
+      "conclusion": "本次能交付的是四个领域各自的观察角度及相互限制，不是完整人生详批。没有计算事件发生时间、收益、事故概率，也没有由盘面反推过去经历。"
+    },
+    "scope": "仅为本仓实现的星曜组合匹配；不证明古籍原文、学派共识或现实预测能力。不能据此判断健康、事故、财富、职业或人格。",
+    "source": "scripts/pai_pan_ziwei/vendor/patterns.ts#detectPatterns",
+    "source_status": "implementation_attribution_only; classical_citation_unverified",
+    "terminology": "三方四正指命宫及其地支偏移 +4、+8、+6 的宫位；四煞指擎羊、陀罗、火星、铃星。",
+    "patterns": [
+      {
+        "name": "府相朝垣",
+        "level": "good",
+        "level_meaning": "旧规则内部分类，不是好坏命、风险、概率或置信度评级",
+        "description": "本实现匹配条件：天府坐命三方；天相坐命三方；两星不同宫",
+        "palaces": [
+          "命宫",
+          "官禄"
+        ],
+        "conditions": {
+          "required": [
+            "天府坐命三方",
+            "天相坐命三方",
+            "两星不同宫"
+          ],
+          "bonus": [],
+          "breaking": [
+            "命宫坐煞星"
+          ]
+        },
+        "source": "scripts/pai_pan_ziwei/vendor/patterns.ts#detectPatterns"
+      },
+      {
+        "name": "日月同宫",
+        "level": "good",
+        "level_meaning": "旧规则内部分类，不是好坏命、风险、概率或置信度评级",
+        "description": "本实现匹配条件：太阳太阴同入未宫",
+        "palaces": [
+          "父母"
+        ],
+        "conditions": {
+          "required": [
+            "太阳太阴同入未宫"
+          ],
+          "bonus": [
+            "太阳太阴同在未宫"
+          ],
+          "breaking": []
+        },
+        "source": "scripts/pai_pan_ziwei/vendor/patterns.ts#detectPatterns"
+      },
+      {
+        "name": "廉杀羊",
+        "level": "caution",
+        "level_meaning": "旧规则内部分类，不是好坏命、风险、概率或置信度评级",
+        "description": "本实现匹配条件：廉贞、七杀、擎羊三星会照三方四正",
+        "palaces": [
+          "命宫"
+        ],
+        "conditions": {
+          "required": [
+            "廉贞、七杀、擎羊三星会照三方四正"
+          ],
+          "bonus": [],
+          "breaking": []
+        },
+        "source": "scripts/pai_pan_ziwei/vendor/patterns.ts#detectPatterns"
+      },
+      {
+        "name": "马头带箭",
+        "level": "good",
+        "level_meaning": "旧规则内部分类，不是好坏命、风险、概率或置信度评级",
+        "description": "本实现匹配条件：擎羊于午宫坐命",
+        "palaces": [
+          "命宫"
+        ],
+        "conditions": {
+          "required": [
+            "擎羊于午宫坐命"
+          ],
+          "bonus": [
+            "三方四正有七杀或破军"
+          ],
+          "breaking": []
+        },
+        "source": "scripts/pai_pan_ziwei/vendor/patterns.ts#detectPatterns"
+      }
+    ],
+    "ming_summary": {
+      "stars": [
+        "武曲",
+        "天府"
+      ],
+      "meaning": "仅列命宫实际主星；空宫借星见十二宫 borrowedStars，不能据星名推断个人性格。"
+    }
+  }
+}

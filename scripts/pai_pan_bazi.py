@@ -10,7 +10,8 @@ CLI 接口：--solar/--lunar/--leap/--hour/--shichen/--sex/--place/--deceased-ye
 
 时区一律按北京时间 UTC+8，不用本机本地时区。
 节气用太阳视黄经定气（立春=315°），农历用定气定朔
-（冬至所在月为十一月，无中气之月为闰月）。
+（以北京民用日期归月；冬至月为十一月，冬至月之间有十三个月时，
+首个无中气月置闰）。
 
 算法锚点（供 QA 对照）
 ---------------------
@@ -44,11 +45,13 @@ CLI 接口：--solar/--lunar/--leap/--hour/--shichen/--sex/--place/--deceased-ye
    余 1 天 ≈ 4 个月，余 2 天 ≈ 8 个月。起运前用月柱作小运。
    锚点：1990-05-15 男（阳年）必须顺排。
 
-7. 节气时刻：太阳视黄经（Meeus 简式，等价于寿星定气）。
-   立春=黄经 315°。精确到小时以上，覆盖 1900–2100。禁止写死「立春大约 2 月 3-5 日」。
+7. 节气时刻：太阳视黄经（lunar-javascript 1.7.7 地球级数、章动、光行差移植）。
+   立春=黄经 315°。1901–2100 有日期对照，分钟级外部样本不构成全区间误差保证。
+   TT→UTC 在 1972–2026 使用已知闰秒；其他年份为 UT1+8 近似，未来 UTC 未知。
 
-8. 农历：节气+朔望。冬至所在月为十一月，无中气之月为闰月。
-   朔用 Meeus 定朔（TT），再换北京日期。
+8. 农历：节气+朔望。朔用 Meeus 定朔（TT），再换北京日期。
+   冬至与中气按北京民用日期归月，不按朔、气瞬时时刻排序。
+   冬至月为十一月；相邻冬至月之间有十三个月时，首个无中气月置闰。
    非闰月锚点：1990 农历四月廿一 = 1990-05-15。
 
 9. 神煞：传统通行表。只输出命局命中的条目；
@@ -59,6 +62,8 @@ CLI 接口：--solar/--lunar/--leap/--hour/--shichen/--sex/--place/--deceased-ye
 """
 
 import argparse
+import json
+from pathlib import Path
 import math
 import sys
 from datetime import date, datetime, timedelta, timezone
@@ -414,7 +419,7 @@ LUNAR_MONTH_NAMES = {
 # ---------------------------------------------------------------------------
 
 def delta_t_seconds(year):
-    """TT−UTC 近似秒，Espenak/Meeus 分段多项式，1900–2100 足够到分钟级。"""
+    """TT−UT1 近似秒（不是 TT−UTC）；Espenak/Meeus 分段模型，未来值有不确定性。"""
     y = float(year)
     t = y - 2000.0
     if y < 1920:
@@ -456,11 +461,42 @@ def datetime_utc_from_jd(jd):
     return datetime(1970, 1, 1, tzinfo=timezone.utc) + timedelta(seconds=seconds)
 
 
+# TAI−UTC effective UTC dates, IERS leap-second history (1972 onward).
+# Bulletin C 72 confirms no leap second at end-2026. Do not extrapolate
+# this table as known UTC beyond 2026; the fallback is an estimated UT1.
+_TAI_UTC_STEPS = ((1972, 1, 10), (1972, 7, 11), (1973, 1, 12), (1974, 1, 13), (1975, 1, 14), (1976, 1, 15), (1977, 1, 16), (1978, 1, 17), (1979, 1, 18), (1980, 1, 19), (1981, 7, 20), (1982, 7, 21), (1983, 7, 22), (1985, 7, 23), (1988, 1, 24), (1990, 1, 25), (1991, 1, 26), (1992, 7, 27), (1993, 7, 28), (1994, 7, 29), (1996, 1, 30), (1997, 7, 31), (1999, 1, 32), (2006, 1, 33), (2009, 1, 34), (2012, 7, 35), (2015, 7, 36), (2017, 1, 37))
+_UTC_TABLE_END = datetime(2027, 1, 1, tzinfo=timezone.utc)
+
+
+def _known_tt_minus_utc(jd_tt):
+    """Return known TT−UTC, or None outside the verified UTC interval.
+
+    Python datetime cannot represent 23:59:60. Reject the leap-second
+    interval itself instead of silently assigning it an ordinary UTC time.
+    """
+    if jd_tt >= jd_from_datetime_utc(_UTC_TABLE_END) + 69.184 / 86400.0:
+        return None
+    for y, m, offset in reversed(_TAI_UTC_STEPS):
+        utc_start = jd_from_datetime_utc(datetime(y, m, 1, tzinfo=timezone.utc))
+        tt_start = utc_start + (offset + 32.184) / 86400.0
+        if jd_tt >= tt_start:
+            return offset + 32.184
+        if offset > 10 and tt_start - 1.0 / 86400.0 <= jd_tt < tt_start:
+            raise ValueError("TT 位于 UTC 闰秒内，datetime 无法表示 23:59:60")
+    return None
+
+
 def jd_tt_to_beijing(jd_tt):
-    """力学时 JD → 北京时间 datetime。"""
-    year = 2000.0 + (jd_tt - J2000) / 365.242189
-    utc_jd = jd_tt - delta_t_seconds(year) / 86400.0
-    return datetime_utc_from_jd(utc_jd).astimezone(BJ)
+    """TT JD → UTC+8; outside known UTC use explicitly approximate UT1+8.
+
+    ΔT is TT−UT1, not TT−UTC. Historical pre-1972 UTC drift and unknown
+    future leap seconds are not reconstructed by the polynomial fallback.
+    """
+    offset = _known_tt_minus_utc(jd_tt)
+    if offset is None:
+        year = 2000.0 + (jd_tt - J2000) / 365.242189
+        offset = delta_t_seconds(year)
+    return datetime_utc_from_jd(jd_tt - offset / 86400.0).astimezone(BJ)
 
 
 def beijing(year, month, day, hour=0, minute=0, second=0):
@@ -479,20 +515,37 @@ def jdn(year, month, day):
 # 太阳视黄经 / 二十四节气
 # ---------------------------------------------------------------------------
 
+@lru_cache(maxsize=1)
+def _solar_series():
+    # Ported subset of the already pinned MIT dependency; see astro_data notice.
+    path = Path(__file__).resolve().parent / "astro_data" / "solar_longitude.json"
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
 def sun_apparent_longitude(jd_tt):
-    """太阳视黄经（度）。Meeus AA 第 25 章简式，1900–2100 约 0.01°（十余分钟）以内。"""
-    T = (jd_tt - J2000) / 36525.0
-    L0 = 280.46646 + 36000.76983 * T + 0.0003032 * T * T
-    M = 357.52911 + 35999.05029 * T - 0.0001537 * T * T
-    mr = math.radians(M)
-    C = (
-        (1.914602 - 0.004817 * T - 0.000014 * T * T) * math.sin(mr)
-        + (0.019993 - 0.000101 * T) * math.sin(2.0 * mr)
-        + 0.000289 * math.sin(3.0 * mr)
-    )
-    omega = 125.04 - 1934.136 * T
-    lam = L0 + C - 0.00569 - 0.00478 * math.sin(math.radians(omega))
-    return lam % 360.0
+    """Geocentric apparent ecliptic longitude, date equinox, TT input.
+
+    Earth longitude series + nutation + solar aberration, ported from
+    lunar-javascript 1.7.7 ShouXingUtil. Validation scope: 1901–2100;
+    finite reference samples do not establish an exact-second error bound.
+    """
+    data = _solar_series()
+    t = (jd_tt - J2000) / 36525.0
+    tau = t / 10.0
+    sec_per_rad = 648000.0 / math.pi
+    earth = sum(
+        sum(a * math.cos(b + tau * c) for a, b, c in terms) * tau ** order
+        for order, terms in enumerate(data["earth_longitude"])
+    ) / data["scale"]
+    earth += (-0.0728 - 2.7702 * tau - 1.1019 * tau**2 - 0.0996 * tau**3) / sec_per_rad
+    nutation = sum(
+        (amplitude + (-1.742 * t if i == 0 else 0)) * math.sin(a + b * t + c * t*t)
+        for i, (a, b, c, amplitude, _) in enumerate(data["nutation"])
+    ) / 100.0 / sec_per_rad
+    anomaly = -0.043126 + 628.301955 * t - 0.000002732 * t*t
+    eccentricity = 0.016708634 - 0.000042037 * t - 0.0000001267 * t*t
+    aberration = -20.49552 * (1 + eccentricity * math.cos(anomaly)) / sec_per_rad
+    return math.degrees(earth + nutation + aberration + math.pi) % 360.0
 
 
 def _lon_delta(actual, target):
@@ -656,6 +709,19 @@ def last_new_moon_k_on_or_before(jd_tt):
     return k
 
 
+def _last_new_moon_k_on_or_before_beijing_date(jd_tt):
+    """Calendar months start at midnight of the UTC+8 date of conjunction.
+
+    A new moon later on the same civil day still starts the month containing
+    the supplied solar term; astronomical instant ordering is not sufficient.
+    """
+    target = jd_tt_to_beijing(jd_tt).date()
+    k = last_new_moon_k_on_or_before(jd_tt)
+    while jd_tt_to_beijing(new_moon_jde(k + 1)).date() <= target:
+        k += 1
+    return k
+
+
 # ---------------------------------------------------------------------------
 # 农历（冬至十一月 + 无中气置闰）
 # ---------------------------------------------------------------------------
@@ -679,17 +745,19 @@ def lunar_months_between_dongzhi(dongzhi_year):
     y = int(dongzhi_year)
     dz0 = solar_term_jd(y, 270)
     dz1 = solar_term_jd(y + 1, 270)
-    k0 = last_new_moon_k_on_or_before(dz0)
-    k1 = last_new_moon_k_on_or_before(dz1)
+    k0 = _last_new_moon_k_on_or_before_beijing_date(dz0)
+    k1 = _last_new_moon_k_on_or_before_beijing_date(dz1)
     moons = [new_moon_jde(k) for k in range(k0, k1 + 1)]
     n = len(moons) - 1
-    zhong = _zhongqi_jds(y)
+    # Inclusion is by civil date, not conjunction/term instant (e.g. 2033).
+    moon_dates = [jd_tt_to_beijing(moon).date() for moon in moons]
+    zhong = [jd_tt_to_beijing(z).date() for z in _zhongqi_jds(y)]
     leap_index = None
     if n == 13:
         for i in range(n):
             has = False
             for z in zhong:
-                if moons[i] <= z < moons[i + 1]:
+                if moon_dates[i] <= z < moon_dates[i + 1]:
                     has = True
                     break
             if not has:
@@ -705,8 +773,8 @@ def lunar_months_between_dongzhi(dongzhi_year):
             if month_num == 13:
                 month_num = 1
                 lunar_year = y + 1
-        start_d = jd_tt_to_beijing(moons[i]).date()
-        next_d = jd_tt_to_beijing(moons[i + 1]).date()
+        start_d = moon_dates[i]
+        next_d = moon_dates[i + 1]
         days = (next_d - start_d).days
         months.append(
             {
@@ -777,6 +845,65 @@ def lunar_to_solar(ly, lm, ld, leap=False):
             )
         )
     return found["start"] + timedelta(days=ld - 1)
+
+
+# Warning trigger only, not an ephemeris or future Delta-T error bound.
+_LUNAR_MIDNIGHT_TRIGGER_SECONDS = 120
+
+
+def lunar_calendar_policy(target):
+    """Describe the fixed-offset lunar display, without changing its dates.
+
+    Inspect the conjunctions starting and ending the model's current lunar
+    month, not just events close to the birth instant. A shifted month start
+    can affect day numbering throughout that month. This is not exhaustive
+    leap-month/solstice uncertainty propagation or a historical calendar.
+    """
+    seed = jd_from_datetime_utc(beijing(target.year, target.month, target.day))
+    k = _k_near(seed)
+    while jd_tt_to_beijing(new_moon_jde(k)).date() > target:
+        k -= 1
+    while jd_tt_to_beijing(new_moon_jde(k + 1)).date() <= target:
+        k += 1
+    events = []
+    for role, index in (("month_start", k), ("next_month_start", k + 1)):
+        jde = new_moon_jde(index)
+        dt = jd_tt_to_beijing(jde)
+        seconds = (dt.hour * 3600 + dt.minute * 60 + dt.second
+                   + dt.microsecond / 1e6)
+        distance = min(seconds, 86400 - seconds)
+        known_utc = _known_tt_minus_utc(jde) is not None
+        events.append({
+            "role": role,
+            "lunation_index": index,
+            "jd_tt": jde,
+            "civil_time": dt.isoformat(),
+            "civil_date": dt.date().isoformat(),
+            "civil_timescale": "UTC+08:00" if known_utc else "estimated_UT1+08:00",
+            "utc_conversion_verified": known_utc,
+            "seconds_from_midnight": distance,
+            "near_midnight": distance <= _LUNAR_MIDNIGHT_TRIGGER_SECONDS,
+        })
+    return {
+        "policy_version": 1,
+        "applies_to": "bazi_lunar_conversion_of_chart_clock_date",
+        "chart_clock_date": target.isoformat(),
+        "civil_day_policy": "fixed_plus_08_civil_day_containing_conjunction",
+        "offset_seconds": 28800,
+        "historical_calendar_reconstruction": False,
+        "historical_transition_rules": None,
+        "conjunction_model": "meeus_new_moon_phase_series",
+        "event_timescale": "TT",
+        "civil_conversion": "known_TT_minus_UTC_else_estimated_TT_minus_UT1",
+        "future_UTC_leap_seconds_known": False,
+        "midnight_warning_trigger_seconds": _LUNAR_MIDNIGHT_TRIGGER_SECONDS,
+        "trigger_is_accuracy_bound": False,
+        "assessment_scope": "current_lunar_month_start_and_next_start_only",
+        "excludes": ["historical_calendar_reconstruction", "solstice_and_major_term_uncertainty",
+                     "full_leap_month_uncertainty_propagation", "ziwei_calendar"],
+        "date_override_applied": False,
+        "conjunctions": events,
+    }
 
 
 def format_lunar(ly, lm, ld, leap):
@@ -1069,8 +1196,12 @@ def compute(
     deceased_year=None,
     lunar_display=None,
     now=None,
+    birth_instant=None,
 ):
-    """核心排盘。solar_date 为公历 date；hour/minute 为北京钟表，可空。"""
+    """核心排盘。默认北京钟表；birth_instant 可单独指定节气/起运的真实时刻。
+
+    solar_date/hour/minute 是日时柱用的排盘钟面，不得把太阳钟面当 UTC 瞬间。
+    """
     warnings = []
     clock_known = hour is not None
     shichen_known = bool(shichen)
@@ -1083,7 +1214,12 @@ def compute(
         hour, minute = 12, 0
         warnings.append("时辰未知")
 
-    birth_dt = beijing(solar_date.year, solar_date.month, solar_date.day, hour, minute)
+    if birth_instant is not None:
+        if birth_instant.utcoffset() is None:
+            raise ValueError("birth_instant 必须带明确 UTC 偏移")
+        birth_dt = birth_instant.astimezone(BJ)
+    else:
+        birth_dt = beijing(solar_date.year, solar_date.month, solar_date.day, hour, minute)
 
     year_num, year_gan, year_zhi, lichun = resolve_year_pillar(birth_dt)
     month_gan, month_zhi, jie_name, jie_lon, prev_jie_dt, next_jie_dt = resolve_month_pillar(
@@ -1138,6 +1274,22 @@ def compute(
     qy, qm = qiyun_from_days(qiyun_days)
     dayun_rows = build_dayun(month_gan, month_zhi, forward, qy, qm)
 
+    nearby_terms = [prev_jie_dt, next_jie_dt, lichun]
+    # Assess the actual events used for month/year boundaries and qiyun,
+    # not the birth year: adjacent jie can cross the known-UTC cutoffs.
+    used_term_dates = {dt for dt in nearby_terms if dt is not None}
+    estimated_terms = [
+        "%d年%s" % (year, name)
+        for dt, name, _zhi, lon, year in jie_events_around(birth_dt.year)
+        if dt in used_term_dates and _known_tt_minus_utc(solar_term_jd(year, lon)) is None
+    ]
+    if estimated_terms:
+        warnings.append("所用节气（%s）时标为 UT1+8 近似；其 UTC 转换未由已知闰秒表保证"
+                        % "、".join(estimated_terms))
+    # Only the 12 jie divide pillars; the other 12 principal terms do not.
+    if any(dt is not None and abs((birth_dt - dt).total_seconds()) <= 120 for dt in nearby_terms):
+        warnings.append("距估算节气不足两分钟：边界归属不确定，应以权威历书时刻复核；两分钟不是全区间误差上界")
+
     # 节气交界 / 立春前后：距节或立春 24 小时内
     if next_jie_dt is not None and abs((birth_dt - next_jie_dt).total_seconds()) <= 86400:
         warnings.append("节气交界")
@@ -1171,6 +1323,17 @@ def compute(
         end_year = birth_year
 
     liunian_years = list(range(birth_year, end_year + 1))
+
+    calendar_policy = lunar_calendar_policy(solar_date)
+    calendar_policy["lunar_display_source"] = "caller_provided" if lunar_display is not None else "computed"
+    for event in calendar_policy["conjunctions"]:
+        if event["near_midnight"]:
+            warnings.append(
+                "农历月界朔（%s，%s）距午夜不超过两分钟：历日对天文模型/时标敏感，"
+                "不代表已判错，未自动改日；两分钟是提示窗而非误差上界，请复核权威历书"
+                % (event["civil_time"], event["civil_timescale"]))
+            if not event["utc_conversion_verified"]:
+                warnings.append("该近午夜朔采用 UT1+8 估算，不能据此确定历史 UTC 或未来 UTC 闰秒；日期可能受时标估计影响")
 
     if lunar_display is None:
         try:
@@ -1216,6 +1379,7 @@ def compute(
     return {
         "solar_text": solar_text,
         "lunar_text": lunar_display,
+        "calendar_policy": calendar_policy,
         "shichen_text": shichen_text,
         "sex": sex,
         "place": place,

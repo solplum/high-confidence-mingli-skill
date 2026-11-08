@@ -1,0 +1,483 @@
+{
+  "input": {
+    "solar": "2000-01-01",
+    "hour": "12:00",
+    "lat": 35.0,
+    "lon": 120.0,
+    "profile": "physical-v2",
+    "dut1_seconds": 0.0,
+    "place": null,
+    "tradition": "qianyuan-palace-v1",
+    "other_body": "金",
+    "uncertain_time": false,
+    "format": "json"
+  },
+  "chart": {
+    "jd_ut": 2451544.6666666665,
+    "jd_utc": 2451544.6666666665,
+    "calculation_profile": "physical-v2",
+    "model_provenance": {
+      "calculation_profile": "physical-v2",
+      "hash_purpose": "local implementation identity; not correctness or source-rights certification",
+      "source_sha256": {
+        "scripts/pai_pan_qizheng.py": "e88176476b2d907577511fa405e874786cbc4a65f241a2d41c17e6e1c346bcda",
+        "scripts/qizheng_star_frame.py": "d1ca1c439d3fb432733e9494a80214d95c7782ce0bea91b37f1838957cf432a6",
+        "scripts/qizheng_provenance.py": "52623761affc3fb8ca492ff8803ca35f6e38cf6cf0fb1c3155ef24d13970b99d",
+        "scripts/qizheng_rule_profiles.py": "4b78e35f5338121dd05d1ab137025b60ac05249ea9cb1d164ddfeddd7212d0ad",
+        "knowledge/qizheng-rule-sources.json": "5c697e418dd39c6684060524d0641cc9243c096bfd58eab207bb4ff26ef81fc9",
+        "docs/qizheng-ephemeris.md": "329736c58d06a68022d17b1b30e354d7fa8338f296b652cab068598205c33793",
+        "docs/qizheng-horizon-contract.md": "1d37dec3fa67c8dd1cad63856d8d3fb890bcc4592201075c1ccb54ad5550a193",
+        "docs/qizheng-star-frame.md": "dd36e0f8cf0838b1c97d570e1f50822e328b4c640ff5ae00170d7dd235d4730d",
+        "docs/qizheng-rule-profiles.md": "d19b3598262e2cd47baece19e506f58bf05b1f49271cb7470b5073289856828f"
+      },
+      "virtual_points": {
+        "rahu": "mean ascending lunar node",
+        "ketu": "opposite mean node",
+        "yuebei": "mean lunar apogee",
+        "ziqi": "conventional cycle: 1975-03-13 16:00 UT = 230.5 deg; period 10227.1792 days"
+      },
+      "unresolved": [
+        "28-mansion boundaries uncalibrated; error unknown",
+        "traditional high-latitude application unvalidated",
+        "sampled numerical agreement is not predictive validity"
+      ]
+    },
+    "star_frame_contract": {
+      "origin_model": "spica-mean-date-iau1976-pm-v2",
+      "catalog": {
+        "name": "Spica / alpha Vir / HIP 65474",
+        "source": "https://simbad.cds.unistra.fr/simbad/sim-basic?Ident=Spica",
+        "frame": "ICRS",
+        "epoch": "J2000.0",
+        "ra_deg": 201.298247375,
+        "dec_deg": -11.161319472222223,
+        "pm_ra_cosdec_mas_yr": -42.35,
+        "pm_dec_mas_yr": -30.67
+      },
+      "output_frame": "mean ecliptic and equinox of date",
+      "time_scale": "TT; J2000 = JD 2451545.0 TT",
+      "valid_year_range": [
+        1900,
+        2100
+      ],
+      "within_validated_range": true,
+      "origin_model_comparison_tolerance_arcsec": 1.0,
+      "omissions": [
+        "ICRS/FK5 frame bias",
+        "nutation",
+        "annual aberration",
+        "parallax",
+        "radial velocity/perspective acceleration",
+        "binary orbital motion"
+      ],
+      "mansion_boundary_model": "legacy-approximate-offsets-v1",
+      "mansion_boundaries_validated": false,
+      "mansion_boundary_error_deg": null,
+      "note": "Origin correction does not validate or reconstruct mansion stars, boundaries, widths or traditional delineations."
+    },
+    "ephemeris_contract": {
+      "planets": "schlyter-geometric-v2",
+      "moon": "meeus-truncated-geometric-v2",
+      "sun": "Meeus low-order geometric mean-ecliptic-of-date",
+      "frame_note": "mean ecliptic/equinox of date; approximate geometric models, not apparent astrometry; virtual points remain conventions"
+    },
+    "horizon_contract": {
+      "frame": "mean equator/ecliptic of date; geometric horizon",
+      "sidereal_time": "GMST(UT1)+east longitude; no EOT",
+      "dut1_seconds": 0.0,
+      "utc_is_ut1_approximation": true,
+      "tt_source": "UT1 + polynomial Delta T estimate (not measured EOP)",
+      "day_night": "instant geometric solar-centre altitude >= -0.833 deg",
+      "ming_gong_clock": "Beijing civil hour, independent traditional rule"
+    },
+    "ayanamsa": 203.84134509842798,
+    "bodies": {
+      "日": {
+        "tropical": 280.0431628134027,
+        "sidereal": 76.20181771497474,
+        "ayanamsa": 203.84134509842798,
+        "mansion": "斗",
+        "mansion_deg": 2.7018177149747373,
+        "mansion_wx": "木",
+        "star": "φ Sgr",
+        "classification_quality": {
+          "distance_to_boundary_deg": 2.7018177149747373,
+          "screen_margin_deg": 0.1,
+          "near_boundary": false,
+          "status": "approximate-unvalidated",
+          "boundary_error_deg": null,
+          "validated": false
+        }
+      },
+      "月": {
+        "tropical": 219.31550432732868,
+        "sidereal": 15.474159228900703,
+        "ayanamsa": 203.84134509842798,
+        "mansion": "亢",
+        "mansion_deg": 3.474159228900703,
+        "mansion_wx": "金",
+        "star": "κ Vir",
+        "classification_quality": {
+          "distance_to_boundary_deg": 3.474159228900703,
+          "screen_margin_deg": 0.1,
+          "near_boundary": false,
+          "status": "approximate-unvalidated",
+          "boundary_error_deg": null,
+          "validated": false
+        }
+      },
+      "木": {
+        "tropical": 25.259344720929217,
+        "sidereal": 181.41799962250124,
+        "ayanamsa": 203.84134509842798,
+        "mansion": "奎",
+        "mansion_deg": 10.917999622501242,
+        "mansion_wx": "木",
+        "star": "η And",
+        "classification_quality": {
+          "distance_to_boundary_deg": 5.082000377498758,
+          "screen_margin_deg": 0.1,
+          "near_boundary": false,
+          "status": "approximate-unvalidated",
+          "boundary_error_deg": null,
+          "validated": false
+        }
+      },
+      "火": {
+        "tropical": 327.7183615174668,
+        "sidereal": 123.87701641903882,
+        "ayanamsa": 203.84134509842798,
+        "mansion": "虚",
+        "mansion_deg": 4.877016419038824,
+        "mansion_wx": "日",
+        "star": "β Aqr",
+        "classification_quality": {
+          "distance_to_boundary_deg": 4.877016419038824,
+          "screen_margin_deg": 0.1,
+          "near_boundary": false,
+          "status": "approximate-unvalidated",
+          "boundary_error_deg": null,
+          "validated": false
+        }
+      },
+      "土": {
+        "tropical": 40.382333894428854,
+        "sidereal": 196.54098879600087,
+        "ayanamsa": 203.84134509842798,
+        "mansion": "娄",
+        "mansion_deg": 10.040988796000875,
+        "mansion_wx": "金",
+        "star": "β Ari",
+        "classification_quality": {
+          "distance_to_boundary_deg": 1.9590112039991254,
+          "screen_margin_deg": 0.1,
+          "near_boundary": false,
+          "status": "approximate-unvalidated",
+          "boundary_error_deg": null,
+          "validated": false
+        }
+      },
+      "金": {
+        "tropical": 241.1773044741422,
+        "sidereal": 37.335959375714225,
+        "ayanamsa": 203.84134509842798,
+        "mansion": "房",
+        "mansion_deg": 4.335959375714225,
+        "mansion_wx": "日",
+        "star": "π Sco",
+        "classification_quality": {
+          "distance_to_boundary_deg": 0.664040624285775,
+          "screen_margin_deg": 0.1,
+          "near_boundary": false,
+          "status": "approximate-unvalidated",
+          "boundary_error_deg": null,
+          "validated": false
+        }
+      },
+      "水": {
+        "tropical": 271.3897487291041,
+        "sidereal": 67.54840363067612,
+        "ayanamsa": 203.84134509842798,
+        "mansion": "箕",
+        "mansion_deg": 5.04840363067612,
+        "mansion_wx": "水",
+        "star": "γ Sgr",
+        "classification_quality": {
+          "distance_to_boundary_deg": 5.04840363067612,
+          "screen_margin_deg": 0.1,
+          "near_boundary": false,
+          "status": "approximate-unvalidated",
+          "boundary_error_deg": null,
+          "validated": false
+        }
+      },
+      "罗睺": {
+        "tropical": 125.06216001600441,
+        "sidereal": 281.22081491757643,
+        "ayanamsa": 203.84134509842798,
+        "mansion": "井",
+        "mansion_deg": 20.220814917576433,
+        "mansion_wx": "木",
+        "star": "μ Gem",
+        "classification_quality": {
+          "distance_to_boundary_deg": 12.779185082423567,
+          "screen_margin_deg": 0.1,
+          "near_boundary": false,
+          "status": "approximate-unvalidated",
+          "boundary_error_deg": null,
+          "validated": false
+        }
+      },
+      "计都": {
+        "tropical": 305.06216001600444,
+        "sidereal": 101.22081491757646,
+        "ayanamsa": 203.84134509842798,
+        "mansion": "牛",
+        "mansion_deg": 1.7208149175764618,
+        "mansion_wx": "金",
+        "star": "β Cap",
+        "classification_quality": {
+          "distance_to_boundary_deg": 1.7208149175764618,
+          "screen_margin_deg": 0.1,
+          "near_boundary": false,
+          "status": "approximate-unvalidated",
+          "boundary_error_deg": null,
+          "validated": false
+        }
+      },
+      "月孛": {
+        "tropical": 263.31619433246755,
+        "sidereal": 59.47484923403957,
+        "ayanamsa": 203.84134509842798,
+        "mansion": "尾",
+        "mansion_deg": 14.974849234039567,
+        "mansion_wx": "火",
+        "star": "μ Sco",
+        "classification_quality": {
+          "distance_to_boundary_deg": 3.025150765960433,
+          "screen_margin_deg": 0.1,
+          "near_boundary": false,
+          "status": "approximate-unvalidated",
+          "boundary_error_deg": null,
+          "validated": false
+        }
+      },
+      "紫气": {
+        "tropical": 189.39731628052436,
+        "sidereal": 345.5559711820964,
+        "ayanamsa": 203.84134509842798,
+        "mansion": "翼",
+        "mansion_deg": 13.555971182096414,
+        "mansion_wx": "火",
+        "star": "α Crt",
+        "classification_quality": {
+          "distance_to_boundary_deg": 4.444028817903586,
+          "screen_margin_deg": 0.1,
+          "near_boundary": false,
+          "status": "approximate-unvalidated",
+          "boundary_error_deg": null,
+          "validated": false
+        }
+      }
+    },
+    "sun_palace_zhi": "丑",
+    "eot_minutes": -3.1437708271057763,
+    "ming_du": {
+      "tropical": 15.728670661931583,
+      "sidereal": 171.8873255635036,
+      "mansion": "奎",
+      "mansion_deg": 1.3873255635035946,
+      "wuxing": "木",
+      "star": "η And",
+      "classification_quality": {
+        "distance_to_boundary_deg": 1.3873255635035946,
+        "screen_margin_deg": 0.1,
+        "near_boundary": false,
+        "status": "approximate-unvalidated",
+        "boundary_error_deg": null,
+        "validated": false
+      }
+    },
+    "ming_gong": {
+      "zhi": "戌",
+      "wuxing": "土",
+      "sun_palace": "丑",
+      "hour_zhi": "午"
+    },
+    "day_night": {
+      "type": "昼生",
+      "solar_altitude_deg": 31.93592838693367,
+      "threshold_deg": -0.833,
+      "method": "instant-geometric-solar-centre",
+      "note": "标准日出阈值近似，不含实测大气、地形或海拔；不据单个时刻宣称极昼极夜"
+    },
+    "du_zhu_wuxing": "木",
+    "en_yong": {
+      "恩": [
+        "月",
+        "水",
+        "月孛"
+      ],
+      "用": [
+        "日",
+        "火",
+        "罗睺"
+      ],
+      "仇": [
+        "土",
+        "计都"
+      ],
+      "难": [
+        "金"
+      ],
+      "同": [
+        "木",
+        "紫气"
+      ]
+    },
+    "classification_contract": {
+      "mansion_and_palace": "approximate-unvalidated",
+      "ming_gong": "conditional on approximate solar palace and traditional clock rule",
+      "en_yong": "conditional on approximate mansion element, not an established physical property",
+      "near_boundary": false
+    }
+  },
+  "warnings": [
+    "physical-v2 materially changes old 命度/恩用难仇/昼夜 results; legacy-v1 only reproduces known bugs",
+    "角宿一原点已修正；二十八宿/支宫仍为独立近似边界，误差未知，不能视为已校准传统宿界"
+  ],
+  "traditional_reading": {
+    "status": "conditional",
+    "scope": "chart_linked_conditional_structure",
+    "predictive_validity": "unvalidated",
+    "personal_ledger_authorized": false,
+    "classical_quote_authorized": false,
+    "scheme": "qianyuan-palace-v1",
+    "claims": [
+      {
+        "rule_id": "QZT04",
+        "status": "conditional",
+        "scope": "source_study_only",
+        "predictive_validity": "unvalidated",
+        "classical_quote_authorized": false,
+        "personal_ledger_authorized": false,
+        "selector": "qianyuan_natal_palace",
+        "title": "乾元定命取宫与果老论度保留分歧",
+        "plain_language": "选择乾元这段的定命口径时，先取宫主。本书同时承认果老论度不同；《星学大成》卷四又收度主为要的条文。本卡只是把不同参照对象摊开，不裁定唯一正确学派。",
+        "conditions": [
+          "context为natal",
+          "reference_basis明确palace_lord",
+          "明确宫支和另一五行"
+        ],
+        "counterconditions": [
+          "以度主为我不能标为乾元宫主卡",
+          "未知宫主不能用地支五行填充",
+          "单一生克不证明人生吉凶"
+        ],
+        "source_ids": [
+          "qy-ncl-scan",
+          "xd-digital-v2",
+          "project-editorial"
+        ],
+        "sources": [
+          {
+            "id": "qy-ncl-scan",
+            "url": "https://commons.wikimedia.org/wiki/File:NCL-06601_乾元秘旨.pdf",
+            "title": "乾元秘旨",
+            "edition": "清舒城程枚覆刊讀畫齋叢書本，國家圖書館306.5 06601",
+            "kind": "single_edition_scan_inspected",
+            "sha256": "1fffb642558dc78810446822a182c8550d811ed337f4e5835168500cf0674aa5",
+            "pdf_pages": 46,
+            "checked_pages": [
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23
+            ],
+            "inspection": "逐页查看渲染影像中登记的小节；不是全书校勘，不采用眉批或残损不明字",
+            "license": "Public-domain original and mechanical scan per Commons; US tag incomplete on file page; scan not redistributed",
+            "classical_quote_authorized": false
+          },
+          {
+            "id": "xd-digital-v2",
+            "url": "https://zh.wikisource.org/w/index.php?oldid=784372&title=星學大成_(四庫全書本)/卷04",
+            "title": "星學大成（四庫全書本）卷四",
+            "edition": "维基文库数字转录，oldid=784372；声称四库本，未对该卷影像",
+            "kind": "unverified_digital_transcription",
+            "license": "CC-BY-SA-4.0 digital text; original public domain",
+            "attribution": "萬民英；维基文库贡献者",
+            "history_url": "https://zh.wikisource.org/w/index.php?title=星學大成_(四庫全書本)/卷04&action=history",
+            "classical_quote_authorized": false
+          },
+          {
+            "id": "project-editorial",
+            "url": "https://github.com/2021291696/high-confidence-mingli-skill",
+            "title": "项目方法比较与输入校验",
+            "kind": "modern_project_interpretation",
+            "license": "CC-BY-SA-4.0 for this study pack; code MIT",
+            "classical_quote_authorized": false
+          }
+        ],
+        "source_locators": [
+          "PDF19左页·定命",
+          "卷四·看星節要八十一條第一条（数字转录未校勘）"
+        ],
+        "license": "CC-BY-SA-4.0",
+        "attribution": "项目七政研究包；万民英及维基文库贡献者的数字资料；舒继英著国家图书馆藏本",
+        "changes": "自编释义、条件、反例和结构化登记；非整本转录；保留版本分歧",
+        "calculation": {
+          "zhi": "戌",
+          "branch_element": "土",
+          "palace_lord": "火",
+          "palace_lord_element": "火",
+          "reference_basis": "palace_lord",
+          "context": "natal",
+          "reference_element": "火",
+          "other_element": "金",
+          "relation": "我克"
+        },
+        "explanation": "此本命研究规则以宫主为参照，不混用命度宿主。",
+        "input_facts": {
+          "context": "natal",
+          "reference_basis": "palace_lord",
+          "branch": "戌",
+          "other_element": "金"
+        },
+        "other_body": "金",
+        "chart_pointers": [
+          "/ming_gong/zhi",
+          "/ming_gong/hour_zhi",
+          "/sun_palace_zhi",
+          "/bodies/金"
+        ],
+        "element_basis": "engine.LUMINARIES_WUXING, not the occupied mansion lord",
+        "application": "若采用本盘近似宿宫与北京时间安命，并选择乾元本命宫主参照，则戌宫主火折火，金曜按项目映射属金，相对于宫主为“我克”。这是传统结构比较，不据此断性格、贵贱、病寿、婚财或应期。",
+        "alternative": "既有QZ01以命度宿主为参照；其恩用难仇标签不搬到本宫主法，两个基准不可合并投票。"
+      }
+    ],
+    "unimplemented": [
+      "QZT02庙乐评定",
+      "QZT03相会判断",
+      "QZT05实际行限",
+      "四余取主",
+      "人生事件预测"
+    ],
+    "chart_sha256": "9084d435c0fd038c652efb851d2d8a36ae981dfdd6adab845d560c2e1cf5b26c",
+    "registry_sha256": "3ded3449332df41b33c675d4b07373b5251c4078bd85f42f8fdd9091bb60f0e4",
+    "adapter_sha256": "5aca618d5173298c3cc6310aa58cb5cb9f4455ba54989fb7c447e169cffa6820",
+    "calculation_profile": "physical-v2",
+    "horizon_contract": {
+      "frame": "mean equator/ecliptic of date; geometric horizon",
+      "sidereal_time": "GMST(UT1)+east longitude; no EOT",
+      "dut1_seconds": 0.0,
+      "utc_is_ut1_approximation": true,
+      "tt_source": "UT1 + polynomial Delta T estimate (not measured EOP)",
+      "day_night": "instant geometric solar-centre altitude >= -0.833 deg",
+      "ming_gong_clock": "Beijing civil hour, independent traditional rule"
+    },
+    "source_gate": "review-locked study registry + existing qizheng source/field gate"
+  }
+}

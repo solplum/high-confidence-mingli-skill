@@ -1,0 +1,7 @@
+{
+  "ok": true,
+  "errors": [],
+  "caller_declared_unverified_rule_ids": [],
+  "provenance_notice": "未知资料即使标签齐全仍未验证来源；通过只表示结构与标签一致，不是原典认证",
+  "scope": "结构、引用和文件一致性；不验证推断正确性或预测能力"
+}
