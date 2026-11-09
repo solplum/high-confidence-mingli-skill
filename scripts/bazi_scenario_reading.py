@@ -39,7 +39,8 @@ def evidence(analysis):
 def analyze(scenarios):
     rows = []
     for i, variant in enumerate(scenarios['variants'], 1):
-        analysis = core.analyze({'pillars': canonical_pillars(variant['fields'])})
+        analysis = core.analyze({'pillars': canonical_pillars(variant['fields']),
+                                 'scenario_id': 'candidate-' + str(i)})
         facts = evidence(analysis)
         # Newer rule versions may expose a conditional pattern decision. Keep
         # the comparison valid with the original structural-only analyzer too.
@@ -61,6 +62,7 @@ def analyze(scenarios):
         row['text'] = '；'.join(labels[k] + '：' + row['evidence'][k] for k in changed) if changed else '所列结构证据与其他候选相同。'
     return {'schema_version': 1, 'rule_version': VERSION, 'coverage': scenarios['coverage'],
             'scope': '仅比较枚举器返回的八字四柱结构；不代表完整紫微、七政、起运或人生预测',
+            'reviewed_panel_scope': '新增卡片逐候选解释，仅对相应见证输入成立；未将卡片结论纳入区间稳定性判定。',
             'context': {k: scenarios[k] for k in ('start_utc', 'end_utc', 'interval_semantics', 'excluded')},
             'stable_evidence': constant if complete else {},
             'observed_constant_evidence': {} if complete else constant,

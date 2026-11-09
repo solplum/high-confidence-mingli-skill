@@ -54,7 +54,7 @@ def parse_hour(text):
     return hh, mm
 
 
-def run_ziwei(y, m, d, hh, mm, sex, name, place, age_year=None, birth_year=None, output_format="text", explain_rules=False):
+def run_ziwei(y, m, d, hh, mm, sex, name, place, age_year=None, birth_year=None, output_format="text", explain_rules=False, temporal_uncertainty=False):
     """跑紫微引擎；无 node/依赖时返回降级说明。"""
     # Never let npx silently fetch and execute a missing dependency.
     runner = ZIWEI_DIR / "node_modules" / "tsx" / "dist" / "cli.mjs"
@@ -66,6 +66,8 @@ def run_ziwei(y, m, d, hh, mm, sex, name, place, age_year=None, birth_year=None,
         cmd += ["--format", output_format]
     if explain_rules:
         cmd += ["--explain-rules"]
+    if temporal_uncertainty:
+        cmd += ["--temporal-uncertainty"]
     if name:
         cmd += ["--name", name]
     if place:
@@ -266,7 +268,8 @@ def main(argv=None):
         clock.year, clock.month, clock.day, clock.hour, clock.minute,
         args.sex, args.name, args.place, target_year, civil.year,
         **({"output_format": "json"} if args.format == "json" else {}),
-        **({"explain_rules": True} if args.explain_rules else {}))
+        **({"explain_rules": True} if args.explain_rules else {}),
+        **({"temporal_uncertainty": True} if args.uncertainty_minutes else {}))
     warnings = list(dict.fromkeys(bazi_res["warnings"] + qz_warnings))
     if clock.date() != civil.date():
         warnings.append("排盘钟面跨公历日期；八字日柱仍按原引擎 23:00 换日规则。")

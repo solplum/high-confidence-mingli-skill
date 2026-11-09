@@ -19,14 +19,16 @@
 
 ## Phase 1: 知识检索（references 查表优先）
 
-从以下数据源提取与该概念相关的定义、规则、对照关系（**先查表，AI 记忆只补表里没有的**）:
-- `references/ziwei/patterns.md` + `classics.md`: 格局类/星曜类概念的权威条目（带出处）
+先按 `knowledge/README.md` 校验并检索实际适用的登记条目，说明定义、条件、学派差异与资料属性。以下文件只是检索导航，读取前检查来源登记和隔离状态：
+- `references/ziwei/patterns.md` + `classics.md`: 格局/星曜资料；标题不代表已核原书或已授权个人解读
 - `references/bazi/classical-texts.md`: 十神/格局/调候类概念的典籍摘要
 - `references/qizheng/reading.md`: 恩用难仇/度主/昼夜取重条目
 - SKILL.md §7 推算规则（降级路径）: 四化表、年上起月法、十神判定、藏干表等通用规则
 - `references/domain-signals.md`: 该概念在各领域中的对应
 - chart.md（仅用于可选对照，不作分析锚点）: 该概念在用户盘中的实例
-- AI 自身命理知识: 仅用于查表无果时的补充，须标注「表外补充」
+- 没有匹配条目：说明已查范围与资料缺口。需要新增资料时先登记并核实用途；模型记忆可用于提出待查术语，不能补造权威定义或获准规则。
+
+解释同时遵循 [解释方法 v2](../docs/interpretation-standard.md)：已有概念可作清楚标明作者身份的现代转译和综合，不因现代措辞没有同字检索结果而自动拒绝。确实缺少传统定义或关键规则时仍保留该缺口。
 
 输出: { definitions: string[], rules: string[], citations: string[], cross_references: string[] }
 
@@ -34,11 +36,11 @@
 
 有子 agent 工具时 parallel（无则顺序内联）:
 - **八字**: 该概念在八字体系中的表现
-  - 任务: 定义/特征/常见误解，定义引 `references/bazi/classical-texts.md` 条目并标注典籍
+  - 任务: 定义/条件/常见误解，按已登记的实际条目标注资料名、版本、文件行号及项目释义/数字摘录
   - schema: `{ plate: "八字", manifestation: string, citation: string, key_features: string[], has_direct_match: boolean }`
 
 - **紫微**: 该概念在紫微体系中的表现
-  - 任务: 定义/特征/常见误解，定义引 `references/ziwei/classics.md` 或 `patterns.md` 条目并标注书名+章节
+  - 任务: 定义/条件/常见误解，按实际登记的资料属性与用途引用
   - schema: 同上（含 citation）
 
 - **七政**: 该概念在七政体系中的表现
@@ -69,4 +71,5 @@
 
 - 不以个人盘为分析锚点（区别于共鸣溯源）
 - 个人盘对照是可选附加，不强加
+- 一旦接受个人盘对照，先读取 `workflows/fortune-auditable-reading.md`，使用相同的证据与复审标准；知识解释本身不要求读取私人档案。
 - 无第一人称绑定

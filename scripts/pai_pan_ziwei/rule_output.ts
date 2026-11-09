@@ -2,6 +2,7 @@
  * Keep vendor provenance/legal files intact. Never emit their narrative descriptions.
  */
 import { buildDomainReading } from './domain_reading';
+import { buildReviewedStructure } from './reviewed_structure';
 import { detectPatterns } from './vendor/patterns';
 import type { ZiweiChart } from './vendor/types';
 
@@ -85,10 +86,11 @@ function explainChartConditions(chart: ZiweiChart, conditions: {required: string
   };
 }
 
-export function buildRuleOutput(chart: ZiweiChart, explain = false) {
+export function buildRuleOutput(chart: ZiweiChart, explain = false, options: {temporalUncertainty?: boolean} = {}) {
   return {
     kind: 'implementation_rule_matches',
     domain_reading: buildDomainReading(chart),
+    reviewed_structure: buildReviewedStructure(chart, options),
     scope: RULE_SCOPE,
     source: RULE_SOURCE,
     source_status: 'implementation_attribution_only; classical_citation_unverified',

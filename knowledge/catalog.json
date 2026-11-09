@@ -502,6 +502,40 @@
       "license_path": "LICENSE",
       "license_scope": "Project-authored explanation only; no relicensing of unverified classical transcriptions.",
       "citation_label": "七政规则项目释义（非古籍定本，非预测验证）"
+    },
+    {
+      "id": "bazi-reviewed-structure-source",
+      "path": "references/approved/bazi-reviewed-structure-v1.md",
+      "sha256": "0421a0b5cb1c3edc17b38be024ef32ec97c82f53d9e2d49c3cb61526e4ff17fe",
+      "system": "bazi",
+      "title": "八字已批准受限结构释义 v1",
+      "kind": "project_guidance",
+      "classical_quote_verified": false,
+      "edition": "1926单版影像参照",
+      "provenance_status": "inspected_source_project_paraphrase_conditional",
+      "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-13jh002326-46443_淵海子平_子平真詮_第2卷.pdf&oldid=752877821",
+      "revision": "bazi-reviewed-structure-v1",
+      "license_path": "LICENSE",
+      "license_scope": "Original project paraphrase MIT; no scan redistribution; prior CC BY-SA material remains separate",
+      "citation_label": "八字已批准受限结构释义 v1（项目整理，非古籍原句、非预测验证）",
+      "usage_scope": "conditional_module_only"
+    },
+    {
+      "id": "ziwei-reviewed-structure-source",
+      "path": "references/approved/ziwei-reviewed-structure-v1.md",
+      "sha256": "3529323ca8036bb937b635b58798a7930b4d41b02d35146409d2b42665aca33e",
+      "system": "ziwei",
+      "title": "紫微已批准受限结构释义 v1",
+      "kind": "project_guidance",
+      "classical_quote_verified": false,
+      "edition": "固定版现代说明参照",
+      "provenance_status": "inspected_source_project_paraphrase_conditional",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/tree/1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "revision": "ziwei-reviewed-structure-v1",
+      "license_path": "LICENSE",
+      "license_scope": "Original project paraphrase MIT; Sylar Long / iztro-docs MIT attribution and license retained in references/vendor/iztro-docs/LICENSE",
+      "citation_label": "紫微已批准受限结构释义 v1（项目整理，非古籍原句、非预测验证）",
+      "usage_scope": "conditional_module_only"
     }
   ],
   "records": [
@@ -2005,6 +2039,538 @@
         "start_line": 1,
         "end_line": 58
       }
+    },
+    {
+      "id": "bazi-reviewed-BZ-K01",
+      "source_id": "bazi-reviewed-structure-source",
+      "system": "bazi",
+      "status": "usable",
+      "profile": "bazi-reviewed-structure-v1",
+      "content_kind": "project_paraphrase",
+      "title": "官伤印的成败救应候选",
+      "summary": "在现有月藏同干透出路线的每个正官候选中，分别核对官受伤官制约、印制伤官的相反方向及印自身受制；只列实际透藏节点和待审救应分支，不由印出现自动判有效救应、成格或破格。",
+      "topics": [
+        "正官",
+        "伤官",
+        "印",
+        "救应"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BZ-K01",
+      "conditions": [
+        "沿当前路线确有正官候选，竞争候选分别保留",
+        "官、伤官、印的精确位置、透藏和相反路径逐项检查",
+        "根气、冲合、受制及尚未评估的刑害作为具体未知保留"
+      ],
+      "exclusions": [
+        "无相应节点不能补造透印救应",
+        "印只藏不透与透干分开，印透不等于有力",
+        "缺时或时间未决不推广到全盘，不判职业、疾病或人生结果"
+      ],
+      "source_span": {
+        "start_line": 13,
+        "end_line": 13
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-strength-project",
+          "locator": "PDF25–26（印页十二–十三）论用神成败救应；PDF25右起直行1/7/11，PDF26直行1/4/9–10",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷，单版影像检查，非校勘定本",
+          "revision": "752877821"
+        }
+      ],
+      "limitations": "仅获批准模块的条件结构解释或可反驳观察问题，非预测验证；不授权通用个人ledger、成格/喜忌定案、人格测量或人生事件。"
+    },
+    {
+      "id": "bazi-reviewed-BZ-K02",
+      "source_id": "bazi-reviewed-structure-source",
+      "system": "bazi",
+      "status": "usable",
+      "profile": "bazi-reviewed-structure-v1",
+      "content_kind": "project_paraphrase",
+      "title": "食杀印财的相反方向链",
+      "summary": "在当前偏官候选中，逐节点检查食神克杀、印克食、财克印与财生杀；同一财的两条相反路径并列，缺失或仅藏的节点如实标明，不自动裁决制杀、救格或哪条作用占主导。",
+      "topics": [
+        "七杀",
+        "偏官",
+        "食神",
+        "财",
+        "印"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BZ-K02",
+      "conditions": [
+        "当前路线有偏官候选，其他透出候选不删除",
+        "食神、偏官、印、财按精确干和透藏位置绑定事实",
+        "每条方向仅在实际节点存在时列出，并保留根、冲合和位置效力未知"
+      ],
+      "exclusions": [
+        "不能把伤官一概当作原段食神",
+        "藏财不等于财已透干去印，财仍可能生杀",
+        "缺时、输入误差、承受或效力未知时保留暂缓，不指定吉凶喜忌"
+      ],
+      "source_span": {
+        "start_line": 21,
+        "end_line": 21
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-strength-project",
+          "locator": "PDF25直行4/9、PDF26直行2/7/9；论用神成败救应中制杀遇印及财制印存食分支",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷，单版影像检查，非校勘定本",
+          "revision": "752877821"
+        }
+      ],
+      "limitations": "仅获批准模块的条件结构解释或可反驳观察问题，非预测验证；不授权通用个人ledger、成格/喜忌定案、人格测量或人生事件。"
+    },
+    {
+      "id": "bazi-reviewed-BZ-K03",
+      "source_id": "bazi-reviewed-structure-source",
+      "system": "bazi",
+      "status": "usable",
+      "profile": "bazi-reviewed-structure-v1",
+      "content_kind": "project_paraphrase",
+      "title": "五合的自身、他干和隔位角色",
+      "summary": "对实际天干五合配对先标明是否包含日干、双方十神与柱位，再列中间干和共享同一端点的配对；自身之合不能仅凭配对称该十神被他干合去，隔位或争合只列待审条件，不删除原始干或判合化。",
+      "topics": [
+        "天干五合",
+        "自身之合",
+        "隔位",
+        "争合"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BZ-K03",
+      "conditions": [
+        "仅使用实际天干五合配对及原柱顺序",
+        "每对区分日干自身与他干角色并保留相邻、中间及共享位置",
+        "未知柱与时间场景缺口明确，不把已知范围无共享推广到全盘"
+      ],
+      "exclusions": [
+        "不把相邻或隔位直接变成效力结论",
+        "不启用合去、合绊、化气、化格或数值权重",
+        "不把天干角色规则套到地支六合、三合或半合"
+      ],
+      "source_span": {
+        "start_line": 29,
+        "end_line": 29
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-strength-project",
+          "locator": "PDF20（印页七）右起直行1–4与7–10，隔位/有所间、本身十干合及争合语境",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷，单版影像检查，非校勘定本",
+          "revision": "752877821"
+        }
+      ],
+      "limitations": "仅获批准模块的条件结构解释或可反驳观察问题，非预测验证；不授权通用个人ledger、成格/喜忌定案、人格测量或人生事件。"
+    },
+    {
+      "id": "bazi-reviewed-BZ-K04",
+      "source_id": "bazi-reviewed-structure-source",
+      "system": "bazi",
+      "status": "usable",
+      "profile": "bazi-reviewed-structure-v1",
+      "content_kind": "project_paraphrase",
+      "title": "月令用神、相神与扶抑语义",
+      "summary": "每次使用用神一词须区分月令格局的观察中心、辅助具体结构的相神候选与扶抑所需假设；各候选分别绑定实际位置及相反路径，不能由月令候选或相神候选推出唯一喜忌。",
+      "topics": [
+        "月令用神",
+        "相神",
+        "扶抑",
+        "喜忌"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BZ-K04",
+      "conditions": [
+        "明确采用当前月藏同干路线及实际候选ID",
+        "相神候选只围绕已获准方向链说明辅助对象、位置与反向作用",
+        "扶抑、调候及作用效力仍各有自己的条件，不以一个名称合并"
+      ],
+      "exclusions": [
+        "无现路线候选时不从其他取法补造一个",
+        "相神透出不等于有力，并列候选不强行合并",
+        "不输出幸运元素、唯一喜用或财富职业等结果"
+      ],
+      "source_span": {
+        "start_line": 37,
+        "end_line": 37
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-strength-project",
+          "locator": "PDF23–24（印页十–十一）论用神；PDF32（印页十九）论相神紧要；仅术语及具体辅助对象的项目释义",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷，单版影像检查，非校勘定本",
+          "revision": "752877821"
+        }
+      ],
+      "limitations": "仅获批准模块的条件结构解释或可反驳观察问题，非预测验证；不授权通用个人ledger、成格/喜忌定案、人格测量或人生事件。"
+    },
+    {
+      "id": "ziwei-reviewed-ZW-K01",
+      "source_id": "ziwei-reviewed-structure-source",
+      "system": "ziwei",
+      "status": "usable",
+      "profile": "ziwei-reviewed-structure-v1",
+      "content_kind": "project_paraphrase",
+      "title": "空宫和借星来源分离",
+      "summary": "空宫仅指本宫没有十四主星，不等于无星或无能力；借星须从实际对宫逐星给源路径，本宫实星和借来参考分开，不能继承对宫亮度、四化或把借星记为本宫实坐，空宫星性效力仍暂缓。",
+      "topics": [
+        "空宫",
+        "借星",
+        "对宫"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "ZW-K01",
+      "conditions": [
+        "完整十二宫、目标与对宫关系及主星类型可核",
+        "无主星时同时列实际辅杂曜及对宫实坐主星",
+        "借星元数据与实坐位置一致，缺失或冲突时明确暂缓"
+      ],
+      "exclusions": [
+        "有主星的本宫不能按空宫处理",
+        "对宫参考不等于本宫实坐或已证效力",
+        "不推人格、能力缺失、婚财病寿或继承四化亮度"
+      ],
+      "source_span": {
+        "start_line": 13,
+        "end_line": 13
+      },
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-basis",
+          "locator": "basis.md 空宫定义",
+          "start_line": 163,
+          "end_line": 165,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-major-star",
+          "locator": "major-star.md 借对宫定调",
+          "start_line": 13,
+          "end_line": 15,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        }
+      ],
+      "limitations": "仅获批准模块的条件结构解释或可反驳观察问题，非预测验证；不授权通用个人ledger、成格/喜忌定案、人格测量或人生事件。"
+    },
+    {
+      "id": "ziwei-reviewed-ZW-K02-groups",
+      "source_id": "ziwei-reviewed-structure-source",
+      "system": "ziwei",
+      "status": "usable",
+      "profile": "ziwei-reviewed-structure-v1",
+      "content_kind": "project_paraphrase",
+      "title": "十四辅星的独立分组和位置",
+      "summary": "按精确星名分别列六吉左辅右弼天魁天钺文昌文曲、六煞地空地劫火星铃星陀罗擎羊及二助天马禄存，并标实际坐标；该分类不改原始Star.type或旧羊陀火铃四煞条件，不由计数推吉凶或抵消权重。",
+      "topics": [
+        "辅星",
+        "六吉",
+        "六煞",
+        "二助"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "ZW-K02",
+      "conditions": [
+        "完整星表逐星定位，已见与未能核对分开",
+        "十四星按精确名字分组并保留原始类型",
+        "本宫、三合、对宫和邻宫范围分别记录"
+      ],
+      "exclusions": [
+        "天空等杂曜不得冒充地空或放入六煞",
+        "不能将旧四煞规则改成六颗计数",
+        "吉煞名称不保证贵人、收入、健康或事故"
+      ],
+      "source_span": {
+        "start_line": 21,
+        "end_line": 21
+      },
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-minor-star",
+          "locator": "minor-star.md 辅星总体及分组标题",
+          "start_line": 15,
+          "end_line": 31,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-minor-star",
+          "locator": "minor-star.md 六煞与二助标题",
+          "start_line": 243,
+          "end_line": 245,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-minor-star",
+          "locator": "minor-star.md 二助",
+          "start_line": 459,
+          "end_line": 461,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-star",
+          "locator": "star.md 分类提醒",
+          "start_line": 49,
+          "end_line": 53,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        }
+      ],
+      "limitations": "仅获批准模块的条件结构解释或可反驳观察问题，非预测验证；不授权通用个人ledger、成格/喜忌定案、人格测量或人生事件。"
+    },
+    {
+      "id": "ziwei-reviewed-ZW-K02-fubi",
+      "source_id": "ziwei-reviewed-structure-source",
+      "system": "ziwei",
+      "status": "usable",
+      "profile": "ziwei-reviewed-structure-v1",
+      "content_kind": "project_paraphrase",
+      "title": "辅弼实坐同宫的协作观察问题",
+      "summary": "仅在已登记领域的同一宫实际同时有左辅右弼、且没有未登记的本命四化修饰时，可询问直接介入与间接配合是否同时出现、是否尊重对方需要或造成代办犹豫；这是可被现实反例撤回的问题，不是贵人或协作能力定论。",
+      "topics": [
+        "左辅",
+        "右弼",
+        "辅弼同宫",
+        "协作"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "ZW-K02",
+      "conditions": [
+        "辅弼实际同宫且领域属于已登记命财官迁，不从会照当同宫",
+        "完整本宫主星和辅星背景可核，无未登记的辅弼本命四化修饰",
+        "原始亮度如实保留，缺值不讨论表达强弱，现实行为尚待核实"
+      ],
+      "exclusions": [
+        "分处三方或借星不能启动实坐同宫主题",
+        "实际协作与主题相反或职责训练更能解释时撤回",
+        "不保证贵人、人缘、职位或将吉煞数量当强弱"
+      ],
+      "source_span": {
+        "start_line": 29,
+        "end_line": 29
+      },
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-minor-star",
+          "locator": "minor-star.md 左辅直接帮助",
+          "start_line": 60,
+          "end_line": 64,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-minor-star",
+          "locator": "minor-star.md 右弼间接帮助与帮倒忙",
+          "start_line": 95,
+          "end_line": 101,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        }
+      ],
+      "limitations": "仅获批准模块的条件结构解释或可反驳观察问题，非预测验证；不授权通用个人ledger、成格/喜忌定案、人格测量或人生事件。"
+    },
+    {
+      "id": "ziwei-reviewed-ZW-K03",
+      "source_id": "ziwei-reviewed-structure-source",
+      "system": "ziwei",
+      "status": "usable",
+      "profile": "ziwei-reviewed-structure-v1",
+      "content_kind": "project_paraphrase",
+      "title": "机梁实坐命宫的联合观察主题",
+      "summary": "仅天机天梁两颗主星实际同在命宫、原始亮度和未建模修饰检查通过时，才提出灵活回应场面与照应他人的联合观察问题；若现实不愿介入群体或有更直接原因应撤回，不给格名、领导力、人格或事件定论。",
+      "topics": [
+        "天机天梁",
+        "机梁",
+        "同宫",
+        "命宫"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "ZW-K03",
+      "conditions": [
+        "命宫实际主星集合恰为天机天梁，非借星或三方凑齐",
+        "两星原始亮度齐全，完整辅煞背景保留且无未登记本命四化修饰",
+        "主题只在命宫提出，现实支持和反例均尚待检查"
+      ],
+      "exclusions": [
+        "其他宫、分处两宫、空宫借机梁均不触发联合主题",
+        "不能把单星主题加总或称善荫朝纲格已成立",
+        "不以教育压制等无法反驳理由吞掉现实反证"
+      ],
+      "source_span": {
+        "start_line": 37,
+        "end_line": 37
+      },
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-major-star",
+          "locator": "major-star.md 双星非简单相加与局限",
+          "start_line": 17,
+          "end_line": 29,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-major-star",
+          "locator": "major-star.md 天机天梁现代主题，排除164行格名",
+          "start_line": 166,
+          "end_line": 170,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-basis",
+          "locator": "basis.md 同宫",
+          "start_line": 195,
+          "end_line": 197,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        }
+      ],
+      "limitations": "仅获批准模块的条件结构解释或可反驳观察问题，非预测验证；不授权通用个人ledger、成格/喜忌定案、人格测量或人生事件。"
+    },
+    {
+      "id": "ziwei-reviewed-ZW-K04",
+      "source_id": "ziwei-reviewed-structure-source",
+      "system": "ziwei",
+      "status": "usable",
+      "profile": "ziwei-reviewed-structure-v1",
+      "content_kind": "project_paraphrase",
+      "title": "同宫、三合、对宫与夹宫坐标",
+      "summary": "按目标地支分别列偏移0实坐、4与8三合、6对宫及1与11两邻宫；夹宫两星必须实际各处一侧，不能把同侧或三方中的两星称两侧夹持，坐标成立不代表夹拱效力或传统格局成立。",
+      "topics": [
+        "三方四正",
+        "夹宫",
+        "扶拱",
+        "邻宫"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "ZW-K04",
+      "conditions": [
+        "十二宫完整且地支唯一，按地支而非数组序号定位",
+        "各星保留源路径，亥子跨界取模正确",
+        "指定两星不同且分别实际位于前后两侧，同一星不重复计数"
+      ],
+      "exclusions": [
+        "同侧或只在三方四正内不能标夹宫",
+        "宫位或星表不完整时不以未列出证明缺星",
+        "不引入夹拱吉凶、倍率或修改旧格局匹配结果"
+      ],
+      "source_span": {
+        "start_line": 45,
+        "end_line": 45
+      },
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-basis",
+          "locator": "basis.md 本宫三合对宫与邻宫",
+          "start_line": 139,
+          "end_line": 169,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-basis",
+          "locator": "basis.md 同宫会照扶拱术语",
+          "start_line": 195,
+          "end_line": 205,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-palace",
+          "locator": "palace.md 三方四正",
+          "start_line": 376,
+          "end_line": 390,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        }
+      ],
+      "limitations": "仅获批准模块的条件结构解释或可反驳观察问题，非预测验证；不授权通用个人ledger、成格/喜忌定案、人格测量或人生事件。"
+    },
+    {
+      "id": "ziwei-reviewed-ZW-K05-attachment",
+      "source_id": "ziwei-reviewed-structure-source",
+      "system": "ziwei",
+      "status": "usable",
+      "profile": "ziwei-reviewed-structure-v1",
+      "content_kind": "project_paraphrase",
+      "title": "固定本命四化的附着关系",
+      "summary": "本命四化是依附实际星曜的标记，逐条列原始出生年干、化类、星名和实际位置，并与当前固定十干表校核；禄存独立于化禄，流年、宫干飞化或自化不替代本命标记，表或位置不一致则暂缓。",
+      "topics": [
+        "本命四化",
+        "四化附着",
+        "禄存",
+        "固定表"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "ZW-K05",
+      "conditions": [
+        "实际lunarInfo.yearStem有效，不从公历尾数覆盖引擎年干",
+        "本命禄权科忌星名与固定表一致且各有唯一实际位置",
+        "派生动态字段与原始siHua分开，保留全部四化事实"
+      ],
+      "exclusions": [
+        "禄存不是化禄，也不单独证明双禄",
+        "不得把流年化禄、宫干自化或借星标签当本命",
+        "不修正原始标记来凑表，不启用权科忌效力或多化叠加"
+      ],
+      "source_span": {
+        "start_line": 53,
+        "end_line": 53
+      },
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-mutagen",
+          "locator": "mutagen.md 四化依附星曜与层级",
+          "start_line": 17,
+          "end_line": 26,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-mutagen",
+          "locator": "mutagen.md 固定十干表",
+          "start_line": 175,
+          "end_line": 190,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        }
+      ],
+      "limitations": "仅获批准模块的条件结构解释或可反驳观察问题，非预测验证；不授权通用个人ledger、成格/喜忌定案、人格测量或人生事件。"
+    },
+    {
+      "id": "ziwei-reviewed-ZW-K05-lu",
+      "source_id": "ziwei-reviewed-structure-source",
+      "system": "ziwei",
+      "status": "usable",
+      "profile": "ziwei-reviewed-structure-v1",
+      "content_kind": "project_paraphrase",
+      "title": "本命主星化禄的主题增加问题",
+      "summary": "只有已有登记主题的本命主星实际化禄、固定表核对一致且同宫无未登记的四化组合修饰时，才可询问该主题是否伴随更多活动投入及相应成本消耗；增加是现代资料的象征解释，不等同收入、好运或成功，现实无此表现时撤回。",
+      "topics": [
+        "化禄",
+        "主题增加",
+        "投入",
+        "成本"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "ZW-K05",
+      "conditions": [
+        "本命实际主星siHua为禄且星性主题已登记、领域属命财官迁",
+        "固定附着链通过且同宫其他四化组合修饰未触发",
+        "原始亮度保留，投入增加只是待现实核对的问题"
+      ],
+      "exclusions": [
+        "仅禄存、流年化禄、自化禄、借星化禄或错配不触发",
+        "同宫其他四化或缺必要星位数据时只列结构，主题暂缓",
+        "不比较未化禄者活动多少，不推收入财富或结果"
+      ],
+      "source_span": {
+        "start_line": 61,
+        "end_line": 61
+      },
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-mutagen",
+          "locator": "mutagen.md 化禄增加并非一律有利或禄存",
+          "start_line": 31,
+          "end_line": 46,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        }
+      ],
+      "limitations": "仅获批准模块的条件结构解释或可反驳观察问题，非预测验证；不授权通用个人ledger、成格/喜忌定案、人格测量或人生事件。"
     }
   ],
   "quotation_packets": [

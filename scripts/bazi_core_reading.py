@@ -10,6 +10,7 @@ from pathlib import Path
 import pai_pan_bazi as engine
 import bazi_pattern_reasoning as pattern_reasoning
 import bazi_strength_reasoning as strength_reasoning
+import bazi_reviewed_structure as reviewed_structure
 
 VERSION = 'bazi-structure-v2'
 KEYS = ('year', 'month', 'day', 'hour')
@@ -172,11 +173,16 @@ def analyze(result, temporal_uncertainty=False):
         [e['text'] for e in strength['facts'] if e['id'] in strength['counterevidence_fact_ids']],
         strength['missing_conditions'] + strength['unresolved_effects'] + strength['changing_conditions'])
     sections[-1]['status'] = strength['status']
+    reviewed = reviewed_structure.evaluate(
+        facts, exposures, pairs, groups, pattern, strength, missing,
+        temporal_uncertainty=temporal_uncertainty or bool(result.get('temporal_uncertainty', False)),
+        scenario_id=result.get('scenario_id'))
     root = Path(__file__).resolve().parents[1]
     return {'schema_version': 1, 'rule_version': VERSION,
             'scope': '单一输入候选的本命结构解释，非完整人生详批、非预测验证',
             'facts': facts, 'missing_pillars': missing, 'relations': pairs, 'groups': groups,
-            'month_exposure': exposures, 'pattern_reasoning': pattern, 'strength_reasoning': strength, 'paths': paths, 'support': support,
+            'month_exposure': exposures, 'pattern_reasoning': pattern, 'strength_reasoning': strength,
+            'reviewed_structure': reviewed, 'paths': paths, 'support': support,
             'opposing': opposing, 'roots': roots, 'sections': sections,
             'source': {'kind': 'project_structural_definitions', 'path': 'docs/bazi-core-reading.md',
                        'version': VERSION, 'sha256': hashlib.sha256((root / 'docs/bazi-core-reading.md').read_bytes()).hexdigest()},
@@ -194,6 +200,7 @@ def render(analysis):
               '四柱、藏干、十神来自 pai_pan_bazi.py。不是古籍原文或预测有效性认证。']
     lines += render_pattern_attribution(analysis['pattern_reasoning']['attribution'])
     lines += strength_reasoning.render_attribution(analysis['strength_reasoning']['attribution'])
+    lines += reviewed_structure.render(analysis['reviewed_structure'])
     return lines
 
 

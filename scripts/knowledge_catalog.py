@@ -12,6 +12,75 @@ import sys
 
 SYSTEMS = {'bazi', 'ziwei', 'qizheng'}
 MODES = {'paraphrase', 'source_excerpt', 'classical_quote'}
+MODULE_ONLY = 'conditional_module_only'
+REVIEWED_PROFILES = {
+    'bazi-reviewed-structure-v1': {
+        'system': 'bazi', 'source_id': 'bazi-reviewed-structure-source',
+        'records': {'bazi-reviewed-BZ-K%02d' % i: 'BZ-K%02d' % i for i in range(1, 5)},
+    },
+    'ziwei-reviewed-structure-v1': {
+        'system': 'ziwei', 'source_id': 'ziwei-reviewed-structure-source',
+        'records': dict(zip([
+            'ziwei-reviewed-ZW-K01', 'ziwei-reviewed-ZW-K02-groups',
+            'ziwei-reviewed-ZW-K02-fubi', 'ziwei-reviewed-ZW-K03',
+            'ziwei-reviewed-ZW-K04', 'ziwei-reviewed-ZW-K05-attachment',
+            'ziwei-reviewed-ZW-K05-lu'],
+            ['ZW-K01', 'ZW-K02', 'ZW-K02', 'ZW-K03', 'ZW-K04', 'ZW-K05', 'ZW-K05'])),
+    },
+}
+
+
+def validate_reviewed_record(record, source, sources, root):
+    """Pin the approved module cards without promoting them to ledger rules."""
+    profile_name = record.get('profile')
+    profile = REVIEWED_PROFILES.get(profile_name) if isinstance(profile_name, str) else None
+    rid = record['id']
+    if not profile:
+        return [rid + ': module source requires its approved profile']
+    errors = []
+    if (record.get('system') != profile['system'] or
+            record.get('source_id') != profile['source_id'] or
+            record.get('rule_id') != profile['records'].get(rid)):
+        errors.append(rid + ': unapproved module record, system or source')
+    if (not source or source.get('kind') != 'project_guidance' or
+            source.get('usage_scope') != MODULE_ONLY or record.get('usage_scope') != MODULE_ONLY):
+        errors.append(rid + ': conditional module-only scope required')
+    for key in ('conditions', 'exclusions'):
+        values = record.get(key)
+        if not isinstance(values, list) or not values or not all(isinstance(v, str) and v.strip() for v in values):
+            errors.append(rid + ': complete ' + key + ' required')
+    try:
+        span = record['source_span']
+        a, b = span['start_line'], span['end_line']
+        lines = local_file(root, source['path']).read_text(encoding='utf-8').splitlines()
+        if type(a) is not int or type(b) is not int or a != b or not 1 <= a <= len(lines) or lines[a-1] != '项目释义：' + record['summary']:
+            errors.append(rid + ': exact module paraphrase line required')
+    except (KeyError, TypeError, ValueError, OSError):
+        errors.append(rid + ': invalid module source span')
+    primary = record.get('primary_sources')
+    if not isinstance(primary, list) or not primary:
+        return errors + [rid + ': primary source locators required']
+    for row in primary:
+        if not isinstance(row, dict):
+            errors.append(rid + ': invalid primary source'); continue
+        item = sources.get(row.get('source_id')) if isinstance(row.get('source_id'), str) else None
+        if not item or item.get('system') != record.get('system') or item.get('id') == record.get('source_id'):
+            errors.append(rid + ': missing or cross-system primary source'); continue
+        if not isinstance(row.get('locator'), str) or not row['locator'].strip():
+            errors.append(rid + ': primary locator required')
+        if 'start_line' in row or 'end_line' in row:
+            a, b = row.get('start_line'), row.get('end_line')
+            try:
+                total = len(local_file(root, item['path']).read_text(encoding='utf-8').splitlines())
+                if type(a) is not int or type(b) is not int or not 1 <= a <= b <= total:
+                    errors.append(rid + ': invalid primary line range')
+            except (ValueError, OSError, KeyError):
+                errors.append(rid + ': unreadable primary source')
+        if 'artifact_sha256' in row:
+            value = row['artifact_sha256']
+            if not isinstance(value, str) or len(value) != 64 or any(c not in '0123456789abcdef' for c in value):
+                errors.append(rid + ': invalid primary artifact hash')
+    return errors
 
 
 def local_file(root, value):
@@ -162,6 +231,8 @@ def validate(catalog, root):
             except (KeyError, TypeError, ValueError, OSError):
                 errors.append(rid + ': invalid restricted interpretation span')
 
+        if (isinstance(rec.get('profile'), str) and rec['profile'] in REVIEWED_PROFILES) or (source and source.get('usage_scope') == MODULE_ONLY):
+            errors.extend(validate_reviewed_record(rec, source, sources, root))
         if not isinstance(rec.get('topics'), list) or not all(isinstance(v, str) and v for v in rec['topics']):
             errors.append(rid + ': invalid topics')
     return errors
@@ -288,6 +359,8 @@ def check_ledger_rule(rule, source, catalog):
             errors.append('unknown source requires the unverified source_label')
         return errors
     for item in matches:
+        if item.get('usage_scope') == MODULE_ONLY:
+            errors.append('conditional module-only source requires native module evidence and review; not authorized as a general ledger rule')
         if rule.get('attribution_kind') != 'registered_source_excerpt':
             errors.append('known unverified source requires attribution_kind=registered_source_excerpt; not an original classical quotation')
         if rule.get('source_label') != item['citation_label']:

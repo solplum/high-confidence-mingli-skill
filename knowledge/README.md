@@ -2,6 +2,8 @@
 
 本目录优先于旧资料中“原典全文”“权威条目”等自我描述，适用于直接读文件、通用问答、运势、推算、共鸣和详批，不只适用于新命令。八份旧参考逐字保留用于上游同步，不等于认可其中书名归属。
 
+来源身份与作者解释分别处理，统一方法见 [解释标准](../docs/interpretation-standard.md)。可定位的传统释义按本目录核对；合理现代转译和条件综合可基于已核盘面与关系展开，无需把每个现代词语预注册为独立规则，也不把作者措辞冒称已登记传统象义。资料无匹配、自动未编码或未裁决须分别说明其影响，不一概变成停止解释；必要条件、来源隔离和计算契约仍须遵守。
+
 ## 必须遵守
 
 1. 先运行 `python3 scripts/knowledge_catalog.py validate`。失败则不得将这些资料作为核验过的依据。
@@ -62,3 +64,9 @@ python3 scripts/knowledge_catalog.py cite --source ziwei-classics --mode classic
 ## 七政独立传统研究包
 
 [五张规则卡、逐页影像范围与许可](../docs/qizheng-traditional-study.md)在独立 `qizheng-traditional-study.json` 注册，由 `qizheng_traditional_study.py` 校验与演示。馆藏《乾元秘旨》仅核特定页段，星学大成仅核固定数字版本，庙乐异说尚未校定。此包不改变旧参考文件、不自动进入个人ledger、不解禁classical_quote。研究包CC BY-SA 4.0独立于MIT代码。
+
+## 已批准的结构增补模块
+
+`bazi-reviewed-structure-v1` 的4条与 `ziwei-reviewed-structure-v1` 的7条已接入默认 `reviewed_structure` 面板，分别覆盖 BZ-K01～04 和 ZW-K01～05 的已批准受限范围。来源是两份新项目释义，精确摘要行、前提、排除与原段定位均登记，不扩大旧来源的整篇用途。[入口、状态和边界](../docs/approved-structural-reading.md)。
+
+用途 `conditional_module_only` 的原始面板与人工解释记录独立保存；按统一解释方法，可说明结构含义、进行现代转译及有事实链的条件综合。模块原始状态保持不变，人工解释不能伪称程序已裁决效力、成格喜忌、人格测量或人生事件。该用途不授权通用个人ledger rule，`check_ledger_rule` 仍明确拒绝；旧ledger、经典引用、八份同步原文和隔离保持原样。缺少必要条件时仅暂缓受影响的判断，保留其余有依据的解释。

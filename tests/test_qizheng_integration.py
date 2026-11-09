@@ -1,5 +1,6 @@
-"""Final integration: exact legacy replay and real chart-builder profile routing."""
+"""Legacy replay within floating roundoff and real chart-builder profile routing."""
 import contextlib
+import copy
 import hashlib
 import io
 import json
@@ -13,13 +14,82 @@ import qizheng_rule_profiles as rules
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# Absolute numerical-replay budgets, not astronomical accuracy claims. A small
+# longitude roundoff can be many ULPs after subtracting a mansion boundary, so
+# compare angular differences in degrees rather than ULPs of the small residue.
+# Julian dates and all discrete classifications remain exact.
+REPLAY_ABS_TOLERANCE = {
+    'ayanamsa': 1e-12, 'tropical': 1e-12, 'sidereal': 1e-12, 'mansion_deg': 1e-12,  # degrees
+    'eot_minutes': 1e-12,  # minutes
+    'sunrise_local': 1e-12, 'sunset_local': 1e-12,  # hours
+}
+
 
 class IntegrationTests(unittest.TestCase):
-    def test_exact_old_keys_replay(self):
+    def assert_legacy_replay(self, expected, actual, path=()):
+        label = '/'.join(map(str, path)) or '/'
+        self.assertIs(type(actual), type(expected), label)
+        if isinstance(expected, dict):
+            self.assertEqual(expected.keys(), actual.keys(), label)
+            for key in expected:
+                self.assert_legacy_replay(expected[key], actual[key], path + (key,))
+        elif isinstance(expected, list):
+            self.assertEqual(len(expected), len(actual), label)
+            for index, (left, right) in enumerate(zip(expected, actual)):
+                self.assert_legacy_replay(left, right, path + (index,))
+        elif type(expected) is float and path[-1] in REPLAY_ABS_TOLERANCE:
+            self.assertLessEqual(abs(expected - actual), REPLAY_ABS_TOLERANCE[path[-1]], label)
+        else:
+            self.assertEqual(expected, actual, label)
+
+    def test_old_keys_replay_with_roundoff_budget(self):
         fixture = json.loads((ROOT / 'tests/fixtures/qizheng/legacy-c49e6a5.json').read_text())
         for case in fixture['cases']:
-            actual, _ = q.compute(*case['args'], profile='legacy-v1')
-            self.assertEqual(case['expected'], {k: actual[k] for k in case['expected']})
+            with self.subTest(args=case['args']):
+                actual, _ = q.compute(*case['args'], profile='legacy-v1')
+                self.assert_legacy_replay(case['expected'], {k: actual[k] for k in case['expected']})
+
+    def test_replay_accepts_only_unit_bounded_roundoff(self):
+        expected = json.loads((ROOT / 'tests/fixtures/qizheng/legacy-c49e6a5.json').read_text())['cases'][0]['expected']
+        actual = copy.deepcopy(expected)
+        actual['bodies']['土']['mansion_deg'] += 5e-13
+        actual['eot_minutes'] += 5e-13
+        actual['day_night']['sunrise_local'] += 5e-13
+        self.assert_legacy_replay(expected, actual)
+
+    def test_replay_still_rejects_numerical_and_discrete_regressions(self):
+        expected = json.loads((ROOT / 'tests/fixtures/qizheng/legacy-c49e6a5.json').read_text())['cases'][0]['expected']
+        mutations = [
+            ('angle', ('bodies', '土', 'tropical'), lambda value: value + 1e-9),
+            ('full_turn', ('bodies', '土', 'sidereal'), lambda value: value + 360),
+            ('eot', ('eot_minutes',), lambda value: value + 1e-9),
+            ('sunrise', ('day_night', 'sunrise_local'), lambda value: value + 1e-9),
+            ('julian_date', ('jd_ut',), lambda value: value + 1e-9),
+            ('nonfinite', ('bodies', '土', 'tropical'), lambda value: float('nan')),
+            ('mansion', ('bodies', '土', 'mansion'), lambda value: '角'),
+            ('day_night', ('day_night', 'type'), lambda value: '夜生'),
+            ('list_order', ('en_yong', '恩'), lambda value: list(reversed(value))),
+            ('list_length', ('en_yong', '恩'), lambda value: value[:-1]),
+            ('type', ('bodies', '土', 'mansion_deg'), lambda value: True),
+        ]
+        for name, path, mutate in mutations:
+            with self.subTest(regression=name):
+                actual = copy.deepcopy(expected)
+                parent = actual
+                for key in path[:-1]:
+                    parent = parent[key]
+                parent[path[-1]] = mutate(parent[path[-1]])
+                with self.assertRaises(AssertionError):
+                    self.assert_legacy_replay(expected, actual)
+        for name, key in [('missing', 'mansion'), ('extra', 'unexpected')]:
+            with self.subTest(regression=name):
+                actual = copy.deepcopy(expected)
+                if name == 'missing':
+                    del actual['bodies']['土'][key]
+                else:
+                    actual['bodies']['土'][key] = None
+                with self.assertRaises(AssertionError):
+                    self.assert_legacy_replay(expected, actual)
 
     def test_dynamic_provenance(self):
         for profile in ('legacy-v1', 'physical-v2'):

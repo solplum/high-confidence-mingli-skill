@@ -4,7 +4,7 @@
 
 Third-party study packet: CC BY-SA 4.0; see the license exceptions below. / 第三方学习包另用CC BY-SA 4.0，见下方许可例外。
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
-![Node.js](https://img.shields.io/badge/node-18%2B-green)
+![Node.js](https://img.shields.io/badge/node-18.19%2B-green)
 ![Checks](https://img.shields.io/badge/checks-see_verification-blue)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
 
@@ -14,10 +14,8 @@ Third-party study packet: CC BY-SA 4.0; see the license exceptions below. / 第�
 
 ## 简体中文
 
-> 好医生不会看一项指标就下诊断。
->
-> 这个 skill 也一样：八字、紫微、七政三个体系**各自独立**分析你的命，
-> 先独立解释，再对照一致、冲突与缺口；重要判断附可核对来源。
+> 八字、紫微、七政先各自核查盘面与解释条件，
+> 再对照一致、冲突与缺口；重要判断保留可核对的字段、来源和反向信号。
 >
 > 排盘用引擎算，不靠 AI 口算；跨盘一致不代表准确率；来源检查也不证明预测能力。
 
@@ -28,20 +26,30 @@ Third-party study packet: CC BY-SA 4.0; see the license exceptions below. / 第�
 
 | | 机制 | 一句话 |
 |---|------|--------|
-| 🔢 | **确定性排盘引擎** | 四柱/安星/躔度全部由三套引擎计算（Meeus 定气八字 / iztro 紫微 / 自研恒星制七政），27 项回归测试盯着，大模型只负责解读，不负责算数 |
-| 📜 | **可追溯资料解读** | 先经 `knowledge/README.md` 来源门，再用已启用的项目释义；现代整理与数字录文不冒称核验古籍原文 |
-| ⭐ | **跨盘对照，不是投票** | 星级仅为旧版关联展示；严格详批用证据记录、条件与限制，不输出可靠度星级 |
+| 🔢 | **确定性排盘引擎** | 四柱/安星/躔度由三套引擎计算（Meeus 定气八字 / iztro 紫微 / 自研恒星制七政）；回归测试检查已覆盖的实现契约，大模型不口算替代引擎 |
+| 📜 | **可追溯资料解读** | 先经来源门，再区分资料释义、作者现代转译与条件综合；实际依据可查，现代整理与数字录文不冒称核验古籍原文 |
+| ⭐ | **跨盘对照，不是投票** | 星级仅为旧版关联展示；个人分析用证据记录、条件与限制，不输出可靠度星级 |
 | 🔁 | **自愿反馈与版本记录** | 用户愿意时先冻结判断再记录反馈；旧事回顾不算盲测，不用命中反馈计算准确率 |
 
-*普通 AI 算命 vs 本 Skill：*
+### 所有个人分析默认深入核查与充分解释
 
-| 普通 AI 算命 | 本 Skill |
-|--------------|----------|
-| 干支靠大模型口算，节气靠背日期，算错一位全盘皆错 | 排盘全部引擎计算，口算仅作离线降级并强制标注 |
-| "你本月运势不错"——无出处无依据 | 每条主判断挂资料来源与限制；已隔离条文不作依据 |
-| 吉凶好坏吓唬人 | 断语走斯多葛转写，每篇附「你可以把握的是」 |
-| 每次都像第一次见你 | 校准闭环：越用越懂你 |
-| 硬凑共鸣 | 共鸣溯源有硬门槛：全部命题不命中就直说"不匹配" |
+运势、具体问题、共鸣溯源和完整详批共用 [可复核分析流程](workflows/fortune-auditable-reading.md)。问题范围决定检查哪些领域；用户要求短答时只压缩正文，仍执行相同的核查标准。
+
+[统一解释方法](docs/interpretation-standard.md)区分盘面事实、可定位传统释义、作者现代转译与综合推论。合理现代转译无需逐词预注册；基于本盘具体位置、关系与反向条件，给出有实质内容的条件判断，并说明含义、支持与代价。作者解释保留自身身份，不冒称已登记传统象义。
+
+1. 固定出生输入、时间口径、误差和分析范围，保存实际引擎快照；相关边界有候选比较或明确缺口。
+2. 各盘分别核对事实，按来源门查询本次适用资料，再记录规则前提、支持与反向信号及竞争解释。程序输出的有限结构摘要是分析底稿，不是完整详批。
+3. 按领域记录“已分析 / 已检查但暂不判 / 无数据 / 不适用”，覆盖本次问题需要的内容；不能用列出星曜、神煞或格名代替判断条件。
+4. 单独复审字段、引文、规则适用性、推导、时间分支和遗漏，同时检查过度断言与解释不足；有独立 agent 时可分工，无并行工具时顺序复审并保存结果，再进行跨盘对照。
+5. 正文按主题给出含义和条件判断，讲清为什么这样解释、什么条件下成立、有哪些反向信号、边界在哪里。具体缺口限制受影响部分，保留其余有依据的内容；不以结构清单、提问清单或反复暂缓代替解读。
+
+本次证据保存在用户数据目录，通常包括实际命令与快照、来源索引、[分析工作记录](templates/reading-workpad.template.md)、适用的重要判断 ledger 或原生模块人工解释记录，以及复审/校验结果；无法生成的产物如实标缺。两种记录保留各自用途，不为通过校验创建假 claim。它们是可复核的依据摘要，不要求公开隐藏思维过程。以检查和解释完成情况验收，不规定最低耗时、篇幅或引用条数；结构校验通过也不证明预测准确。
+
+### 维护者的真实案例评测
+
+八字与紫微使用独立于日常知识库的外部赛事案例进行开发评测，按命主分组并隔离答案，保留答错、拒答与信息不足。工具提供筛选、开发/保留集导出和完整计分；真实题目与出生资料不随技能包分发。合成盘仍只用于工程与规则回归。操作、来源限制和结果边界见 [外部案例评测](docs/reading-benchmark.md)。`proposals/` 保留增补审查稿；实际启用范围以知识登记和下述文档为准，未获批准的部分不接入。
+
+已批准并接入的增补为 BZ-K01～04 与 ZW-K01～05，默认输出独立 `reviewed_structure`：包含八字方向/角色检查、紫微空宫/辅星/宫位/本命四化结构，以及三个条件受限的观察主题。原始盘面与旧解释层保持兼容，具体范围见 [已批准结构增补](docs/approved-structural-reading.md)。它们不提供人生事件预测或准确率保证。
 
 ### 可运行的端到端演示
 
@@ -49,7 +57,7 @@ Third-party study packet: CC BY-SA 4.0; see the license exceptions below. / 第�
 使用虚构出生输入，实际生成三个引擎的快照、证据记录及易读报告，包含边界分支。
 它验证工程管线与有限的条件式解释，不是命中率评测或真实用户详批。
 
-### 30 秒上手
+### 安装与开始
 
 ```bash
 # 1. 克隆到 agent CLI 的 skills 目录（以 Claude Code 为例）
@@ -60,7 +68,8 @@ cd ~/.claude/skills/high-confidence-mingli-skill/scripts/pai_pan_ziwei && npm ci
 ```
 
 然后在 CLI 里说 `/high-confidence-mingli-skill`，或直接开口："今日运势""帮我详批"。
-首次运行引导建档：出生信息 → 三引擎排盘 → 可选反馈，
+首次运行引导建档：核对出生信息与时间口径 → 生成可用盘及快照 → 深入分析与复审 → 可选反馈。
+完整总控只接收公历日期和明确钟表时间；未知时辰使用可支持的八字六字路径，不填假定时刻生成三盘。见 [建档流程](docs/onboarding.md)。
 排盘脚本在本地运行；使用云端 agent 解读时，输入会依所选服务的数据政策处理。请勿把用户档案提交到公开仓库。
 
 ### 旧版升级
@@ -71,73 +80,81 @@ cd ~/.claude/skills/high-confidence-mingli-skill/scripts/pai_pan_ziwei && npm ci
 
 ### 工作原理（给想深究的人）
 
-- **排盘层** `scripts/`：八字引擎用 Meeus 定气定朔（纯标准库，1900-2100）；紫微用 iztro 2.6.1；
-  七政为自研恒星制引擎（角宿一=0°，Hipparcos 宿度表，果老安命法，输出躔宿+躔宫）——**全部学派口径在
-  引擎文件头声明出处**。三引擎共 27 项回归测试：对拍 JPL DE441 校正级的开源参照黄金值 +
-  古典安命三例 + 夜子时/立春边界用例 + 二十八宿落宫全表
+- **排盘层** `scripts/`：八字引擎用 Meeus 定气定朔（纯标准库，1900-2100）；紫微用 iztro 2.6.1；七政采用自研恒星制及声明的果老安命口径，输出躔宿、躔宫等数据。计算版本、近似项和学派口径以引擎文件头及对应合同为准。基础和扩展回归覆盖若干参照值、时间边界、坐标与字段合同，不证明所有地点、年代或解释均准确。
 - 紫微精确亮度请读取新增 `brightnessRaw`，缺失为 `null`；旧 `brightness` 仅为合并分组，不能据此细分庙旺。[字段口径](docs/ziwei-brightness.md)。
-- **解读层**：先读 [知识来源门](knowledge/README.md)。八字/紫微八份旧资料逐字节保留，另有17篇固定版本 iztro-docs 资料与原许可。普通解读仅启用明确登记的项目释义，不把数字录文或现代汇编当作已核古籍原文。七政五份旧资料的来源声明指向殆知阁《张果星宗》《星学大成》《乾元秘旨》，本次未逐条核验其底本、篇章归属或准确性；不能称已完成原典校勘。详见 [来源记录](references/README.md)。
-- **管线**：解读管线三段式（各盘分层注明来源的解读 → 跨盘证据对照 → 斯多葛收束），五个模式 +
-  详批模式共用；规则全文见 [SKILL.md](SKILL.md)
+- **解读层**：先读 [知识来源门](knowledge/README.md)。八字/紫微八份旧资料逐字节保留，另有17篇固定版本 iztro-docs 资料与原许可。个人解读只使用各来源门明确允许的用途，不把数字录文或现代汇编当作已核古籍原文。七政旧资料的书名声明不代表完成原典校勘；后续独立研究包的影像核查仅限其明示页段和用途，不自动解禁旧材料。详见 [来源记录](references/README.md)。
+- **管线**：固定输入与快照 → 单盘查证和领域分析 → 单独复审 → 跨盘证据对照 → 主题正文与现实建议。详见 [SKILL.md](SKILL.md) 和 [共享分析流程](workflows/fortune-auditable-reading.md)。
 
 ### 文档地图
 
 | 文档 | 内容 |
 |------|------|
-| [SKILL.md](SKILL.md) | 引擎主文件：路由 / 解读管线 / 置信度 / 语气 / 权重 |
+| [SKILL.md](SKILL.md) | 技能入口：路由、共享分析标准和数据约定 |
 | [docs/onboarding.md](docs/onboarding.md) | 建档流程（含历史事件校准） |
 | [references/README.md](references/README.md) | 解读资料层溯源表 |
 | [workflows/fortune-full-reading.md](workflows/fortune-full-reading.md) | 详批模式（长文批盘） |
+| [workflows/fortune-auditable-reading.md](workflows/fortune-auditable-reading.md) | 所有个人分析的查证、覆盖、复审与交付标准 |
+| [docs/interpretation-standard.md](docs/interpretation-standard.md) | 事实、资料释义、作者转译与条件综合的统一方法 |
+| [templates/reading-workpad.template.md](templates/reading-workpad.template.md) | 本次分析记录、领域覆盖与复审底稿 |
 
 ### 限制与口径
 
-1. 七政盘制为恒星制（角宿一=0°），与回归制排盘软件相差约 24°，属学派差异，口径全标注
+1. 七政使用声明的恒星参考系与近似宿宫界；与其他软件的差异须逐项查坐标、边界和安命口径，不能统一归因于固定角差
 2. 七政月限/小限（限度推算）不包含；洞微百六限等倒限内容不入典籍库、解读不断流年应期；
    变曜/化曜/神煞层（年干起例）同理不做
 3. 紫微引擎需要 node（`npm ci` 一次），缺环境时该盘自动降级
-4. 三元九运交接点存在学派争议（本 skill 统一用 2004/2024）
+4. 时代运等传统背景不能替代本盘条件、现实原因或具体时间证据
 5. 运势为未经统计校准的传统解释框架，不提供预测概率——命理分析仅供参考，人生在于自身的努力和选择
+6. 自动未编码或未裁决的部分，可在已有资料与获准解释方法范围内继续人工研究，原模块状态保持不变；必要字段、条件、来源隔离和计算契约仍约束判断，八字窄强弱、紫微四宫与七政受限模块不能包装成全体系自动详批
+7. 引擎或依赖不可用时保留缺盘及不能校验的字段，不以口算替代正常深入分析
 
 ---
 
 ## English
 
-> A good doctor never diagnoses from a single lab result.
->
-> Neither does this skill: BaZi, Ziwei Doushu, and Qizheng Siyu — three systems
-> **independently** read your chart. Interpretations are compared for agreement, conflict and missing evidence.
-> Important claims cite inspectable local sources.
+> BaZi, Ziwei Doushu and Qizheng Siyu first check their own chart facts and rule conditions.
+> Interpretations are then compared for agreement, conflict and missing evidence.
+> Important claims retain inspectable fields, sources and contrary signals.
 >
 > Charts are computed by engines, not LLM mental arithmetic. Cross-chart agreement is not evidence of predictive accuracy.
 
 A fortune-telling companion that lives inside your agent CLI (Claude Code /
-Codex / Kimi Code — anything that reads SKILL.md). **Not AI fortune-cookie
-generation** — a traditional interpretation workflow with traceable claims, explicit conditions and limitations. Computation and interpretation can both be wrong.
+Codex / Kimi Code — anything that reads SKILL.md). It provides traditional interpretations with traceable claims, explicit conditions and limitations. Computation and interpretation can both be wrong.
 
 ### How it works
 
 | | Mechanism | In one line |
 |---|-----------|-------------|
-| 🔢 | **Deterministic chart engines** | Four Pillars / star-placing / planetary degrees are computed by three engines (Meeus-based BaZi / iztro Ziwei / self-built sidereal Qizheng), guarded by 27 regression tests — the LLM only interprets, never calculates |
-| 📜 | **Source-attributed reading** | Read `knowledge/README.md` first, then use explicitly enabled project paraphrases; modern compilations and digital transcriptions are not authenticated classical quotations |
-| ⭐ | **Cross-chart comparison, not voting** | Legacy stars are association labels only; strict readings record evidence and uncertainty, not accuracy ratings |
-| 🔁 | **Calibration loop** | Feedback is optional; freeze claims before evaluation, retain misses, and never treat known events as blind validation |
+| 🔢 | **Deterministic chart engines** | Four Pillars / star-placing / planetary degrees are computed by three engines (Meeus-based BaZi / iztro Ziwei / self-built sidereal Qizheng); regressions check covered implementation contracts, and the LLM does not replace engines with mental arithmetic |
+| 📜 | **Source-attributed reading** | Apply the provenance gate, then distinguish source interpretations, the author's modern translations and conditional synthesis; retain inspectable premises, and do not present modern compilations or digital transcriptions as authenticated classical quotations |
+| ⭐ | **Cross-chart comparison, not voting** | Legacy stars are association labels only; personal readings record evidence and uncertainty, not accuracy ratings |
+| 🔁 | **Optional feedback and versioning** | Freeze claims before feedback, retain misses, and never treat known events as blind validation or use feedback to compute accuracy |
 
-*Ordinary AI fortune-telling vs this skill:*
+### Thorough checks and substantive interpretation for every personal reading
 
-| Ordinary AI fortune-telling | This skill |
-|------------------------------|------------|
-| Stems and branches from LLM mental arithmetic; solar terms from memorized dates — one slip ruins the whole chart | All chart math from engines; mental fallback only offline, always flagged |
-| "Your career looks great this month" — no source, no basis | Every main claim carries a citation line; cross-chart links state conditions and limits |
-| Auspicious/inauspicious scare labels | Verdicts rendered Stoic; each reading ends with "what you can hold onto" |
-| Starts from scratch every time | Calibration loop: knows you better the longer you use it |
-| Forces resonance | Resonance tracing has a hard gate: if nothing matches, it says so |
+Fortunes, specific questions, resonance tracing and full readings share the [auditable analysis workflow](workflows/fortune-auditable-reading.md). The question determines which domains need examination. A request for a short answer reduces presentation length while preserving the same checks.
+
+The [shared interpretation method](docs/interpretation-standard.md) distinguishes chart facts, locatable traditional interpretations, the author's modern translations and synthesis. Reasonable modern wording need not be registered word by word. Use actual chart positions, relationships and contrary conditions to give substantive conditional judgments, explaining meaning, support and tradeoffs. Preserve the author's role rather than presenting a translation as an already registered traditional correspondence.
+
+1. Fix birth inputs, time conventions, uncertainty and scope, then save actual engine snapshots. Compare relevant boundary candidates or disclose what remains unchecked.
+2. Check each chart separately, retrieve permitted material through the provenance gate, and record prerequisites, supporting and contrary signals, and competing interpretations. Limited engine summaries are analysis inputs, not complete readings.
+3. Record domain coverage as analyzed, checked but withheld, missing data or not applicable. Listing stars, symbolic markers or pattern names does not check their conditions.
+4. Separately review fields, quotations, rule applicability, inference, time branches and omissions, checking both overstatement and insufficient explanation before cross-chart comparison. Use an independent agent when available; otherwise preserve a sequential review record.
+5. Give meanings and conditional judgments by theme: why an interpretation is proposed, its conditions, contrary signals and boundaries. Limit only the parts affected by a specific gap while retaining other supported interpretations; structural lists, question lists or repeated abstentions do not replace a reading.
+
+Evidence stays in the personal data directory and normally includes actual commands and snapshots, a source index, an [analysis workpad](templates/reading-workpad.template.md), an applicable claim ledger or native-module interpretation records, and review/validation results. Preserve each record's permissions rather than inventing claims to pass validation; disclose unavailable artifacts. These are concise auditable evidence summaries, not hidden reasoning transcripts. Completion depends on checks and substantive explanation, not minimum elapsed time, word count or citation count; structural validation does not establish predictive accuracy.
+
+### Maintainer evaluation with real cases
+
+BaZi and Ziwei use external competition cases kept separate from everyday knowledge retrieval. Split by person, isolate answer keys, and retain errors and abstentions. The tool filters sources, exports development or explicitly selected holdout packs, and scores complete submissions. Real questions and birth records are not bundled with the skill. Synthetic charts remain engineering and rule regressions. See [external case evaluation](docs/reading-benchmark.md) for operation, provenance and limits. `proposals/` retains review drafts; the registry and activation document below define what is active. Unapproved portions remain inactive.
+
+The approved BZ-K01–04 and ZW-K01–05 ranges are now available in a separate default `reviewed_structure` panel: BaZi direction and role checks, Ziwei empty-palace, adjunct, position and natal-transformation checks, plus three bounded observation themes. Raw charts and earlier reading layers remain compatible. See [approved structural additions](docs/approved-structural-reading.md) for scope. These additions do not predict life events or guarantee accuracy.
 
 ### Executable end-to-end example
 
 See [the executable end-to-end demo](examples/engine-reading/README.md): fictional inputs, actual engine snapshots, a ledger and a readable conditional report, including boundary branches. It is not a predictive-accuracy evaluation.
 
-### 30-second start
+### Install and begin
 
 ```bash
 # 1. Clone into your agent CLI's skills directory (Claude Code shown)
@@ -148,8 +165,7 @@ cd ~/.claude/skills/high-confidence-mingli-skill/scripts/pai_pan_ziwei && npm ci
 ```
 
 Then say `/high-confidence-mingli-skill` in your CLI, or just talk: "today's fortune",
-"full reading of my chart". First run walks you through onboarding: birth data
-→ three-engine charts → optional feedback. Engine scripts run locally. Cloud-agent interpretation is subject to your chosen provider’s data policy; never commit private charts to a public repository.
+"full reading of my chart". First run checks birth inputs and time conventions, generates available charts and snapshots, and performs analysis and review before optional feedback. The combined builder accepts a Gregorian date and a known clock time; unknown birth time uses the supported BaZi six-character path rather than an assumed time for all three charts. See [onboarding](docs/onboarding.md). Engine scripts run locally. Cloud-agent interpretation is subject to your chosen provider’s data policy; never commit private charts to a public repository.
 
 ### Upgrading an older installation
 
@@ -159,38 +175,33 @@ Keep personal data in `~/.claude/fortune-telling/`, including `chart.md`, `memor
 
 ### Under the hood
 
-- **Chart layer** `scripts/`: BaZi via Meeus solar-term/syzygy math (pure stdlib,
-  1900-2100); Ziwei via iztro 2.6.1; Qizheng via a self-built sidereal engine
-  (Spica = 0°, Hipparcos mansion table, Gulan ascending rule) — **every school
-  convention is documented with sources in the engine file headers**. 27
-  regression tests: golden values cross-checked against a JPL DE441-grade open
-  reference, classical ascending-rule examples, and edge cases (late-Zi hour,
-  spring-equinox boundary)
+- **Chart layer** `scripts/`: BaZi via Meeus solar-term/syzygy math (pure stdlib, 1900-2100); Ziwei via iztro 2.6.1; Qizheng uses the self-built sidereal engine and its declared traditional ascending convention. Engine headers and owning contracts define calculation versions, approximations and school conventions. Base and extended regressions cover selected reference values, time boundaries, coordinates and field contracts; they do not establish accuracy for every location, era or interpretation.
 - Ziwei exact brightness is available in additive `brightnessRaw` (`null` when unavailable); legacy `brightness` remains a collapsed grouping. See [source fidelity](docs/ziwei-brightness.md).
-- **Interpretation layer**: read [the provenance gate](knowledge/README.md) first. Eight legacy files remain byte-identical; 17 pinned iztro-docs files retain their source hashes and upstream license. Only explicitly enabled project paraphrases are ordinary reading rules. Digital transcriptions and modern compilations are not authenticated classical editions. Qizheng materials have not received edition-level verification in this upgrade. See [source records](references/README.md).
-- **Pipeline**: three-stage reading (per-chart source-attributed interpretation →
-  cross-chart evidence comparison → Stoic closing), shared by five modes plus
-  full-reading; full rules in [SKILL.md](SKILL.md)
+- **Interpretation layer**: read [the provenance gate](knowledge/README.md) first. Eight legacy files remain byte-identical; 17 pinned iztro-docs files retain their source hashes and upstream license. Personal readings use only the purposes explicitly permitted by each source gate. Digital transcriptions and modern compilations are not authenticated classical editions. Legacy Qizheng book labels do not establish collation; image checks in later independent study packets apply only to their declared pages and uses, without unlocking old materials. See [source records](references/README.md).
+- **Pipeline**: fixed inputs and snapshots → per-chart source checks and domain analysis → separate review → cross-chart evidence comparison → thematic explanation and practical suggestions. See [SKILL.md](SKILL.md) and the [shared analysis workflow](workflows/fortune-auditable-reading.md).
 
 ### Docs
 
 | Doc | Content |
 |-----|---------|
-| [SKILL.md](SKILL.md) | Engine main file: routing / pipeline / confidence / voice / weights |
+| [SKILL.md](SKILL.md) | Skill entry: routing, shared analysis standards and data conventions |
 | [docs/onboarding.md](docs/onboarding.md) | Onboarding flow (incl. historical-event calibration) |
 | [references/README.md](references/README.md) | Interpretation-layer provenance |
 | [workflows/fortune-full-reading.md](workflows/fortune-full-reading.md) | Full-reading mode (long-form chart reading) |
+| [workflows/fortune-auditable-reading.md](workflows/fortune-auditable-reading.md) | Source checks, coverage, review and delivery standards for all personal readings |
+| [docs/interpretation-standard.md](docs/interpretation-standard.md) | Shared method for facts, source interpretations, the author's translations and conditional synthesis |
+| [templates/reading-workpad.template.md](templates/reading-workpad.template.md) | Analysis, domain-coverage and review workpad |
 
 ### Limitations & conventions
 
-1. The Qizheng chart is sidereal (Spica = 0°), ~24° apart from tropical
-   software — a school difference, fully documented
-2. Qizheng monthly/annual limits (limit-degree math) not included
+1. Qizheng uses its declared stellar reference frame and approximate mansion/palace boundaries. Differences from other software need coordinate, boundary and ascending-convention checks rather than a universal fixed-angle explanation
+2. Qizheng monthly/minor limits, other limit-degree timing, and year-stem transformation/symbolic-marker layers are not included in readings
 3. The Ziwei engine needs Node.js (`npm ci` once); without it that chart
    degrades gracefully
-4. The San Yuan Jiu Yun boundary is disputed across schools (this skill uses
-   2004/2024)
+4. Traditional period backgrounds do not replace chart conditions, real-world causes or specific timing evidence
 5. Readings are uncalibrated traditional interpretations, not predictive probabilities or guidance for consequential decisions
+6. Unencoded or undecided interpretations may be researched manually within available material and the approved method, preserving the original module status. Required fields and conditions, quarantined sources and calculation contracts still constrain judgments; bounded BaZi strength rules, Ziwei four-domain themes and restricted Qizheng rules do not form a fully automated reading of all three traditions
+7. Unavailable engines or dependencies leave explicit missing charts and unchecked fields; mental arithmetic does not substitute for a normal thorough analysis
 
 ---
 
@@ -213,7 +224,8 @@ Civil time remains the default. Select `--time-basis apparent-solar` explicitly 
 
 默认文本不变；JSON 提供原始结构、实际时间口径、源文件摘要及缺盘原因。
 Text remains the default. JSON preserves computed structures, time conventions, source hashes and explicit degradation.
-The strict workflow is enabled for full readings; other modes remain legacy and have not received full semantic review.
+所有个人分析共用深入核查流程；命令只生成快照及有限结构摘要，agent 仍须完成资料查询、领域分析和复审。
+All personal readings share the thorough checking workflow. This command generates snapshots and limited structural summaries; the agent still performs source retrieval, domain analysis and review.
 
 ### 固定分析年 / Explicit analysis year
 

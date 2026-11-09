@@ -2,7 +2,9 @@
 
 # Claim ledger v1：使用说明与验证边界
 
-这是新增的工程协议，不是古籍，不更改 `references/bazi`、`references/ziwei` 或 `references/qizheng` 原始资料。原排盘输出、chart.md、memory.md 与七节详批兼容；ledger 是可选伴随文件，真实用户档案应存放在 skill 仓库之外。
+这是工程协议，不是古籍，不更改 `references/bazi`、`references/ziwei` 或 `references/qizheng` 原始资料。原排盘输出、chart.md、memory.md 与七节详批兼容。个人分析按 `workflows/fortune-auditable-reading.md` 保存证据与工作记录；符合现有用途的判断使用 ledger v1，module-only 等受限模块保存原始证据与人工解释记录，真实用户档案存放在 skill 仓库之外。通用知识问答不要求私有 ledger；涉及个人盘面对照时，该部分进入个人分析流程。无机器快照或无法运行校验时保留明确受限记录，不声称已完成机器校验。
+
+解释内容遵循 [统一解释标准](../docs/interpretation-standard.md)，区分盘面事实、可定位传统释义、作者现代转译与条件综合。现代用语无需逐句注册，但作者转译须保留实际依据和推论身份；它不改变本协议的规则摘录、来源用途、依赖和状态检查。
 
 ## 文件结构
 
@@ -21,7 +23,7 @@ python3 -m unittest discover -s tests -p 'test_claim_ledger.py' -v
 - **scenarios**：id、label、time_basis、assumptions。每个实际生成的候选输入与口径一个场景；未检查的争议写入限制，不伪造候选。
 - **facts**：id、system（bazi/ziwei/qizheng）、scenario_id、source_id、pointer、value。必须逐字段等于 chart JSON；支持字典和数组指针。计算结果也是在指定模型下的结果，不等于现实事件证据。
 - **rules**：id、system、source_id、school、locator、start_line、end_line、quote。行号从 1 起；引文必须逐字存在于该行区间。locator 写原书/整理本/章节等真实定位；校验器不替你核实版本权威或规则是否适用。
-- **claims**：id、system、domain、time_scope、statement、status、fact_ids、rule_ids、depends_on、scenario_ids、conditions、counterevidence、alternatives、boundary、explanation、limitations。无依赖仍填空数组。explanation 有 plain / technical / action 三段。
+- **claims**：id、system、domain、time_scope、statement、status、fact_ids、rule_ids、depends_on、scenario_ids、conditions、counterevidence、alternatives、boundary、explanation、limitations。无依赖仍填空数组。explanation 有 plain / technical / action 三段；在现有授权与状态允许的范围内，说明资料原意、作者现代转译和综合理由，规则quote仍保留实际来源文字，不为转译伪造引文。
 - **syntheses**：id、claim_ids、relation（agreement/conflict/different_scope/insufficient）、explanation、shared_inputs、limits。至少两个不同体系，合参不可反过来充当单盘证据。agreement 需同领域、时间范围和场景集合。
 
 `status`：supported = 在已核对的规则及场景内有支持；conditional = 有条件或缺口；withheld = 暂不作判断。三者都不是预测可靠度。
@@ -42,12 +44,15 @@ python3 -m unittest discover -s tests -p 'test_claim_ledger.py' -v
 
 不照搬其混合模式“紫微为主、八字印证”的默认优先级，也不沿用把 qizheng.chart 路由到紫微语境的分组。七政的星框、日月处理与用/仇口径需要按版本分别核查，不能因名字相同就当作可替换数据。后续如移植素材，应逐文件核对许可证、来源版本、语义与回归样例；本次新增实现完全独立。
 
-## 已接入的入口
+## 个人分析入口与工作记录
 
-已在 SKILL 的详批路由和 `workflows/fortune-full-reading.md` 前置检查加入：
-“详批先读取 `workflows/fortune-auditable-reading.md`；依其证据门执行原七节。不得将跨盘一致解释成准确率。保留缺盘、未知时辰及未校验的明确降级。”
+详批、具体问题、运势及共鸣对照均先执行 `workflows/fortune-auditable-reading.md` 的共同流程；各分支仅决定本次问题和时间范围。可进入 ledger 的重要判断沿用 v1 连接实际字段、登记规则、条件、反证、替代解释和场景。用途受限的原生模块及其人工解释在工作记录中保存唯一ID、原始面板定位与同等依据摘要，不为凑齐文件创建假claim、伪造引文或改写模块状态。supported 始终只表示给定规则和场景内的支持，不表示现实预测可靠度。
 
-即使其他模式尚未升级，也不应把本 ledger 的 supported 映射成旧版 >90% 或星级。这里只新增可复核层，未声称已自动升级所有调用入口。
+按 `templates/reading-workpad.template.md` 保存本次执行记录、主题覆盖、检索结果与无匹配项、单盘初稿、现代转译与综合理由、独立复审发现及处理结果，并连接 ledger、原生模块、来源副本和最终正文。自动未编码或未裁决的内容可在获准方法与资料范围内继续人工研究，实际缺失字段、必要条件和来源限制仍约束相应解释。工作记录补充人的语义审查，不改变 v1 字段，也不把隐藏思维过程当交付要求。
+
+跨盘对照可定位合法ledger claim或原生模块人工解释记录，并保留各自用途和共同依赖。v1 JSON的syntheses仍只引用本ledger合法claim_ids；涉及原生模块的对照保存在workpad或报告，不把模块记录伪装成ledger claim。七政已有的禁止个人事件claim、合参投票或校准命中等限制继续按对应模块执行。
+
+完成按相关主题的检查充分性判断：有可查的字段和来源，条件与反向解释已检查，实际边界已比较或明确缺口，复审发现已处理，正文与最终证据一致。机器校验结果和未运行项如实记录；篇幅、引用条数及耗时都不能单独证明完成。中断时保存已完成项和待办，不将未检查项记为通过。
 
 ## 来源门升级
 

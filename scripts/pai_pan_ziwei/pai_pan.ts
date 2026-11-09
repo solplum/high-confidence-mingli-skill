@@ -18,12 +18,14 @@
  *   --name  姓名（可选，仅展示）
  *   --place 出生地（可选，仅展示）
  *   --explain-rules     显示实现规则的解释及局限（不启用事件预测）
+ *   --temporal-uncertainty  出生时间存在非零误差，暂缓已审增补观察主题
  *   --format text|json  默认 text；两种格式共享 rule_output
  *   --age-year YYYY      以该年份计算当前年龄/当前大限（默认当年，供流年复核）
  */
 
 import { generateChart, getLunarInfo } from './vendor/algorithm';
 import { renderDomainReading } from './domain_reading';
+import { renderReviewedStructure } from './reviewed_structure';
 import { buildRuleOutput } from './rule_output';
 import { getSiHuaByStem, getLiuNianSiHua, getYearStemIndex, getYearBranchIndex } from './vendor/sihua';
 import { STEMS, BRANCHES } from './vendor/constants';
@@ -39,6 +41,7 @@ interface Args {
   birthYear?: number;
   format?: string;
   explainRules?: boolean;
+  temporalUncertainty?: boolean;
 }
 
 class UsageError extends Error {}
@@ -54,6 +57,7 @@ function parseArgs(argv: string[]): Args {
     const value = argv[i + 1];
     switch (key) {
       case '--explain-rules': args.explainRules = true; break;
+      case '--temporal-uncertainty': args.temporalUncertainty = true; break;
       case '--format': args.format = value; i++; break;
       case '--solar': args.solar = value; i++; break;
       case '--hour': args.hour = value; i++; break;
@@ -137,10 +141,10 @@ function run() {
 
   const lunar = getLunarInfo(year, month, day);
 
-  const ruleOutput = buildRuleOutput(chart, args.explainRules);
+  const ruleOutput = buildRuleOutput(chart, args.explainRules, {temporalUncertainty:!!args.temporalUncertainty});
   if (args.format === 'json') {
     console.log(JSON.stringify({ schema_version: 1, engine: 'iztro 2.6.1 / vendored wrapper',
-      input: { solar: args.solar, shichenIndex, gender, ageYear, birthYear }, lunar, chart, rule_output: ruleOutput }, null, 2));
+      input: { solar: args.solar, shichenIndex, gender, ageYear, birthYear, temporalUncertainty:!!args.temporalUncertainty }, lunar, chart, rule_output: ruleOutput }, null, 2));
     return;
   }
   // ── 输出 ──
@@ -205,6 +209,7 @@ function run() {
     }
   }
   console.log(renderDomainReading(ruleOutput.domain_reading));
+  console.log(renderReviewedStructure(ruleOutput.reviewed_structure));
   console.log('\n## 命宫小结（排布事实）');
   console.log('主星：' + (ruleOutput.ming_summary.stars.join('、') || '空宫（借星另列）'));
   console.log(ruleOutput.ming_summary.meaning);
