@@ -53,15 +53,21 @@ Third-party study packet: CC BY-SA 4.0; see the license exceptions below. / 第�
 
 ```bash
 # 1. 克隆到 agent CLI 的 skills 目录（以 Claude Code 为例）
-git clone https://github.com/solplum/high-confidence-mingli-skill.git ~/.claude/skills/fortune-telling
+git clone https://github.com/solplum/high-confidence-mingli-skill.git ~/.claude/skills/high-confidence-mingli-skill
 
 # 2. 启用紫微引擎（一次性；不装则紫微盘自动降级）
-cd ~/.claude/skills/fortune-telling/scripts/pai_pan_ziwei && npm ci
+cd ~/.claude/skills/high-confidence-mingli-skill/scripts/pai_pan_ziwei && npm ci
 ```
 
-然后在 CLI 里说 `/fortune-telling`，或直接开口："今日运势""帮我详批"。
+然后在 CLI 里说 `/high-confidence-mingli-skill`，或直接开口："今日运势""帮我详批"。
 首次运行引导建档：出生信息 → 三引擎排盘 → 可选反馈，
 排盘脚本在本地运行；使用云端 agent 解读时，输入会依所选服务的数据政策处理。请勿把用户档案提交到公开仓库。
+
+### 旧版升级
+
+注册名、安装目录名和显式调用名均为 `high-confidence-mingli-skill`。若此前安装到了 `~/.claude/skills/fortune-telling/`，先备份本地改动，再将该安装目录重命名为 `~/.claude/skills/high-confidence-mingli-skill/`（目标已存在时先检查两份内容，不要覆盖）。在新目录更新代码，重启 CLI 后使用 `/high-confidence-mingli-skill`。不要同时保留两份可发现的安装。
+
+用户资料继续使用 `~/.claude/fortune-telling/`，包括 `chart.md`、`memory.md` 和 `memory-archive/`；这是兼容数据路径，不是技能注册名，无需迁移或重新建档。
 
 ### 工作原理（给想深究的人）
 
@@ -135,15 +141,21 @@ See [the executable end-to-end demo](examples/engine-reading/README.md): fiction
 
 ```bash
 # 1. Clone into your agent CLI's skills directory (Claude Code shown)
-git clone https://github.com/solplum/high-confidence-mingli-skill.git ~/.claude/skills/fortune-telling
+git clone https://github.com/solplum/high-confidence-mingli-skill.git ~/.claude/skills/high-confidence-mingli-skill
 
 # 2. Enable the Ziwei engine (once; skipped gracefully if absent)
-cd ~/.claude/skills/fortune-telling/scripts/pai_pan_ziwei && npm ci
+cd ~/.claude/skills/high-confidence-mingli-skill/scripts/pai_pan_ziwei && npm ci
 ```
 
-Then say `/fortune-telling` in your CLI, or just talk: "today's fortune",
+Then say `/high-confidence-mingli-skill` in your CLI, or just talk: "today's fortune",
 "full reading of my chart". First run walks you through onboarding: birth data
 → three-engine charts → optional feedback. Engine scripts run locally. Cloud-agent interpretation is subject to your chosen provider’s data policy; never commit private charts to a public repository.
+
+### Upgrading an older installation
+
+The registered name, installation folder name and explicit invocation name are all `high-confidence-mingli-skill`. If you installed into `~/.claude/skills/fortune-telling/`, back up local changes, then rename that installation folder to `~/.claude/skills/high-confidence-mingli-skill/`. If the destination already exists, inspect both copies first; do not overwrite it. Update the code in the renamed folder, restart the CLI, and invoke `/high-confidence-mingli-skill`. Do not leave two discoverable installations.
+
+Keep personal data in `~/.claude/fortune-telling/`, including `chart.md`, `memory.md` and `memory-archive/`. This is a compatible data path, not the registered skill name; no data migration or new onboarding is needed.
 
 ### Under the hood
 

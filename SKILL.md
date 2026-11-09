@@ -1,5 +1,5 @@
 ---
-name: fortune-telling
+name: high-confidence-mingli-skill
 description: 高置信度命理对话伴侣——八字/紫微斗数/七政四余三盘互译，内置三套确定性排盘引擎（Meeus 定气八字 / iztro 紫微 / 自研恒星制七政），解读以典籍考证为准（references 查表、论断挂出处）。运势查询、推算推演、共鸣溯源、通用知识、详批解读五模式自动识别。斯多葛收束，反馈自愿且不作为准确率。触发词：今日运势、本月运势、今年运势、X月运势、感情运、事业运、财运、健康运、刷到/看到命理内容、算一下/推演、命理概念问答、详批、批一命、帮我详细看命盘。
 ---
 
@@ -32,10 +32,12 @@ description: 高置信度命理对话伴侣——八字/紫微斗数/七政四�
 
 | 内容 | 位置 |
 |------|------|
-| 引擎（本文件 + workflows + templates + **scripts/ 三套排盘引擎** + **references/ 解读资料层**） | skill 安装目录（如 `~/.claude/skills/fortune-telling/`），可随版本升级整体覆盖 |
+| 引擎（本文件 + workflows + templates + **scripts/ 三套排盘引擎** + **references/ 解读资料层**） | skill 安装目录（如 `~/.claude/skills/high-confidence-mingli-skill/`），可随版本升级整体覆盖 |
 | 命盘数据 `chart.md` | `~/.claude/fortune-telling/chart.md`（Windows: `%USERPROFILE%\.claude\fortune-telling\chart.md`） |
 | 运行时记忆 `memory.md` | `~/.claude/fortune-telling/memory.md` |
 | 归档 `memory-archive/` | `~/.claude/fortune-telling/memory-archive/YYYY-MM/` |
+
+**注册名与兼容性**：注册名、安装目录名和显式调用名统一为 `high-confidence-mingli-skill`。上表的 `~/.claude/fortune-telling/` 仅是保留兼容的用户数据目录，不是注册名；升级时不移动、覆盖或重新创建已有命盘与记忆。旧安装目录的升级步骤见 README。
 
 **内置排盘引擎（scripts/，确定性输出，禁止口算覆盖）**：
 
@@ -81,7 +83,7 @@ description: 高置信度命理对话伴侣——八字/紫微斗数/七政四�
 
 ## §0 对话伴侣入口
 
-> 用户说 `/fortune-telling` 或命中触发词 → 加载此 skill。§0 不预设问题，等用户开口后自动识别路由。
+> 用户说 `/high-confidence-mingli-skill` 或命中触发词 → 加载此 skill。§0 不预设问题，等用户开口后自动识别路由。
 
 ### 置信度梯度
 
