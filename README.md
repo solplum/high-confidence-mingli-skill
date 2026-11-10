@@ -35,13 +35,13 @@ Third-party study packet: CC BY-SA 4.0; see the license exceptions below. / 第�
 
 运势、具体问题、共鸣溯源和完整详批共用 [可复核分析流程](workflows/fortune-auditable-reading.md)。问题范围决定检查哪些领域；用户要求短答时只压缩正文，仍执行相同的核查标准。
 
-[统一解释方法](docs/interpretation-standard.md)区分盘面事实、可定位传统释义、作者现代转译与综合推论。合理现代转译无需逐词预注册；基于本盘具体位置、关系与反向条件，给出有实质内容的条件判断，并说明含义、支持与代价。作者解释保留自身身份，不冒称已登记传统象义。
+[统一解释与裁决标准 v3](docs/interpretation-standard.md)区分盘面事实、可定位传统释义、作者现代转译与综合推论，先回答所问问题，再说明依据和建议。个人分析分别判断外部形势、目标推进与代价、主观体感；有依据时给总体及领域倾向，关键效力或时间层不足时明确暂不能定性，不把未知写成平稳或好坏相抵。性格与偏好注明自述或条件假设的来源，用于解释体验和适配，不补造外部机会。合理现代转译无需逐词预注册，作者解释保留自身身份。
 
 1. 固定出生输入、时间口径、误差和分析范围，保存实际引擎快照；相关边界有候选比较或明确缺口。
 2. 各盘分别核对事实，按来源门查询本次适用资料，再记录规则前提、支持与反向信号及竞争解释。程序输出的有限结构摘要是分析底稿，不是完整详批。
 3. 按领域记录“已分析 / 已检查但暂不判 / 无数据 / 不适用”，覆盖本次问题需要的内容；不能用列出星曜、神煞或格名代替判断条件。
-4. 单独复审字段、引文、规则适用性、推导、时间分支和遗漏，同时检查过度断言与解释不足；有独立 agent 时可分工，无并行工具时顺序复审并保存结果，再进行跨盘对照。
-5. 正文按主题给出含义和条件判断，讲清为什么这样解释、什么条件下成立、有哪些反向信号、边界在哪里。具体缺口限制受影响部分，保留其余有依据的内容；不以结构清单、提问清单或反复暂缓代替解读。
+4. 单独复审字段、引文、规则适用性、推导、时间分支和遗漏，同时检查过度断言、解释不足及是否回答了实际问题；同一时间、领域、目标和评价对象的相反信号须说明主次或具体未决原因。有独立 agent 时可分工，无并行工具时顺序复审并保存结果，再进行跨盘对照。
+5. 正文先给对象和范围清楚的结论，再按主题解释依据、代价、反向条件和边界。先冻结结构判断，再接入有来源的现实性格与目标作体感/适配解释；保留原判、反馈及修订理由。具体缺口只限制受影响部分，建议不替代判断。
 
 本次证据保存在用户数据目录，通常包括实际命令与快照、来源索引、[分析工作记录](templates/reading-workpad.template.md)、适用的重要判断 ledger 或原生模块人工解释记录，以及复审/校验结果；无法生成的产物如实标缺。两种记录保留各自用途，不为通过校验创建假 claim。它们是可复核的依据摘要，不要求公开隐藏思维过程。以检查和解释完成情况验收，不规定最低耗时、篇幅或引用条数；结构校验通过也不证明预测准确。
 
@@ -94,7 +94,7 @@ cd ~/.claude/skills/high-confidence-mingli-skill/scripts/pai_pan_ziwei && npm ci
 | [references/README.md](references/README.md) | 解读资料层溯源表 |
 | [workflows/fortune-full-reading.md](workflows/fortune-full-reading.md) | 详批模式（长文批盘） |
 | [workflows/fortune-auditable-reading.md](workflows/fortune-auditable-reading.md) | 所有个人分析的查证、覆盖、复审与交付标准 |
-| [docs/interpretation-standard.md](docs/interpretation-standard.md) | 事实、资料释义、作者转译与条件综合的统一方法 |
+| [docs/interpretation-standard.md](docs/interpretation-standard.md) | v3：分层解释、总体/领域裁决与性格体感标准 |
 | [templates/reading-workpad.template.md](templates/reading-workpad.template.md) | 本次分析记录、领域覆盖与复审底稿 |
 
 ### 限制与口径
@@ -134,13 +134,13 @@ Codex / Kimi Code — anything that reads SKILL.md). It provides traditional int
 
 Fortunes, specific questions, resonance tracing and full readings share the [auditable analysis workflow](workflows/fortune-auditable-reading.md). The question determines which domains need examination. A request for a short answer reduces presentation length while preserving the same checks.
 
-The [shared interpretation method](docs/interpretation-standard.md) distinguishes chart facts, locatable traditional interpretations, the author's modern translations and synthesis. Reasonable modern wording need not be registered word by word. Use actual chart positions, relationships and contrary conditions to give substantive conditional judgments, explaining meaning, support and tradeoffs. Preserve the author's role rather than presenting a translation as an already registered traditional correspondence.
+The [shared interpretation and judgment standard v3](docs/interpretation-standard.md) distinguishes chart facts, locatable traditional interpretations, the author's modern translations and synthesis. Answer the question before explaining evidence and offering advice. Personal readings separate external conditions, goal progress and costs, and subjective experience. Give overall and domain directions where supported; disclose an undecidable judgment when key effects or time layers are missing, rather than calling the unknown neutral or balanced. Attribute personality and preferences to self-report or a conditional hypothesis, using them to explain experience and fit rather than invent external opportunities. Reasonable modern wording need not be registered word by word; preserve the author's role.
 
 1. Fix birth inputs, time conventions, uncertainty and scope, then save actual engine snapshots. Compare relevant boundary candidates or disclose what remains unchecked.
 2. Check each chart separately, retrieve permitted material through the provenance gate, and record prerequisites, supporting and contrary signals, and competing interpretations. Limited engine summaries are analysis inputs, not complete readings.
 3. Record domain coverage as analyzed, checked but withheld, missing data or not applicable. Listing stars, symbolic markers or pattern names does not check their conditions.
-4. Separately review fields, quotations, rule applicability, inference, time branches and omissions, checking both overstatement and insufficient explanation before cross-chart comparison. Use an independent agent when available; otherwise preserve a sequential review record.
-5. Give meanings and conditional judgments by theme: why an interpretation is proposed, its conditions, contrary signals and boundaries. Limit only the parts affected by a specific gap while retaining other supported interpretations; structural lists, question lists or repeated abstentions do not replace a reading.
+4. Separately review fields, quotations, rule applicability, inference, time branches and omissions, checking overstatement, insufficient explanation and whether the actual question is answered. Explain which opposing signals take precedence within the same time, domain, goal and evaluation object, or why the comparison remains unresolved. Use an independent agent when available; otherwise preserve a sequential review record before cross-chart comparison.
+5. Lead with a judgment whose object and scope are clear, then explain evidence, costs, contrary conditions and boundaries by theme. Freeze structural judgments before adding sourced real-world personality and goals to discuss experience and fit. Retain the original judgment, feedback and revision reasons. Limit only the parts affected by a specific gap; advice does not replace judgment.
 
 Evidence stays in the personal data directory and normally includes actual commands and snapshots, a source index, an [analysis workpad](templates/reading-workpad.template.md), an applicable claim ledger or native-module interpretation records, and review/validation results. Preserve each record's permissions rather than inventing claims to pass validation; disclose unavailable artifacts. These are concise auditable evidence summaries, not hidden reasoning transcripts. Completion depends on checks and substantive explanation, not minimum elapsed time, word count or citation count; structural validation does not establish predictive accuracy.
 
@@ -189,7 +189,7 @@ Keep personal data in `~/.claude/fortune-telling/`, including `chart.md`, `memor
 | [references/README.md](references/README.md) | Interpretation-layer provenance |
 | [workflows/fortune-full-reading.md](workflows/fortune-full-reading.md) | Full-reading mode (long-form chart reading) |
 | [workflows/fortune-auditable-reading.md](workflows/fortune-auditable-reading.md) | Source checks, coverage, review and delivery standards for all personal readings |
-| [docs/interpretation-standard.md](docs/interpretation-standard.md) | Shared method for facts, source interpretations, the author's translations and conditional synthesis |
+| [docs/interpretation-standard.md](docs/interpretation-standard.md) | v3: layered interpretation, overall/domain judgments, personality and subjective experience |
 | [templates/reading-workpad.template.md](templates/reading-workpad.template.md) | Analysis, domain-coverage and review workpad |
 
 ### Limitations & conventions
