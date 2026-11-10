@@ -42,3 +42,8 @@ Python 3.8+（标准库）· Node.js 18+（仅紫微引擎）· 主体是 Markdo
 ## 知识来源治理
 
 所有模式先遵循 `knowledge/README.md`；八份同步原文保持不变，真实性和兼容性由来源登记与隔离层控制。不得以旧标题认定原典。修改知识库后跑 `python3 scripts/knowledge_catalog.py validate` 与 `python3 -m unittest discover -s tests -v`。
+
+
+## 2026-11-10综合判读增补
+
+按docs/conditional-judgment.md执行已批准BJ01–BJ08与紫微年/月主题禄权增补。scripts/ziwei_dynamic_facts.mjs保留原生数据，admitted视图排除raw年龄/大限/流时，晚子时日组合阻断。来源仍经knowledge门，原ST与BZ-K状态不改。验证分别记录证据通过和主问题完成；传统倾向、作者时间外推与现实预测验证不得混同。默认正文完整在对话，只有用户明确要求才另导出文档。

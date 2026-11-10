@@ -292,3 +292,10 @@ The independent opt-in compares actual Qizheng candidate charts and rule outputs
 两入口可合用：已选择乾元宫主参照且有时间误差时，同时传入上述传统与敏感性选项，候选逐点保留 QZT04；中心结论仍暂缓。紫气、宿界和真太阳时误差仍未校准。
 
 The two opt-ins compose: selected palace-lord tradition is evaluated at actual sensitivity witnesses, while uncertain center conclusions remain withheld. Ziqi, mansion boundaries and true-solar-time errors remain uncalibrated.
+
+
+### 综合判读与独立动态事实 / Conditional judgment and separate dynamic facts
+
+2026-11-10批准的[综合判读方法](docs/conditional-judgment.md)增加BJ01–BJ08人工工作假说、反向条件和运期比较；BJ07–BJ08的流年/月日是明确标注的作者时间外推。旧ST与结构面板原值不改。紫微[动态入口](docs/ziwei-dynamic-facts.md)接出锁定2.6.1的独立年/月/日事实，保留原年龄大限，晚子时日组合暂缓；已批准年/月主题和禄权条件解释，未启用日级效力、飞化自化或事件保证。完整正文默认在对话，内部证据保存；拒答和未回答不计作分析能力通过。
+
+The approved [conditional judgment method](docs/conditional-judgment.md) adds BJ01–BJ08 manual hypotheses, counterconditions and period comparisons. BJ07–BJ08 yearly/monthly/daily projections are explicitly author-created extensions. Existing ST and structural outputs remain unchanged. The pinned 2.6.1 [Ziwei adapter](docs/ziwei-dynamic-facts.md) exposes separate year/month/day facts, preserves existing age/decadal fields and blocks late-Zi daily combinations. Year/month topics and Lu/Quan conditional readings are approved; daily potency, flying/self transformations and event guarantees remain outside scope. Full readings appear in chat by default. Evidence quality and whether the question was answered are assessed separately.

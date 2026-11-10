@@ -70,3 +70,12 @@ python3 scripts/knowledge_catalog.py cite --source ziwei-classics --mode classic
 `bazi-reviewed-structure-v1` 的4条与 `ziwei-reviewed-structure-v1` 的7条已接入默认 `reviewed_structure` 面板，分别覆盖 BZ-K01～04 和 ZW-K01～05 的已批准受限范围。来源是两份新项目释义，精确摘要行、前提、排除与原段定位均登记，不扩大旧来源的整篇用途。[入口、状态和边界](../docs/approved-structural-reading.md)。
 
 用途 `conditional_module_only` 的原始面板与人工解释记录独立保存；按v3可说明结构含义、进行现代转译及有事实链的条件综合，并在其支持范围内回答问题。模块原始状态保持不变，人工解释不能伪称程序已裁决效力、成格喜忌、人格测量或人生事件，也不能通过总体评价或体感解释扩大用途。该用途不授权通用个人ledger rule，`check_ledger_rule` 仍明确拒绝；旧ledger、经典引用、八份同步原文和隔离保持原样。缺少必要条件时仅暂缓受影响的判断，保留其余有依据的解释。
+
+
+## 2026-11-10已批准的综合判读与动态增补
+
+`bazi-judgment-v1` 的BJ01–BJ08支持人工分目的承受/作用比较、局部争议与运期条件判断。前六卡是单版影像启发的项目方法；BJ07流年、BJ08流月流日明确为作者时间外推，不冒称原典算法。原ST/BZ-K状态、土/阴长生等既有排除及通用ledger权限保持。实际读每卡前提、反向路径与来源段落，不能把未发现损伤当有效根或把‘未越过承载’当已证明的前提。
+
+`ziwei-dynamic-reading-v1` 的ZW-T01/L01/Q01仅用于独立动态profile的年/月主题、化禄投入与消耗、化权职责与压力，依据固定iztro官方现代说明；不启用流日效力、多化权重、飞化自化或事件保证。数据脚本只准入admitted视图，晚子时daily组合阻断。
+
+两组均为 `conditional_module_only`：用于独立人工记录，不转通用个人ledger规则，不解除旧来源隔离或古籍逐字引用门。解释与时区分段按 [综合判读方法](../docs/conditional-judgment.md) 和 [动态合同](../docs/ziwei-dynamic-facts.md) 实施。证据检查与主问题是否得到回答分别验收，拒答保留在覆盖统计内。

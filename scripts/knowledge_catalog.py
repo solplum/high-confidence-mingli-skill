@@ -14,6 +14,18 @@ SYSTEMS = {'bazi', 'ziwei', 'qizheng'}
 MODES = {'paraphrase', 'source_excerpt', 'classical_quote'}
 MODULE_ONLY = 'conditional_module_only'
 REVIEWED_PROFILES = {
+    'ziwei-dynamic-reading-v1': {
+        'system': 'ziwei', 'source_id': 'ziwei-dynamic-reading-source',
+        'records': {
+            'ziwei-dynamic-ZW-T01': 'ZW-T01',
+            'ziwei-dynamic-ZW-L01': 'ZW-L01',
+            'ziwei-dynamic-ZW-Q01': 'ZW-Q01',
+        },
+    },
+    'bazi-judgment-v1': {
+        'system': 'bazi', 'source_id': 'bazi-judgment-source',
+        'records': {'bazi-judgment-BJ%02d' % i: 'BJ%02d' % i for i in range(1, 9)},
+    },
     'bazi-reviewed-structure-v1': {
         'system': 'bazi', 'source_id': 'bazi-reviewed-structure-source',
         'records': {'bazi-reviewed-BZ-K%02d' % i: 'BZ-K%02d' % i for i in range(1, 5)},
@@ -359,6 +371,8 @@ def check_ledger_rule(rule, source, catalog):
             errors.append('unknown source requires the unverified source_label')
         return errors
     for item in matches:
+        if item.get('usage_scope') == 'bibliography_only':
+            errors.append('bibliography-only source cannot support a personal ledger rule')
         if item.get('usage_scope') == MODULE_ONLY:
             errors.append('conditional module-only source requires native module evidence and review; not authorized as a general ledger rule')
         if rule.get('attribution_kind') != 'registered_source_excerpt':

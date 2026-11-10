@@ -536,6 +536,57 @@
       "license_scope": "Original project paraphrase MIT; Sylar Long / iztro-docs MIT attribution and license retained in references/vendor/iztro-docs/LICENSE",
       "citation_label": "紫微已批准受限结构释义 v1（项目整理，非古籍原句、非预测验证）",
       "usage_scope": "conditional_module_only"
+    },
+    {
+      "system": "bazi",
+      "classical_quote_verified": false,
+      "edition": "文明書局1926年第2卷单版影像参照；非校勘定本",
+      "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-13jh002326-46443_淵海子平_子平真詮_第2卷.pdf&oldid=752877821",
+      "revision": "bazi-judgment-v1",
+      "license_path": "LICENSE",
+      "license_scope": "Original project-authored methodology MIT; no scan redistribution or relicensing of prior sources.",
+      "provenance_status": "single_scan_locators_reviewed_project_method_not_predictive_validation",
+      "id": "bazi-judgment-source",
+      "path": "references/approved/bazi-judgment-v1.md",
+      "title": "八字条件综合判读 v1",
+      "kind": "project_guidance",
+      "usage_scope": "conditional_module_only",
+      "sha256": "f224c3cc5a4f56ee8c69c404ff5e50ed68b9bfc13031158b0dc4e7b12f1f4eec",
+      "citation_label": "单版影像启发的项目判读方法；BJ07–08为作者时间外推（非古籍算法、非预测验证）"
+    },
+    {
+      "system": "bazi",
+      "classical_quote_verified": false,
+      "edition": "文明書局1926年第2卷单版影像参照；非校勘定本",
+      "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-13jh002326-46443_淵海子平_子平真詮_第2卷.pdf&oldid=752877821",
+      "revision": "bazi-judgment-v1",
+      "license_path": "LICENSE",
+      "license_scope": "Original project-authored methodology MIT; no scan redistribution or relicensing of prior sources.",
+      "provenance_status": "single_scan_locators_reviewed_project_method_not_predictive_validation",
+      "id": "bazi-judgment-audit",
+      "path": "docs/bazi-judgment-sources.md",
+      "title": "八字综合判读单版影像来源核查",
+      "kind": "implementation_reference",
+      "usage_scope": "bibliography_only",
+      "sha256": "e045b87478c598dc723d0d5e9f6e9706d21c4fdf1f58bada3b5b6a44a8cb3baf",
+      "citation_label": "单版影像启发的项目判读方法；BJ07–08为作者时间外推（非古籍算法、非预测验证）"
+    },
+    {
+      "id": "ziwei-dynamic-reading-source",
+      "path": "references/approved/ziwei-dynamic-reading-v1.md",
+      "sha256": "8c02053a4973bbb708727aa7d7aabac73bed90a6fa47c59034596d90b38ae97e",
+      "system": "ziwei",
+      "title": "紫微已批准年／月条件主题释义 v1",
+      "kind": "project_guidance",
+      "classical_quote_verified": false,
+      "edition": "固定版现代说明参照",
+      "provenance_status": "inspected_source_project_paraphrase_conditional",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/tree/1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "revision": "ziwei-dynamic-reading-v1",
+      "license_path": "LICENSE",
+      "license_scope": "Original project paraphrase MIT; Sylar Long / iztro-docs MIT attribution and license retained in references/vendor/iztro-docs/LICENSE",
+      "citation_label": "紫微已批准年／月条件主题释义 v1（官方现代说明的项目整理，非古文、非预测验证）",
+      "usage_scope": "conditional_module_only"
     }
   ],
   "records": [
@@ -2571,6 +2622,522 @@
         }
       ],
       "limitations": "仅获批准模块的条件结构解释或可反驳观察问题，非预测验证；不授权通用个人ledger、成格/喜忌定案、人格测量或人生事件。"
+    },
+    {
+      "id": "bazi-judgment-BJ01",
+      "system": "bazi",
+      "source_id": "bazi-judgment-source",
+      "status": "usable",
+      "profile": "bazi-judgment-v1",
+      "title": "BJ01：先定观察对象，再建立普通结构工作假说",
+      "summary": "分别选择普通候选、承受或已核关系用途的明确研究路线与评价对象，建立可反驳的工作假说，无普通候选只限制候选格局路线，不强迫唯一强弱或格名。",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BJ01",
+      "conditions": [
+        "**输入与条件**：固定四柱候选ID、各节点确切干/支/透藏；先分三条研究路线：A普通候选格局，B日主承受，C已核关系的明确用途。仅A要求实际入选的月令候选，并只按现行月藏同干透出路线，不另开未登记取法；B/C不以A入选为前提，但仍须自己的适用规则和必要事实。先写清是判断①结构能否维持某条用法、②日主对该用法的承受、③时段来字对该用法的增减，还是④现实目标的象征性适配。每一目的另存支持、反向和未知。",
+        "**主次方法**：先看必要条件是否满足，再看作用是否直接服务本次目标、是否有相反连接和根/透基础，最后做替代分支。不能因一侧列得长、字多、问题更讨喜而占主。相同事实复用不可重复当票数。"
+      ],
+      "exclusions": [
+        "**反条件/局部未知**：多个候选不可依据藏干顺序硬选；无候选不能断无格，也不阻止独立的B/C路线。从化、建禄月刃、土口径等未审时，不把‘按普通路线研究’包装为已经排除特殊格。B/C可以研究具体承受或已核方向，但不得用该分流偷渡从化、建禄月刃或其他取格法。缺时可能改变候选总表，相关全盘结论暂缓；已知节点和明确不依赖时柱的否定命题仍可说明。"
+      ],
+      "source_span": {
+        "start_line": 7,
+        "end_line": 7
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-judgment-audit",
+          "locator": "docs/bazi-judgment-sources.md; PDF pages 25,26,28,29,30,32,33",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷单版影像参照；非校勘定本"
+        }
+      ],
+      "topics": [
+        "BJ01",
+        "综合判读",
+        "工作假说",
+        "作用主次",
+        "流月",
+        "流日"
+      ],
+      "limitations": "原典语义及本项目条件组合分别标明；未声称古文算法。 原ST与BZ-K状态不改；不授权通用个人ledger或具体事件预测。",
+      "source_identity": "single_scan_inspired_project_method",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false
+    },
+    {
+      "id": "bazi-judgment-BJ02",
+      "system": "bazi",
+      "source_id": "bazi-judgment-source",
+      "status": "usable",
+      "profile": "bazi-judgment-v1",
+      "title": "BJ02：承受比较采用有根/得生与反向制泄的关系，不造配额",
+      "summary": "将季节、根与透干支持同反向制泄路径联合比较，依据具体主次提出有翻转条件的承载工作假说，不计数或采用固定权重。",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BJ02",
+      "conditions": [
+        "**输入与条件**：当前藏干模型内日主根的具体位置；支持透干是否有其同五行藏干；反向官杀/食伤/财的同样核查；得令只作背景。首列藏干不代替司令，资源/比劫透出和日主有根不重复当多个独立计量。",
+        "**拟可输出三类**：`承载较足的工作假说`、`承载受限的工作假说`、`承载方向竞争未决`。前两者需要按本题同一目标，对季节、实际根与透藏、支持和反向路径的配合作有来源的定性比较，说明为何暂取该承载假说、反向依据的成本及什么条件会翻转。反向路径缺必要基础、被配合约束或不作用于该用途是可用的排除理由，不是取得首选的唯一方式；双方均有基础时仍可比较，不要求先证明反方无效或把效力完成量化。没有实质主次依据时才用第三类。不能用‘我觉得甲根比辛根强’充当依据。"
+      ],
+      "exclusions": [
+        "**未知**：土日主/四季土月、乙午/丁酉根义冲突、未审特殊格、刑害作用、受制路径不明，都按依赖范围保留；若它们会改变整项承受方向，该项仍未决。**本轮不提议解除这些口径排除**，也不提议固定根数/比肩兑换、旺衰百分比。"
+      ],
+      "source_span": {
+        "start_line": 21,
+        "end_line": 21
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-judgment-audit",
+          "locator": "docs/bazi-judgment-sources.md; PDF pages 21,22,29,30",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷单版影像参照；非校勘定本"
+        }
+      ],
+      "topics": [
+        "BJ02",
+        "综合判读",
+        "工作假说",
+        "作用主次",
+        "流月",
+        "流日"
+      ],
+      "limitations": "原典语义及本项目条件组合分别标明；未声称古文算法。 原ST与BZ-K状态不改；不授权通用个人ledger或具体事件预测。",
+      "source_identity": "single_scan_inspired_project_method",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false
+    },
+    {
+      "id": "bazi-judgment-BJ03",
+      "system": "bazi",
+      "source_id": "bazi-judgment-source",
+      "status": "usable",
+      "profile": "bazi-judgment-v1",
+      "title": "BJ03：争议传播沿路径记录，不一冲删除全体证据",
+      "summary": "保留全部原始根与关系事实，沿明确依赖路径记录合冲争议及分支敏感性，只限制受影响的结论而不自动裁决合冲效力。",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BJ03",
+      "conditions": [
+        "**条件**：先把冲合两端的原始干/支/藏干、所有涉及的根和支持路径保留；标明直接涉及与可能间接影响。不能把‘不直接涉冲’写为‘绝不会被全局影响’。候选命题必须列依赖图与遗漏的间接路径。"
+      ],
+      "exclusions": [
+        "**反条件**：被争议路径是唯一承受根/唯一救应，或有未审的跨路径影响，不能局部摘掉后宣称整体方向成立。多处争议关联时合并研究，不能假设独立。合冲不自动删除事实、合化、解冲、开库或毁根。",
+        "**批准影响**：保留原ST05自动全局withheld，另许人工产生局部条件结论；若以后要改ST的自动阻断或`rules.status`，须独立批准和回归。现行规则内只能解释稳定事实与已有方向链，不能借此获得未批准的效力结论。"
+      ],
+      "source_span": {
+        "start_line": 37,
+        "end_line": 37
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-judgment-audit",
+          "locator": "docs/bazi-judgment-sources.md; PDF pages 22,34,35,36",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷单版影像参照；非校勘定本"
+        }
+      ],
+      "topics": [
+        "BJ03",
+        "综合判读",
+        "工作假说",
+        "作用主次",
+        "流月",
+        "流日"
+      ],
+      "limitations": "原典语义及本项目条件组合分别标明；未声称古文算法。 原ST与BZ-K状态不改；不授权通用个人ledger或具体事件预测。",
+      "source_identity": "single_scan_inspired_project_method",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false
+    },
+    {
+      "id": "bazi-judgment-BJ04",
+      "system": "bazi",
+      "source_id": "bazi-judgment-source",
+      "status": "usable",
+      "profile": "bazi-judgment-v1",
+      "title": "BJ04：分目的提出结构偏好，关键瓶颈优先于通用喜忌",
+      "summary": "对明示结构与用途比较支持、反救应和承载瓶颈，提出分目的的条件偏好，不将月令用神、相神、扶抑与调候合成唯一喜忌。",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BJ04",
+      "conditions": [
+        "**条件**：明确已核的结构或承受目的与关键路径、承受工作假说、对该路径的支持/反救应。格局维护目的须有该路线候选；承受支持、表达/约束等已获准关系用途可单独研究，不因无普通候选就拒答，也不借此命名新格。财制印可能保护食神，同时又生杀；印能制伤，也能压食；两条路必须同表出现。一方缺必要节点或不作用于本目标时，可据此排除该路径；两侧均有基础时，仍可依据已读资料的季节、根、透藏、位置及配合做作者定性比较，说明为何暂取一条主线、另一条是代价还是足以翻转的条件。不要求把反方证明无效，也不把两侧都有节点等同力量相等或一律未决；没有实质比较理由时保留竞争。"
+      ],
+      "exclusions": [
+        "**反条件**：承受是决定性分歧且不能裁决、救应仅有字无作用依据、两条路径均有必要基础而效力无从比较，则保留竞争。不能仅以‘更直接’或‘根深’空词定主，必须给具体链；不按少一个假设就宣称那条实际更强。"
+      ],
+      "source_span": {
+        "start_line": 51,
+        "end_line": 51
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-judgment-audit",
+          "locator": "docs/bazi-judgment-sources.md; PDF pages 25,26,29,30,32,33",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷单版影像参照；非校勘定本"
+        }
+      ],
+      "topics": [
+        "BJ04",
+        "综合判读",
+        "工作假说",
+        "作用主次",
+        "流月",
+        "流日"
+      ],
+      "limitations": "原典语义及本项目条件组合分别标明；未声称古文算法。 原ST与BZ-K状态不改；不授权通用个人ledger或具体事件预测。",
+      "source_identity": "single_scan_inspired_project_method",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false
+    },
+    {
+      "id": "bazi-judgment-BJ05",
+      "system": "bazi",
+      "source_id": "bazi-judgment-source",
+      "status": "usable",
+      "profile": "bazi-judgment-v1",
+      "title": "BJ05：调候作为独立条件轴，不能当扶抑的备用答案",
+      "summary": "将季节用法与承受及结构配合分开审查，未核调候效力时只保留具体竞争条件，不自动指定寒暖喜用。",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BJ05",
+      "conditions": [
+        "**条件**：先区别承受、结构配合与气候用法；季节条件可能限制某一路径，但现有仅季节与火水位置的面板不能裁决寒暖强度。"
+      ],
+      "exclusions": [
+        "**反条件**：没有对应季节用法或效力依据，气候轴不参与主次裁决。此卡主要防混用；本轮不申请完整调候喜忌算法。若BJ04必须依赖未知调候条件，该结论降为有条件或未决，不能偷偷删除反证。"
+      ],
+      "source_span": {
+        "start_line": 63,
+        "end_line": 63
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-judgment-audit",
+          "locator": "docs/bazi-judgment-sources.md; PDF pages 31,32",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷单版影像参照；非校勘定本"
+        }
+      ],
+      "topics": [
+        "BJ05",
+        "综合判读",
+        "工作假说",
+        "作用主次",
+        "流月",
+        "流日"
+      ],
+      "limitations": "原典语义及本项目条件组合分别标明；未声称古文算法。 原ST与BZ-K状态不改；不授权通用个人ledger或具体事件预测。",
+      "source_identity": "single_scan_inspired_project_method",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false
+    },
+    {
+      "id": "bazi-judgment-BJ06",
+      "system": "bazi",
+      "source_id": "bazi-judgment-source",
+      "status": "usable",
+      "profile": "bazi-judgment-v1",
+      "title": "BJ06：原典明确的行运比较，按来字与原局关系说明条件增减",
+      "summary": "在核准大运起止与冻结原局工作假说后，把运干和运支分别放回原局逐项比较，给出同一用途下的相对顺阻、成本与翻转条件。",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BJ06",
+      "conditions": [
+        "**条件**：起运/大运起止和口径已核；原局有BJ01/BJ02/BJ04冻结的工作假说；每个运干、运支分别放回原局，记新增支持、反向、冲合及既有关系如何变化。运不是第五个出生柱，不改出生月令、日主或原始藏干；运支可成为当段关系条件，但不追改原局根事实。"
+      ],
+      "exclusions": [
+        "**反条件/未知**：缺大运/起止或出生候选导致不同运表，不能把缺失转移给流年层。原局假说竞争未决，则逐假说给运段比较；若排序相同可保留该有限比较，排序不同则不能给统一运势。原典并不提供本包可直接采用的数值层级权重、干管五年支管五年的自动分割，均不启用。"
+      ],
+      "source_span": {
+        "start_line": 75,
+        "end_line": 75
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-judgment-audit",
+          "locator": "docs/bazi-judgment-sources.md; PDF pages 43,44,45,46",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷单版影像参照；非校勘定本"
+        }
+      ],
+      "topics": [
+        "BJ06",
+        "综合判读",
+        "工作假说",
+        "作用主次",
+        "流月",
+        "流日"
+      ],
+      "limitations": "原典语义及本项目条件组合分别标明；未声称古文算法。 原ST与BZ-K状态不改；不授权通用个人ledger或具体事件预测。",
+      "source_identity": "single_scan_inspired_project_method",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false
+    },
+    {
+      "id": "bazi-judgment-BJ07",
+      "system": "bazi",
+      "source_id": "bazi-judgment-source",
+      "status": "usable",
+      "profile": "bazi-judgment-v1",
+      "title": "BJ07：流年条件比较——作者受限延伸，本轮已单列批准",
+      "summary": "作者将逐项关系比较延伸到流年，在核准年界与运段后只解释年度条件对既有用途的相对支持和约束，不声称原典年度算法或具体事件。",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BJ07",
+      "conditions": [
+        "**条件**：全年以实际立春边界核年柱；大运已核则加入、不明则标缺。固定同一原局工作假说和目的，年干/年支作为这一年新增关系，分别说明支持、削弱、触发争议及成本；跨立春逐段比较。生年、运年和查询年不混用。"
+      ],
+      "exclusions": [
+        "**主要反对理由**：时间窗口延伸缺本轮直接原典定式；层级合成可能产生研究者自由度。缓解方式是先冻结原局与预先定义的路径，只保存新增关系，完整记录相反假说和反例；这不是有效预测证明。"
+      ],
+      "source_span": {
+        "start_line": 87,
+        "end_line": 87
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-judgment-audit",
+          "locator": "docs/bazi-judgment-sources.md; PDF pages 43,44,45,46",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷单版影像参照；非校勘定本"
+        }
+      ],
+      "topics": [
+        "BJ07",
+        "综合判读",
+        "工作假说",
+        "作用主次",
+        "流月",
+        "流日"
+      ],
+      "limitations": "本轮无直接对应日级/年级原典算法；来源只支持行运比较启发。 原ST与BZ-K状态不改；不授权通用个人ledger或具体事件预测。",
+      "source_identity": "author_temporal_extension",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false
+    },
+    {
+      "id": "bazi-judgment-BJ08",
+      "system": "bazi",
+      "source_id": "bazi-judgment-source",
+      "status": "usable",
+      "profile": "bazi-judgment-v1",
+      "title": "BJ08：流月/流日短期象征趋势——本轮已批准的受限用途",
+      "summary": "作者将逐项关系比较延伸到流月与流日，固定本命及上层背景，核准月日边界后作有反例的短期象征性相对顺阻与成本比较，不给具体事件或数值命中率。",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BJ08",
+      "conditions": [
+        "**条件**：查询时区、实际区间、节气换月、23时换日及误差按现行时间合同核查；本命日主不随查询日更换。冻结原局/当前运年假说，再按月、日逐层新增关系，保留每层的实际有效窗口。月支不重定出生月令，日支不作新本命根。不得把长周期词换成‘今天’冒充已经分析日层。",
+        "**单时段参照**：用户只问今日/今月，不强制另算相邻时段。以已经冻结的原局及可核运年背景作为分解参照，考察所问月/日新增节点怎样支持或反制已明示瓶颈。可以回答‘相对上述背景，本时段更利于X/更增加Y约束，主要成本Z’，或‘该项增量效力未决’；这是作者模型对背景与新增条件的分解，**不是现实中不存在本月/本日的事件反事实证据**，也不把原局长期标签换成今日结论。背景本身仍竞争时，在每个可用背景假说下分别比较，结论对分支一致才给该有限方向。未见新配对不等于实证平稳，也不能自动填‘中性’。",
+        "**跨时段比较**：仅在用户要求择时、比较日期或问题实际跨界时，对同一目标列A/B两个实际窗口。先固定跨窗口共有背景，再比较哪些**新增的**节点直接支持或反制已经明示的瓶颈；干支均检查，出现新的合冲则开反条件分支。若各可用原局/运段假说的相对排序一致，可说‘在所列传统假说下，A较B有利于X，代价Y’；排序反转则说明取决于哪个具体条件，不写中性或平均相抵。跨月/跨日变动可拆段，不用单一中心时刻代表全区间。"
+      ],
+      "exclusions": [
+        "**不可得**：具体事件、发生时点、数值命中率；日层天然大于/小于月年运的固定比例；日冲一定发生事件；把当日压力等于坏结果；用性格喜好补足未决旺衰。若只有当期干支事实、没有工作假说/路径依据，只能给结构比较，不能叫完成短期判势。",
+        "**主要反对理由**：本轮无直接日级效力证据；把长期原理缩短时间尺度可能不适用；层层加字会扩大研究者选择空间。故独立标识作者假说、固定规则版本、先冻结结论、纳入拒答与失败，并单独评估。用户批准这一研究解释用途不能被写成证明日级预测准确。"
+      ],
+      "source_span": {
+        "start_line": 99,
+        "end_line": 99
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-judgment-audit",
+          "locator": "docs/bazi-judgment-sources.md; PDF pages 43,44,45,46",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷单版影像参照；非校勘定本"
+        }
+      ],
+      "topics": [
+        "BJ08",
+        "综合判读",
+        "工作假说",
+        "作用主次",
+        "流月",
+        "流日"
+      ],
+      "limitations": "本轮无直接对应日级/年级原典算法；来源只支持行运比较启发。 原ST与BZ-K状态不改；不授权通用个人ledger或具体事件预测。",
+      "source_identity": "author_temporal_extension",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false
+    },
+    {
+      "id": "ziwei-dynamic-ZW-T01",
+      "source_id": "ziwei-dynamic-reading-source",
+      "system": "ziwei",
+      "status": "usable",
+      "profile": "ziwei-dynamic-reading-v1",
+      "content_kind": "project_paraphrase",
+      "title": "年／月阶段主题落点",
+      "summary": "仅对已核的流年、流月落点，将其实际对应的已登记本命领域及星曜主题解释为该阶段值得关注的议题；流月先对照本命与流年背景，允许有条件地说明目标适配与代价，但落宫不直接代表顺阻，缺完整同口径运限依据时不判阶段主次或单独断大事。",
+      "topics": [
+        "流年",
+        "流月",
+        "阶段主题",
+        "目标适配"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "ZW-T01",
+      "conditions": [
+        "查询点及年／月 profile 已固定且准入层为 facts_only",
+        "动态宫数组索引、实际地支、本命宫名和源路径一致，主题只取已有登记的命财官迁领域及实际主星",
+        "流月已检查对应流年与本命背景，旧大限如涉及只按原口径另列，不冒称同口径原生综合",
+        "所问目标与主题有明确联系，保留本宫实星、原始亮度及相反信号，不把空宫借星当实坐"
+      ],
+      "exclusions": [
+        "不使用流日／流时、小限或 raw 大限解释",
+        "空宫借星效力、未登记联合主题与多化效力不能由落点补齐",
+        "主题与目标无关或现实过程明显相反时撤回相应个人化解释，不用未被观察到的隐性表现吞掉反例",
+        "不由落宫、吉曜数量或长期性格推当年外部机会、事件及净吉凶"
+      ],
+      "source_span": {
+        "start_line": 15,
+        "end_line": 15
+      },
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-horoscope",
+          "locator": "horoscope.md 本命、运限及年／月层级",
+          "start_line": 14,
+          "end_line": 24,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-horoscope",
+          "locator": "horoscope.md 仅取阶段主题，不启用吉煞权重",
+          "start_line": 38,
+          "end_line": 40,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-horoscope",
+          "locator": "horoscope.md 分层背景顺序，不启用小限宫干四化",
+          "start_line": 54,
+          "end_line": 57,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        }
+      ],
+      "limitations": "仅获批准年／月主题及投入／职责代价的人工条件说明；不授权通用个人ledger、流日效力、外部顺阻、完整运限判势、未获准多化／飞化／自化、事件或预测验证。"
+    },
+    {
+      "id": "ziwei-dynamic-ZW-L01",
+      "source_id": "ziwei-dynamic-reading-source",
+      "system": "ziwei",
+      "status": "usable",
+      "profile": "ziwei-dynamic-reading-v1",
+      "content_kind": "project_paraphrase",
+      "title": "年／月化禄的投入与消耗",
+      "summary": "仅对实际年／月化禄附着且已有登记主题、实际位于命财官迁的本命主星，在对应时间与目标下讨论该主题活动或投入增加及相应消耗，条件满足时可说明何种投入较适配目标；增加不等于外部支持、收入或成功，不能忽略资源不足、分心及未获准的多化修饰。",
+      "topics": [
+        "流年化禄",
+        "流月化禄",
+        "投入",
+        "消耗"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "ZW-L01",
+      "conditions": [
+        "准入年／月层的天干、固定表、化禄星名、唯一实际本命星位置及源路径均可核，本命 siHua 与动态标记分开",
+        "该主星主题及实际命财官迁领域已登记，原始亮度、完整本宫星表和所问目标保留",
+        "实际检查同域的相反条件及投入成本，缺现实资源资料时明确写成条件分支",
+        "同宫未获准多化修饰或跨层叠加影响不作为已解释前提，依赖该组合的主题暂缓"
+      ],
+      "exclusions": [
+        "禄存、借星、错配星位、流日化禄、宫干飞化／自化不触发",
+        "不能直接相加本命、流年、流月化禄，不能以未见反例证明增加真实存在",
+        "现实活动不增、与主题相反或职责与资源足以更直接解释时撤回相应个人化假设",
+        "不推财运、财富、好运、成败保证或吉煞抵消倍率"
+      ],
+      "source_span": {
+        "start_line": 24,
+        "end_line": 24
+      },
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-mutagen",
+          "locator": "mutagen.md 四化附着及时间层",
+          "start_line": 17,
+          "end_line": 21,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-mutagen",
+          "locator": "mutagen.md 增加依星性，投入与消耗不等于结果",
+          "start_line": 42,
+          "end_line": 48,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-mutagen",
+          "locator": "mutagen.md 固定十干表核对",
+          "start_line": 175,
+          "end_line": 190,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        }
+      ],
+      "limitations": "仅获批准年／月主题及投入／职责代价的人工条件说明；不授权通用个人ledger、流日效力、外部顺阻、完整运限判势、未获准多化／飞化／自化、事件或预测验证。"
+    },
+    {
+      "id": "ziwei-dynamic-ZW-Q01",
+      "source_id": "ziwei-dynamic-reading-source",
+      "system": "ziwei",
+      "status": "usable",
+      "profile": "ziwei-dynamic-reading-v1",
+      "content_kind": "project_paraphrase",
+      "title": "年／月化权的职责与控制压力",
+      "summary": "仅对实际年／月化权附着的已登记命财官迁主星主题及相关工作执行目标，结合明确的权限和职责条件，解释主动推进、责任投入与控制压力的两面，允许判断何种承担较适配目标及其代价；任务变多或主导意愿不直接证明升职、外部机会或有利结果。",
+      "topics": [
+        "流年化权",
+        "流月化权",
+        "职责",
+        "控制压力"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "ZW-Q01",
+      "conditions": [
+        "准入年／月层的天干、固定表、化权星名、唯一实际本命星位置及源路径可核，本命与动态标记分开",
+        "实际命财官迁主星主题、所问工作执行／责任目标及原始亮度已固定",
+        "实际权限、职责来源和可用资源已知或写成明确条件分支，检查权责不配套、人际冲突和同域反向信号",
+        "同宫未获准多化修饰或跨层叠加影响不作为已解释前提，依赖该组合的主题暂缓"
+      ],
+      "exclusions": [
+        "流日、借星、错配星位、宫干飞化／自化不触发",
+        "不由其他六亲宫补造已登记四域以外的冲突断语，不把控制压力改写为外部好运",
+        "现实权限不足、执行受制度阻断、责任非本人承担或表现与主题相反时缩限或撤回该判断",
+        "不保证升职、领导能力、人格属性及结果，不建立化禄化权的合并倍率"
+      ],
+      "source_span": {
+        "start_line": 33,
+        "end_line": 33
+      },
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-mutagen",
+          "locator": "mutagen.md 四化附着及时间层",
+          "start_line": 17,
+          "end_line": 21,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-mutagen",
+          "locator": "mutagen.md 执行、责任、掌控与代价，非必然升职",
+          "start_line": 61,
+          "end_line": 67,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-mutagen",
+          "locator": "mutagen.md 固定十干表核对",
+          "start_line": 175,
+          "end_line": 190,
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        }
+      ],
+      "limitations": "仅获批准年／月主题及投入／职责代价的人工条件说明；不授权通用个人ledger、流日效力、外部顺阻、完整运限判势、未获准多化／飞化／自化、事件或预测验证。"
     }
   ],
   "quotation_packets": [
