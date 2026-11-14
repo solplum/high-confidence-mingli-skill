@@ -1,4 +1,4 @@
-"""Observable chart-builder wiring for source-bound additions and time branches."""
+"""Synthetic chart-builder wiring for source-bound additions and time branches."""
 import json
 from pathlib import Path
 import subprocess
@@ -35,7 +35,7 @@ class ApprovedReadingIntegrationTests(unittest.TestCase):
         self.assertEqual(known['ziwei']['rule_output']['reviewed_structure']['modules']['jiliang_observation']['status'], 'conditional')
 
     def test_day_boundary_uses_each_candidate_facts_and_keeps_old_strength_semantics(self):
-        result = self.build('2005-12-24', '23:00', '--uncertainty-minutes', '10', '--enumerate-scenarios')
+        result = self.build('1986-01-04', '23:00', '--uncertainty-minutes', '10', '--enumerate-scenarios')
         comparison = result['bazi_scenario_comparison']
         candidates = comparison['candidates']
         self.assertGreater(len(candidates), 1)
@@ -55,6 +55,7 @@ class ApprovedReadingIntegrationTests(unittest.TestCase):
                        for key, f in core['facts'].items()}
             self.assertEqual(core['strength_reasoning'], bazi_core_reading.analyze({'pillars': pillars})['strength_reasoning'])
         self.assertGreater(len(set(rows)), 1)
+        self.assertTrue(all(pair_count > 0 for _, pair_count in rows))
         self.assertNotIn('reviewed_structure', comparison['stable_evidence'])
 
 

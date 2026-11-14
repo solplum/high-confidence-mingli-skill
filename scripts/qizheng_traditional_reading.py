@@ -26,8 +26,6 @@ def analyze(chart, scheme=None, other_body='金', temporal_uncertainty=False, bi
     try:
         if scheme != SCHEME:
             raise ValueError('须明确选择 qianyuan-palace-v1；不自动把度主法切换为宫主法。')
-        if type(temporal_uncertainty) is not bool or temporal_uncertainty:
-            raise ValueError('出生时间不确定，须先逐一比较候选场景；本段暂不判。')
         if other_body not in BODIES:
             raise ValueError('本轮只比较日月五星；不启用四余规则。')
         if not isinstance(chart, dict) or chart.get('calculation_profile') != 'physical-v2':
@@ -35,9 +33,9 @@ def analyze(chart, scheme=None, other_body='金', temporal_uncertainty=False, bi
         if chart.get('star_frame_contract', {}).get('within_validated_range') is not True:
             raise ValueError('缺少已检查日期范围的坐标契约。')
         # Reuse the existing source lock and conservative chart evidence gate.
-        base = profiles.analyze(chart)
+        base = profiles.analyze(chart, temporal_uncertainty=temporal_uncertainty)
         if base['status'] == 'withheld':
-            raise ValueError(base['reason'])
+            raise ValueError(base['reason'] + ''.join(profiles.palace_guard_reasons(chart)))
         palace_claim = next((c for c in base['claims'] if c['rule_id'] == 'QZ02'), {})
         if palace_claim.get('status') != 'conditional':
             raise ValueError(palace_claim.get('reason', '立命宫证据不足。'))

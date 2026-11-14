@@ -1,49 +1,24 @@
 # AGENTS.md — high-confidence-mingli-skill
 
-## 项目一句话
+八字、紫微斗数和七政四余的命理文化分析技能。由确定性引擎排盘，按登记来源给条件解释，单盘复审后再对照。
 
-高置信度命理 skill：八字/紫微/七政三盘由确定性引擎排盘（大模型只解读不计算），解读查典籍资料层并挂出处，跨盘关联不代表准确率，斯多葛收束。
+## 运行与验证
 
-## 怎么跑起来
-
-- 八字/七政引擎：`python3 scripts/pai_pan_bazi.py --solar YYYY-MM-DD --sex 男`、`python3 scripts/pai_pan_qizheng.py --solar ... --hour HH:MM --lat --lon`（纯标准库，无 pip 依赖）
-- 紫微引擎：`cd scripts/pai_pan_ziwei && npm ci && npx tsx pai_pan.ts --solar ... --hour ... --sex ...`
-- 一键建档：`python3 scripts/build_chart.py --solar ... --hour ... --sex ... --lat ... --lon ...`
-- 测试：`python3 scripts/test_pai_pan_bazi.py`、`python3 scripts/test_pai_pan_qizheng.py`（基础引擎 27 项，另有时间契约和 ledger/快照测试；改引擎必跑全套）
-
-## 技术栈
-
-Python 3.8+（标准库）· Node.js 18+（仅紫微引擎）· 主体是 Markdown 指令（SKILL.md + workflows + references）
+- 标准库脚本使用 Python 3.8+。IANA 历史时区需要 Python 3.9+ 和时区数据库。紫微使用 Node.js 18.19+，首次在 `scripts/pai_pan_ziwei` 执行 `npm ci`。
+- 总控合成示例 `python3 scripts/build_chart.py --solar 1990-05-15 --hour 14:00 --sex 男 --lat 31.23 --lon 121.47 --utc-offset 8 --analysis-year 2026 --format json`。只确认出生日期或时辰时按[建档流程](docs/onboarding.md)选候选入口。
+- 单跑紫微时在 `scripts/pai_pan_ziwei` 用 `node --import tsx pai_pan.ts --solar 1990-05-15 --hour 14:00 --sex 男 --age-year 2026`。独立七政入口使用北京时间，时区换算和各盘口径见[时间契约](docs/time-contract.md)。
+- 改引擎跑 `python3 -m unittest discover -s scripts -p 'test_*.py' -v` 和 `python3 -m unittest discover -s tests -v`，先备齐锁定的紫微依赖。改知识库另跑 `python3 scripts/knowledge_catalog.py validate` 和仓库 `tests` 全套。记录跳过项。
 
 ## 目录与约定
 
-- `SKILL.md` 引擎主文件；`workflows/` 六个模式流程；`references/` 典籍资料层（bazi/ziwei 8 份**逐字节原样**移植，溯源表见 references/README.md——同步上游用整文件覆盖，不要就地改写）
-- **排盘数字以 `scripts/` 引擎输出为准，禁止口算覆盖**；重要解释回指实际盘面与适用资料，作者转译及推论注明身份；⭐ 仅为旧展示关联标签，不表示可靠度
-- 引擎文件头的「口径声明」是学派定版（恒星制/安命法/四余锚点），改动等于换学派，需重跑对拍
-- `chart.md`/`memory.md` 用户数据永不入库（已 gitignore）；改 README 记得中英两份同步
+- `SKILL.md` 路由到 `workflows/` 六个模式及共享流程。`scripts/` 负责排盘，`references/` 存放来源及登记释义，`knowledge/` 决定可用范围。维护人读 [README](README.md) 的使用文档，修改时同步中英文。
+- 排盘数字取实际引擎输出。个人分析按[共享流程](workflows/fortune-auditable-reading.md)和[工作记录模板](templates/reading-workpad.template.md)保存范围、依据和复审。按原问先给有依据的结论与适用范围，完整正文默认发在对话。
+- [v3](docs/interpretation-standard.md)、[M0](docs/model-judgment.md)和[综合判读方法](docs/conditional-judgment.md)定义现行解释、反条及时间适配。证据核查、原问题是否已答和现实预测效度分别验收。
+- 所有模式遵循[知识来源门](knowledge/README.md)。八份同步参考按[来源记录](references/README.md)保留原字节。按登记的来源身份、许可和用途引用，受限模块另存人工记录。`proposals/` 只作审查材料。
+- 修改既有分析标准、计算学派或口径、来源隔离或规则启用范围前，先列具体变化与影响并获得用户确认。计算口径获准变更后重跑对应对拍。已批准的标准可直接执行。
+- 个人 `chart.md`、`memory.md` 和归档留在技能仓库之外。赛事资料和答案按[外部案例评测](docs/reading-benchmark.md)分组、隔离，完整保留答错和拒答。
 
-## 当前状态与下一步
+## 当前能力与版本核对
 
-- v4 三引擎（058ca66）+ v5 典籍解读层（7b20b8f）+ v6 新 README（cdf355f）+ v7 七政四余典籍知识库（889add2：qizheng 五件原典库+引擎躔宫列+27 测试）均已推送 GitHub main
-- 挂账：七政引擎与真实排盘 App 的同口径对拍样本；宿内分度、宫表级庙旺、乐旺制刑和升殿等按现行 `docs/qizheng-rule-profiles.md` 来源门保持未启用，旧表可读不代表获准个人解读。
-- 注意：本仓在维护者的工作区大仓内是子目录，GitHub 独立仓为独立历史——推送走维护者的克隆同步流程，不要把工作区整仓当远端
-
-## 可复核个人分析标准
-
-所有个人分析入口先遵循 `workflows/fortune-auditable-reading.md`，按 `templates/reading-workpad.template.md` 保存实际覆盖、执行和复审处理；具体模式只改变问题范围。程序摘要不是完整分析，简短正文不降低核查要求。校准自愿，来源检查不证明预测能力。
-解释与裁决统一读取 `docs/interpretation-standard.md` v3：区分事实、传统释义、作者转译与综合，先回答所问问题，再给依据和建议。个人分析分别核对外部形势、目标推进与代价、主观体感；有依据才给总体/领域方向，关键效力未决明确暂不能定性。按该标准记录同轴支持与反向条件的主次、性格/偏好来源和条件分支；先冻结结构判断，再接入现实背景，保留原判与反馈修订。复审须能指出主结论及其对象。合理现代转译无需逐词预注册，自动未编码的部分可继续人工研究；实际字段、必要条件、来源用途和计算契约保持约束。
-修改现有分析标准、计算学派/口径、来源隔离或规则启用范围前，先列具体变化与影响并获得用户确认；按已经确认的标准执行无需重复确认。
-真实赛事案例的维护评测遵循 `docs/reading-benchmark.md`：按命主分开发/保留集，分析与答案隔离，完整记录拒答和错误。数据与答案必须在仓库之外；`proposals/` 保留审查稿，实际启用以知识登记为准，不能把提案整篇当成可用知识。
-已批准 BZ-K01～04 与 ZW-K01～05 的受限模块入口和边界见 `docs/approved-structural-reading.md`；原始输出及审阅记录独立保存，不扩展通用个人ledger用途，其他规则变更仍先确认。
-运行所有 Python 检查：`python3 scripts/test_pai_pan_bazi.py`、`python3 scripts/test_pai_pan_qizheng.py`、
-`python3 -m unittest discover -s scripts -p 'test_*.py' -v`、`python3 -m unittest discover -s tests -v`。
-先在紫微子目录运行 `npm ci`，避免漏跑 Node 集成测试。
-
-## 知识来源治理
-
-所有模式先遵循 `knowledge/README.md`；八份同步原文保持不变，真实性和兼容性由来源登记与隔离层控制。不得以旧标题认定原典。修改知识库后跑 `python3 scripts/knowledge_catalog.py validate` 与 `python3 -m unittest discover -s tests -v`。
-
-
-## 2026-11-10综合判读增补
-
-按docs/conditional-judgment.md执行已批准BJ01–BJ08与紫微年/月主题禄权增补。scripts/ziwei_dynamic_facts.mjs保留原生数据，admitted视图排除raw年龄/大限/流时，晚子时日组合阻断。来源仍经knowledge门，原ST与BZ-K状态不改。验证分别记录证据通过和主问题完成；传统倾向、作者时间外推与现实预测验证不得混同。默认正文完整在对话，只有用户明确要求才另导出文档。
+- 现行用途及缺口查[判势能力说明](docs/judgment-capabilities.md)，七政同口径对拍和未启用规则查[七政来源与规则](docs/qizheng-rule-profiles.md)。
+- 在技能独立 Git 仓库核对提交与工作树。本地工作树、全局安装和 GitHub 分支分别用实际文件、安装回执及远端引用核实，推送范围以用户当次授权为准。

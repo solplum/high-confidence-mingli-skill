@@ -30,6 +30,82 @@ class KnowledgeTests(unittest.TestCase):
         self.assertEqual(module.query(self.catalog, 'bazi', 'ziwei-fixed-natal'), [])
         self.assertEqual(module.query(self.catalog, 'ziwei', 'ziwei-fixed-natal', '紫微化忌'), [])
 
+    def test_existing_rule_identifiers_resolve_within_their_profiles(self):
+        cases = [
+            ('ziwei', 'ziwei-dynamic-reading-v1', 'ZW-Q01', ['ziwei-dynamic-ZW-Q01']),
+            ('ziwei', 'ziwei-reviewed-structure-v1', 'ZW-K05',
+             ['ziwei-reviewed-ZW-K05-attachment', 'ziwei-reviewed-ZW-K05-lu']),
+            ('bazi', 'bazi-judgment-v1', 'BJ08', ['bazi-judgment-BJ08']),
+            ('bazi', 'bazi-qiong-xin-zi-v1', 'BZ-QX02', ['bazi-qiong-QX02']),
+        ]
+        for system, profile, rule_id, record_ids in cases:
+            with self.subTest(rule_id=rule_id):
+                matches = module.query(self.catalog, system, profile, rule_id)
+                self.assertEqual([r['id'] for r in matches], record_ids)
+                for record in matches:
+                    self.assertEqual(module.query(self.catalog, system, profile, record['id']), [record])
+                self.assertEqual(module.query(self.catalog, system, profile, rule_id.lower()), matches)
+
+    def test_identifier_lookup_keeps_system_profile_and_status_filters(self):
+        profile = 'ziwei-dynamic-reading-v1'
+        self.assertEqual(module.query(self.catalog, 'bazi', profile, 'ZW-Q01'), [])
+        self.assertEqual(module.query(self.catalog, 'ziwei', 'ziwei-fixed-natal', 'ZW-Q01'), [])
+        self.assertEqual(module.query(self.catalog, 'ziwei', 'unknown-profile', 'ZW-Q01'), [])
+        altered = copy.deepcopy(self.catalog)
+        record = next(r for r in altered['records'] if r.get('rule_id') == 'ZW-Q01')
+        record['status'] = 'quarantined'
+        self.assertEqual(module.query(altered, 'ziwei', profile, 'ZW-Q01'), [])
+        self.assertEqual(module.query(altered, 'ziwei', profile, record['id']), [])
+
+    def test_officer_luck_stays_in_the_approved_manual_profile(self):
+        profile = 'bazi-officer-luck-v1'
+        record, = module.query(self.catalog, 'bazi', profile, '卯大运')
+        self.assertEqual(record['id'], 'bazi-officer-luck-OL01')
+        self.assertEqual(module.query(self.catalog, 'bazi', profile, 'BZ-OL01'), [record])
+        self.assertEqual(module.query(self.catalog, 'bazi', 'bazi-judgment-v1', 'BZ-OL01'), [])
+        source = next(s for s in self.catalog['sources'] if s['id'] == record['source_id'])
+        rule = dict(locator=source['path'], attribution_kind='registered_source_excerpt',
+                    source_label=source['citation_label'], **record['source_span'])
+        errors = module.check_ledger_rule(rule, source, self.catalog)
+        self.assertTrue(any('not authorized as a general ledger rule' in error for error in errors))
+
+    def test_chou_natal_rule_stays_in_the_approved_manual_profile(self):
+        profile = 'bazi-qiong-xin-chou-v1'
+        record, = module.query(self.catalog, 'bazi', profile)
+        self.assertEqual(record['rule_id'], 'BZ-QXC01')
+        self.assertEqual(module.query(self.catalog, 'bazi', profile, '专业发展'), [record])
+        self.assertEqual(module.query(self.catalog, 'bazi', 'bazi-qiong-xin-zi-v1', 'BZ-QXC01'), [])
+        self.assertEqual(module.query(self.catalog, 'ziwei', profile, 'BZ-QXC01'), [])
+        source = next(s for s in self.catalog['sources'] if s['id'] == record['source_id'])
+        rule = dict(locator=source['path'], attribution_kind='registered_source_excerpt',
+                    source_label=source['citation_label'], **record['source_span'])
+        errors = module.check_ledger_rule(rule, source, self.catalog)
+        self.assertTrue(any('not authorized as a general ledger rule' in error for error in errors))
+
+    def test_life_domains_are_discoverable_from_user_topics(self):
+        profile = 'ziwei-life-domains-v1'
+        for topic, rule_id in [('感情', 'ZW-D02'), ('健康', 'ZW-D04'),
+                               ('一生', 'ZW-T02'), ('兄弟姐妹', 'ZW-D01'),
+                               ('家庭', 'ZW-D06'), ('交友', 'ZW-D05')]:
+            with self.subTest(topic=topic):
+                matches = module.query(self.catalog, 'ziwei', profile, topic)
+                self.assertIn(rule_id, [r['rule_id'] for r in matches])
+                self.assertTrue(all(r['profile'] == profile for r in matches))
+
+    def test_lianfu_marriage_rule_stays_in_the_approved_manual_profile(self):
+        profile = 'ziwei-lianfu-marriage-v1'
+        record, = module.query(self.catalog, 'ziwei', profile, 'ZW-RL02')
+        self.assertEqual(record['id'], 'ziwei-lianfu-marriage-ZW-RL02')
+        self.assertEqual(module.query(self.catalog, 'ziwei', profile, '长期婚姻'), [record])
+        self.assertEqual(module.query(self.catalog, 'bazi', profile, 'ZW-RL02'), [])
+        for other in ('ziwei-stage-relationship-v1', 'ziwei-judgment-cases-v1'):
+            self.assertEqual(module.query(self.catalog, 'ziwei', other, 'ZW-RL02'), [])
+        source = next(s for s in self.catalog['sources'] if s['id'] == record['source_id'])
+        rule = dict(locator=source['path'], attribution_kind='registered_source_excerpt',
+                    source_label=source['citation_label'], **record['source_span'])
+        errors = module.check_ledger_rule(rule, source, self.catalog)
+        self.assertTrue(any('not authorized as a general ledger rule' in error for error in errors))
+
     def test_unverified_classical_quotes_refused(self):
         for src in self.catalog['sources']:
             with self.assertRaisesRegex(ValueError, 'refused'):

@@ -587,6 +587,278 @@
       "license_scope": "Original project paraphrase MIT; Sylar Long / iztro-docs MIT attribution and license retained in references/vendor/iztro-docs/LICENSE",
       "citation_label": "紫微已批准年／月条件主题释义 v1（官方现代说明的项目整理，非古文、非预测验证）",
       "usage_scope": "conditional_module_only"
+    },
+    {
+      "system": "bazi",
+      "classical_quote_verified": false,
+      "edition": "文明書局1926年第2卷单版影像参照；非校勘定本",
+      "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-13jh002326-46443_淵海子平_子平真詮_第2卷.pdf&oldid=752877821",
+      "revision": "bazi-purpose-extensions-v1",
+      "license_path": "LICENSE",
+      "license_scope": "Original project paraphrase MIT; no scan redistribution; prior CC BY-SA material remains separately licensed.",
+      "provenance_status": "single_scan_inspected_bounded_project_paraphrase_not_predictive_validation",
+      "citation_label": "八字已批准分目的受限释义v1（项目整理，非古籍原句、非预测验证）",
+      "id": "bazi-purpose-extensions-source",
+      "path": "references/approved/bazi-purpose-extensions-v1.md",
+      "sha256": "82e365134c3c2ed5cff0eccac103aee582c8884ba8f27e8f0918b7bf9f6e5f56",
+      "title": "八字分目的受限增补释义",
+      "kind": "project_guidance",
+      "usage_scope": "conditional_module_only"
+    },
+    {
+      "system": "bazi",
+      "classical_quote_verified": false,
+      "edition": "文明書局1926年第2卷单版影像参照；非校勘定本",
+      "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-13jh002326-46443_淵海子平_子平真詮_第2卷.pdf&oldid=752877821",
+      "revision": "bazi-purpose-extensions-v1",
+      "license_path": "LICENSE",
+      "license_scope": "Original project paraphrase MIT; no scan redistribution; prior CC BY-SA material remains separately licensed.",
+      "provenance_status": "single_scan_inspected_bounded_project_paraphrase_not_predictive_validation",
+      "citation_label": "八字已批准分目的受限释义v1（项目整理，非古籍原句、非预测验证）",
+      "id": "bazi-purpose-extensions-audit",
+      "path": "docs/bazi-purpose-extension-sources.md",
+      "sha256": "cc647a72488ec2d81c2bdf85eb51ec98591301f52a4a027f302ddd0fbd3c688e",
+      "title": "八字分目的增补单版影像独立核查",
+      "kind": "implementation_reference",
+      "usage_scope": "bibliography_only"
+    },
+    {
+      "id": "ziwei-life-domains-source",
+      "path": "references/approved/ziwei-life-domains-v1.md",
+      "sha256": "ac456756924459a7726002ef59b95af2330be80052feb2de9e727b151135c1d6",
+      "system": "ziwei",
+      "title": "紫微生活领域与主题分量 v1",
+      "kind": "project_guidance",
+      "usage_scope": "conditional_module_only",
+      "classical_quote_verified": false,
+      "edition": "固定版官方现代说明参照",
+      "provenance_status": "inspected_modern_source_project_domain_and_component_synthesis",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/tree/1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "revision": "ziwei-life-domains-v1",
+      "license_path": "LICENSE",
+      "license_scope": "Original project paraphrase MIT; Sylar Long / iztro-docs attribution and license retained in references/vendor/iztro-docs/LICENSE",
+      "citation_label": "紫微生活领域条件释义；跨层分量为作者外推（非古文、非预测验证）"
+    },
+    {
+      "id": "ziwei-judgment-cases-source",
+      "path": "references/approved/ziwei-judgment-cases-v1.md",
+      "sha256": "ddfe8435f9a678dc2b34015a1c79fe6f5dee2c56b245836659b0b7fcc029ec7e",
+      "system": "ziwei",
+      "title": "紫微具体作用条件判例 v1",
+      "kind": "project_guidance",
+      "usage_scope": "conditional_module_only",
+      "classical_quote_verified": false,
+      "edition": "固定版官方现代说明参照与作者适配",
+      "provenance_status": "inspected_modern_source_project_conditional_case_paraphrase",
+      "upstream_url": "https://github.com/SylarLong/iztro-docs/tree/1beef80029cd3f1a40b769d3b1c911004ecb9789",
+      "revision": "ziwei-judgment-cases-v1",
+      "license_path": "LICENSE",
+      "license_scope": "Original project paraphrase MIT; Sylar Long / iztro-docs attribution and license retained in references/vendor/iztro-docs/LICENSE",
+      "citation_label": "紫微具体作用条件判例；领域/目标及时间合同适配为作者解释（非古文、非预测验证）"
+    },
+    {
+      "system": "bazi",
+      "classical_quote_verified": false,
+      "edition": "Q1926文明书局底文与Q1937乾乾书社徐评单版影像参照；同链两版，非校勘定本",
+      "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-12jh004238-48608_%E7%AA%AE%E9%80%9A%E5%AF%B6%E9%91%91%E8%A9%95%E8%A8%BB.pdf&oldid=775361091",
+      "revision": "bazi-qiong-xin-zi-v1",
+      "license_path": "LICENSE",
+      "license_scope": "Original project paraphrase and bounded author methodology MIT; no scan redistribution or relicensing of prior sources; PD-scan/PD-China platform notices do not constitute global rights clearance.",
+      "provenance_status": "single_scan_base_and_xu_commentary_inspected_bounded_project_paraphrase_not_predictive_validation",
+      "citation_label": "十一月辛完整条件模型v1；B为徐评独立降阶选读、M0与动态适配为作者方法（非古文、非预测验证）",
+      "id": "bazi-qiong-xin-zi-source",
+      "path": "references/approved/bazi-qiong-xin-zi-v1.md",
+      "title": "十一月辛已批准完整条件模型 v1",
+      "kind": "project_guidance",
+      "usage_scope": "conditional_module_only",
+      "sha256": "ae4a9b8c5f5a9b802addd3e1b652263f58a95eb6d577e9a59565cf38b44e1720"
+    },
+    {
+      "system": "bazi",
+      "classical_quote_verified": false,
+      "edition": "Q1926文明书局底文与Q1937乾乾书社徐评单版影像参照；同链两版，非校勘定本",
+      "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-12jh004238-48608_%E7%AA%AE%E9%80%9A%E5%AF%B6%E9%91%91%E8%A9%95%E8%A8%BB.pdf&oldid=775361091",
+      "revision": "bazi-qiong-xin-zi-v1",
+      "license_path": "LICENSE",
+      "license_scope": "Original project paraphrase and bounded author methodology MIT; no scan redistribution or relicensing of prior sources; PD-scan/PD-China platform notices do not constitute global rights clearance.",
+      "provenance_status": "single_scan_base_and_xu_commentary_inspected_bounded_project_paraphrase_not_predictive_validation",
+      "citation_label": "十一月辛完整条件模型v1；B为徐评独立降阶选读、M0与动态适配为作者方法（非古文、非预测验证）",
+      "id": "bazi-qiong-xin-zi-audit",
+      "path": "docs/bazi-qiong-xin-zi-sources.md",
+      "title": "十一月辛底文与徐评单版影像来源审计",
+      "kind": "implementation_reference",
+      "usage_scope": "bibliography_only",
+      "sha256": "addefe67756cde90ba6338de1015985bed65ce54b2262bcd0d46fe9d7d356176"
+    },
+    {
+      "id": "ziwei-stage-relationship-source",
+      "path": "references/approved/ziwei-stage-relationship-v1.md",
+      "sha256": "a6b879f2b5f38b5f7f2a10ad17a4406cf2a093f69206ced22eec77218d603cef",
+      "system": "ziwei",
+      "title": "紫微阶段与本命关系条件模型",
+      "kind": "project_guidance",
+      "usage_scope": "conditional_module_only",
+      "classical_quote_verified": false,
+      "edition": "固定馆藏影像的项目定位与原创释义",
+      "provenance_status": "inspected_image_bounded_project_paraphrase",
+      "upstream_url": "https://www.digital.archives.go.jp/file/1078787",
+      "revision": "ziwei-stage-relationship-v1",
+      "license_path": "LICENSE",
+      "license_scope": "MIT for original project prose. Historical scans are identified by locator and hash and are not distributed.",
+      "citation_label": "紫微阶段与本命关系条件模型（项目原创释义及作者适配）"
+    },
+    {
+      "id": "ziwei-stage-relationship-audit",
+      "path": "docs/ziwei-stage-relationship-sources.md",
+      "sha256": "05edd902e2e3fa48a374cedd9b69799b2b47c383e0322e90393461cb59e25d80",
+      "system": "ziwei",
+      "title": "紫微阶段与关系影像定位",
+      "kind": "project_guidance",
+      "usage_scope": "bibliography_only",
+      "classical_quote_verified": false,
+      "edition": "固定馆藏影像的项目定位与原创释义",
+      "provenance_status": "inspected_image_bounded_project_paraphrase",
+      "upstream_url": "https://www.digital.archives.go.jp/file/1078787",
+      "revision": "ziwei-stage-relationship-v1",
+      "license_path": "LICENSE",
+      "license_scope": "MIT for original project prose. Historical scans are identified by locator and hash and are not distributed.",
+      "citation_label": "紫微阶段与关系影像定位（仅书目及影像定位）"
+    },
+    {
+      "id": "bazi-officer-luck-v1",
+      "path": "references/approved/bazi-officer-luck-v1.md",
+      "sha256": "0dd4638a51a36bdb38de02de19d5c0c9e928e75c09342869b9dd4c4510de21be",
+      "system": "bazi",
+      "title": "甲日酉官遇卯大运的局部受扰模型",
+      "kind": "project_guidance",
+      "usage_scope": "conditional_module_only",
+      "classical_quote_verified": false,
+      "edition": "文明書局1926年第2卷单版影像参照；非校勘定本",
+      "provenance_status": "inspected_image_bounded_project_paraphrase",
+      "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-13jh002326-46443_淵海子平_子平真詮_第2卷.pdf&oldid=752877821",
+      "revision": "bazi-officer-luck-v1",
+      "license_path": "LICENSE",
+      "license_scope": "MIT for original project prose. Historical scans are identified by locator and hash and are not distributed.",
+      "citation_label": "甲日酉官遇卯大运的局部受扰模型（单版影像项目释义及作者适配）"
+    },
+    {
+      "id": "bazi-primary-spouse-source",
+      "path": "references/approved/bazi-primary-spouse-v1.md",
+      "sha256": "3b56119d9f2aeec3241529374289e2738bdb3db7da408ca6ceaf6cecc3d0e91c",
+      "system": "bazi",
+      "title": "八字主兼与配偶支持条件模型",
+      "kind": "project_guidance",
+      "usage_scope": "conditional_module_only",
+      "classical_quote_verified": false,
+      "edition": "固定馆藏影像的项目定位与原创释义",
+      "provenance_status": "inspected_image_bounded_project_paraphrase",
+      "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-13jh002326-46443_淵海子平_子平真詮_第2卷.pdf&oldid=752877821",
+      "revision": "bazi-primary-spouse-v1",
+      "license_path": "LICENSE",
+      "license_scope": "MIT for original project prose. Historical scans are identified by locator and hash and are not distributed.",
+      "citation_label": "八字主兼与配偶支持条件模型（项目原创释义及作者适配）"
+    },
+    {
+      "id": "bazi-primary-spouse-audit",
+      "path": "docs/bazi-primary-spouse-sources.md",
+      "sha256": "33d5f46e86242bc4841fb92d305d750a75e51f0754c0fc757e16e733bfe64357",
+      "system": "bazi",
+      "title": "八字主兼与配偶支持影像定位",
+      "kind": "project_guidance",
+      "usage_scope": "bibliography_only",
+      "classical_quote_verified": false,
+      "edition": "固定馆藏影像的项目定位与原创释义",
+      "provenance_status": "inspected_image_bounded_project_paraphrase",
+      "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-13jh002326-46443_淵海子平_子平真詮_第2卷.pdf&oldid=752877821",
+      "revision": "bazi-primary-spouse-v1",
+      "license_path": "LICENSE",
+      "license_scope": "MIT for original project prose. Historical scans are identified by locator and hash and are not distributed.",
+      "citation_label": "八字主兼与配偶支持影像定位（仅书目及影像定位）"
+    },
+    {
+      "id": "bazi-qiong-xin-chou-source",
+      "path": "references/approved/bazi-qiong-xin-chou-v1.md",
+      "sha256": "15c8468236b1f20bea6c69dfb2f274383a9fa0c122e38e6f8561c5cd1019ba5a",
+      "system": "bazi",
+      "title": "丑月辛金本命专业发展条件",
+      "kind": "project_guidance",
+      "usage_scope": "conditional_module_only",
+      "classical_quote_verified": false,
+      "edition": "Q1926文明书局底文与Q1937乾乾书社徐评单版影像参照；同链两版，非校勘定本",
+      "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-12jh004238-48608_%E7%AA%AE%E9%80%9A%E5%AF%B6%E9%91%91%E8%A9%95%E8%A8%BB.pdf&oldid=775361091",
+      "revision": "bazi-qiong-xin-chou-v1",
+      "provenance_status": "inspected_base_and_commentary_bounded_natal_project_paraphrase",
+      "license_path": "LICENSE",
+      "license_scope": "MIT for original project prose. Historical scans are identified by locator and hash and are not distributed.",
+      "citation_label": "丑月辛金本命专业发展条件（原图项目释义与保守操作边界）"
+    },
+    {
+      "id": "ziwei-lianfu-marriage-source",
+      "path": "references/approved/ziwei-lianfu-marriage-v1.md",
+      "sha256": "f4b34af521d0908764868830f0fe0e4973ff91348de33ca4ac6425a539e9a6ec",
+      "system": "ziwei",
+      "title": "本命夫妻宫廉贞天府的长期共同生活条件",
+      "kind": "project_guidance",
+      "usage_scope": "conditional_module_only",
+      "classical_quote_verified": false,
+      "edition": "固定馆藏明刊影像的项目定位与原创释义",
+      "provenance_status": "inspected_image_bounded_project_paraphrase",
+      "upstream_url": "https://www.digital.archives.go.jp/file/1078787",
+      "revision": "ziwei-lianfu-marriage-v1",
+      "license_path": "LICENSE",
+      "license_scope": "MIT for original project prose. Historical scans are identified by locator and hash and are not distributed.",
+      "citation_label": "廉贞天府长期共同生活条件（明刊项目释义及作者适配）"
+    },
+    {
+      "id": "bazi-qiong-jia-yin-source",
+      "path": "references/approved/bazi-qiong-jia-yin-v1.md",
+      "sha256": "99de46d69c2014231218ec282cc0065edefe7a09497a4f87d1b72510e4c0d631",
+      "system": "bazi",
+      "title": "寅月甲木本命专业发展条件",
+      "kind": "project_guidance",
+      "usage_scope": "conditional_module_only",
+      "classical_quote_verified": false,
+      "edition": "Q1926文明书局底文与Q1937乾乾书社徐评单版影像参照；同链两版，非校勘定本",
+      "upstream_url": "https://commons.wikimedia.org/w/index.php?title=File:NLC416-12jh004238-48608_%E7%AA%AE%E9%80%9A%E5%AF%B6%E9%91%91%E8%A9%95%E8%A8%BB.pdf&oldid=775361091",
+      "revision": "bazi-qiong-jia-yin-v1",
+      "provenance_status": "inspected_base_and_commentary_bounded_natal_project_paraphrase",
+      "license_path": "LICENSE",
+      "license_scope": "MIT for original project prose. Historical scans are identified by locator and hash and are not distributed.",
+      "citation_label": "寅月甲木本命专业发展条件（原图项目释义与保守操作边界）"
+    },
+    {
+      "id": "ziwei-zifu-marriage-source",
+      "path": "references/approved/ziwei-zifu-marriage-v1.md",
+      "sha256": "c1b350e065b9ca50ecf39d7e372d92d16ea29214b0f9c841804311ddbc2b0ed3",
+      "system": "ziwei",
+      "title": "本命夫妻宫紫微天府的长期共同生活条件",
+      "kind": "project_guidance",
+      "usage_scope": "conditional_module_only",
+      "classical_quote_verified": false,
+      "edition": "内阁文库子060-0001，馆藏登记明刊单版影像与项目原创释义",
+      "provenance_status": "inspected_image_bounded_project_paraphrase",
+      "upstream_url": "https://www.digital.archives.go.jp/file/1078787",
+      "revision": "ziwei-zifu-marriage-v1",
+      "license_path": "LICENSE",
+      "license_scope": "MIT for original project prose. Historical scans are identified by locator and hash and are not distributed.",
+      "citation_label": "紫微天府长期共同生活条件（明刊项目释义及作者适配）"
+    },
+    {
+      "id": "ziwei-zixiang-marriage-source",
+      "path": "references/approved/ziwei-zixiang-marriage-v1.md",
+      "sha256": "69a3c7d9ed9f229ac398aabea57c71bd942bb7f2011fa500a8d7ba7305fabcdd",
+      "system": "ziwei",
+      "title": "本命夫妻宫紫微天相的长期共同生活条件",
+      "kind": "project_guidance",
+      "usage_scope": "conditional_module_only",
+      "classical_quote_verified": false,
+      "edition": "内阁文库子060-0001，馆藏登记明刊单版影像与项目原创释义",
+      "provenance_status": "inspected_image_bounded_project_paraphrase",
+      "upstream_url": "https://www.digital.archives.go.jp/file/1078787",
+      "revision": "ziwei-zixiang-marriage-v1",
+      "license_path": "LICENSE",
+      "license_scope": "MIT for original project prose. Historical scans are identified by locator and hash and are not distributed.",
+      "citation_label": "紫微天相长期共同生活条件（明刊项目释义及作者适配）"
     }
   ],
   "records": [
@@ -3138,6 +3410,2715 @@
         }
       ],
       "limitations": "仅获批准年／月主题及投入／职责代价的人工条件说明；不授权通用个人ledger、流日效力、外部顺阻、完整运限判势、未获准多化／飞化／自化、事件或预测验证。"
+    },
+    {
+      "id": "bazi-purpose-BZ-M01",
+      "source_id": "bazi-purpose-extensions-source",
+      "system": "bazi",
+      "status": "usable",
+      "profile": "bazi-purpose-extensions-v1",
+      "content_kind": "project_paraphrase",
+      "title": "子卯酉单藏月的独立普通候选",
+      "summary": "仅当月支为子卯酉、当前模型恰有一个藏干且属于普通八类关系时，独立记录该月令观察候选及同干已透或未透状态；缺时只称已知柱未见，不将候选当成成格、效力或喜用，也不改旧透干路线及其消费者。",
+      "topics": [
+        "BZ-M01",
+        "分目的比较",
+        "候选",
+        "印",
+        "适用条件"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BZ-M01",
+      "conditions": [
+        "实际月柱和日干已核；月支为子卯酉且唯一藏干精确绑定；该干为官杀财印食伤八类普通关系；保留透干位置、缺时、时间场景及月支全部已检关系。"
+      ],
+      "exclusions": [
+        "午在现模型藏丁己而不适用，其他多藏月不按首列抢选；比劫不转为建禄月刃或特殊格；未知时柱不确认全盘未透；新候选不接入旧BJ01-A或BZ-K01/02/04，不改旧候选与强弱状态。"
+      ],
+      "source_span": {
+        "start_line": 9,
+        "end_line": 9
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-purpose-extensions-audit",
+          "locator": "PDF23–24论用神；PDF26最左正文列至PDF27最右正文列论用神变化起段，单藏与多藏区分",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷单版影像参照；非校勘定本",
+          "revision": "752877821"
+        }
+      ],
+      "limitations": "仅独立人工条件核查；旧状态与来源隔离不变。不自动裁轻重、成局、解印、火炎强度、喜忌或净运势，不授权通用个人ledger或具体事件。",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false
+    },
+    {
+      "id": "bazi-purpose-BZ-M02",
+      "source_id": "bazi-purpose-extensions-source",
+      "system": "bazi",
+      "status": "usable",
+      "profile": "bazi-purpose-extensions-v1",
+      "content_kind": "project_paraphrase",
+      "title": "食神具体用法及取运分支的条件核查",
+      "summary": "对原透干路线或BZ-M01的食神候选，只核食神生财与食神带印透财的具体分支条件；前者须先独立判明作用基础与财食轻重，后者须先有印制食和透财解印的实际作用依据，才可人工参考各自取运方向，不由节点共存自动给轻重、解印或同目标净首选。",
+      "topics": [
+        "BZ-M02",
+        "分目的比较",
+        "食神",
+        "印",
+        "财"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BZ-M02",
+      "conditions": [
+        "实际食神候选及所有竞争候选分别保留，接受BZ-M01仅进入条件核查而非成局；逐位置核食神、财、印、日主根及官杀反向链；食神生财路线须已具作用基础且按BJ02/BJ04独立比较财食轻重；食神带印透财路线须印制食、透财限制制约、承受与反向链均有依据。"
+      ],
+      "exclusions": [
+        "一般印压食和财护食已获BJ04许可，不重复计新增或强加七杀前提；帮身不等于任何印比都宜；藏财不冒充透财，透财不证明解印；两条取运分支不合并成印比对财食的普遍排序；本模块不接收预置轻重或效力答案，未有人工作用论证时各分支保持待审。"
+      ],
+      "source_span": {
+        "start_line": 19,
+        "end_line": 19
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-purpose-extensions-audit",
+          "locator": "PDF56纸四十三第9列末至第10列单用食神/印夺食/透财解印；PDF57纸四十四论食神取运首条与末条",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷单版影像参照；非校勘定本",
+          "revision": "752877821"
+        }
+      ],
+      "limitations": "仅独立人工条件核查；旧状态与来源隔离不变。不自动裁轻重、成局、解印、火炎强度、喜忌或净运势，不授权通用个人ledger或具体事件。",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false
+    },
+    {
+      "id": "bazi-purpose-BZ-M03",
+      "source_id": "bazi-purpose-extensions-source",
+      "system": "bazi",
+      "status": "usable",
+      "profile": "bazi-purpose-extensions-v1",
+      "content_kind": "project_paraphrase",
+      "title": "夏木食神的有限印水季节例外",
+      "summary": "仅对木日主夏月的食神候选，列火炎木焦、印水实际作用及结构相容性的待审检查；这些前提由独立比较成立时，才可人工把印水季节用途与印制食成本并列，不由夏月或印水存在自动定调候、喜忌或净方向。",
+      "topics": [
+        "BZ-M03",
+        "分目的比较",
+        "食神",
+        "印",
+        "适用条件"
+      ],
+      "usage_scope": "conditional_module_only",
+      "rule_id": "BZ-M03",
+      "conditions": [
+        "日主属木且月支属巳午未，原透干路线或BZ-M01有食神候选；火炎木焦强度、印水能作用、来源结构相容均须独立论证；保留印制食、财制印、承受及全部合冲刑害反向路径。"
+      ],
+      "exclusions": [
+        "冬金及其他日主季节不适用；仅夏月、有火或有印水不足以确认火炎木焦或季节用途有效；不把普通印土直接当水印调候，不以印越多越好取代轻用与成本比较；本模块不裁合冲效力、不生成全面调候表或幸运五行。"
+      ],
+      "source_span": {
+        "start_line": 31,
+        "end_line": 31
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-purpose-extensions-audit",
+          "locator": "PDF56纸四十三第8列夏木火炎木焦透印例及第9列承接，仅夏木食神印水例外",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷单版影像参照；非校勘定本",
+          "revision": "752877821"
+        }
+      ],
+      "limitations": "仅独立人工条件核查；旧状态与来源隔离不变。不自动裁轻重、成局、解印、火炎强度、喜忌或净运势，不授权通用个人ledger或具体事件。",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false
+    },
+    {
+      "id": "ziwei-life-ZW-D01",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "手足相处与互助边界",
+      "summary": "仅把实际手足关系中的自身相处、互助与边界作为条件观察；同辈是另标身份且核现实角色的作者扩展，不自动把同学同事当手足。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 11,
+        "end_line": 11
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-D01",
+        "手足相处与互助边界",
+        "兄弟",
+        "手足",
+        "兄弟姐妹"
+      ],
+      "rule_id": "ZW-D01",
+      "conditions": [
+        "本命宫名、地支和实际星位已核，十二宫名称与地支唯一；只复用现有14主星的有限主题与原始亮度",
+        "明确本题角色和命主自身的态度/行为目标，给出星性主题进入该领域的作者连接及同目标反向",
+        "保留完整本宫星表、未核组合和现实替代解释；现实不符时撤回个人化，不能当作测得人格"
+      ],
+      "exclusions": [
+        "空宫不继承借星亮度/四化，不把对宫主星当本宫实坐；不启用主星联合定律、辅煞权重或古文全文",
+        "领域位置与观察主题不证明真实经历、他人心理、机会多少、事件结局或时间窗口",
+        "不存在相应关系时不适用，不推母亲状况、流动资产或手足成败"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-palace",
+          "start_line": 59,
+          "end_line": 61,
+          "locator": "palace.md:59–61，固定官方现代说明"
+        }
+      ],
+      "domain": "兄弟",
+      "rule_kind": "domain",
+      "source_identity": "author_domain_synthesis_of_registered_major_themes",
+      "theme_profile": "ziwei-domain-conditional"
+    },
+    {
+      "id": "ziwei-life-ZW-D02",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "亲密互动与择偶态度",
+      "summary": "结合夫妻宫实际主星，条件式研究命主自己的择偶取向、亲密互动和关系经营的倾向及代价；角色必须清楚，不由单星推伴侣属性或关系成功。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 23,
+        "end_line": 23
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-D02",
+        "亲密互动与择偶态度",
+        "夫妻",
+        "感情",
+        "婚恋",
+        "恋爱",
+        "婚姻",
+        "择偶",
+        "亲密关系"
+      ],
+      "rule_id": "ZW-D02",
+      "conditions": [
+        "本命宫名、地支和实际星位已核，十二宫名称与地支唯一；只复用现有14主星的有限主题与原始亮度",
+        "明确本题角色和命主自身的态度/行为目标，给出星性主题进入该领域的作者连接及同目标反向",
+        "保留完整本宫星表、未核组合和现实替代解释；现实不符时撤回个人化，不能当作测得人格"
+      ],
+      "exclusions": [
+        "空宫不继承借星亮度/四化，不把对宫主星当本宫实坐；不启用主星联合定律、辅煞权重或古文全文",
+        "领域位置与观察主题不证明真实经历、他人心理、机会多少、事件结局或时间窗口",
+        "单身/有伴按已知或明确分支处理，不预测伴侣人格外貌想法、相遇婚期、婚姻成败或桃花事件"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-palace",
+          "start_line": 63,
+          "end_line": 65,
+          "locator": "palace.md:63–65，固定官方现代说明"
+        }
+      ],
+      "domain": "夫妻",
+      "rule_kind": "domain",
+      "source_identity": "author_domain_synthesis_of_registered_major_themes",
+      "theme_profile": "ziwei-domain-conditional"
+    },
+    {
+      "id": "ziwei-life-ZW-D03",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "养育陪伴与合作投入",
+      "summary": "仅在实际角色适用时，研究命主对养育、陪伴和责任投入的态度；工作合作为另标作者距离且核现实角色的扩展，不由宫名假定孩子或合作关系。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 35,
+        "end_line": 35
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-D03",
+        "养育陪伴与合作投入",
+        "子女",
+        "亲子",
+        "养育",
+        "合作"
+      ],
+      "rule_id": "ZW-D03",
+      "conditions": [
+        "本命宫名、地支和实际星位已核，十二宫名称与地支唯一；只复用现有14主星的有限主题与原始亮度",
+        "明确本题角色和命主自身的态度/行为目标，给出星性主题进入该领域的作者连接及同目标反向",
+        "保留完整本宫星表、未核组合和现实替代解释；现实不符时撤回个人化，不能当作测得人格"
+      ],
+      "exclusions": [
+        "空宫不继承借星亮度/四化，不把对宫主星当本宫实坐；不启用主星联合定律、辅煞权重或古文全文",
+        "领域位置与观察主题不证明真实经历、他人心理、机会多少、事件结局或时间窗口",
+        "不推生育能力、子女数量性别健康，不由桃花词推性行为、第三者或既有子女"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-palace",
+          "start_line": 67,
+          "end_line": 69,
+          "locator": "palace.md:67–69，固定官方现代说明"
+        }
+      ],
+      "domain": "子女",
+      "rule_kind": "domain",
+      "source_identity": "author_domain_synthesis_of_registered_major_themes",
+      "theme_profile": "ziwei-domain-conditional"
+    },
+    {
+      "id": "ziwei-life-ZW-D04",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "身体管理与劳逸反思",
+      "summary": "仅以实际疾厄宫作身体管理、劳逸安排的一般生活反思议题；主星和四化不能测得身体状态或产生个人疾病风险与健康顺阻。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 47,
+        "end_line": 47
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-D04",
+        "身体管理与劳逸反思",
+        "疾厄",
+        "健康",
+        "身体",
+        "劳逸"
+      ],
+      "rule_id": "ZW-D04",
+      "conditions": [
+        "本命宫名、地支和实际星位已核，十二宫名称与地支唯一；只复用现有14主星的有限主题与原始亮度",
+        "明确本题角色和命主自身的态度/行为目标，给出星性主题进入该领域的作者连接及同目标反向",
+        "保留完整本宫星表、未核组合和现实替代解释；现实不符时撤回个人化，不能当作测得人格"
+      ],
+      "exclusions": [
+        "空宫不继承借星亮度/四化，不把对宫主星当本宫实坐；不启用主星联合定律、辅煞权重或古文全文",
+        "领域位置与观察主题不证明真实经历、他人心理、机会多少、事件结局或时间窗口",
+        "不推体质强弱、器官薄弱、肥瘦、疾病风险病程、事故、寿命、用药或就医时机；实际症状按现实医学信息先处理"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-palace",
+          "start_line": 75,
+          "end_line": 83,
+          "locator": "palace.md:75–83，固定官方现代说明"
+        }
+      ],
+      "domain": "疾厄",
+      "rule_kind": "domain",
+      "source_identity": "author_domain_synthesis_of_registered_major_themes",
+      "theme_profile": "ziwei-domain-conditional"
+    },
+    {
+      "id": "ziwei-life-ZW-D05",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "择友沟通与交往边界",
+      "summary": "结合交友宫实际主星，研究命主自身择友、沟通与交往投入的条件倾向和边界，不定位特定朋友的品行或结局。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 59,
+        "end_line": 59
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-D05",
+        "择友沟通与交往边界",
+        "仆役",
+        "交友",
+        "朋友",
+        "人际",
+        "社交",
+        "沟通"
+      ],
+      "rule_id": "ZW-D05",
+      "conditions": [
+        "本命宫名、地支和实际星位已核，十二宫名称与地支唯一；只复用现有14主星的有限主题与原始亮度",
+        "明确本题角色和命主自身的态度/行为目标，给出星性主题进入该领域的作者连接及同目标反向",
+        "保留完整本宫星表、未核组合和现实替代解释；现实不符时撤回个人化，不能当作测得人格"
+      ],
+      "exclusions": [
+        "空宫不继承借星亮度/四化，不把对宫主星当本宫实坐；不启用主星联合定律、辅煞权重或古文全文",
+        "领域位置与观察主题不证明真实经历、他人心理、机会多少、事件结局或时间窗口",
+        "不推朋友阶层、忠诚背叛、贵人出现或交往结果，现实圈子与角色不符时撤回"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-palace",
+          "start_line": 89,
+          "end_line": 91,
+          "locator": "palace.md:89–91，固定官方现代说明"
+        }
+      ],
+      "domain": "仆役",
+      "rule_kind": "domain",
+      "source_identity": "author_domain_synthesis_of_registered_major_themes",
+      "theme_profile": "ziwei-domain-conditional"
+    },
+    {
+      "id": "ziwei-life-ZW-D06",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "家庭居住与积累态度",
+      "summary": "仅研究命主对家庭边界、居住安排与资源积累的态度和投入取舍；实际资产和家庭事实由现实输入提供，不由宫位补造。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 71,
+        "end_line": 71
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-D06",
+        "家庭居住与积累态度",
+        "田宅",
+        "家庭",
+        "住房",
+        "居住",
+        "家人"
+      ],
+      "rule_id": "ZW-D06",
+      "conditions": [
+        "本命宫名、地支和实际星位已核，十二宫名称与地支唯一；只复用现有14主星的有限主题与原始亮度",
+        "明确本题角色和命主自身的态度/行为目标，给出星性主题进入该领域的作者连接及同目标反向",
+        "保留完整本宫星表、未核组合和现实替代解释；现实不符时撤回个人化，不能当作测得人格"
+      ],
+      "exclusions": [
+        "空宫不继承借星亮度/四化，不把对宫主星当本宫实坐；不启用主星联合定律、辅煞权重或古文全文",
+        "领域位置与观察主题不证明真实经历、他人心理、机会多少、事件结局或时间窗口",
+        "不推房产数量、买房搬迁、财库效力、家庭幸福、成员状况或财富结局"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-palace",
+          "start_line": 97,
+          "end_line": 99,
+          "locator": "palace.md:97–99，固定官方现代说明"
+        }
+      ],
+      "domain": "田宅",
+      "rule_kind": "domain",
+      "source_identity": "author_domain_synthesis_of_registered_major_themes",
+      "theme_profile": "ziwei-domain-conditional"
+    },
+    {
+      "id": "ziwei-life-ZW-D07",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "思考与内在满足",
+      "summary": "结合福德宫实际主星，条件式研究思考与内在满足的取向；休息和兴趣是作者生活转译，只有本人目标包含收束或休息时，持续投入相应议题或难以收束才可能成为成本。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 83,
+        "end_line": 83
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-D07",
+        "思考与内在满足",
+        "福德",
+        "内心",
+        "感受",
+        "满足",
+        "兴趣",
+        "情绪",
+        "体感"
+      ],
+      "rule_id": "ZW-D07",
+      "conditions": [
+        "本命宫名、地支和实际星位已核，十二宫名称与地支唯一；只复用现有14主星的有限主题与原始亮度",
+        "明确本题角色和命主自身的态度/行为目标，给出星性主题进入该领域的作者连接及同目标反向",
+        "保留完整本宫星表、未核组合和现实替代解释；现实不符时撤回个人化，不能当作测得人格"
+      ],
+      "exclusions": [
+        "空宫不继承借星亮度/四化，不把对宫主星当本宫实坐；不启用主星联合定律、辅煞权重或古文全文",
+        "领域位置与观察主题不证明真实经历、他人心理、机会多少、事件结局或时间窗口",
+        "不诊断心理疾病或成瘾，不断言隐藏焦虑/执念；本人描述或现实解释相反时撤回"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-palace",
+          "start_line": 101,
+          "end_line": 103,
+          "locator": "palace.md:101–103，固定官方现代说明"
+        },
+        {
+          "source_id": "iztro-docs-palace",
+          "start_line": 153,
+          "end_line": 153,
+          "locator": "palace.md:153–153，固定官方现代说明"
+        }
+      ],
+      "domain": "福德",
+      "rule_kind": "domain",
+      "source_identity": "author_domain_synthesis_of_registered_major_themes",
+      "theme_profile": "ziwei-domain-conditional"
+    },
+    {
+      "id": "ziwei-life-ZW-D08",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "接受支持与自主边界",
+      "summary": "仅研究命主与父母的互动、接受支持和自主边界；推广至养育者是标明身份的作者适配，不由宫位确定家庭经历。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 95,
+        "end_line": 95
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-D08",
+        "接受支持与自主边界",
+        "父母",
+        "养育者",
+        "原生家庭"
+      ],
+      "rule_id": "ZW-D08",
+      "conditions": [
+        "本命宫名、地支和实际星位已核，十二宫名称与地支唯一；只复用现有14主星的有限主题与原始亮度",
+        "明确本题角色和命主自身的态度/行为目标，给出星性主题进入该领域的作者连接及同目标反向",
+        "保留完整本宫星表、未核组合和现实替代解释；现实不符时撤回个人化，不能当作测得人格"
+      ],
+      "exclusions": [
+        "空宫不继承借星亮度/四化，不把对宫主星当本宫实坐；不启用主星联合定律、辅煞权重或古文全文",
+        "领域位置与观察主题不证明真实经历、他人心理、机会多少、事件结局或时间窗口",
+        "不默认父母分工、贫富、存亡健康、童年创伤或家庭支持事实；本人不愿或角色不适用时不作个人化"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-palace",
+          "start_line": 105,
+          "end_line": 107,
+          "locator": "palace.md:105–107，固定官方现代说明"
+        }
+      ],
+      "domain": "父母",
+      "rule_kind": "domain",
+      "source_identity": "author_domain_synthesis_of_registered_major_themes",
+      "theme_profile": "ziwei-domain-conditional"
+    },
+    {
+      "id": "ziwei-life-ZW-E01",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "主题投入与消耗",
+      "summary": "对实际主星化禄，在相应领域与时间内研究主题投入或活动的增加假说及资源消耗；本命不与别人比较忙碌，年/月不自动证明现实活动或收益增加。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 107,
+        "end_line": 107
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-E01",
+        "主题投入与消耗",
+        "禄",
+        "化禄"
+      ],
+      "rule_id": "ZW-E01",
+      "conditions": [
+        "只用实际附着且有现行14主星有限主题的主星；本命固定表/星位与准入年/月标记逐项核对，保留原始亮度和完整星表",
+        "本命为长期主题假说，年/月为相对已固定本命背景的阶段议题；时间层和参照分开，不用偏好补外部条件",
+        "实际领域与本题目标相关，检查资源/职责/现实替代与反例；多化场景按E05保留修饰和交互未知"
+      ],
+      "exclusions": [
+        "非主星文昌文曲左辅右弼等科忌只保留事实；不借分组卡/同宫卡/邻星补单星性质",
+        "不使用daily、raw大限/年龄/小时、小限、飞化自化或新四化表，不由主题词推外部机会、成败或事件",
+        "疾厄仍仅一般生活反思，不由任何四化推身体状况、疾病风险、寿命或就医时机",
+        "现实活动不增、资源不足或直接现实原因更能解释时撤回个人化；不推收入、好运或爱情成功"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-mutagen",
+          "start_line": 17,
+          "end_line": 21,
+          "locator": "mutagen.md:17–21，固定官方现代说明"
+        },
+        {
+          "source_id": "iztro-docs-mutagen",
+          "start_line": 42,
+          "end_line": 48,
+          "locator": "mutagen.md:42–48，固定官方现代说明"
+        }
+      ],
+      "transformation": "禄",
+      "rule_kind": "transformation",
+      "source_identity": "modern_commentary_project_conditional_paraphrase"
+    },
+    {
+      "id": "ziwei-life-ZW-E02",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "职责掌控与控制成本",
+      "summary": "对实际主星化权，结合本人权限、职责和资源，研究执行投入、掌控意愿与压力的条件主题；六亲域只讨论自己的回应和控制边界，不代测他人想法。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 119,
+        "end_line": 119
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-E02",
+        "职责掌控与控制成本",
+        "权",
+        "化权"
+      ],
+      "rule_id": "ZW-E02",
+      "conditions": [
+        "只用实际附着且有现行14主星有限主题的主星；本命固定表/星位与准入年/月标记逐项核对，保留原始亮度和完整星表",
+        "本命为长期主题假说，年/月为相对已固定本命背景的阶段议题；时间层和参照分开，不用偏好补外部条件",
+        "实际领域与本题目标相关，检查资源/职责/现实替代与反例；多化场景按E05保留修饰和交互未知"
+      ],
+      "exclusions": [
+        "非主星文昌文曲左辅右弼等科忌只保留事实；不借分组卡/同宫卡/邻星补单星性质",
+        "不使用daily、raw大限/年龄/小时、小限、飞化自化或新四化表，不由主题词推外部机会、成败或事件",
+        "疾厄仍仅一般生活反思，不由任何四化推身体状况、疾病风险、寿命或就医时机",
+        "权责不配、任务不归本人、资源不足或现实行为相反时撤回；不推升职、领导能力或关系结局"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-mutagen",
+          "start_line": 17,
+          "end_line": 21,
+          "locator": "mutagen.md:17–21，固定官方现代说明"
+        },
+        {
+          "source_id": "iztro-docs-mutagen",
+          "start_line": 61,
+          "end_line": 67,
+          "locator": "mutagen.md:61–67，固定官方现代说明"
+        }
+      ],
+      "transformation": "权",
+      "rule_kind": "transformation",
+      "source_identity": "modern_commentary_project_conditional_paraphrase"
+    },
+    {
+      "id": "ziwei-life-ZW-E03",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "形象认可与舒适代价",
+      "summary": "对实际主星化科，条件式讨论形象、认可感、舒适及展示/维持形象的代价；这是主观主题假说，不等于客观声誉、贵人或考试录用。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 131,
+        "end_line": 131
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-E03",
+        "形象认可与舒适代价",
+        "科",
+        "化科"
+      ],
+      "rule_id": "ZW-E03",
+      "conditions": [
+        "只用实际附着且有现行14主星有限主题的主星；本命固定表/星位与准入年/月标记逐项核对，保留原始亮度和完整星表",
+        "本命为长期主题假说，年/月为相对已固定本命背景的阶段议题；时间层和参照分开，不用偏好补外部条件",
+        "实际领域与本题目标相关，检查资源/职责/现实替代与反例；多化场景按E05保留修饰和交互未知"
+      ],
+      "exclusions": [
+        "非主星文昌文曲左辅右弼等科忌只保留事实；不借分组卡/同宫卡/邻星补单星性质",
+        "不使用daily、raw大限/年龄/小时、小限、飞化自化或新四化表，不由主题词推外部机会、成败或事件",
+        "疾厄仍仅一般生活反思，不由任何四化推身体状况、疾病风险、寿命或就医时机",
+        "展示与隐私或目标冲突时可成为成本，实际不在乎/行为相反时撤回，不推外部认可必增"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-mutagen",
+          "start_line": 17,
+          "end_line": 21,
+          "locator": "mutagen.md:17–21，固定官方现代说明"
+        },
+        {
+          "source_id": "iztro-docs-mutagen",
+          "start_line": 69,
+          "end_line": 86,
+          "locator": "mutagen.md:69–86，固定官方现代说明"
+        }
+      ],
+      "transformation": "科",
+      "rule_kind": "transformation",
+      "source_identity": "modern_commentary_project_conditional_paraphrase"
+    },
+    {
+      "id": "ziwei-life-ZW-E04",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "关注不足感与投入成本",
+      "summary": "对实际主星化忌，研究关注、不足感或执着及投入成本的可撤回主题；在乎不等于困难或灾祸，不能把未观察到的内在表现作为免反例理由。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 143,
+        "end_line": 143
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-E04",
+        "关注不足感与投入成本",
+        "忌",
+        "化忌"
+      ],
+      "rule_id": "ZW-E04",
+      "conditions": [
+        "只用实际附着且有现行14主星有限主题的主星；本命固定表/星位与准入年/月标记逐项核对，保留原始亮度和完整星表",
+        "本命为长期主题假说，年/月为相对已固定本命背景的阶段议题；时间层和参照分开，不用偏好补外部条件",
+        "实际领域与本题目标相关，检查资源/职责/现实替代与反例；多化场景按E05保留修饰和交互未知"
+      ],
+      "exclusions": [
+        "非主星文昌文曲左辅右弼等科忌只保留事实；不借分组卡/同宫卡/邻星补单星性质",
+        "不使用daily、raw大限/年龄/小时、小限、飞化自化或新四化表，不由主题词推外部机会、成败或事件",
+        "疾厄仍仅一般生活反思，不由任何四化推身体状况、疾病风险、寿命或就医时机",
+        "本人不在乎、描述相反或现实压力更能解释时撤回；不推灾祸、精神诊断、疾病、破财或命运结局"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-mutagen",
+          "start_line": 17,
+          "end_line": 21,
+          "locator": "mutagen.md:17–21，固定官方现代说明"
+        },
+        {
+          "source_id": "iztro-docs-mutagen",
+          "start_line": 88,
+          "end_line": 106,
+          "locator": "mutagen.md:88–106，固定官方现代说明"
+        }
+      ],
+      "transformation": "忌",
+      "rule_kind": "transformation",
+      "source_identity": "modern_commentary_project_conditional_paraphrase"
+    },
+    {
+      "id": "ziwei-life-ZW-E05",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "多化背景的独立分量研究",
+      "summary": "同宫多化可在条件满足时研究各单项主题而保留交互未知；延伸至同星或跨本命/年/月是本项目作者外推，分量存在不证明其强度与生活效果不受交互改变。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 155,
+        "end_line": 155
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-E05",
+        "多化背景的独立分量研究",
+        "多化",
+        "跨层"
+      ],
+      "rule_id": "ZW-E05",
+      "conditions": [
+        "继承E01–04的14主星与本命/admitted年/月白名单，保留原始全部多化事实及具体位置/时间层",
+        "原段直接谈同宫并存和互相影响，同星/跨层单列作者外推；各分量需分别符合本题领域/目标条件",
+        "旧K05及原生withheld保持原值，新层用途与旧场景门差异明确记录"
+      ],
+      "exclusions": [
+        "不相加、抵消或建立组合净吉凶/跨层强度算法；依赖未核交互的方向暂缓",
+        "不删除修饰后声称完整效力已解释，不扩非主星、daily、raw大限年龄小时或飞化自化"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-mutagen",
+          "start_line": 110,
+          "end_line": 110,
+          "locator": "mutagen.md:110–110，固定官方现代说明"
+        }
+      ],
+      "rule_kind": "components",
+      "source_identity": "author_same_star_cross_layer_extension"
+    },
+    {
+      "id": "ziwei-life-ZW-S01",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "身宫的长期关注假说",
+      "summary": "仅将已核身宫所在命、迁、夫妻、官、财、福六域作为长期关注或投入方向的条件假说，与命宫主题和现实选择比较，不测得人格或固定一生唯一目标。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 167,
+        "end_line": 167
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-S01",
+        "身宫的长期关注假说",
+        "身宫"
+      ],
+      "rule_id": "ZW-S01",
+      "conditions": [
+        "身宫地支、唯一所在宫名与原始星位已核，六种角色分别讨论，不用缺字段猜位置",
+        "明确长期假说身份，实际选择相反时撤回，不用用户服务反馈造生活人格"
+      ],
+      "exclusions": [
+        "不推依赖、拜金、成瘾、受伤经历、必成功、阶段吉凶或事件，不启用暗合/来因宫"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-palace",
+          "start_line": 119,
+          "end_line": 153,
+          "locator": "palace.md:119–153，固定官方现代说明"
+        }
+      ],
+      "rule_kind": "body_attention",
+      "source_identity": "modern_commentary_project_conditional_paraphrase"
+    },
+    {
+      "id": "ziwei-life-ZW-T02",
+      "system": "ziwei",
+      "source_id": "ziwei-life-domains-source",
+      "title": "原年龄合同的大限议题索引",
+      "summary": "仅使用原生大限位置和公历年度年龄合同作阶段议题索引，这是旧字段与现代阶段语义的作者适配，不提供完整运限主次、净顺阻或精确交限。",
+      "profile": "ziwei-life-domains-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_span": {
+        "start_line": 179,
+        "end_line": 179
+      },
+      "limitations": "仅批准范围内的条件主题/作者综合，非人格测量、完整组合、净运势或现实预测验证。",
+      "topics": [
+        "ZW-T02",
+        "原年龄合同的大限议题索引",
+        "大限",
+        "阶段",
+        "一生",
+        "人生",
+        "长期走势"
+      ],
+      "rule_id": "ZW-T02",
+      "conditions": [
+        "使用chart.daXians的startAge/endAge/palaceBranch/palaceName与currentAge/currentDaXianIndex，原民用出生年映射整年窗口",
+        "领域/主星主题本身满足相应卡，明确年度窗与年龄合同身份；缺出生年或字段冲突时限制对应阶段索引",
+        "只给议题及条件讨论，不将宫名变化计作阶段机会或一生运势已回答"
+      ],
+      "exclusions": [
+        "不按生日/春节编精确交限，不使用缺失siHua/stemName或恢复宫干大限四化",
+        "不挪用raw新大限/年龄，不把旧限与新动态拼成完整同口径叠盘，不由未来年龄表推寿命"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-horoscope",
+          "start_line": 14,
+          "end_line": 24,
+          "locator": "horoscope.md:14–24，仅阶段议题"
+        },
+        {
+          "source_id": "iztro-docs-horoscope",
+          "start_line": 35,
+          "end_line": 40,
+          "locator": "horoscope.md:35–40，仅阶段议题"
+        },
+        {
+          "source_id": "iztro-docs-horoscope",
+          "start_line": 54,
+          "end_line": 57,
+          "locator": "horoscope.md:54–57，仅阶段议题"
+        }
+      ],
+      "rule_kind": "decadal_topics",
+      "source_identity": "author_adaptation_of_existing_calendar_year_age_contract"
+    },
+    {
+      "id": "ziwei-cases-ZW-RC01",
+      "rule_id": "ZW-RC01",
+      "title": "夫妻宫本命权忌的局部协商阻力",
+      "summary": "仅在实际夫妻宫两颗14主星分别带固定本命权、忌时，对双方均有否决权且仍需共同认可安排的协商，提出要求升级可能增加摩擦的可撤回局部阻力假说；不判关系整体或当期净方向。",
+      "topics": [
+        "ZW-RC01",
+        "夫妻宫",
+        "同宫权忌",
+        "协商",
+        "局部阻力"
+      ],
+      "conditions": [
+        "已核唯一实际本命夫妻宫、完整本宫星表及原始亮度；本宫实际有两颗14主星，固定本命权、忌分别直接附着于这两颗不同主星，保留各自事实源路径",
+        "任务对象限命主自身的要求、回应和边界经营；双方均有决定权或否决权，目标是形成双方认可的安排；需求仍待认可等状态可来自明确任务分支，不要求现实行为先发生",
+        "说明为何当前任务阶段更贴近未经同意提高要求，而非获授权落实标准；保留权的执行责任、忌的投入动机及其他同目标反向，不要求先证明所有反向为零",
+        "完整保留本宫其他星曜、亮度、四化及未核修饰，不以删除修饰或按主题票数形成整体效力；现实行为相反时撤回个人化"
+      ],
+      "exclusions": [
+        "不将权或忌在别宫、对宫借星、非主星、本命以外的年/月标记拼成同宫两主星本命权忌；不启用其余五种双化组合",
+        "不由此推伴侣心理、人格属性、关系必坏、分合婚期、整体婚恋吉凶、外部事件或任何年/月/日净方向",
+        "不相加、抵消或替其他未核交互排主次，不拿本命组合自动证明当前冲突已发生；不新增先有现实冲突才允许提出假说的门槛"
+      ],
+      "direction_branches": [
+        {
+          "key": "negotiation_friction",
+          "condition": "双方均有否决权，尚需让需求获得彼此认可；若命主未经同意提高要求，则与共同认可目标存在张力。此为任务条件分支，不是排盘测得的现实行为。",
+          "direction": "在该任务阶段，可前瞻提出想掌握安排与不足感促使要求升级、从而增加协商摩擦的局部相对阻力工作假说；仅比较这条作用链，不升级为关系总体不顺。",
+          "counterconditions": [
+            "要求已准确表达、双方接受且本人获得明确执行授权时，较高要求可能只是执行标准，不能沿用未经认可要求升级的负向分支",
+            "双方共同自愿采用高标准，或本人能协商、没有单方加要求时，减弱或撤回该个人化假说",
+            "实际回应与假说相反时撤回，不补造隐藏控制欲或用未核亮度维持断语"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "只有巨门本命忌在夫妻宫，而本命权所在主星在别宫：RC01不触发，不能借另一宫的权补成组合，也不能倒推关系较顺",
+        "两星权忌事实满足，但需求已获双方认可并授权执行：源段的要求升级机制不能直接充当当前协商阻力",
+        "本人实际清楚尊重对方决定权，没有控制或提高要求：撤回个人化，不解释为内心其实如此"
+      ],
+      "author_adaptations": [
+        "原段讲一般同宫权忌；本项目收窄到实际夫妻宫内两颗14主星分别带固定本命权、忌，不声称原段只有这个范围",
+        "从同宫组合机制连接到命主在双方均有否决权的亲密协商中经营自身要求，是明确的作者领域与目标适配；不把夫妻宫名本身当作局部阻力依据"
+      ],
+      "time_boundaries": [
+        "只使用固定本命四化，形成可撤回的长期条件假说；不指定行为已发生的日期或阶段",
+        "查询点可保存为本次观察背景；本命条件本身不推出该年、该月、当日或整段关系净趋势"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-mutagen",
+          "start_line": 110,
+          "end_line": 110,
+          "locator": "mutagen.md:110，同宫多化相互影响且分量保留的共同背景；非净权重法",
+          "artifact_sha256": "936547d655148561f6139f80818909e86046c74fafd60b8c27256fb51cb115dd",
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-mutagen",
+          "start_line": 124,
+          "end_line": 126,
+          "locator": "mutagen.md:124–126，化权与化忌同宫的掌控、不足、过高要求及矛盾机制",
+          "artifact_sha256": "936547d655148561f6139f80818909e86046c74fafd60b8c27256fb51cb115dd",
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-palace",
+          "start_line": 63,
+          "end_line": 65,
+          "locator": "palace.md:63–65，仅夫妻宫与命主自身感情态度的领域背景；协商目标连接为作者适配",
+          "artifact_sha256": "6b5459818478421471e86999eef3818035dbcd00f35c53fda429d4ab733e30b8",
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        }
+      ],
+      "source_identity": "modern_combination_paraphrase_with_author_spouse_negotiation_adaptation",
+      "rule_kind": "natal_spouse_negotiation_case",
+      "system": "ziwei",
+      "source_id": "ziwei-judgment-cases-source",
+      "profile": "ziwei-judgment-cases-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "limitations": "仅批准的局部本命条件假说或窄年度行动适配；非人格测量、完整组合净效力、总体/期间净运势或现实预测验证。",
+      "source_span": {
+        "start_line": 13,
+        "end_line": 13
+      }
+    },
+    {
+      "id": "ziwei-cases-ZW-RC02",
+      "rule_id": "ZW-RC02",
+      "title": "巨门本命忌的天同同宫表达反条件",
+      "summary": "仅对实际夫妻宫巨门固定本命化忌，核天同是否真实同宫，区分压迫式表达风险与可能为避免伤人而少说的分支；按同一协商目标的表达阶段提出可撤回局部假说，不判关系净趋势。",
+      "topics": [
+        "ZW-RC02",
+        "巨门",
+        "本命忌",
+        "天同",
+        "夫妻宫",
+        "表达反条件"
+      ],
+      "conditions": [
+        "已核唯一实际本命夫妻宫、完整本宫星表和原始亮度；巨门为实际14主星且固定本命忌直接附着巨门，核天同是否也真实实坐同一宫",
+        "任务限命主自身表达方式；明确同一协商目标下需求或关键分歧尚未进入协商，还是已经准确表达而需停止重复争执；可用明确任务分支，不要求先观察到沉默或施压",
+        "天同同宫时检查为避免伤人而少说的来源分支；天同不在该宫时不援用这段沉默机制，仅保留源段压迫式表达的另一局部风险假说",
+        "完整保留天同、巨门的本命四化、原始亮度及其他实星和未核交互；实际表达与假说相反时撤回个人化，不把天同理解为必然消除压迫感"
+      ],
+      "exclusions": [
+        "不以别宫天同、对宫借星、年/月天同或年/月巨门忌替代实际本命同宫条件；不扩至非主星或巨门其他四化、整组双星人格断语",
+        "不判巨门忌一律更爱争辩、天同必化解、关系较好或较差；不推他人心理、整体婚恋吉凶、事件或年/月/日净方向",
+        "源段没有给天同同时化权等其他交互的普遍优先法；不以本卡覆盖RC01、相加抵消或自动排出同目标总净效果"
+      ],
+      "direction_branches": [
+        {
+          "key": "tiantong_copresent",
+          "condition": "巨门本命忌与天同真实同坐夫妻宫；在双方需共同认可安排且关键需求或分歧尚未表达的任务分支下。",
+          "direction": "来源支持可能为避免伤人而压下表达；当目标需要必要分歧进入协商时，可前瞻提出少说或不说增加表达成本的局部阻力假说，不把沉默当已发生。",
+          "counterconditions": [
+            "分歧已经准确表达，当前需要减少重复争执时，少说可以减少争吵，不能继续判沉默妨碍该目标",
+            "本人实际能够平和且完整表达需求时，撤回必要表达被压下的个人化假说",
+            "天同同宫不证明压迫感必然消失；天同同时化权或其他交互若成为推论关键，须限制该未决部分"
+          ]
+        },
+        {
+          "key": "tiantong_absent",
+          "condition": "实际夫妻宫巨门本命忌，但天同没有真实同宫；仍以共同认可安排为任务目标。",
+          "direction": "不能援用天同同宫的沉默机制；可保留表达给对方压力、因而妨碍需求被双方理解和认可的另一局部风险工作假说，不断言现实已施压或更爱争辩。",
+          "counterconditions": [
+            "本人实际表达平和、能够倾听且没有压迫感时，撤回压迫式表达的个人化假说",
+            "天同在别宫、借对宫或仅在年/月出现不改变本命同宫分支",
+            "本分支不能证明其比天同同宫更差，也不能因没有沉默机制而判总体较顺"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "巨门本命忌在夫妻宫、天同在福德宫：只能选择天同不在夫妻同宫的分支，不借福德天同推出沉默机制",
+        "天同真实同宫但分歧已准确表达：少说可避免重复争执，不能将其一概当作协商阻力",
+        "本人实际表达平和、需求清楚且能倾听：撤回压迫式表达或压下表达的个人化假说，不补造隐藏表现"
+      ],
+      "author_adaptations": [
+        "原段说巨门化忌与天同在一起；本项目按实际本命同宫解释并收窄到夫妻宫14主星，不以别宫、借星或动态层代替",
+        "把表达机制连接到命主在亲密协商中表达必要需求的任务瓶颈，是明确的作者领域和目标适配；不批准整组天同巨门人格断语"
+      ],
+      "time_boundaries": [
+        "仅固定本命巨门忌及天同实际同宫状态，形成长期表达方式的条件假说；当前任务阶段单独说明",
+        "不由本命表达分支推出当前年/月/日主次、发生日期或整段关系净趋势"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-major-star",
+          "start_line": 704,
+          "end_line": 704,
+          "locator": "major-star.md:704，巨门化忌的语言压迫倾向及同宫天同少说/不说反条件；只启用本卡收窄范围",
+          "artifact_sha256": "48fdbebfacdbff74f9285d70d6919226f9ff8d5ffe7c76f848ded6e1cfe429c8",
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-palace",
+          "start_line": 63,
+          "end_line": 65,
+          "locator": "palace.md:63–65，仅命主自身感情态度的领域背景；表达瓶颈连接为作者适配",
+          "artifact_sha256": "6b5459818478421471e86999eef3818035dbcd00f35c53fda429d4ab733e30b8",
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        }
+      ],
+      "source_identity": "modern_star_transformation_countercondition_with_author_spouse_expression_adaptation",
+      "rule_kind": "natal_spouse_expression_case",
+      "system": "ziwei",
+      "source_id": "ziwei-judgment-cases-source",
+      "profile": "ziwei-judgment-cases-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "limitations": "仅批准的局部本命条件假说或窄年度行动适配；非人格测量、完整组合净效力、总体/期间净运势或现实预测验证。",
+      "source_span": {
+        "start_line": 62,
+        "end_line": 62
+      }
+    },
+    {
+      "id": "ziwei-cases-ZW-RC03",
+      "rule_id": "ZW-RC03",
+      "title": "官禄大限与年禄权的主动争取适配",
+      "summary": "在同一显式查询点，旧公历年度年龄合同下的原native当前大限为本命官禄，且admitted年禄、年权均直接附着本命官禄或迁移的实际14主星时，可条件式把主动申请或接洽列为优先尝试；三处作者适配明示，不保证机会、成功或年度净吉凶。",
+      "topics": [
+        "ZW-RC03",
+        "官禄大限",
+        "年禄权",
+        "主动申请",
+        "主动接洽",
+        "年度行动适配"
+      ],
+      "conditions": [
+        "同一显式查询点有已核chart.daXians/currentDaXianIndex/currentAge，按原民用出生年和公历年度年龄合同，原native实际当前大限命宫落本命官禄；保留startAge/endAge、年度窗及原事实路径",
+        "只从同一查询点admitted yearly年层读取年禄与年权，两化均直接附着在本命官禄/迁移并集的实际14主星；两化须同时满足，不以一化命中或月化补齐",
+        "保存本命与官禄大限的三方四正、完整实际星表、原始亮度、本命及准入年/月全部四化；获准主星主题可解释，其他修饰只存事实并标未核，不靠借星或删去煞忌制造完整性",
+        "具体目标是面对确实存在、本人有资格申请并能承担成本的职责/项目，是否主动提出申请或建立接触；核资格、权限、能力、资源和节奏，未知时保留明确条件分支，不由命中谓词假定现实已具备",
+        "同时保留责任、投入及同目标反向；能说明主次时才作行动首选，不能比较净收益时只保留传统行动倾向。煞忌并存不自动取消源例，也不视为已被禄权抵消"
+      ],
+      "exclusions": [
+        "原native当前大限不是本命官禄，或年禄/年权任一未直接落本命官禄/迁移的实际14主星，则不触发；不触发不能倒推该年不利或无机会",
+        "不恢复raw新大限/年龄/流时、小限、大限四化、流曜、宫干飞化/自化；不把旧限与准入新年层说成官方完整同口径叠盘",
+        "不以主题数量或禄权加分抵消忌，不赋予未登记辅煞性质和权重；关键解释依赖未决交互时限制该部分外推，不把全部源例自动删除",
+        "不推外部机会已增加、录用升职收入或项目成功，不判事业或年度净吉凶，不向关系/健康迁移，不推出流月/流日方向或整年覆盖"
+      ],
+      "direction_branches": [
+        {
+          "key": "proactive_application_fit",
+          "condition": "严格事实谓词满足；当前存在明确的申请/接洽对象，且本人资格、权限、能力与投入成本可承受，或逐项给出满足/不满足的现实分支。",
+          "direction": "按官方现代说明的窄年度条件例及本项目三处作者适配，可将主动申请或接洽列为优先尝试；仍需补能力、核权责、控节奏。这是有条件的传统行动适配，不表示外部机会、成功或现实净收益已获证明。",
+          "counterconditions": [
+            "资格、权限或资源不配套且足以阻断该行动时，缩限或撤回现实适配建议；不能把命中谓词当成这些条件已具备",
+            "支持与代价无法比较时保留传统行动倾向，不宣布主动争取有净收益",
+            "煞忌和压力可与源例并存，不能自动取消触发，也不能说已由年禄权抵消；若某未决交互成为关键，则限制该项外推"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "原native当前大限为子女，即使年权天机直接落迁移，仍不触发：缺官禄当前大限且不能用单一化命中替代双全",
+        "当前官禄大限成立，但年禄在官迁、年权在其他宫或只有月权落官迁：不触发，不倒推该年不利",
+        "严格事实谓词满足，但本人没有申请资格或预算/权限明确不足：源例不能证明现实行动有净收益，缩限或撤回该建议",
+        "命宫本命忌或年忌同时存在：仍保留原事实，不视为自动取消触发或已被年禄权抵消，也不据本例生成总体事业净判"
+      ],
+      "author_adaptations": [
+        "把原句未在该处完整定义的“会到”收窄为禄、权两化均直接附着实际14主星；不用三方会照、空宫借星或一化命中，且不声称这是原文唯一几何定义",
+        "原句后半“官禄或迁移”的宫名参照未在该处逐项限定；本项目明确按本命官禄/迁移解释，不借运限宫名或其他参照扩大",
+        "把旧原native公历年度年龄大限与独立农历年profile准入的年层用于这个窄例，是作者合同适配；不是官方已完成同口径叠盘，不用raw新大限/年龄补齐"
+      ],
+      "time_boundaries": [
+        "只核显式查询点的年度背景；保留查询民用日期、时区、时间索引、原大限年度窗和admitted年层身份，不把一点命中当作全年持续命中",
+        "跨公历年、春节年界或旧大限年度窗时分别核查；旧限年度年龄合同不表示生日/春节精确交限",
+        "本卡不建立流月或流日行动方向，不保证某月、某日或全年结果"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "iztro-docs-horoscope",
+          "start_line": 54,
+          "end_line": 57,
+          "locator": "horoscope.md:54–57，本命、大限三方四正及流年背景；本卡不因此启用小限、流月收窄、流曜或飞化",
+          "artifact_sha256": "f5f6c531680f8638cb349cc237342c6f6b384fe49cccf3ce1f9d9c7b009b42ac",
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        },
+        {
+          "source_id": "iztro-docs-horoscope",
+          "start_line": 59,
+          "end_line": 59,
+          "locator": "horoscope.md:59，官禄大限与年禄权官/迁的年度主动争取条件例及压力、权责、节奏提醒",
+          "artifact_sha256": "f5f6c531680f8638cb349cc237342c6f6b384fe49cccf3ce1f9d9c7b009b42ac",
+          "revision": "1beef80029cd3f1a40b769d3b1c911004ecb9789"
+        }
+      ],
+      "source_identity": "modern_annual_action_case_with_three_explicit_author_adaptations",
+      "rule_kind": "query_point_annual_action_case",
+      "system": "ziwei",
+      "source_id": "ziwei-judgment-cases-source",
+      "profile": "ziwei-judgment-cases-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "limitations": "仅批准的局部本命条件假说或窄年度行动适配；非人格测量、完整组合净效力、总体/期间净运势或现实预测验证。",
+      "source_span": {
+        "start_line": 115,
+        "end_line": 115
+      }
+    },
+    {
+      "id": "bazi-qiong-QX01",
+      "rule_id": "BZ-QX01",
+      "system": "bazi",
+      "source_id": "bazi-qiong-xin-zi-source",
+      "profile": "bazi-qiong-xin-zi-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "summary": "仅对辛日、出生子月，按十一月辛段以丙为主要用法、壬为配合的语境核条件；丙的实际透干与结构通根逐项保留，根事实、反制效力及作者时间适配分别记录，不能由冬月或见火单独产生整体发展正评。",
+      "source_span": {
+        "start_line": 9,
+        "end_line": 9
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-qiong-xin-zi-audit",
+          "locator": "Q1926 PDF75末–76首，穷通卷下版心30–31，十一月辛金大字底文；仅普通A/B",
+          "artifact_sha256": "a64fa0d6ec4bfea80fafbcaa230bc65f476bf1efabca232934992bac4eb3f7f2",
+          "edition": "文明书局1926《滴天髓·穷通宝鉴》第2卷；穷通余春台底文",
+          "author_layer": "base_text"
+        },
+        {
+          "source_id": "bazi-qiong-xin-zi-audit",
+          "locator": "Q1937 PDF212卷四版心46十一月大字与首段小字；PDF213版心47页首至十二月标题前的十一月总结，含丙通根",
+          "artifact_sha256": "b7f17fc7fcb7d8faa991efa74d0db391c5066a3793b3fc6787d2612bc6b350a8",
+          "edition": "乾乾书社1937《穷通宝鉴评注》；余春台原编、徐乐吾评注",
+          "author_layer": "base_text_and_xu_lewu_commentary_separately_attributed"
+        }
+      ],
+      "limitations": "仅辛日出生子月普通整体/发展配置的条件模型；B明示选读、M0及动态外推为作者方法；不授权事件/疾病/阶层或现实净预测，不改原模块/ledger/逐字引用门。",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "title": "十一月辛的固定对象、丙主与结构通根",
+      "rule_kind": "xin_zi_seasonal_scope_and_root",
+      "source_identity": "qiong_base_and_xu_commentary_bounded_project_paraphrase_with_author_time_adaptation",
+      "topics": [
+        "BZ-QX01",
+        "辛日",
+        "出生子月",
+        "十一月辛",
+        "丙",
+        "通根",
+        "透藏"
+      ],
+      "conditions": [
+        "出生四柱和藏干已核，日干辛、出生月支子；保存实际节点位置，查询月不重定出生月令",
+        "丙透为明确所评事实集合实际天干有丙；丙结构根复用当前登记的同五行藏干根事实，列实际火藏干及位置；根事实与作用效力分栏",
+        "本命源条件与运/年/月/日作者适配分栏；时间层使用实际有效窗口、来源身份及已冻结背景，不将原局丙藏改写成原局已透",
+        "一般合冲保存全部原始事实及作用对象；仅有配对不删除根，也不宣称根效/零影响；必要用途否定交QX03处理"
+      ],
+      "exclusions": [
+        "仅conditional_module_only独立人工记录；不改变旧模块状态、不授权通用个人ledger或classical_quote，不以目录通过证明现实预测",
+        "不自动补身强、壬多、成局、已解印、合化成立或缺失输入；特殊从局/润下等另支、阶层、具体事件与疾病不在本包",
+        "出生月令不随查询月改变，运年/月日来字不追改本命透藏与根；动态适配单列BJ06/07/08作者身份及实际窗口",
+        "冬月或见火不能单独推出整体正评，不能从火暖直接推职责/收入；不开放十二月或其他季节条件，不新增根倍率与合冲胜负法"
+      ],
+      "direction_branches": [
+        {
+          "key": "xin_zi_bing_priority",
+          "condition": "日辛且出生子月，实际丙透藏与结构根均已核。",
+          "direction": "以本段丙主要、壬配合为后续A/B条件核查语境；本卡单独不产生整体发展正评。",
+          "counterconditions": [
+            "缺丙透或缺丙结构根时对应普通正支不完整；未知输入不以常规作用补齐",
+            "适用依据若否定所需丙用途或根支点，须在QX03进入裁决"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bazi-qiong-QX02",
+      "rule_id": "BZ-QX02",
+      "system": "bazi",
+      "source_id": "bazi-qiong-xin-zi-source",
+      "profile": "bazi-qiong-xin-zi-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "summary": "普通正支A首批限壬丙皆透、丙通根且戊癸不透；B明示采用徐评的降阶独立选读，限壬藏而不透、丙透有根及共同反条已核，不因戊透一字自动拒绝；两支完整匹配后才可按M0提出模型内发展相对有利，B不取得A同等高评价。",
+      "source_span": {
+        "start_line": 23,
+        "end_line": 23
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-qiong-xin-zi-audit",
+          "locator": "Q1926 PDF75末–76首，穷通卷下版心30–31，十一月辛金大字底文；仅普通A/B",
+          "artifact_sha256": "a64fa0d6ec4bfea80fafbcaa230bc65f476bf1efabca232934992bac4eb3f7f2",
+          "edition": "文明书局1926《滴天髓·穷通宝鉴》第2卷；穷通余春台底文",
+          "author_layer": "base_text"
+        },
+        {
+          "source_id": "bazi-qiong-xin-zi-audit",
+          "locator": "Q1937 PDF212卷四版心46十一月大字与首段小字；PDF213版心47页首至十二月标题前的十一月总结，含丙通根",
+          "artifact_sha256": "b7f17fc7fcb7d8faa991efa74d0db391c5066a3793b3fc6787d2612bc6b350a8",
+          "edition": "乾乾书社1937《穷通宝鉴评注》；余春台原编、徐乐吾评注",
+          "author_layer": "base_text_and_xu_lewu_commentary_separately_attributed"
+        }
+      ],
+      "limitations": "仅辛日出生子月普通整体/发展配置的条件模型；B明示选读、M0及动态外推为作者方法；不授权事件/疾病/阶层或现实净预测，不改原模块/ledger/逐字引用门。",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "title": "A窄门与B降阶独立正支",
+      "rule_kind": "xin_zi_ordinary_complete_branches",
+      "source_identity": "qiong_narrow_base_A_and_approved_xu_independent_graded_B_reading",
+      "topics": [
+        "BZ-QX02",
+        "A",
+        "B",
+        "壬藏丙透",
+        "整体",
+        "发展",
+        "戊透",
+        "保守省文异读"
+      ],
+      "conditions": [
+        "继承QX01辛日/出生子月对象、所评事实集合、实际丙透与结构根；先核QX03特指反条和必要用途否定",
+        "A首批窄门：同一所评集合壬丙皆透，丙通根，戊癸均不透；不可借B删除A门",
+        "B选读：同一所评集合壬在实际支藏且天干无壬，丙透有根；癸透困丙反条及戊实困壬等必要用途否定须审，戊透本身不一票拒绝",
+        "壬既透又藏按壬透，只核A；无壬或透藏未知不补成B；先列明确同一所评集合，不能删已纳入壬透取得B",
+        "B为徐评丙主要/递让句式/降阶正评支持的作者选读；同时报告保守继承读法下正支退出或作用门未决的不同结果与翻转条件"
+      ],
+      "exclusions": [
+        "仅conditional_module_only独立人工记录；不改变旧模块状态、不授权通用个人ledger或classical_quote，不以目录通过证明现实预测",
+        "不自动补身强、壬多、成局、已解印、合化成立或缺失输入；特殊从局/润下等另支、阶层、具体事件与疾病不在本包",
+        "出生月令不随查询月改变，运年/月日来字不追改本命透藏与根；动态适配单列BJ06/07/08作者身份及实际窗口",
+        "B不取得A同等最高评价，也不是只要有丙就好；普通正支退出不自动等于负评，不能把壬退藏当戊零成本"
+      ],
+      "direction_branches": [
+        {
+          "key": "A_strict_ordinary_positive",
+          "condition": "辛日出生子月，所评集合壬丙皆透、丙通根、戊癸不透，先核特指反条与必要条件否定后完整匹配。",
+          "direction": "M0下可给源内较高普通正评的受限转译：该传统模型内整体/发展配置相对有利；非数值等级或现实事件保证。",
+          "counterconditions": [
+            "戊透或癸透使A首批窄门不匹配；壬既透又藏不得借B绕A无戊门",
+            "已有适用依据否定必要用途时撤评/缩限/分支化，不能以模型优先免疫"
+          ]
+        },
+        {
+          "key": "B_selected_graded_positive",
+          "condition": "辛日出生子月，所评集合壬藏且不透、丙透有根；无癸透困丙等已成立阻断，戊实际困壬等已审；采用已批准徐评独立降阶选读。",
+          "direction": "完整匹配时M0可给较A降阶但仍实质的模型内发展正评；戊透不自动拒绝，未决作用风险同报稳健性。",
+          "counterconditions": [
+            "保守省文继承戊癸不透时，戊透结构退出普通正支并撤去该正评；若继承作用门而困壬未裁则资格未决",
+            "适用依据证实戊困壬足以阻断B所需配合，所选B也撤评/缩限/分支化；壬藏不证明无戊成本",
+            "壬在所评集合实际透出时只核A；不得删除该透干转B"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bazi-qiong-QX03",
+      "rule_id": "BZ-QX03",
+      "system": "bazi",
+      "source_id": "bazi-qiong-xin-zi-source",
+      "profile": "bazi-qiong-xin-zi-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "summary": "先核QX01／02完整事实、来源特指的癸透困丙反条及否定必要用途的依据，再以作者有限缺省模型M0裁决所选普通分支；模型结果、异读与作用稳健性、现实效度分别报告，未决一般路径不补成已破坏或零影响，已成立阻断必须改变正评。",
+      "source_span": {
+        "start_line": 42,
+        "end_line": 42
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-qiong-xin-zi-audit",
+          "locator": "Q1926 PDF75末–76首，穷通卷下版心30–31，十一月辛金大字底文；仅普通A/B",
+          "artifact_sha256": "a64fa0d6ec4bfea80fafbcaa230bc65f476bf1efabca232934992bac4eb3f7f2",
+          "edition": "文明书局1926《滴天髓·穷通宝鉴》第2卷；穷通余春台底文",
+          "author_layer": "base_text"
+        },
+        {
+          "source_id": "bazi-qiong-xin-zi-audit",
+          "locator": "Q1937 PDF212卷四版心46十一月大字与首段小字；PDF213版心47页首至十二月标题前的十一月总结，含丙通根",
+          "artifact_sha256": "b7f17fc7fcb7d8faa991efa74d0db391c5066a3793b3fc6787d2612bc6b350a8",
+          "edition": "乾乾书社1937《穷通宝鉴评注》；余春台原编、徐乐吾评注",
+          "author_layer": "base_text_and_xu_lewu_commentary_separately_attributed"
+        }
+      ],
+      "limitations": "仅辛日出生子月普通整体/发展配置的条件模型；B明示选读、M0及动态外推为作者方法；不授权事件/疾病/阶层或现实净预测，不改原模块/ledger/逐字引用门。",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "title": "癸透特指反条、M0与稳健性分层",
+      "rule_kind": "xin_zi_counterrules_and_limited_model_judgment",
+      "source_identity": "xu_specific_countercondition_and_approved_author_M0_method_separately_attributed",
+      "topics": [
+        "BZ-QX03",
+        "癸透困丙",
+        "戊困壬",
+        "M0",
+        "未决风险",
+        "稳健性",
+        "现实效度"
+      ],
+      "conditions": [
+        "依次核QX01/02完整事实与本命/动态适配栏，再核源段特指癸透困丙及否定必要用途的适用依据，裁决后形成模型结果",
+        "丙透有根而癸亦透时，普通A/B不能先正评；无获准具体救应及已成立作用依据时报告丙主线受制/模型发展支持受限，戊癸配对不默认为已解",
+        "B虽无戊透字面否决，仍检查实际困壬；反向无须完整总体负评，只要否定必要条件或为源特指反条就参与裁决",
+        "M0为作者有限缺省模型，具体完整整体/发展规则经反条/必要条件核查后可支持受限首选；仅一般关系的未决路径保留为未决作用风险，有依据的负向才称代价",
+        "分别报告事实、条件模型结果、保守异读/作用稳健性、现实效度；未决本期增量不称微弱或无影响，上层正评不替代月日研究",
+        "现实验证前冻结可观察目标/区间/条件/判据；失败保留，不由结果倒推不可观测根失效，独立新事实修订保留原判"
+      ],
+      "exclusions": [
+        "仅conditional_module_only独立人工记录；不改变旧模块状态、不授权通用个人ledger或classical_quote，不以目录通过证明现实预测",
+        "不自动补身强、壬多、成局、已解印、合化成立或缺失输入；特殊从局/润下等另支、阶层、具体事件与疾病不在本包",
+        "出生月令不随查询月改变，运年/月日来字不追改本命透藏与根；动态适配单列BJ06/07/08作者身份及实际窗口",
+        "特指反条与必要用途否定不得移至附注维持正评；未知一般反向不自动等于已经破坏或零影响，正负对称",
+        "同段壬多而戊丙甲、特定水局/木局、庚辛甲乙等另支未启用，M0不填已排除或已救；合成检查不报现实准确率"
+      ],
+      "direction_branches": [
+        {
+          "key": "gui_visible_obstruction",
+          "condition": "辛日出生子月，所评集合丙透有根而癸亦透，具体获准救应未成立。",
+          "direction": "先按源特指反条给丙主线受制、模型发展支持受限，不能直接采用普通A/B正评；有同等适用反证则分支化或未决。",
+          "counterconditions": [
+            "戊癸同见或配对未裁不证明反条已解除",
+            "只有藏癸不满足本条癸透事实，但其他水火反向仍保留",
+            "不扩为现实一生失败或疾病事件"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ziwei-stage-relationship-ZW-ST01",
+      "system": "ziwei",
+      "source_id": "ziwei-stage-relationship-source",
+      "profile": "ziwei-stage-relationship-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "只用于卡内指定的对象和条件。原排盘、通用ledger和逐字引用权限保持。",
+      "source_span": {
+        "start_line": 7,
+        "end_line": 7
+      },
+      "rule_id": "ZW-ST01",
+      "title": "天府实坐大限的基础事务推进",
+      "topics": [
+        "ZW-ST01",
+        "天府",
+        "大限",
+        "事务推进"
+      ],
+      "summary": "实际旧限宫天府实坐时，传统模型内事务安排及所谋推进条件偏有利；运化增强与本命另条各按自身对象研究。",
+      "conditions": [
+        "已核旧大限年度窗与实际限宫，天府为实际实坐主星。",
+        "依M0复核足以否定必要条件的证据、同轴竞争解释及一般作用未决，分别交付模型结论和稳健性。"
+      ],
+      "exclusions": [
+        "适用对象为基础事务称意及所谋推进。外部机会、财富、其他领域和具体事件另需依据。"
+      ],
+      "author_adaptations": [
+        "入限／二限取原引擎旧大限，沿用公历分析年减民用出生年加一及原半开年度窗。限宫只取实坐。",
+        "采用天府入限第二首的基础评价，运化科权禄是另一个增强分支。"
+      ],
+      "time_boundaries": [
+        "只评价所列旧大限阶段的相应目标，年、月、日和完整人生曲线各需独立依据。"
+      ],
+      "direction_branches": [
+        {
+          "key": "tianfu_progress",
+          "condition": "实际旧限宫天府实坐。",
+          "direction": "事务安排、所谋推进的条件偏有利。",
+          "counterconditions": [
+            "有源证据实质否定所问事项的必要条件时重判；实坐条件不满足时退出。",
+            "无须另设入庙或全四正无煞门。实际空曜、四煞和同宫星曜仍纳入同轴反向审查。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "相邻阶段只有对宫天府时退出。",
+        "同宫地空或四正见擎羊不能单凭上册21的本命他项语句取消此基础分支。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第100幅 入限第二首基础评价与运化增强",
+          "artifact_sha256": "d08c29dae29e9b8f21528e1cdea9a61e9cab88e078630569c212d458abd1ca4a",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第21幅 身命及家属反条仅作对象区分",
+          "artifact_sha256": "53498f475e267b82d5b827733bbb69ccafa1c8f530e4ce9a3a01be1f63ee3998",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        }
+      ]
+    },
+    {
+      "id": "ziwei-stage-relationship-ZW-ST02",
+      "system": "ziwei",
+      "source_id": "ziwei-stage-relationship-source",
+      "profile": "ziwei-stage-relationship-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "只用于卡内指定的对象和条件。原排盘、通用ledger和逐字引用权限保持。",
+      "source_span": {
+        "start_line": 45,
+        "end_line": 45
+      },
+      "rule_id": "ZW-ST02",
+      "title": "太阳卯庙正支与子陷火忌受限支",
+      "topics": [
+        "ZW-ST02",
+        "太阳",
+        "大限",
+        "卯庙",
+        "子陷",
+        "火星",
+        "本命忌"
+      ],
+      "summary": "旧限太阳实坐时，卯庙按四正无四煞且本宫无固定本命忌评价推进正支；子陷须同宫火星及太阳固定本命忌才有窄受限支，保留限忌异读。",
+      "conditions": [
+        "已核旧限宫、原始亮度、实际本命忌及星位。",
+        "正支限卯庙且四正无四煞、本宫无本命忌；负支限子陷、同宫火星及甲生年太阳固定本命忌。",
+        "依M0复核足以否定必要条件的证据、同轴竞争解释及一般作用未决，分别交付模型结论和稳健性。"
+      ],
+      "exclusions": [
+        "单见陷、火或忌只核相应事实；其他位置、非本命动态标记和具体事件在此范围之外。"
+      ],
+      "author_adaptations": [
+        "入限／二限取原引擎旧大限，沿用公历分析年减民用出生年加一及原半开年度窗。限宫只取实坐。",
+        "四正按本宫、两三合及正对取实际星曜。四煞名物限擎羊、陀罗、火星、铃星。",
+        "正反支统一采用固定本命忌解释入限加忌；负支之侵逢限同宫。"
+      ],
+      "time_boundaries": [
+        "只评价所列旧大限阶段的相应目标，年、月、日和完整人生曲线各需独立依据。"
+      ],
+      "direction_branches": [
+        {
+          "key": "taiyang_mao_support",
+          "condition": "卯太阳原始庙，四正无四煞，实际限宫无固定本命忌。",
+          "direction": "事务和经营推进的条件偏有利。",
+          "counterconditions": [
+            "有四煞或本宫忌时此正支退出。若限忌才是反条所指，现有资料不足以排尽反条，降低稳健性。"
+          ]
+        },
+        {
+          "key": "taiyang_zi_fire_ji",
+          "condition": "子太阳原始陷，火星实际同宫，甲生年的固定本命忌直接附着太阳。",
+          "direction": "事务推进的条件偏受限。",
+          "counterconditions": [
+            "火星仅三合或太阳未带固定本命忌时退出。若采须运限忌的异读，完整负支退出。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "太阳陷但火星在邻宫时不满足反支。",
+        "本宫有忌但忌属于另一颗星时不满足子陷太阳忌反支。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第93幅 太阳亮度表",
+          "artifact_sha256": "56dc15f8d7fc42da4e259f0bcf72010f71d6db02f98a7f2b73fbb9af1e6c6a3d",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第94幅 太阳入限两首",
+          "artifact_sha256": "1f322ce04beda26446a1b4f5fd663c057037bdf0becc1356c2a1b4f7c5477ef0",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第36幅 四煞名物",
+          "artifact_sha256": "1205a723450301377353523832295045ccdada9fb6dbdb2d700905cc7796838c",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        }
+      ]
+    },
+    {
+      "id": "ziwei-stage-relationship-ZW-ST03",
+      "system": "ziwei",
+      "source_id": "ziwei-stage-relationship-source",
+      "profile": "ziwei-stage-relationship-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "只用于卡内指定的对象和条件。原排盘、通用ledger和逐字引用权限保持。",
+      "source_span": {
+        "start_line": 87,
+        "end_line": 87
+      },
+      "rule_id": "ZW-ST03",
+      "title": "太阴丑庙的已核正支",
+      "topics": [
+        "ZW-ST03",
+        "太阴",
+        "大限",
+        "丑庙",
+        "巳陷",
+        "反背"
+      ],
+      "summary": "旧限太阴丑庙实坐且四正无四煞、本宫无本命忌时，给事务推进的条件正支；反背和三杀会尚未完整定义，净方向保留未决。",
+      "conditions": [
+        "丑太阴为实际限宫主星且原始庙，四正无四煞，本宫无本命忌。",
+        "将反背及三杀会的适用和方向独立列为净裁决缺口。",
+        "依M0复核足以否定必要条件的证据、同轴竞争解释及一般作用未决，分别交付模型结论和稳健性。"
+      ],
+      "exclusions": [
+        "午、寅原书与当前原始亮度冲突，退出此版。巳陷见同宫火星只登记反因素，不给负方向。"
+      ],
+      "author_adaptations": [
+        "入限／二限取原引擎旧大限，沿用公历分析年减民用出生年加一及原半开年度窗。限宫只取实坐。",
+        "四正按本宫、两三合及正对取实际星曜。四煞名物限擎羊、陀罗、火星、铃星。",
+        "百事通收窄为事务推进，不补造反背的判断式。"
+      ],
+      "time_boundaries": [
+        "只评价所列旧大限阶段的相应目标，年、月、日和完整人生曲线各需独立依据。"
+      ],
+      "direction_branches": [
+        {
+          "key": "taiyin_chou_support",
+          "condition": "丑太阴原始庙，四正无四煞、本宫无固定本命忌。",
+          "direction": "已核事务推进分支偏有利，整体净方向未决。",
+          "counterconditions": [
+            "若完整反背适用并形成决定性竞争，净评退出或改判。四煞或本宫忌出现时正支退出。"
+          ]
+        },
+        {
+          "key": "taiyin_si_counter",
+          "condition": "巳太阴原始陷，火星实际同宫。",
+          "direction": null,
+          "counterconditions": [
+            "登记实质反因素，保留反背定义、完整负支和净方向未决。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "午太阴原始不，不把原书的陷覆盖进排盘。",
+        "丑庙满足基础事实仍不能说已经排除反背。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第100幅 太阴宫位表",
+          "artifact_sha256": "d08c29dae29e9b8f21528e1cdea9a61e9cab88e078630569c212d458abd1ca4a",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第101幅 宫位续及太阴入限题",
+          "artifact_sha256": "a8522997edb7906761e86eaf5aabc982c5093a2cf95a82c78a2e71ffa3d41a09",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第102幅 太阴入限正句和反背反条",
+          "artifact_sha256": "6649fad3ceb9c98305c0d09c1af6c63229cb3c66f17da0b869e0f6a6e73d8f02",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第36幅 四煞名物",
+          "artifact_sha256": "1205a723450301377353523832295045ccdada9fb6dbdb2d700905cc7796838c",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        }
+      ]
+    },
+    {
+      "id": "ziwei-stage-relationship-ZW-ST04",
+      "system": "ziwei",
+      "source_id": "ziwei-stage-relationship-source",
+      "profile": "ziwei-stage-relationship-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "只用于卡内指定的对象和条件。原排盘、通用ledger和逐字引用权限保持。",
+      "source_span": {
+        "start_line": 130,
+        "end_line": 130
+      },
+      "rule_id": "ZW-ST04",
+      "title": "武曲本命权的窄求谋正支",
+      "topics": [
+        "ZW-ST04",
+        "武曲",
+        "大限",
+        "本命权",
+        "求谋"
+      ],
+      "summary": "实际旧限武曲实坐且带固定本命化权时，可对非官务、非财务的具体求谋给传统条件正评，官务及财务须另查原段反向。",
+      "conditions": [
+        "已核旧限实坐武曲及庚生年固定本命权，十二原始亮度位置交集均已核。",
+        "明确问题为非官务、非财务的求谋推进。",
+        "依M0复核足以否定必要条件的证据、同轴竞争解释及一般作用未决，分别交付模型结论和稳健性。"
+      ],
+      "exclusions": [
+        "不把本模型正评用于公职官务、财务、融资、债务或现实获利、处罚与升迁。"
+      ],
+      "author_adaptations": [
+        "入限／二限取原引擎旧大限，沿用公历分析年减民用出生年加一及原半开年度窗。限宫只取实坐。",
+        "固定本命武曲权作为限中化权的作者时间角色；吉星为另列增强，保留合取异读。"
+      ],
+      "time_boundaries": [
+        "只评价所列旧大限阶段的相应目标，年、月、日和完整人生曲线各需独立依据。"
+      ],
+      "direction_branches": [
+        {
+          "key": "wuqu_quan_progress",
+          "condition": "实坐武曲直接带庚生年固定本命权，目标为非官务、非财务的求谋。",
+          "direction": "该求谋的推进条件偏有利。",
+          "counterconditions": [
+            "若采限权或更遇吉星为必要的读法，目前不能成立该完整正评。",
+            "原段的官务与负债反向另有对象；当问题涉及这些对象时，本支不作净评价。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "仅有流年武曲权或另一颗星本命权时退出。",
+        "财帛宫中有武曲权也不能把此支写成财务顺利。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第76幅 固定本命武曲权相容项",
+          "artifact_sha256": "425d56fa0cf60ab66530e68ddf439a8a3b749a166a62fb67a9d74689304e9f61",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第94幅 武曲宫位表",
+          "artifact_sha256": "1f322ce04beda26446a1b4f5fd663c057037bdf0becc1356c2a1b4f7c5477ef0",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第95幅 入限第一首求谋及官务、负债反向",
+          "artifact_sha256": "cd713bdbb17fcebf04c3ac1f77ab0f1774f0288c66aea894acfe7ef478ebf2be",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        }
+      ]
+    },
+    {
+      "id": "ziwei-stage-relationship-ZW-ST05",
+      "system": "ziwei",
+      "source_id": "ziwei-stage-relationship-source",
+      "profile": "ziwei-stage-relationship-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "只用于卡内指定的对象和条件。原排盘、通用ledger和逐字引用权限保持。",
+      "source_span": {
+        "start_line": 170,
+        "end_line": 170
+      },
+      "rule_id": "ZW-ST05",
+      "title": "天相谋为正支与遇羊阶段受限",
+      "topics": [
+        "ZW-ST05",
+        "天相",
+        "大限",
+        "擎羊",
+        "地空",
+        "地劫",
+        "谋为"
+      ],
+      "summary": "天相实坐旧限时，四正无四煞与地空地劫可给谋为正支，同宫擎羊可给一般阶段受限；其他单曜出现只限制相应正支。",
+      "conditions": [
+        "天相实际旧限宫实坐，十二原始亮度位置交集均已核。",
+        "正支核四正无四煞及地空地劫；负支核同宫擎羊。",
+        "依M0复核足以否定必要条件的证据、同轴竞争解释及一般作用未决，分别交付模型结论和稳健性。"
+      ],
+      "exclusions": [
+        "不以任一曜出现推重会。一般阶段受限不等于单一职业目标必败，也不推灾害或死亡。"
+      ],
+      "author_adaptations": [
+        "入限／二限取原引擎旧大限，沿用公历分析年减民用出生年加一及原半开年度窗。限宫只取实坐。",
+        "四正按本宫、两三合及正对取实际星曜。四煞名物限擎羊、陀罗、火星、铃星。",
+        "无六曜为保守适用范围；遇擎羊窄取实坐同宫。"
+      ],
+      "time_boundaries": [
+        "只评价所列旧大限阶段的相应目标，年、月、日和完整人生曲线各需独立依据。"
+      ],
+      "direction_branches": [
+        {
+          "key": "tianxiang_pursuit",
+          "condition": "四正均无羊陀火铃和地空地劫。",
+          "direction": "谋为的条件偏有利。",
+          "counterconditions": [
+            "六曜中任何一曜确实出现时正支退出，仅有这一事实不能成立负支。"
+          ]
+        },
+        {
+          "key": "tianxiang_yang_restriction",
+          "condition": "旧限宫天相与擎羊实际同宫。",
+          "direction": "该传统模型内一般阶段条件偏不利、受扰。",
+          "counterconditions": [
+            "擎羊仅会照而不在限宫时此负支退出；火铃为源另列较强分支。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "仅四正见地空时退出正支，不自动判负。",
+        "擎羊正对而不同宫时不能当作遇羊负支。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第105幅 天相宫位表",
+          "artifact_sha256": "4560306cfd5fc7fb0bd6b6259660d33c867fe49327d1180c876a7a3e27812261",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第106幅 天相入限谋为与同宫擎羊反向",
+          "artifact_sha256": "bab99e6b10fca8e42ef49beebd60ef2fa202188c70ece14a54df5e0fad33adf6",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第36幅 四煞名物",
+          "artifact_sha256": "1205a723450301377353523832295045ccdada9fb6dbdb2d700905cc7796838c",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        }
+      ]
+    },
+    {
+      "id": "ziwei-stage-relationship-ZW-ST06",
+      "system": "ziwei",
+      "source_id": "ziwei-stage-relationship-source",
+      "profile": "ziwei-stage-relationship-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "只用于卡内指定的对象和条件。原排盘、通用ledger和逐字引用权限保持。",
+      "source_span": {
+        "start_line": 212,
+        "end_line": 212
+      },
+      "rule_id": "ZW-ST06",
+      "title": "天梁守限的作事求谋正支",
+      "topics": [
+        "ZW-ST06",
+        "天梁",
+        "大限",
+        "守限",
+        "求谋"
+      ],
+      "summary": "天梁实坐旧限且位置亮度属已核交集、四正无四煞时，作事求谋的条件偏有利；源义为守限，适用时保留原始亮度。",
+      "conditions": [
+        "天梁实际旧限宫实坐；子午寅卯辰戌原始庙，酉原始得或申原始陷。",
+        "四正无四煞。",
+        "依M0复核足以否定必要条件的证据、同轴竞争解释及一般作用未决，分别交付模型结论和稳健性。"
+      ],
+      "exclusions": [
+        "丑、未亮度冲突及巳、亥未核位置退出。单煞不构成完整负支。寿命、家亡、升迁事件不在本支范围。"
+      ],
+      "author_adaptations": [
+        "入限／二限取原引擎旧大限，沿用公历分析年减民用出生年加一及原半开年度窗。限宫只取实坐。",
+        "四正按本宫、两三合及正对取实际星曜。四煞名物限擎羊、陀罗、火星、铃星。",
+        "守限以实坐旧限匹配；不额外要求入庙、化禄或获禄。"
+      ],
+      "time_boundaries": [
+        "只评价所列旧大限阶段的相应目标，年、月、日和完整人生曲线各需独立依据。"
+      ],
+      "direction_branches": [
+        {
+          "key": "tianliang_progress",
+          "condition": "实际天梁限宫在八处已核位置之一，原始亮度相符且四正无四煞。",
+          "direction": "作事及求谋推进的条件偏有利。",
+          "counterconditions": [
+            "相应位置或亮度未核，或四正有四煞时，正支退出。申原始陷是已核交集，保留其稳健性问题。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "申陷在四正无四煞时可用此正支。",
+        "丑原始旺不能改成庙来取得适用资格。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第107幅 天梁宫位表",
+          "artifact_sha256": "a71bb0bced0b89303677875d12d7428ba9c60278d2ad84f4aad1c250b762dcdc",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第108幅 守限作事求谋与四煞反向",
+          "artifact_sha256": "e33d06b00a29cd5ccce365162cd45db1f2fa6e1b71ad9694adea96c774f82a4e",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第36幅 四煞名物",
+          "artifact_sha256": "1205a723450301377353523832295045ccdada9fb6dbdb2d700905cc7796838c",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        }
+      ]
+    },
+    {
+      "id": "ziwei-stage-relationship-ZW-ST07",
+      "system": "ziwei",
+      "source_id": "ziwei-stage-relationship-source",
+      "profile": "ziwei-stage-relationship-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "只用于卡内指定的对象和条件。原排盘、通用ledger和逐字引用权限保持。",
+      "source_span": {
+        "start_line": 252,
+        "end_line": 252
+      },
+      "rule_id": "ZW-ST07",
+      "title": "天同子旺、亥庙正支与午陷正冲受限",
+      "topics": [
+        "ZW-ST07",
+        "天同",
+        "大限",
+        "子旺",
+        "亥庙",
+        "午陷",
+        "火星"
+      ],
+      "summary": "旧限天同实坐时，子旺、亥庙选读按四正无四煞给建设性推进正支；午陷受正对火星时给窄受限支，保留影响结果的句读和时间异读。",
+      "conditions": [
+        "实坐天同；正支核子原始旺或亥原始庙、四正无四煞；反支核午原始陷且正对宫实际有火星。",
+        "依M0复核足以否定必要条件的证据、同轴竞争解释及一般作用未决，分别交付模型结论和稳健性。"
+      ],
+      "exclusions": [
+        "仅建设性推进和筹办新安排；阶段宫名不决定婚期、创业或收入。"
+      ],
+      "author_adaptations": [
+        "入限／二限取原引擎旧大限，沿用公历分析年减民用出生年加一及原半开年度窗。限宫只取实坐。",
+        "四正按本宫、两三合及正对取实际星曜。四煞名物限擎羊、陀罗、火星、铃星。",
+        "亥采用会四煞且居巳亥为陷的合取读法A，依据同书亥庙表，保留并列读法B。午负支采用原流年二限语境中大限可独立评的作者适配，冲限窄取正对。"
+      ],
+      "time_boundaries": [
+        "只评价所列旧大限阶段的相应目标，年、月、日和完整人生曲线各需独立依据。"
+      ],
+      "direction_branches": [
+        {
+          "key": "tiantong_zi_progress",
+          "condition": "子天同原始旺，四正无四煞。",
+          "direction": "筹办新安排及建设性推进偏有利。",
+          "counterconditions": [
+            "四正见四煞则退出此正支。"
+          ]
+        },
+        {
+          "key": "tiantong_hai_progress",
+          "condition": "亥天同原始庙，四正无四煞，采用合取A。",
+          "direction": "筹办新安排及建设性推进偏有利。",
+          "counterconditions": [
+            "采用并列B时亥本身退出正支，不能据此改判偏差。"
+          ]
+        },
+        {
+          "key": "tiantong_wu_opposite_fire",
+          "condition": "午天同原始陷，正对宫有实坐火星。",
+          "direction": "建设性推进的条件偏受限。",
+          "counterconditions": [
+            "火星仅同宫或三合时不能代替正对。若须流年和二限共同会聚，当前反支退出。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "亥原始庙但四正见擎羊时A也退出。",
+        "夫妻限名不等于本阶段具备婚姻事件条件。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第19幅 天同问答起段",
+          "artifact_sha256": "01f54f26c75a8e7175507c03d78371b1791e928281175928856007384b62854e",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第20幅 会四杀及巳亥的句读反向",
+          "artifact_sha256": "f1018392d7ec735aee188eef2800983a1de34e98c0213341c79780f39160836e",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第36幅 四煞名物",
+          "artifact_sha256": "1205a723450301377353523832295045ccdada9fb6dbdb2d700905cc7796838c",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第96幅 子亥午宫位表",
+          "artifact_sha256": "090cbb97a4776de64896205ac5441a07559e8ce4b0b637a2ba7c2c1a592b759b",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第97幅 天同入限进展及陷地遭冲",
+          "artifact_sha256": "2be3c2c7a7411e7784ade0884194ba726e8770ae0e692662524a68dbb0aebc47",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        }
+      ]
+    },
+    {
+      "id": "ziwei-stage-relationship-ZW-RL01",
+      "system": "ziwei",
+      "source_id": "ziwei-stage-relationship-source",
+      "profile": "ziwei-stage-relationship-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "只用于卡内指定的对象和条件。原排盘、通用ledger和逐字引用权限保持。",
+      "source_span": {
+        "start_line": 297,
+        "end_line": 297
+      },
+      "rule_id": "ZW-RL01",
+      "title": "本命夫妻宫阳巨的长期稳定条件",
+      "topics": [
+        "ZW-RL01",
+        "太阳",
+        "巨门",
+        "夫妻宫",
+        "长期关系",
+        "地空",
+        "地劫"
+      ],
+      "summary": "实际本命夫妻宫太阳、巨门同坐，且四正无四煞和地空地劫，按特指分支独立读法给传统长期婚姻稳定条件正评；保留相对年龄异读。",
+      "conditions": [
+        "核本命夫妻宫两颗主星实坐及四正实际星表。",
+        "四正均无羊陀火铃及地空地劫。",
+        "依M0复核足以否定必要条件的证据、同轴竞争解释及一般作用未决，分别交付模型结论和稳健性。"
+      ],
+      "exclusions": [
+        "只评长期婚姻稳定配置，伴侣心理、实际满意度、恋爱事件、婚期和分合另需依据。"
+      ],
+      "author_adaptations": [
+        "四正按本宫、两三合及正对取实际星曜。四煞名物限擎羊、陀罗、火星、铃星。",
+        "空劫限本引擎按时辰安置的地空、地劫，其他空曜保留原始身份。采用阳巨无四煞的特指支独立于前接宜年长语境。"
+      ],
+      "time_boundaries": [
+        "仅使用本命事实，适用于长期结构或所问对象。"
+      ],
+      "direction_branches": [
+        {
+          "key": "sun_giant_gate_stability",
+          "condition": "太阳、巨门实际同坐本命夫妻宫，四正无四煞与地空地劫，采用特指支独立读法。",
+          "direction": "该传统模型内长期婚姻稳定条件偏有利。",
+          "counterconditions": [
+            "四煞或地空地劫出现时正支退出，不据此判关系变差。",
+            "若采年龄要求贯穿的异读，实际相对年龄未知时改为条件或未决。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "当前大限在官禄而本命阳巨条件满足，仍可适用。",
+        "借对宫太阳、旬空与地空互换或动态四化均不能补事实。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "下册第4幅 夫妻宫太阳条",
+          "artifact_sha256": "dd49e684c3f8e8fa5693c06aa94b3f6c42d5323b355d0e24ee335cea980f98aa",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "下册第5幅 夫妻宫太阳反条及巨门同太阳特指正支",
+          "artifact_sha256": "2821156a23bd8a8777b1a5bd43da9971a8d3f9a55181cfd13b96644aa13ac64d",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第36幅 四煞名物",
+          "artifact_sha256": "1205a723450301377353523832295045ccdada9fb6dbdb2d700905cc7796838c",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        }
+      ]
+    },
+    {
+      "id": "bazi-officer-luck-OL01",
+      "system": "bazi",
+      "source_id": "bazi-officer-luck-v1",
+      "profile": "bazi-officer-luck-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "rule_id": "BZ-OL01",
+      "title": "维持已核酉官路径的局部受扰",
+      "summary": "四柱完整、甲日生酉月且原透干路线有实际辛正官候选时，若独立复审保留普通酉官用 H1、既定目标依赖该路径，实际卯大运在原局无巳、原生年支既非亥亦非未的条件下，可判传统模型内维持该酉官路径偏受扰。",
+      "conditions": [
+        "当前出生候选四柱完整，日干甲、出生月支酉，辛正官在原月藏同干透出路线实透入候选。",
+        "依 BJ01、BJ02、BJ04 独立建立并复审保留普通酉官用 H1。所问的既定目标实际依赖维持该路径。",
+        "核对同一出生候选的原折月年龄窗，所问时段处于实际卯支大运。交运或出生误差影响窗口时逐候选比较。",
+        "原局无巳，原生年支非亥、非未。必要用途及同一目标反证均已复审。"
+      ],
+      "exclusions": [
+        "原局见巳按巳酉相会异读保守退出。原生年支为亥或未也退出，保留实际配对和未裁作用。",
+        "辛仅藏、原候选不成立、H1 撤回、目标依赖其他路径或不在实际卯大运时退出。",
+        "原局巳、原生年支、实际运窗或会改变 H1 的事实未核时暂缓。",
+        "岁、月、日支卯不替代卯大运。流年见巳不计入原局巳。其他天干或月官组合、整体运势、职业结果、事件时点、冲合成败或作用强度各查适用依据。"
+      ],
+      "source_span": {
+        "start_line": 7,
+        "end_line": 7
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-judgment-audit",
+          "locator": "《论行运》PDF44 纸三十一最左正文段至 PDF45 纸三十二最右正文段，甲日酉官、卯运和原局退出条件",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明書局1926年第2卷单版影像参照；非校勘定本"
+        }
+      ],
+      "topics": [
+        "BZ-OL01",
+        "甲日酉官",
+        "辛正官",
+        "卯大运",
+        "巳酉相会",
+        "年支亥未",
+        "大运"
+      ],
+      "limitations": "人工复审范围限维持既定酉官路径。运干及其他已核支持和成本分别记录。原局根、透藏与作用未决保留。目录准入不构成 H1、窗口或效力认证。"
+    },
+    {
+      "id": "bazi-primary-spouse-BZ-P01",
+      "system": "bazi",
+      "source_id": "bazi-primary-spouse-source",
+      "profile": "bazi-primary-spouse-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "只用于卡内指定的对象和条件。原排盘、通用ledger和逐字引用权限保持。",
+      "source_span": {
+        "start_line": 7,
+        "end_line": 7
+      },
+      "rule_id": "BZ-P01",
+      "title": "乙申壬戊的局部官主印兼",
+      "topics": [
+        "BZ-P01",
+        "八字",
+        "乙日",
+        "申月",
+        "正官",
+        "主兼",
+        "壬印",
+        "戊财"
+      ],
+      "summary": "乙日、出生申月、壬戊本命实透且现行月藏同干路线已有庚正官候选时，取官为主、印兼用、财参与生官的局部传统安排。",
+      "conditions": [
+        "完整已核出生四柱；乙日、出生申月，壬印、戊财在本命实际透出。",
+        "现行月藏同干透出路线有庚正官候选，保留全部原候选及原选中状态。",
+        "依M0复核足以否定必要条件的证据、同轴竞争解释及一般作用未决，分别交付模型结论和稳健性。"
+      ],
+      "exclusions": [
+        "局部主兼安排限该模型；全局旺衰、喜忌、成格、关系、时间与事件均另查。"
+      ],
+      "author_adaptations": [
+        "庚候选是项目接入的窄范围；原段未明说庚必须透。加入戊透条件与柱序无关，印仍可兼用。"
+      ],
+      "time_boundaries": [
+        "仅使用本命事实，适用于长期结构或所问对象。"
+      ],
+      "direction_branches": [
+        {
+          "key": "officer_primary_resource_secondary",
+          "condition": "乙日、申月、壬戊本命透且实际有庚官候选。",
+          "direction": "所选源模型中官为主线、印保留兼用、财参与生官。",
+          "counterconditions": [
+            "若已知有适用证据否定必要官用或节点作用，改判或分支。",
+            "一般合冲仅检出关系时保留稳健性，源内局部结果无需另证财生官或戊克印已经成功。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "壬仅藏于申时退出。",
+        "戊在年、壬在时可满足同透，印兼用不代表壬根失效。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "bazi-primary-spouse-audit",
+          "locator": "PDF27纸十四，《论用神变化》第10末–11正文列，不失本格段",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明书局1926年第2卷单版影像",
+          "revision": "752877821"
+        }
+      ]
+    },
+    {
+      "id": "bazi-primary-spouse-BZ-R01",
+      "system": "bazi",
+      "source_id": "bazi-primary-spouse-source",
+      "profile": "bazi-primary-spouse-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "只用于卡内指定的对象和条件。原排盘、通用ledger和逐字引用权限保持。",
+      "source_span": {
+        "start_line": 44,
+        "end_line": 44
+      },
+      "rule_id": "BZ-R01",
+      "title": "普通官用与正财透的局部配偶支持",
+      "topics": [
+        "BZ-R01",
+        "八字",
+        "正官",
+        "正财",
+        "配偶支持",
+        "官用",
+        "发展"
+      ],
+      "summary": "男性命主明确询问配偶对既定发展目标的支持时，在独立建立可反驳的普通官用假说、核唯一正财实透且无偏财混透以及源反条后，给局部传统支持配置评价。",
+      "conditions": [
+        "男性命主，实际问题是配偶角色对既定发展目标的支持。",
+        "以已批准方法先独立建立有据可反驳的普通官用H1，说明月令、根、透、承受及配合，比较相反解释和选择理由。",
+        "本命唯一正财透，无偏财混透。",
+        "逐项核印轻财露、食神／伤官透杀逢财及否定所需官用的反证。食伤自身不额外要求外透。",
+        "依M0复核足以否定必要条件的证据、同轴竞争解释及一般作用未决，分别交付模型结论和稳健性。"
+      ],
+      "exclusions": [
+        "配置适配只涉及该发展目标，现实伴侣行为、人格、关系满意度、整体稳定和事件需另论。",
+        "妻宫另证有用、日支无冲、第二次财生官效力认证与现实先发生均非此处必要门。"
+      ],
+      "author_adaptations": [
+        "将传统男性妻星与内助语境收窄为配偶角色的局部发展支持配置；唯一正财、无偏财混透用于消除角色歧义。"
+      ],
+      "time_boundaries": [
+        "仅使用本命事实，适用于长期结构或所问对象。"
+      ],
+      "direction_branches": [
+        {
+          "key": "ordinary_officer_spouse_support",
+          "condition": "已按已准方法独立建立普通官用H1，角色、实际本命正偏财及反条审查齐备。",
+          "direction": "在H1仍成立的条件下，传统模型中的配偶角色与既定发展用法相容，局部支持配置偏有利。",
+          "counterconditions": [
+            "H1撤回或完整反条否定必要官用时下游同步撤回或分支；关键事实未知时保留未决。",
+            "单条财克印只说明关系，不能填真印轻。坐下冲刑仍保存，只有适用反证足以否定所需官用才影响该评价。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "仅存在正官候选或调用者声明H1通过，不能完成方向判断。",
+        "同日改出生时辰而使月藏辛只藏不透时，原见证的普通官路线前提退出，仍须查是否有别的合法依据。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "bazi-primary-spouse-audit",
+          "locator": "PDF41–42《论妻子》，PDF42妻宫、妻星后妻透成局／破格对举，普通官格透财与两项反支",
+          "artifact_sha256": "b1ac0a7dd4dc260647b65bd9338ad815fc0855d78e0ea01ed428237b28eb61c8",
+          "edition": "文明书局1926年第2卷单版影像",
+          "revision": "752877821"
+        }
+      ]
+    },
+    {
+      "id": "ziwei-stage-relationship-ZW-ST08",
+      "system": "ziwei",
+      "source_id": "ziwei-stage-relationship-source",
+      "profile": "ziwei-stage-relationship-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "只用于卡内指定的对象和条件。原排盘、通用ledger和逐字引用权限保持。",
+      "source_span": {
+        "start_line": 337,
+        "end_line": 337
+      },
+      "rule_id": "ZW-ST08",
+      "title": "贪狼实坐庙限的事务协调",
+      "topics": [
+        "ZW-ST08",
+        "贪狼",
+        "大限",
+        "事务协调",
+        "丑辰未戌"
+      ],
+      "summary": "贪狼实坐丑辰未戌原始庙的实际旧限，采用入限首联独立读法，给所问事务协调推进的条件正评；保留整首合读会撤回正评的异读。",
+      "conditions": [
+        "已核实际旧限年度窗，贪狼实坐丑、辰、未、戌之一，原始亮度为庙。",
+        "用户所问对象是具体事务协调。按M0比较同一目标的必要条件和反向证据，保留实际本宫与三方四正星曜。"
+      ],
+      "exclusions": [
+        "范围限阶段事务协调配置。具体合作对象、婚恋、机会、收入、事件和年/月/日另需依据。",
+        "巳亥陷等位置退出正支，陷支、三方吉曜缓解及四库生年火曜增强继续研究。"
+      ],
+      "author_adaptations": [
+        "原段前一对取入庙与事务协调条件，科权仕路和财富是另列内容；保留把整首合读的异读。",
+        "入限按既有旧大限的公历年度窗，实坐核对丑辰未戌相容位置。"
+      ],
+      "time_boundaries": [
+        "只评价所列旧大限阶段的事务协调配置，具体年度、月、日另核。"
+      ],
+      "direction_branches": [
+        {
+          "key": "tanlang_coordination",
+          "condition": "实际旧限丑辰未戌贪狼实坐原始庙，采用首联独立读法。",
+          "direction": "该传统模型内，阶段中的具体事务协调与推进条件偏有利。",
+          "counterconditions": [
+            "若采整首合读并要求科权共同成立，现有事实未证明该必要条件时撤回正评或改为条件。",
+            "已核反证足以破坏所问事务的必要用途时缩限或撤回。实际同宫陀罗等事实仍保留，作用须按同一目标另核。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "换到下一限申宫、贪狼不再实坐，退出此正支。巳陷时也退出，不据退出给净负评。",
+        "未宫实际贪狼庙可保留此支，同时保留本宫实际陀罗及作用未决。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第102幅 左页贪狼相容位置",
+          "artifact_sha256": "6649fad3ceb9c98305c0d09c1af6c63229cb3c66f17da0b869e0f6a6e73d8f02",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第103幅 右页贪狼入限首联及后半科权；左页陷地与缓解作为反向范围",
+          "artifact_sha256": "a2843a157faaa38112e632a0ceb8d46ce885b2737137e1c3601c3b4a84553be8",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        }
+      ]
+    },
+    {
+      "id": "ziwei-stage-relationship-ZW-ST09",
+      "system": "ziwei",
+      "source_id": "ziwei-stage-relationship-source",
+      "profile": "ziwei-stage-relationship-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "只用于卡内指定的对象和条件。原排盘、通用ledger和逐字引用权限保持。",
+      "source_span": {
+        "start_line": 376,
+        "end_line": 376
+      },
+      "rule_id": "ZW-ST09",
+      "title": "破军子午庙限的任务资源支持",
+      "topics": [
+        "ZW-ST09",
+        "破军",
+        "大限",
+        "资源支持",
+        "子午",
+        "四煞"
+      ],
+      "summary": "破军实坐子午原始庙的实际旧限，且本宫、两三合、正对均无羊陀火铃时，按首联独立读法给明确任务的资源支持条件正评；保留整首合读异读。",
+      "conditions": [
+        "已核实际旧限年度窗，破军实坐子或午，原始亮度为庙。",
+        "本宫、两三合及正对的实际星表均未出现擎羊、陀罗、火星、铃星。其他修饰及同目标作用按事实保留。",
+        "用户所问对象是明确任务的资源支持条件，按M0核必要用途与实际反证。"
+      ],
+      "exclusions": [
+        "范围限阶段任务资源条件。现实资源已经取得、收入、投资收益、健康、事件和年/月/日另需依据。",
+        "出现四曜之一时退出正支。卯酉陷与煞凑的损耗分支和通用阈值继续研究。"
+      ],
+      "author_adaptations": [
+        "将入限按既有旧大限公历年度窗，原段福禄评价收窄为明确任务的资源支持。四正无四曜是本项目保守范围，其他反向影响依实际核查。",
+        "以第一首前一对为基础评价，文昌与魁钺读作增强；保留整首合读异读。"
+      ],
+      "time_boundaries": [
+        "只评价所列旧大限阶段的任务资源配置，具体年度、月、日另核。"
+      ],
+      "direction_branches": [
+        {
+          "key": "pojun_resource_support",
+          "condition": "实际旧限子或午破军实坐原始庙，四正无羊陀火铃，采用首联独立读法。",
+          "direction": "该传统模型内，围绕所问任务安排资源的支持条件偏有利。",
+          "counterconditions": [
+            "若采整首合读并要求文昌与魁钺为必要前提，未核实该前提时撤回正评或改为条件。",
+            "四正任一所列曜出现时退出窄正支；其他凶曜或修饰保留，不能宣称全部排除。已有反证否定所需资源用途时撤回。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "午宫仍实坐破军原始庙，四正中的戌出现铃星时退出正支。",
+        "子宫实际破军庙并且四正无四曜时保留正支；地空地劫等实际修饰仍参与稳健性复审。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第110幅 右页破军子午入庙位置",
+          "artifact_sha256": "0706ebfd0407ed4d0fa9ead1455bbc24c7723768b96558ecc479fde4c542d5f2",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第111幅 右页破军入限第一首的基础及增强，次首无凶与破耗对照",
+          "artifact_sha256": "5f8d3ee9c056ea5c214769046bb1db5b29eedf4f95d2b785c20141f8b813e946",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第36幅 四煞名物",
+          "artifact_sha256": "1205a723450301377353523832295045ccdada9fb6dbdb2d700905cc7796838c",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        }
+      ]
+    },
+    {
+      "id": "bazi-qiong-chou-QXC01",
+      "system": "bazi",
+      "source_id": "bazi-qiong-xin-chou-source",
+      "profile": "bazi-qiong-xin-chou-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "rule_id": "BZ-QXC01",
+      "title": "丑月辛金本命专业发展配置",
+      "summary": "本命辛日生于节令丑月，原局丙、壬俱透，至少一支实藏丙且癸不透。完整前提已核、复审未见已成立的用途否定时，可判断传统模型内的本命专业发展配置相对有利。",
+      "conditions": [
+        "同一已核出生候选具完整四柱，日干辛，出生节令月支丑。",
+        "原局丙与壬均实透，至少一支实藏同干丙，原局无癸同透。",
+        "所问对象为本命专业发展配置。按 M0 复审所需作用与反证。"
+      ],
+      "exclusions": [
+        "丙或壬未透、缺同干丙根或癸同透时，退出本条正评。必要事实未核时暂缓。",
+        "适用证据已否定丙或壬所需作用时撤回正评。一般配对作为未决风险复审。",
+        "本命事实按出生节令与原局透藏核对。所问运、年、月、日及其他领域和现实事件各查独立依据。"
+      ],
+      "source_span": {
+        "start_line": 7,
+        "end_line": 7
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-qiong-xin-zi-audit",
+          "locator": "Q1926 PDF76 版心三十一，自「十二月辛金」标题起的大字底文",
+          "artifact_sha256": "a64fa0d6ec4bfea80fafbcaa230bc65f476bf1efabca232934992bac4eb3f7f2",
+          "edition": "文明書局 1926 年《滴天髓·穷通宝鉴》第 2 卷"
+        },
+        {
+          "source_id": "bazi-qiong-xin-zi-audit",
+          "locator": "Q1937 PDF213 版心四十七，十二月辛金大字及小字评注，续至 PDF214 右端",
+          "artifact_sha256": "b7f17fc7fcb7d8faa991efa74d0db391c5066a3793b3fc6787d2612bc6b350a8",
+          "edition": "乾乾书社 1937 年《穷通宝鉴评注》"
+        }
+      ],
+      "topics": [
+        "BZ-QXC01",
+        "丑月辛金",
+        "十二月辛金",
+        "丙壬俱透",
+        "本命",
+        "专业发展"
+      ],
+      "limitations": "本命正向评价的受限现代转译。丙同干根及无癸同透是保守操作边界，缺项不定负面。条件事实、所需作用、稳健性和现实效度分别记录。"
+    },
+    {
+      "id": "ziwei-lianfu-marriage-ZW-RL02",
+      "system": "ziwei",
+      "source_id": "ziwei-lianfu-marriage-source",
+      "profile": "ziwei-lianfu-marriage-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "经人工核对的本命局部模型。通用 ledger、逐字引用与自动关系状态不适用此新增用法。",
+      "source_span": {
+        "start_line": 5,
+        "end_line": 5
+      },
+      "rule_id": "ZW-RL02",
+      "title": "本命夫妻宫廉贞天府的长期共同生活条件",
+      "topics": [
+        "ZW-RL02",
+        "夫妻宫",
+        "长期婚姻",
+        "廉贞",
+        "天府",
+        "共同生活"
+      ],
+      "summary": "已婚男性命主的本命夫妻宫实坐廉贞、天府，且本宫、两三合和正对宫均已核无擎羊、陀罗、火星、铃星、地空、地劫时，按特指句独立读法，可给传统模型内维持现有婚姻共同生活的局部条件偏有利。相邻性情语若被读为必要条件，其所指与现实条件未核时，该读法下保留未决。",
+      "conditions": [
+        "已婚男性命主询问与妻子长期维持现有婚姻共同生活。",
+        "同一已核本命盘的夫妻宫实坐廉贞、天府。",
+        "本宫、正对宫与两三合的原生盘面均核无擎羊、陀罗、火星、铃星、地空、地劫。须逐一核实六曜的唯一实际位置。"
+      ],
+      "exclusions": [
+        "未婚、婚姻身份未知、伴侣性情和心理、婚期、分合、维持年数、满意度与其他具体事件均不适用。",
+        "对宫借星、其他宫的廉府组合及动态四化均不能补足实坐。"
+      ],
+      "author_adaptations": [
+        "以明刊廉贞条天府同坐正句独立读法给方向，保留相邻性情语仍作附加条件的异读。",
+        "四宫范围和六曜排除为项目保守边界。原始亮度可记录，未采用入庙门槛。"
+      ],
+      "time_boundaries": [
+        "仅本命的长期共同生活配置。大限、流年、流月、流日各需独立依据。"
+      ],
+      "direction_branches": [
+        {
+          "key": "lianfu_marriage_maintenance",
+          "condition": "已婚男性问与妻子长期维持共同生活，本命夫妻宫廉贞天府实坐，四宫六曜排除已核实，采用特指正句独立读法。",
+          "direction": "传统模型内，长期维持共同生活的配置偏有利。",
+          "counterconditions": [
+            "六曜任一实见于四宫，退出正评。位置缺失、重复或尚未核实则暂缓正评。",
+            "采用性情语作必要条件的合读时，因所指及操作条件未明，暂不作正评。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "两星实坐而正对官禄宫见火星，退出正支。",
+        "同一盘改问未婚关系或本月协商结果，本卡不适用。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "下册第5幅右半叶，卷四第三叶背，右起第8至9列廉贞正句与相邻性情语",
+          "artifact_sha256": "2821156a23bd8a8777b1a5bd43da9971a8d3f9a55181cfd13b96644aa13ac64d",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "下册第6幅右半叶，卷四第四叶背，第1列天相条接续",
+          "artifact_sha256": "23e70df95500e016eb1fe45901420b7dc5be160b263a9f6c3ab99ab8a1358947",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第36幅右半叶，四煞名物",
+          "artifact_sha256": "1205a723450301377353523832295045ccdada9fb6dbdb2d700905cc7796838c",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        }
+      ]
+    },
+    {
+      "id": "bazi-qiong-jia-yin-BZ-QJY01",
+      "system": "bazi",
+      "source_id": "bazi-qiong-jia-yin-source",
+      "profile": "bazi-qiong-jia-yin-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "rule_id": "BZ-QJY01",
+      "title": "寅月甲木本命学习支持与专业成果相配",
+      "summary": "本命甲日生于节令寅月，原局丙、癸实际俱透，两干之间至少隔一柱，且各有一处或以上实际藏同干。查清两干依赖路径，在所需作用仍成立的条件下，可判断传统模型内可用的学习材料或反馈与形成可核验专业成果相配，这条本命发展配置偏有利。",
+      "conditions": [
+        "同一已核出生候选具完整四柱，日干甲，出生节令月支寅。",
+        "原局丙与癸均实透，两干之间至少隔一柱。四支中至少一处实藏丙，也至少一处实藏癸。",
+        "核两干实际位置和相碍证据，按 M0 复审作用路径与相关反证。所问对象为学习支持与专业成果相配的本命配置。"
+      ],
+      "exclusions": [
+        "丙或癸未透、两干相邻或缺其一的同干藏根时，退出本条正评。必要事实未核时暂缓。",
+        "适用反证阻断丙或癸所需作用时撤回正评。一般配对或同轴影响尚未裁定时，保留实质条件与稳健性。",
+        "本命事实按出生节令与原局透藏核对。其他领域、运年月日和具体结果各查独立依据。"
+      ],
+      "source_span": {
+        "start_line": 7,
+        "end_line": 7
+      },
+      "primary_sources": [
+        {
+          "source_id": "bazi-qiong-xin-zi-audit",
+          "locator": "Q1926 PDF5 卷上版心四，三春甲木论下正月甲木大字正文的丙癸俱透分支",
+          "artifact_sha256": "a64fa0d6ec4bfea80fafbcaa230bc65f476bf1efabca232934992bac4eb3f7f2",
+          "edition": "文明書局 1926 年《滴天髓·穷通宝鉴》第 2 卷"
+        },
+        {
+          "source_id": "bazi-qiong-xin-zi-audit",
+          "locator": "Q1937 PDF15 卷一版心六，正月甲木大字丙癸俱透及徐乐吾小字评注的间隔与相碍条件",
+          "artifact_sha256": "b7f17fc7fcb7d8faa991efa74d0db391c5066a3793b3fc6787d2612bc6b350a8",
+          "edition": "乾乾书社 1937 年《穷通宝鉴评注》"
+        }
+      ],
+      "topics": [
+        "BZ-QJY01",
+        "寅月甲木",
+        "正月甲木",
+        "丙癸俱透",
+        "本命",
+        "专业发展",
+        "学习支持",
+        "专业成果"
+      ],
+      "limitations": "限本命条件的人工判读。各有同干藏根是本卡保守边界。传统模型结果、作用稳健性和现实效度分别记录。通用 ledger、自动状态与逐字引用均不适用。"
+    },
+    {
+      "id": "ziwei-zifu-marriage-ZW-RL03",
+      "system": "ziwei",
+      "source_id": "ziwei-zifu-marriage-source",
+      "profile": "ziwei-zifu-marriage-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "限本命长期共同生活配置的人工判读。传统模型方向、作用稳健性与现实履行分别核查。通用 ledger、自动关系状态及逐字古籍引用不适用。",
+      "source_span": {
+        "start_line": 5,
+        "end_line": 5
+      },
+      "rule_id": "ZW-RL03",
+      "title": "本命夫妻宫紫微天府的长期共同生活条件",
+      "topics": [
+        "ZW-RL03",
+        "夫妻宫",
+        "长期婚姻",
+        "紫微天府",
+        "紫微",
+        "天府",
+        "共同生活"
+      ],
+      "summary": "已婚男性命主的本命夫妻宫实坐紫微、天府，且本宫、两三合和正对宫均已核无擎羊、陀罗、火星、铃星、地空、地劫时，按明刊配对句独立读法，可给传统模型内维持现有婚姻共同生活的局部配置偏有利。若将相邻婚配时机语读为必要条件，该读法保留未决。",
+      "conditions": [
+        "已婚男性命主询问与妻子维持现有婚姻的共同生活。",
+        "同一已核本命盘的夫妻宫实坐紫微、天府。",
+        "本宫、正对宫和两三合均核无擎羊、陀罗、火星、铃星、地空、地劫，逐颗核对六曜唯一的实际位置。"
+      ],
+      "exclusions": [
+        "任一指定曜实见于四宫即退出本条正评，位置缺失、重复或无法核实则暂缓。",
+        "对宫借星、其他宫的紫府组合和动态四化不能补足夫妻宫实坐。",
+        "其他关系角色、婚期、婚龄、伴侣心理、满意度、分合结果及大限、年、月、日各需独立依据。"
+      ],
+      "author_adaptations": [
+        "采用明刊天府专条特指配对句独立读法，保留婚配时机语作为必要条件的异读。",
+        "四宫范围和六曜排除是项目的保守范围。实际亮度原样记录。"
+      ],
+      "time_boundaries": [
+        "仅使用本命盘事实评价维持现有婚姻共同生活的局部配置。"
+      ],
+      "direction_branches": [
+        {
+          "key": "zifu_marriage_maintenance",
+          "condition": "已婚男性问与妻子维持现有共同生活，紫微天府本命夫妻宫实坐，四宫六曜位置排除已核实，采用特指配对句独立读法。",
+          "direction": "传统模型内，维持现有婚姻共同生活的局部配置偏有利。",
+          "counterconditions": [
+            "任一指定曜实见于四宫，退出正支。必要事实未核时暂缓。",
+            "若将相邻婚配时机语作为必要条件，原图缺少可操作的时间标准，该读法下正评未定。",
+            "具体安排是否有双方同意和是否已履行须核现实事实，不能由盘面取得同意。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "紫微天府实坐但夫妻宫实际有火星，退出本条正评。",
+        "夫妻宫清查无六曜但福德这一四正宫位实见铃星，也退出本条正评。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "下册第5幅，卷四第三叶背右半叶末列，接第四叶前半左半叶首列，天府专条的紫微同坐正句",
+          "artifact_sha256": "2821156a23bd8a8777b1a5bd43da9971a8d3f9a55181cfd13b96644aa13ac64d",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "下册第4幅左半叶，卷四三妻妾标题后的紫微专条，天府同坐正句及前邻婚配时机语",
+          "artifact_sha256": "dd49e684c3f8e8fa5693c06aa94b3f6c42d5323b355d0e24ee335cea980f98aa",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第36幅右半叶，四煞名物",
+          "artifact_sha256": "1205a723450301377353523832295045ccdada9fb6dbdb2d700905cc7796838c",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        }
+      ]
+    },
+    {
+      "id": "ziwei-zixiang-marriage-ZW-RL04",
+      "system": "ziwei",
+      "source_id": "ziwei-zixiang-marriage-source",
+      "profile": "ziwei-zixiang-marriage-v1",
+      "status": "usable",
+      "content_kind": "project_paraphrase",
+      "usage_scope": "conditional_module_only",
+      "source_identity": "inspected_classical_image_bounded_project_paraphrase_with_author_adaptations",
+      "predictive_validity": "unvalidated",
+      "prediction_guarantee": false,
+      "limitations": "限本命长期共同生活配置的人工判读。传统模型方向、作用稳健性与现实履行分别核查。通用 ledger、自动关系状态及逐字古籍引用不适用。",
+      "source_span": {
+        "start_line": 5,
+        "end_line": 5
+      },
+      "rule_id": "ZW-RL04",
+      "title": "本命夫妻宫紫微天相的长期共同生活条件",
+      "topics": [
+        "ZW-RL04",
+        "夫妻宫",
+        "长期婚姻",
+        "紫微天相",
+        "紫微",
+        "天相",
+        "共同生活"
+      ],
+      "summary": "已婚男性询问与妻子维持现有共同生活，已确认妻子比命主年少，本命夫妻宫实坐紫微、天相，且本宫、两三合和正对宫均已核无擎羊、陀罗、火星、铃星、地空、地劫时，按明刊天相条的配对句独立读法，可给传统模型内维持共同生活的本命配置偏有利。妻较年少和四宫无六曜是项目的保守条件。",
+      "conditions": [
+        "已婚男性命主询问与妻子维持现有婚姻的共同生活，已从现实资料确认妻子比本人年少。",
+        "同一已核本命盘的夫妻宫实坐紫微、天相。",
+        "本宫、正对宫和两三合均核无擎羊、陀罗、火星、铃星、地空、地劫，逐颗核对六曜唯一的实际位置。"
+      ],
+      "exclusions": [
+        "年龄未知暂缓。同龄或妻子年长退出本条正评。",
+        "任一指定曜实见于四宫即退出正评，位置缺失、重复或无法核实则暂缓。",
+        "借星、其他宫位、大限或动态四化不能补足本命实坐。婚期、未婚关系、实际分合及伴侣感受另需各自依据。"
+      ],
+      "author_adaptations": [
+        "采用天相条的配对句独立读法。妻较年少及四宫无六曜是项目采用的保守边界。",
+        "绝对年龄、年龄所指角色与亲缘合读保留未决。若把邻句入庙语合读为必要条件，按实际原始亮度核对，明确不符时撤回该读法的正评。"
+      ],
+      "time_boundaries": [
+        "仅使用本命盘事实评价维持现有婚姻共同生活的局部配置。"
+      ],
+      "direction_branches": [
+        {
+          "key": "zixiang_marriage_maintenance",
+          "condition": "已婚男性问与妻子维持现有共同生活，已确认妻子比本人年少，紫微天相本命夫妻宫实坐，四宫六曜排除已核，采用配对句独立读法。",
+          "direction": "传统模型内，维持现有共同生活的本命配置偏有利。",
+          "counterconditions": [
+            "年龄未知暂缓。同龄、妻子年长或任一指定曜实见四宫时退出正评。必要事实未核时暂缓。",
+            "绝对年龄、年龄指涉或亲缘作为必要条件的异读仍未定；若将邻句入庙语纳入，明确不符时退出该读法。",
+            "具体安排是否获双方同意及履行须核现实事实。"
+          ]
+        }
+      ],
+      "counterexamples": [
+        "妻子年龄未知时，即使实际同坐及六曜已核，也暂缓本条。",
+        "同龄或妻子年长退出正评，婚姻总体另核。",
+        "夫妻宫见铃星，或仅其他四正见指定曜，均退出本条正评。"
+      ],
+      "primary_sources": [
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "下册第5幅左半叶最左正文，卷四三妻妾天相条，紫微同坐的长期正句及其前邻年龄和亲缘用语",
+          "artifact_sha256": "2821156a23bd8a8777b1a5bd43da9971a8d3f9a55181cfd13b96644aa13ac64d",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "下册第4幅左半叶，卷四三妻妾紫微条，天相同坐的相邻年龄用语",
+          "artifact_sha256": "dd49e684c3f8e8fa5693c06aa94b3f6c42d5323b355d0e24ee335cea980f98aa",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "下册第6幅右半叶首正文，卷四三妻妾天相条跨页，邻接廉贞配对与入庙、六曜用语",
+          "artifact_sha256": "23e70df95500e016eb1fe45901420b7dc5be160b263a9f6c3ab99ab8a1358947",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        },
+        {
+          "source_id": "ziwei-stage-relationship-audit",
+          "locator": "上册第36幅右半叶，四煞名物",
+          "artifact_sha256": "1205a723450301377353523832295045ccdada9fb6dbdb2d700905cc7796838c",
+          "edition": "内阁文库子060-0001，馆藏登记明刊"
+        }
+      ]
     }
   ],
   "quotation_packets": [

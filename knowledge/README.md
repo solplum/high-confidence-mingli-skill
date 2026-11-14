@@ -9,11 +9,31 @@
 1. 先运行 `python3 scripts/knowledge_catalog.py validate`。失败则不得将这些资料作为核验过的依据。
 2. 普通解释优先 `query --system bazi --profile bazi-current` 或 `query --system ziwei --profile ziwei-fixed-natal`，可加 `--term`。返回的是本项目释义，不是古文。每条只启用该释义，不能据此启用整篇外部规则。
 3. 直接读取任一参考前检查 catalog 的 source kind、版本、许可和隔离条目。七政资料优先遵循 `docs/qizheng-rule-profiles.md` 和 `qizheng-degree-relations-v1` 检索；旧操作手册不能自行授权原典、庙旺或格局结论。新增来源应先登记。临时未登记引用必须显式标为调用方提供的未核验资料，结构检查通过不代表来源获认可。
-4. `classics.md` 的标题不能授权逐字古籍引用。本版没有外部核验过的古籍版本，`cite --mode classical_quote` 一律拒绝；自行填写 edition 或 verification_record 不能启用。以后如正式完成校勘，需另行设计可审查的审核流程，不靠来源文件自我认证。需要讨论原文件错误时可用 `source_excerpt`，必须标明实际数字来源，而不是伪称原书原句。
-5. 紫微化忌、年干起紫微、巨日丑未、天府见禄存即双禄、衰极矛盾条文不得用于个人解读。隔离不影响使用经过核对的普通释义。
+4. `classics.md` 的标题不能授权逐字古籍引用。本版没有获准逐字引用的校勘定本，`cite --mode classical_quote` 一律拒绝；自行填写 edition 或 verification_record 不能启用。以后如正式完成校勘，需另行设计可审查的审核流程，不靠来源文件自我认证。需要讨论原文件错误时可用 `source_excerpt`，必须标明实际数字来源，而不是伪称原书原句。
+5. 旧隔离条目中“紫微星化忌”（`legacy-ziwei-huaji`）、年干起紫微、巨日丑未、天府见禄存即双禄、衰极矛盾条文不得用于个人解读。这里指具体旧条文，不是禁止已登记profile中的所有化忌解释；各增补仍只启用自身精确条件，隔离条目不解禁。
 6. 上游新增17篇为固定版本资料包，不整篇自动注入。4篇古籍数字录文底本未核，现代文章含学派差异、网络整理及现代观点。HTML/Vue/script只是静态文本，不执行组件，不访问推广链接。
 7. 固定生年四化不能混用宫干飞化/自化；新文档的安星、亮度、运限表不覆盖当前引擎。相同格名有不同定义时保留分歧。
 8. 引用格式：来源登记名称 + 固定版本 + 文件/章节/行号 + “项目释义”或“数字资料摘录”。不要把现代观点当古籍原话，不把书目/星数/多源转抄当准确率。
+
+## 完整条件模型与新增窄来源用途
+
+所有模式按 [有限模型方法 M0](../docs/model-judgment.md)分别保留盘面事实、条件模型结果、稳健性与现实效度。目录允许检索不代表必要条件已满足；反过来，一般未决交互也不自动取消完整且直接评价本题的规则。先核特指反条和否定必要条件的适用依据，再形成结果；未知作用仍保留为风险。
+
+`bazi-qiong-xin-zi-v1` 的QX01–03已批准为 `conditional_module_only`：仅辛日、出生子月的通用整体／发展配置及明示作者运期适配。1926底文与1937评注分层，同文本链不计独立验证；B选读及保守异读分别保留，具体条件见登记卡和[来源审计](../docs/bazi-qiong-xin-zi-sources.md)。原始扫描不随包分发，来源页核读不构成全书校勘、整篇启用、逐字引用许可或现实命中证明；通用ledger和旧隔离不变。
+
+`bazi-qiong-xin-chou-v1` 的 [BZ-QXC01](../references/approved/bazi-qiong-xin-chou-v1.md) 属于 `conditional_module_only`。只用已核出生候选的本命事实评价专业发展配置，按卡内条件和反证复审。
+
+`bazi-qiong-jia-yin-v1` 的 [BZ-QJY01](../references/approved/bazi-qiong-jia-yin-v1.md) 属于 `conditional_module_only`。按已核寅月甲日的出生盘人工复核丙癸俱透、分隔、实藏同干与具体反证，用于评价学习资源和可核验专业成果的本命配置。
+
+`ziwei-stage-relationship-v1`（ST01–09、RL01）与 `bazi-primary-spouse-v1`（P1、R1）属于 `conditional_module_only`。按[条件模型入口](../docs/stage-and-spouse-models.md)查看适用对象、证据字段和来源影像定位，引用登记卡的项目释义。
+
+`ziwei-lianfu-marriage-v1` 的 [ZW-RL02](../references/approved/ziwei-lianfu-marriage-v1.md) 属于 `conditional_module_only`。只按本命证据及已确认的婚姻角色，评价已婚男性与妻子长期维持共同生活的配置。按卡核实坐、四正、反条和选读，单独保存人工判读。
+
+`ziwei-zifu-marriage-v1` 的 [ZW-RL03](../references/approved/ziwei-zifu-marriage-v1.md) 属于 `conditional_module_only`。用于已婚男性询问与妻子维持现有共同生活时，人工检查紫微天府实坐、四正六曜及配对句选读。婚配时机的合读保留未决，现实上的双方意愿与履行另核。
+
+`ziwei-zixiang-marriage-v1` 的 [ZW-RL04](../references/approved/ziwei-zixiang-marriage-v1.md) 属于 `conditional_module_only`。已婚男性问与妻子维持现有共同生活时，人工核紫微天相实坐、妻子已确认较年少和四正六曜。配对句独立读法与年龄、亲缘及邻句入庙合读分别记录，现实意愿与履行另核。
+
+`bazi-officer-luck-v1`（`BZ-OL01`）是已批准的独立人工判读卡，登记为 `conditional_module_only`。按[实际大运与酉官路径入口](../docs/bazi-officer-luck.md)核目标依赖、原局例外和局部方向。
 
 ## 命令示例
 
@@ -59,7 +79,7 @@ python3 scripts/knowledge_catalog.py cite --source ziwei-classics --mode classic
 
 ## 单版扫描参照的强弱证据模块
 
-新增 `bazi-strength-evidence` profile 的 ST01–ST05，仅供 `bazi_strength_reasoning.py` 的窄条件比较。书目、影像检查范围、PDF页码、扫描hash与原创释义在 `docs/bazi-strength-evidence.md`，不导入扫描或现代译注。此增量不是古籍逐字引用门或个人ledger新规则授权；classical_quote继续拒绝。当前门的保守措辞“不存在已核古籍版本”应理解为没有获准引用的校勘定本，不能抹掉本增量明确记录的单版影像检查。
+新增 `bazi-strength-evidence` profile 的 ST01–ST05，仅供 `bazi_strength_reasoning.py` 的窄条件比较。书目、影像检查范围、PDF页码、扫描hash与原创释义在 `docs/bazi-strength-evidence.md`，不导入扫描或现代译注。此增量不是古籍逐字引用门或个人ledger新规则授权；classical_quote继续拒绝。本版没有获准逐字引用的校勘定本；已记录的单版影像检查仍按各自精确页段和用途保留。
 
 ## 七政独立传统研究包
 
@@ -78,4 +98,14 @@ python3 scripts/knowledge_catalog.py cite --source ziwei-classics --mode classic
 
 `ziwei-dynamic-reading-v1` 的ZW-T01/L01/Q01仅用于独立动态profile的年/月主题、化禄投入与消耗、化权职责与压力，依据固定iztro官方现代说明；不启用流日效力、多化权重、飞化自化或事件保证。数据脚本只准入admitted视图，晚子时daily组合阻断。
 
+## 已批准的用途与生活领域增补
+
+用户于2026-11-10批准 `bazi-purpose-extensions-v1`（BZ-M01–03）和 `ziwei-life-domains-v1`（ZW-D01–08、E01–05、S01、T02），具体范围见[用途与领域说明](../docs/approved-life-domains.md)。新卡均为独立conditional_module_only项目释义，精确单行、条件、排除和primary_sources登记；不进入通用个人ledger rule，不开放classical_quote。八字来源是1926单版影像启发的窄条件方法；紫微来源是固定官方现代说明，其中跨同星/本命年月分量研究明示为作者外推。原路线、旧卡前提和withheld状态不改，不把源文件可读视作整篇启用。
+
+新领域复用已有14主星有限主题；非主星科忌没有独立星性时仅留事实。多化分量可研究不代表组合净效力已解决。身宫为可撤回关注假说，大限为旧年度年龄合同下的阶段议题索引；健康限一般生活反思，不能由盘产生疾病/器官/寿命风险。目录校验与主题覆盖均不等于已回答运势或证明现实准确率。
+
 两组均为 `conditional_module_only`：用于独立人工记录，不转通用个人ledger规则，不解除旧来源隔离或古籍逐字引用门。解释与时区分段按 [综合判读方法](../docs/conditional-judgment.md) 和 [动态合同](../docs/ziwei-dynamic-facts.md) 实施。证据检查与主问题是否得到回答分别验收，拒答保留在覆盖统计内。
+
+## 具体作用判例增补
+
+`ziwei-judgment-cases-v1` 的 ZW-RC01–03 已批准为 `conditional_module_only`。RC01/02只限实际夫妻宫本命主星，RC03只限原当前官禄大限与准入年禄权双全直接落本命官/迁的窄年度行动适配；原文“会到”的收窄、本命宫参照和旧年度限与独立年层并用明示作者适配。实际读取条件、反条件和接口；不启用同页其余双化、完整巨门四化、非主星、流日效力或一般跨层净吉凶。

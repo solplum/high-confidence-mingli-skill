@@ -35,7 +35,7 @@ Third-party study packet: CC BY-SA 4.0; see the license exceptions below. / 第�
 
 运势、具体问题、共鸣溯源和完整详批共用 [可复核分析流程](workflows/fortune-auditable-reading.md)。问题范围决定检查哪些领域；用户要求短答时只压缩正文，仍执行相同的核查标准。
 
-[统一解释与裁决标准 v3](docs/interpretation-standard.md)区分盘面事实、可定位传统释义、作者现代转译与综合推论，先回答所问问题，再说明依据和建议。个人分析分别判断外部形势、目标推进与代价、主观体感；有依据时给总体及领域倾向，关键效力或时间层不足时明确暂不能定性，不把未知写成平稳或好坏相抵。性格与偏好注明自述或条件假设的来源，用于解释体验和适配，不补造外部机会。合理现代转译无需逐词预注册，作者解释保留自身身份。
+[统一解释与裁决标准 v3](docs/interpretation-standard.md)区分盘面事实、可定位传统释义、作者现代转译与综合推论，先回答所问问题，再说明依据和建议。个人分析分别判断外部形势、目标推进与代价、主观体感；有依据时给总体及领域倾向，必要条件或时间层不足时明确暂不能定性，不把未知写成平稳或好坏相抵。性格与偏好注明自述或条件假设的来源，用于解释体验和适配，不补造外部机会。合理现代转译无需逐词预注册，作者解释保留自身身份。
 
 1. 固定出生输入、时间口径、误差和分析范围，保存实际引擎快照；相关边界有候选比较或明确缺口。
 2. 各盘分别核对事实，按来源门查询本次适用资料，再记录规则前提、支持与反向信号及竞争解释。程序输出的有限结构摘要是分析底稿，不是完整详批。
@@ -45,9 +45,11 @@ Third-party study packet: CC BY-SA 4.0; see the license exceptions below. / 第�
 
 本次证据保存在用户数据目录，通常包括实际命令与快照、来源索引、[分析工作记录](templates/reading-workpad.template.md)、适用的重要判断 ledger 或原生模块人工解释记录，以及复审/校验结果；无法生成的产物如实标缺。两种记录保留各自用途，不为通过校验创建假 claim。它们是可复核的依据摘要，不要求公开隐藏思维过程。以检查和解释完成情况验收，不规定最低耗时、篇幅或引用条数；结构校验通过也不证明预测准确。
 
+已批准的[有限模型方法 M0](docs/model-judgment.md)先核完整条件及具体反条，再同时给条件模型结果和稳健性。一般未决生克关系不自动取消完整模型，也不作零影响；有依据阻断必要条件时仍须改判。模型有方向与现实有效是两项问题。
+
 ### 维护者的真实案例评测
 
-八字与紫微使用独立于日常知识库的外部赛事案例进行开发评测，按命主分组并隔离答案，保留答错、拒答与信息不足。工具提供筛选、开发/保留集导出和完整计分；真实题目与出生资料不随技能包分发。合成盘仍只用于工程与规则回归。操作、来源限制和结果边界见 [外部案例评测](docs/reading-benchmark.md)。`proposals/` 保留增补审查稿；实际启用范围以知识登记和下述文档为准，未获批准的部分不接入。
+维护者可以用外部赛事标签评估八字和紫微的答题覆盖与选项一致性。工具按命主分组、隔离答案并保留答错、拒答与信息不足，真实题目和出生资料存放在技能包之外。赛事标签与合成回归各有评估范围。日月运势、一生走势、婚姻和健康的现实预测准确率尚未建立。操作与限制见 [外部案例评测](docs/reading-benchmark.md) 和 [判势能力说明](docs/judgment-capabilities.md)。`proposals/` 保留增补审查稿，实际用途以知识登记为准。
 
 已批准并接入的增补为 BZ-K01～04 与 ZW-K01～05，默认输出独立 `reviewed_structure`：包含八字方向/角色检查、紫微空宫/辅星/宫位/本命四化结构，以及三个条件受限的观察主题。原始盘面与旧解释层保持兼容，具体范围见 [已批准结构增补](docs/approved-structural-reading.md)。它们不提供人生事件预测或准确率保证。
 
@@ -60,7 +62,7 @@ Third-party study packet: CC BY-SA 4.0; see the license exceptions below. / 第�
 ### 安装与开始
 
 ```bash
-# 1. 克隆到 agent CLI 的 skills 目录（以 Claude Code 为例）
+# 1. 首次安装 GitHub 已发布的版本（以 Claude Code 为例）
 git clone https://github.com/solplum/high-confidence-mingli-skill.git ~/.claude/skills/high-confidence-mingli-skill
 
 # 2. 启用紫微引擎（一次性；不装则紫微盘自动降级）
@@ -94,6 +96,7 @@ cd ~/.claude/skills/high-confidence-mingli-skill/scripts/pai_pan_ziwei && npm ci
 | [references/README.md](references/README.md) | 解读资料层溯源表 |
 | [workflows/fortune-full-reading.md](workflows/fortune-full-reading.md) | 详批模式（长文批盘） |
 | [workflows/fortune-auditable-reading.md](workflows/fortune-auditable-reading.md) | 所有个人分析的查证、覆盖、复审与交付标准 |
+| [docs/model-judgment.md](docs/model-judgment.md) | M0：完整条件、反条、模型结果与稳健性 |
 | [docs/interpretation-standard.md](docs/interpretation-standard.md) | v3：分层解释、总体/领域裁决与性格体感标准 |
 | [templates/reading-workpad.template.md](templates/reading-workpad.template.md) | 本次分析记录、领域覆盖与复审底稿 |
 
@@ -134,7 +137,7 @@ Codex / Kimi Code — anything that reads SKILL.md). It provides traditional int
 
 Fortunes, specific questions, resonance tracing and full readings share the [auditable analysis workflow](workflows/fortune-auditable-reading.md). The question determines which domains need examination. A request for a short answer reduces presentation length while preserving the same checks.
 
-The [shared interpretation and judgment standard v3](docs/interpretation-standard.md) distinguishes chart facts, locatable traditional interpretations, the author's modern translations and synthesis. Answer the question before explaining evidence and offering advice. Personal readings separate external conditions, goal progress and costs, and subjective experience. Give overall and domain directions where supported; disclose an undecidable judgment when key effects or time layers are missing, rather than calling the unknown neutral or balanced. Attribute personality and preferences to self-report or a conditional hypothesis, using them to explain experience and fit rather than invent external opportunities. Reasonable modern wording need not be registered word by word; preserve the author's role.
+The [shared interpretation and judgment standard v3](docs/interpretation-standard.md) distinguishes chart facts, locatable traditional interpretations, the author's modern translations and synthesis. Answer the question before explaining evidence and offering advice. Personal readings separate external conditions, goal progress and costs, and subjective experience. Give overall and domain directions where supported; disclose an undecidable judgment when necessary conditions or time layers are missing, rather than calling the unknown neutral or balanced. Attribute personality and preferences to self-report or a conditional hypothesis, using them to explain experience and fit rather than invent external opportunities. Reasonable modern wording need not be registered word by word; preserve the author's role.
 
 1. Fix birth inputs, time conventions, uncertainty and scope, then save actual engine snapshots. Compare relevant boundary candidates or disclose what remains unchecked.
 2. Check each chart separately, retrieve permitted material through the provenance gate, and record prerequisites, supporting and contrary signals, and competing interpretations. Limited engine summaries are analysis inputs, not complete readings.
@@ -144,9 +147,11 @@ The [shared interpretation and judgment standard v3](docs/interpretation-standar
 
 Evidence stays in the personal data directory and normally includes actual commands and snapshots, a source index, an [analysis workpad](templates/reading-workpad.template.md), an applicable claim ledger or native-module interpretation records, and review/validation results. Preserve each record's permissions rather than inventing claims to pass validation; disclose unavailable artifacts. These are concise auditable evidence summaries, not hidden reasoning transcripts. Completion depends on checks and substantive explanation, not minimum elapsed time, word count or citation count; structural validation does not establish predictive accuracy.
 
+The approved [bounded-model method M0](docs/model-judgment.md) checks complete conditions and specific counterconditions before reporting a conditional model result together with robustness. Generic unresolved relationships do not automatically cancel a complete model or count as zero effect; supported defeat of a necessary condition still requires revision. A model direction does not establish real-world validity.
+
 ### Maintainer evaluation with real cases
 
-BaZi and Ziwei use external competition cases kept separate from everyday knowledge retrieval. Split by person, isolate answer keys, and retain errors and abstentions. The tool filters sources, exports development or explicitly selected holdout packs, and scores complete submissions. Real questions and birth records are not bundled with the skill. Synthetic charts remain engineering and rule regressions. See [external case evaluation](docs/reading-benchmark.md) for operation, provenance and limits. `proposals/` retains review drafts; the registry and activation document below define what is active. Unapproved portions remain inactive.
+Maintainers can use external competition labels to evaluate BaZi and Ziwei answer coverage and agreement with labeled choices. The tool splits cases by person, isolates answers, and retains errors and abstentions. Real questions and birth records stay outside the skill package. Competition labels and synthetic regressions have separate evaluation scopes. Real-world accuracy for daily or monthly fortune, lifetime trends, marriage and health remains unestablished. See [external case evaluation](docs/reading-benchmark.md) and [current capabilities](docs/judgment-capabilities.md). `proposals/` holds review drafts, and the registry defines active uses.
 
 The approved BZ-K01–04 and ZW-K01–05 ranges are now available in a separate default `reviewed_structure` panel: BaZi direction and role checks, Ziwei empty-palace, adjunct, position and natal-transformation checks, plus three bounded observation themes. Raw charts and earlier reading layers remain compatible. See [approved structural additions](docs/approved-structural-reading.md) for scope. These additions do not predict life events or guarantee accuracy.
 
@@ -157,7 +162,7 @@ See [the executable end-to-end demo](examples/engine-reading/README.md): fiction
 ### Install and begin
 
 ```bash
-# 1. Clone into your agent CLI's skills directory (Claude Code shown)
+# 1. Install the published GitHub version (Claude Code shown)
 git clone https://github.com/solplum/high-confidence-mingli-skill.git ~/.claude/skills/high-confidence-mingli-skill
 
 # 2. Enable the Ziwei engine (once; skipped gracefully if absent)
@@ -189,6 +194,7 @@ Keep personal data in `~/.claude/fortune-telling/`, including `chart.md`, `memor
 | [references/README.md](references/README.md) | Interpretation-layer provenance |
 | [workflows/fortune-full-reading.md](workflows/fortune-full-reading.md) | Full-reading mode (long-form chart reading) |
 | [workflows/fortune-auditable-reading.md](workflows/fortune-auditable-reading.md) | Source checks, coverage, review and delivery standards for all personal readings |
+| [docs/model-judgment.md](docs/model-judgment.md) | M0: complete conditions, counterconditions, model result and robustness |
 | [docs/interpretation-standard.md](docs/interpretation-standard.md) | v3: layered interpretation, overall/domain judgments, personality and subjective experience |
 | [templates/reading-workpad.template.md](templates/reading-workpad.template.md) | Analysis, domain-coverage and review workpad |
 
@@ -234,9 +240,9 @@ For cross-year reproducibility use `--analysis-year 2026` to pin both BaZi annua
 
 ### 历史时区与误差候选 / Historical zones and bounded scenarios
 
-可选 `--timezone Asia/Shanghai` 使用 IANA 历史偏移，拒绝不存在的民用时间，重复时间必须显式 `--fold 0/1`。`--time-basis mean-solar` 区分平太阳时。`--enumerate-scenarios --uncertainty-minutes 10` 比较实际可达的四柱及紫微离散输入，限 ±120 分钟、UTC 1901–2099 年。民用/平太阳时输出该范围内稳定/变化字段；真太阳时仅给数值包围候选，明确未穷尽、不保证稳定。七政、起运、完整紫微及天文误差不在覆盖内。IANA 模式需要 Python 3.9+ 和可用的时区数据库。[详见时间契约](docs/time-contract.md)。
+可选 `--timezone Asia/Shanghai` 使用 IANA 历史偏移，拒绝不存在的民用时间，重复时间必须显式 `--fold 0/1`。`--time-basis mean-solar` 区分平太阳时。`--enumerate-scenarios --uncertainty-minutes 10` 比较可达四柱、紫微离散输入和八字折月起运，限 ±120 分钟、UTC 1901–2099 年。民用和平太阳时报告稳定与变化的排盘字段。真太阳时四柱只报告已算见证。折月起运按物理出生时刻另列年龄段与四柱配对。七政、完整紫微及天文误差按各自范围核查。IANA 模式需要 Python 3.9+ 和可用的时区数据库。[详见时间契约](docs/time-contract.md)。
 
-Optional `--timezone Asia/Shanghai` resolves IANA historical offsets, rejects missing local times and requires explicit `--fold 0/1` for repeated times. `--time-basis mean-solar` distinguishes the mean solar clock. `--enumerate-scenarios --uncertainty-minutes 10` compares reachable BaZi pillars and discrete Ziwei inputs, capped at ±120 minutes within UTC years 1901–2099. Civil/mean-solar modes report stable/changing fields within that scope. Apparent-solar mode returns numerical boundary-bracket witnesses only, explicitly non-exhaustive with no stability guarantee. Qizheng, luck-start ages, full Ziwei output and astronomical model errors are excluded. IANA mode needs Python 3.9+ and available time-zone data. [Time contract](docs/time-contract.md).
+Optional `--timezone Asia/Shanghai` resolves IANA historical offsets, rejects missing local times and requires explicit `--fold 0/1` for repeated times. `--time-basis mean-solar` distinguishes the mean solar clock. `--enumerate-scenarios --uncertainty-minutes 10` compares reachable BaZi pillars, discrete Ziwei inputs and rounded BaZi luck-start ages, capped at ±120 minutes within UTC years 1901–2099. Civil and mean-solar modes report stable and changing chart fields. Apparent-solar chart coverage is limited to evaluated witnesses. The rounded luck-start output gives age windows tied to physical birth instants and their chart candidates. Qizheng, full Ziwei output and astronomical model errors have separate scope limits. IANA mode needs Python 3.9+ and available time-zone data. [Time contract](docs/time-contract.md).
 
 ## 知识层升级 / Knowledge integration
 
@@ -250,9 +256,9 @@ The original 18 records contain 13 enabled project paraphrases, mainly basic con
 
 ### 八字理论学习 / BaZi theory study
 
-新增10张理论学习卡与88字数字短引，含条件、反证和可操作的分析清单，采用单独 `bazi-classical-study` profile，不启用个人预测。两项新增资料均隔离于个人ledger。不是古籍全文或校勘版，也没有改变现有引擎。[来源调查与许可](docs/bazi-classical-study.md)。
+`bazi-classical-study` 提供 10 张理论学习卡与 88 字数字短引，含条件、反证和分析清单。学习入口和原始短引仍隔离于个人 ledger。可用于详批的项目释义走下一节的独立入口。 [来源调查与许可](docs/bazi-classical-study.md)
 
-Ten new theory study cards and only 88 characters of short digital excerpts provide prerequisite, counterexample and analysis checklists. Their separate `bazi-classical-study` profile does not activate personal predictions; both new source files are blocked as reading evidence. No complete classical text, collated edition or engine change is claimed. This independent packet and its identified catalog adaptations are CC BY-SA 4.0, excluded from project MIT.
+`bazi-classical-study` provides ten theory cards and 88 characters of digital excerpts for checking prerequisites and counterexamples. The study profile and original excerpts are excluded from personal ledgers. The next section describes the separate route for registered project paraphrases. This independent packet and its identified catalog adaptations carry CC BY-SA 4.0. See [sources and license](docs/bazi-classical-study.md).
 
 ### 可用于详批的条件式解释 / Conditional interpretation in readings
 
@@ -268,9 +274,9 @@ ST01–ST05 now compare seasonal context, operational same-element roots, suppor
 
 ### 四宫联读增量 / Conditional four-domain reading
 
-紫微默认以实际命、财、官、迁位置展开主星主题、亮度差异、反证问题与领域之间的条件联系。JSON 增加 `rule_output.domain_reading`，原始 chart 与旧 patterns 不变。14颗主星和两项概念仅采用已核读现代资料的有限释义；两组组合讨论是项目综合，不是新认定古典格局。空宫借星、完整四化、辅煞组合与运限仍缺，不能称整盘完整详批。见[范围说明](docs/ziwei-domain-reading.md)及[联合验收](docs/deep-integration-qa.md)。
+紫微 `rule_output.domain_reading` 负责命、财、官、迁的有限主星主题、亮度与反证。原始 `chart` 与旧 `patterns` 按各自范围保留。空宫借星的可核位置线索见[结构增补](docs/approved-structural-reading.md)。十二宫主题、获准年／月分量及旧年度大限另见[生活领域面板](docs/ziwei-life-reading.md)与[阶段条件](docs/stage-and-spouse-models.md)。借星继承效力、完整组合及运限净方向仍须各自核查。四宫模块的实现见[范围说明](docs/ziwei-domain-reading.md)。
 
-Ziwei now connects actual Life, Wealth, Career and Travel placements into conditional themes, brightness distinctions and counterchecks. JSON adds `rule_output.domain_reading`; chart facts and existing patterns remain unchanged. Fourteen star themes and two concepts are bounded modern-source paraphrases. Two thematic combinations are project syntheses, not classical patterns. Complete transformation rules, borrowed-star interpretation, supporting-star combinations and timing remain incomplete; this is not a comprehensive or predictively validated reading. See the scope and integrated QA notes above.
+Ziwei `rule_output.domain_reading` covers bounded major-star themes, brightness and counterchecks for Life, Wealth, Career and Travel. Native `chart` and legacy `patterns` retain their respective scopes. See [structural additions](docs/approved-structural-reading.md) for verifiable empty-palace borrowing locations. For twelve-palace topics, admitted year/month components and legacy decadal windows, see the [life-domain panel](docs/ziwei-life-reading.md) and [decadal conditions](docs/stage-and-spouse-models.md). Borrowed-star inheritance, complete combinations and net period directions still need their own evidence. The [four-domain contract](docs/ziwei-domain-reading.md) describes that panel.
 
 ### 农历历日政策 / Lunar calendar policy
 
@@ -299,3 +305,36 @@ The two opt-ins compose: selected palace-lord tradition is evaluated at actual s
 2026-11-10批准的[综合判读方法](docs/conditional-judgment.md)增加BJ01–BJ08人工工作假说、反向条件和运期比较；BJ07–BJ08的流年/月日是明确标注的作者时间外推。旧ST与结构面板原值不改。紫微[动态入口](docs/ziwei-dynamic-facts.md)接出锁定2.6.1的独立年/月/日事实，保留原年龄大限，晚子时日组合暂缓；已批准年/月主题和禄权条件解释，未启用日级效力、飞化自化或事件保证。完整正文默认在对话，内部证据保存；拒答和未回答不计作分析能力通过。
 
 The approved [conditional judgment method](docs/conditional-judgment.md) adds BJ01–BJ08 manual hypotheses, counterconditions and period comparisons. BJ07–BJ08 yearly/monthly/daily projections are explicitly author-created extensions. Existing ST and structural outputs remain unchanged. The pinned 2.6.1 [Ziwei adapter](docs/ziwei-dynamic-facts.md) exposes separate year/month/day facts, preserves existing age/decadal fields and blocks late-Zi daily combinations. Year/month topics and Lu/Quan conditional readings are approved; daily potency, flying/self transformations and event guarantees remain outside scope. Full readings appear in chat by default. Evidence quality and whether the question was answered are assessed separately.
+
+### 用途与生活领域增补 / Purpose and life-domain extensions
+
+用户于2026-11-10批准[用途与生活领域增补](docs/approved-life-domains.md)：八字增加独立单藏月候选、食神具体用法与有限夏木季节分支；紫微扩展其余八域的主星条件主题、本命/准入年/月四化分量、身宫关注及旧年度年龄合同下的大限议题索引。旧输出与来源门保留。新模块整理事实和研究入口，不自动判成格、个人特征、净吉凶或事件；健康只作生活反思，不作疾病风险、病程或寿命预测。实际分析仍须回答原问题、比较主次并独立复审，未答继续保留。
+
+The user-approved [purpose and life-domain extensions](docs/approved-life-domains.md) add an independent single-hidden-month BaZi candidate route, specific Food-God branches and a limited summer-Wood seasonal case. Ziwei gains bounded major-star themes for the remaining eight domains, natal/admitted year-month transformation components, Body-Palace attention hypotheses and decadal topic indexes under the existing calendar-year age convention. Original outputs and provenance gates remain intact. These panels organize facts and research entry points; they do not automatically establish patterns, personal traits, net fortune or events. Health remains general life reflection, without disease-risk, course or longevity predictions. Readings still require an actual answer to the original question, comparison of competing interpretations and separate review; unanswered items remain visible.
+
+### 紫微具体作用判例 / Specific Ziwei judgment cases
+
+已批准的 `ziwei-judgment-cases-v1` 在独立 `case_judgments` 中提供夫妻宫本命权忌的局部协商阻力、巨门忌遇实际同宫天同的表达反条件，以及原官禄大限与准入年禄权直接落官迁时的有限主动争取适配。来源是固定现代说明，三处年度合同适配明示作者身份；旧15卡与原自动状态保留，不推整年/月日净吉凶或事件。见[接口](docs/ziwei-case-judgments.md)。
+
+The approved `ziwei-judgment-cases-v1` adds an independent `case_judgments` panel: local natal spouse-palace negotiation friction, the Giant-Gate Ji/Tian-Tong expression countercondition, and a narrow annual proactive-application fit under the original decadal-age contract. Source interpretation and the three annual-contract adaptations remain explicit. Existing panels are preserved; these cases do not establish net annual/monthly/daily fortune or events. See the [interface](docs/ziwei-case-judgments.md).
+
+
+### 子月辛金完整条件用途 / Bounded Xin-Metal Zi-month model
+
+`bazi-qiong-xin-zi-v1` 的QX01–03已批准用于辛日、出生子月的通用整体／发展配置评价；独立 `qiong_xin_zi_model` 保留本命、作者运期适配、B选读与保守异读。先查完整条件及特指反条，再给有边界的模型方向与稳健性；不改出生透藏、原自动状态、来源隔离或健康／事件边界。仅登记释义可用，原始扫描不随包分发，也不开放全书或逐字引用。见[接口](docs/bazi-qiong-xin-zi.md)与[来源审计](docs/bazi-qiong-xin-zi-sources.md)。
+
+The approved QX01–03 cards in `bazi-qiong-xin-zi-v1` support bounded overall/development-configuration evaluation only for a Xin day master born in the Zi month. The separate `qiong_xin_zi_model` preserves natal facts, author-created period adaptations, the selected B reading and its conservative alternative. Complete conditions and specific counterconditions precede the model direction and robustness assessment. Natal exposure, original module statuses, source quarantine and health/event boundaries remain intact. Only registered paraphrases are enabled; scans are not bundled, and neither the whole books nor classical-quotation mode are opened. See the [interface](docs/bazi-qiong-xin-zi.md) and [source audit](docs/bazi-qiong-xin-zi-sources.md).
+
+丑月辛金另有 [BZ-QXC01](references/approved/bazi-qiong-xin-chou-v1.md)，用于人工复核本命专业发展配置。所问运段和实际结果各查对应依据。
+
+[BZ-QXC01](references/approved/bazi-qiong-xin-chou-v1.md) supports manual review of natal professional-development conditions for a Xin day master born in the Chou month. Period directions and real-world outcomes require their own evidence.
+
+寅月甲木另有 [BZ-QJY01](references/approved/bazi-qiong-jia-yin-v1.md)，用于人工复核可用学习资源或反馈与可核验专业成果的本命配置。按卡核出生丙癸实透、分隔、同干实藏和反证。时段方向及实际结果各查依据。
+
+[BZ-QJY01](references/approved/bazi-qiong-jia-yin-v1.md) covers the natal fit between usable learning resources or feedback and demonstrable professional work for a Jia day master born in the Yin solar month. It requires manual review of exposed, separated and supported Bing and Gui, and their counterconditions. Period directions and real-world outcomes require their own evidence.
+
+### 大限推进与配偶条件 / Decadal progress and spouse-related conditions
+
+[使用说明](docs/stage-and-spouse-models.md)覆盖紫微 ST01–09 的指定大限事务推进或受限分支、RL01 的本命婚姻稳定配置、RL02–04 对已婚男性长期维持与妻子共同生活的本命条件，以及八字 P1 的局部官印主兼与 R1 的配偶角色支持。紫微按原年度窗和所问目标取分支。R1 先由人工独立建立可反驳的官用假说，并核财星和反条。模型结果、稳健性及会使结论退出的条件一并交付。
+
+The [usage guide](docs/stage-and-spouse-models.md) covers nine bounded Ziwei decadal models, RL01 natal marriage stability, RL02–04 natal conditions for a married man asking about maintaining long-term shared life with his wife, the local BaZi Officer–Resource priority model and the spouse-role support model. Ziwei readings select the original year window and the requested objective. The spouse-support reading requires an independently reasoned Officer-use hypothesis and a review of natal Wealth facts and counterconditions. Report the conditional direction with its robustness and withdrawal conditions.

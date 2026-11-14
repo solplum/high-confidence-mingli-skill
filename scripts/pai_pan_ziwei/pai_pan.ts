@@ -20,7 +20,7 @@
  *   --explain-rules     显示实现规则的解释及局限（不启用事件预测）
  *   --temporal-uncertainty  出生时间存在非零误差，暂缓已审增补观察主题
  *   --format text|json  默认 text；两种格式共享 rule_output
- *   --age-year YYYY      以该年份计算当前年龄/当前大限（默认当年，供流年复核）
+ *   --age-year YYYY      查询该公历年的虚岁和所处大限（默认当年）
  */
 
 import { generateChart, getLunarInfo } from './vendor/algorithm';
@@ -177,7 +177,7 @@ function run() {
     if (p.daXianAge) line += '｜大限' + p.daXianAge[0] + '-' + p.daXianAge[1];
     const marks: string[] = [];
     if (p.isShenGong) marks.push('身宫');
-    if (p.isCurrentDaXian) marks.push('当前大限');
+    if (p.isCurrentDaXian) marks.push(`${ageYear} 年所处大限`);
     if (marks.length) line += '｜' + marks.join('/');
     console.log(line);
   }
@@ -188,10 +188,26 @@ function run() {
     console.log('化' + type + '：' + nativeSiHua[type] + '（落 ' + palaceNameOf(chart, nativeSiHua[type]) + '）');
   }
 
-  console.log('\n## 大限（目标 ' + ageYear + ' 年，公历年差加一虚岁 ' + chart.currentAge + '）');
+  console.log(`\n## 大限（公历目标年 ${ageYear} 年，公历年差加一虚岁 ${chart.currentAge}）`);
+  const hasAnnualWindows = chart.daXians.length > 0 &&
+    birthYear + chart.daXians[chart.daXians.length - 1].endAge <= 9999;
+  if (hasAnnualWindows) {
+    console.log(`公历年度窗以原民用出生年 ${birthYear} 为准，左端包含、右端不包含。`);
+  } else if (chart.daXians.length) {
+    console.log('已列大限超出可表示的公历年度范围，保留原虚岁段。');
+  }
+  if (args.temporalUncertainty) {
+    console.log('下表按中心时刻排出。实际出生候选的大限须分别核对。');
+  }
+  if (chart.currentDaXianIndex === -1) {
+    console.log(`${ageYear} 年未落入已列大限。`);
+  }
   chart.daXians.forEach((dx, i) => {
-    const marker = i === chart.currentDaXianIndex ? ' ←当前' : '';
-    console.log(dx.startAge + '-' + dx.endAge + '　' + dx.palaceName + '(' + BRANCHES[dx.palaceBranch] + ')' + marker);
+    const marker = i === chart.currentDaXianIndex ? ' ←目标年所在' : '';
+    const window = hasAnnualWindows
+      ? `｜[${String(birthYear + dx.startAge - 1).padStart(4, '0')}-01-01, ${String(birthYear + dx.endAge).padStart(4, '0')}-01-01)`
+      : '';
+    console.log(dx.startAge + '-' + dx.endAge + '　' + dx.palaceName + '(' + BRANCHES[dx.palaceBranch] + ')' + marker + window);
   });
 
   console.log('\n## 格局（实现规则匹配）');
@@ -214,13 +230,14 @@ function run() {
   console.log('主星：' + (ruleOutput.ming_summary.stars.join('、') || '空宫（借星另列）'));
   console.log(ruleOutput.ming_summary.meaning);
 
-  console.log('\n## 流年（' + ageYear + ' 年，虚岁口径：' + chart.currentAge + '）');
+  console.log(`\n## 流年（公历年度索引 ${ageYear} 年，虚岁口径：${chart.currentAge}）`);
   const ln = getLiuNianSiHua(ageYear);
   const lnBranch = BRANCHES[getYearBranchIndex(ageYear)];
-  console.log(ageYear + ' ' + ln.stemName + lnBranch + '年｜流年四化：禄-' + ln.transforms['禄'] + ' 权-' + ln.transforms['权'] + ' 科-' + ln.transforms['科'] + ' 忌-' + ln.transforms['忌']);
+  console.log(`公历年度干支 ${ln.stemName}${lnBranch}｜旧表四化 禄-${ln.transforms['禄']} 权-${ln.transforms['权']} 科-${ln.transforms['科']} 忌-${ln.transforms['忌']}`);
   for (const type of ['禄', '权', '科', '忌'] as const) {
     console.log('化' + type + '：' + ln.transforms[type] + '（落 ' + palaceNameOf(chart, ln.transforms[type]) + '）');
   }
+  console.log('按实际查询日期核对流年时，以春节为年界，使用 scripts/ziwei_dynamic_facts.mjs。');
 }
 
 try {

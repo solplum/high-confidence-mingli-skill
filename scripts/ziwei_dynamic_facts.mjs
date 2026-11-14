@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 const defaultRepo = fileURLToPath(new URL('..', import.meta.url));
 const argv = process.argv.slice(2);
 if (argv.length === 1 && ['--help','-h'].includes(argv[0])) {
-  console.log('Usage: node scripts/ziwei_dynamic_facts.mjs --solar YYYY-MM-DD --birth-year YYYY --shichen-index 0..11 --sex 男|女 --target-date YYYY-MM-DD --target-time-index 0..12 --source-label reading-id [--repo path]');
+  console.log('Usage: node scripts/ziwei_dynamic_facts.mjs --solar YYYY-MM-DD --birth-year YYYY --shichen-index 0..11 --sex 男|女 --target-date YYYY-MM-DD --target-time-index 0..12 --source-label reading-id [--target-civil offset-bearing-ISO] [--repo path]');
   process.exit(0);
 }
 const args = {};
@@ -20,7 +20,7 @@ for (let i = 0; i < argv.length; i += 2) {
   if (key in args) throw Error('Duplicate argument: ' + key);
   args[key] = argv[i + 1];
 }
-const allowed = ['repo','solar','birth-year','shichen-index','sex','target-date','target-time-index','source-label'];
+const allowed = ['repo','solar','birth-year','shichen-index','sex','target-date','target-time-index','target-civil','source-label'];
 for (const key of Object.keys(args)) if (!allowed.includes(key)) throw Error('Unknown argument: ' + key);
 for (const key of ['solar','birth-year','shichen-index','sex','target-date','target-time-index','source-label']) {
   if (!(key in args)) throw Error('Required: --' + key);
@@ -51,7 +51,6 @@ if (!/^\d{4}$/.test(args['birth-year']) || !Number.isInteger(birthYear) || birth
   throw Error('--birth-year must be the explicit original civil birth year compatible with the resolved chart clock.');
 }
 const targetYear = date(args['target-date']);
-if (targetYear < birthYear || args['target-date'] < args.solar) throw Error('Target precedes synthetic birth input.');
 for (const key of ['shichen-index','target-time-index']) {
   if (!/^[0-9]+$/.test(args[key])) throw Error('--' + key + ' requires an explicit non-empty decimal index.');
 }
@@ -60,6 +59,17 @@ const birthIndex = Number(args['shichen-index']);
 const targetIndex = Number(args['target-time-index']);
 if (!Number.isInteger(birthIndex) || birthIndex < 0 || birthIndex > 11) throw Error('Birth index must match current wrapper: 0-11.');
 if (!Number.isInteger(targetIndex) || targetIndex < 0 || targetIndex > 12) throw Error('Raw iztro target index must be explicit: 0-12.');
+const targetCivil = args['target-civil'];
+if (targetCivil !== undefined) {
+  const clock = /^(\d{4}-\d{2}-\d{2})T([01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d{1,6})?)?(?:Z|[+-](?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d{1,6})?)?)$/.exec(targetCivil);
+  if (!clock || clock[1] !== args['target-date'] || Math.floor((Number(clock[2]) + 1) / 2) !== targetIndex) {
+    throw Error('--target-civil must be an offset-bearing ISO clock matching the target date and index.');
+  }
+} else if (targetYear < birthYear || args['target-date'] < args.solar) {
+  throw Error('Target precedes synthetic birth input. Supply the resolved target clock for facts-only replay.');
+}
+// The caller independently verifies physical birth and the query instant before personal admission.
+const nativeReferenceYear = Math.max(targetYear, birthYear);
 if (!['男','女'].includes(args.sex)) throw Error('--sex must be 男 or 女.');
 const hash = file => createHash('sha256').update(readFileSync(file)).digest('hex');
 const dependencies = {};
@@ -74,7 +84,7 @@ if (dependencies.iztro.version !== '2.6.1') throw Error('Prototype source was re
 const nativeArgs = [
   '--import', engineDir + '/node_modules/tsx/dist/loader.mjs', engineDir + '/pai_pan.ts',
   '--solar', args.solar, '--shichen', branches[birthIndex], '--sex', args.sex,
-  '--age-year', String(targetYear), '--birth-year', String(birthYear), '--format', 'json',
+  '--age-year', String(nativeReferenceYear), '--birth-year', String(birthYear), '--format', 'json',
 ];
 const nativeRun = spawnSync(process.execPath, nativeArgs, {cwd:engineDir, encoding:'utf8', timeout:30000, maxBuffer:8*1024*1024});
 if (nativeRun.status !== 0) throw Error('Existing wrapper failed: ' + nativeRun.stderr);
@@ -117,7 +127,8 @@ const conflicts = [
   {
     id:'age_contract',
     native_age:native.chart.currentAge, raw_iztro_age:raw.age.nominalAge,
-    native_definition:'target civil year - original civil birth year + 1',
+    native_definition:nativeReferenceYear === targetYear ? 'target civil year - original civil birth year + 1' :
+      'original civil birth year used only for natal replay; the target has no legacy stage in its civil year',
     raw_iztro_definition:'target lunar year - birth lunar year + 1 (ageDivide=normal)',
     age_differs:native.chart.currentAge !== raw.age.nominalAge,
     native_current_decadal:nativeDx, raw_current_decadal:rawDx,
@@ -126,10 +137,10 @@ const conflicts = [
   },
   {
     id:'annual_label_contract',
-    native_yearly_label:{civil_year:targetYear,stem:stems[((targetYear-4)%10+10)%10],branch:branches[((targetYear-4)%12+12)%12]},
+    native_yearly_label:{civil_year:nativeReferenceYear,stem:stems[((nativeReferenceYear-4)%10+10)%10],branch:branches[((nativeReferenceYear-4)%12+12)%12]},
     raw_iztro_yearly_label:{stem:raw.yearly.heavenlyStem,branch:raw.yearly.earthlyBranch},
-    differs:stems[((targetYear-4)%10+10)%10] !== raw.yearly.heavenlyStem ||
-      branches[((targetYear-4)%12+12)%12] !== raw.yearly.earthlyBranch,
+    differs:stems[((nativeReferenceYear-4)%10+10)%10] !== raw.yearly.heavenlyStem ||
+      branches[((nativeReferenceYear-4)%12+12)%12] !== raw.yearly.earthlyBranch,
     resolution:'Legacy annual text label is a civil-year tag. Raw iztro changes at lunar new year; never merge them.',
   },
 ];
@@ -158,6 +169,7 @@ const output = {
   inputs:{source_label:args['source-label'],birth:{solar:args.solar,original_civil_birth_year:birthYear,shichen_index:birthIndex,sex:args.sex,
     birth_clock_contract:'Already-resolved civil date and current-wrapper 0-11 index; no solar-clock/timezone conversion performed.'},
     target:{solar_date:args['target-date'],time_index:targetIndex,
+      ...(targetCivil === undefined ? {} : {civil_time:targetCivil}),
       clock_contract:'Explicit caller-resolved civil calendar date plus iztro 0-12 time index; no Date/now/UTC-to-local conversion.'}},
   provenance:{repo,prototype_path:import.meta.url,prototype_sha256:hash(new URL(import.meta.url)),
     git_identity: 'Source identity is recorded by exact file hashes and lock; no parent repository state is read.',

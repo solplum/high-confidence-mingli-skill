@@ -13,6 +13,10 @@ PROFILE = 'qizheng-degree-relations-v1'
 ELEMENTS = '木火土金水'
 LORDS = dict(zip('子丑寅卯辰巳午未申酉戌亥', '土土木火金水日月水金火木'))
 SOURCE_PATH = 'docs/qizheng-rule-profiles.md'
+SOURCE_PATHS = {
+    'qizheng-project-rules': SOURCE_PATH,
+    'qizheng-states-local': 'references/qizheng/states-tables.md',
+}
 # This identifier describes the rule contract, not astronomical accuracy.
 SUPPORTED_CALCULATIONS = ('legacy-v1', 'physical-v2')
 
@@ -49,54 +53,98 @@ def relation(reference, other):
 
 def source_evidence():
     manifest = json.loads((ROOT / 'knowledge/qizheng-rule-sources.json').read_text(encoding='utf-8'))
+    if (not isinstance(manifest, dict) or type(manifest.get('schema_version')) is not int
+            or manifest['schema_version'] != 1):
+        raise ValueError('七政规则来源清单版本无效')
+    rows = manifest.get('sources')
+    if not isinstance(rows, list) or len(rows) != len(SOURCE_PATHS):
+        raise ValueError('七政规则来源清单不完整')
     evidence = []
-    for row in manifest['sources']:
-        data = (ROOT / row['path']).read_bytes()
-        if hashlib.sha256(data).hexdigest() != row['sha256']:
-            raise ValueError('七政规则来源已变更，须复核：' + row['path'])
+    remaining = dict(SOURCE_PATHS)
+    for row in rows:
+        if not isinstance(row, dict) or not isinstance(row.get('id'), str):
+            raise ValueError('七政规则来源条目无效')
+        path = remaining.pop(row['id'], None)
+        if path is None or path != row.get('path') or row.get('classical_quote_authorized') is not False:
+            raise ValueError('七政规则来源标识、路径或引用权限不符')
+        data = (ROOT / path).read_bytes()
+        if hashlib.sha256(data).hexdigest() != row.get('sha256'):
+            raise ValueError('七政规则来源已变更，须复核：' + path)
         evidence.append(dict(row))
     return evidence
 
 
 
-def _coordinate_evidence(item):
-    """Require explicit, well-formed coordinate and boundary evidence."""
-    if not isinstance(item, dict):
-        return False
-    for key in ('tropical', 'sidereal'):
-        value = item.get(key)
-        if type(value) not in (int, float) or not 0 <= value < 360:
-            return False
+def _coordinate_issue(item, label, boundary):
+    """Explain the existing coordinate and boundary gate without changing it."""
+    if not isinstance(item, dict) or any(
+            type(item.get(key)) not in (int, float) or not 0 <= item[key] < 360
+            for key in ('tropical', 'sidereal')):
+        return label + '缺少有效坐标。'
     quality = item.get('classification_quality')
-    return isinstance(quality, dict) and quality.get('near_boundary') is False
+    near_boundary = quality.get('near_boundary') if isinstance(quality, dict) else None
+    if near_boundary is True:
+        return label + '靠近未校准' + boundary + '。'
+    if near_boundary is not False:
+        return label + '缺少明确的边界筛查证据。'
+    return None
 
 
-def analyze(chart, profile=PROFILE, temporal_uncertainty=False):
+def palace_guard_reasons(chart):
+    reasons = []
+    mg = chart.get('ming_gong')
+    if not isinstance(mg, dict) or not isinstance(mg.get('zhi'), str) or mg['zhi'] not in LORDS:
+        reasons.append('缺少有效立命宫。')
+    bodies = chart.get('bodies')
+    sun = bodies.get('日') if isinstance(bodies, dict) else None
+    issue = _coordinate_issue(sun, '太阳', '宿宫界')
+    if issue:
+        reasons.append(issue)
+    return reasons
+
+
+def analyze(chart, profile=PROFILE, temporal_uncertainty=False, *, withhold_on_source_error=False):
     if profile != PROFILE:
         raise ValueError('未知七政规则 profile，不能自动混用学派')
     if not isinstance(chart, dict):
         raise ValueError('需要七政引擎结果')
-    out = {'profile': profile_metadata(), 'sources': source_evidence(), 'claims': [],
+    out = {'profile': profile_metadata(), 'sources': [], 'claims': [],
            'predictive_validity': 'unvalidated', 'status': 'conditional',
            'calculation_profile': chart.get('calculation_profile', 'unspecified'),
            'limitations': ['宿界为近似模型，靠界及出生时间误差需重算场景，不能以小数位冒充精度。',
                            '规则标签不代表吉凶事件；同名格局或恩用表不能跨学派套用。']}
+    try:
+        out['sources'] = source_evidence()
+    except (OSError, ValueError) as exc:
+        if not withhold_on_source_error:
+            raise
+        out.update(status='withheld', reason='七政规则来源无法核验：' + str(exc))
+        return out
     calculation = out['calculation_profile']
-    guard = None
+    reasons = []
     if calculation not in SUPPORTED_CALCULATIONS:
-        guard = '未声明受支持的计算版本；旧盘须先明确 legacy-v1 或重新计算，不能猜测。'
-    elif type(temporal_uncertainty) is not bool or temporal_uncertainty:
-        guard = '出生时间存在误差；须先比较完整七政候选盘，暂不确定依赖命度的规则。'
+        reasons.append('未声明受支持的计算版本。旧盘须先明确 legacy-v1 或重新计算。')
+    if type(temporal_uncertainty) is not bool or temporal_uncertainty:
+        reasons.append('出生时间存在误差，须先比较完整七政候选盘。')
     md, mg = chart.get('ming_du'), chart.get('ming_gong')
-    if not isinstance(md, dict) or not isinstance(md.get('wuxing'), str) or md.get('wuxing') not in engine.MANSION_WX_TO_PHASE:
-        guard = '缺少有效命度宿主（例如无地点、极点或升点退化）；不补算度主。'
-    if not _coordinate_evidence(md):
-        guard = '命度缺少明确有效的坐标及边界证据，或靠近未校准宿界；暂不解释。'
+    if md is None and all(key in chart for key in ('ming_du', 'ming_gong', 'day_night')):
+        if mg is None and chart['day_night'] is None:
+            reasons.append('依赖经纬度的地平计算未取得，缺少命度。')
+        elif calculation == 'physical-v2' and isinstance(mg, dict) and isinstance(chart['day_night'], dict):
+            reasons.append('东方上升交点未定义，缺少命度。')
+        else:
+            reasons.append('缺少命度。')
+    else:
+        if not isinstance(md, dict) or not isinstance(md.get('wuxing'), str) or md['wuxing'] not in engine.MANSION_WX_TO_PHASE:
+            reasons.append('缺少有效命度宿主。')
+        issue = _coordinate_issue(md, '命度', '宿界')
+        if issue:
+            reasons.append(issue)
     contract = chart.get('star_frame_contract')
     if not isinstance(contract, dict) or contract.get('within_validated_range') is not True:
-        guard = '缺少明确的坐标模型日期范围核验；暂不解释命度关系。'
-    if guard:
-        out.update(status='withheld', reason=guard)
+        reasons.append('缺少明确的坐标模型日期范围核验。')
+    if reasons:
+        out.update(status='withheld', reason=''.join(reasons))
         return out
     mansion = md.get('mansion')
     expected = {row[0]: row[3] for row in engine.MANSIONS}
@@ -121,9 +169,8 @@ def analyze(chart, profile=PROFILE, temporal_uncertainty=False):
                        (mansion, phase, '、'.join(groups['恩']), '、'.join(groups['用']), '、'.join(groups['难']), '、'.join(groups['仇'])),
         'counterconditions': ['换宫主为我将改变分组', '宿界或出生时间改变可改变度主'],
         'source_ids': ['qizheng-project-rules']})
-    bodies = chart.get('bodies')
-    sun = bodies.get('日') if isinstance(bodies, dict) else None
-    if isinstance(mg, dict) and isinstance(mg.get('zhi'), str) and mg.get('zhi') in LORDS and _coordinate_evidence(sun):
+    palace_reasons = palace_guard_reasons(chart)
+    if not palace_reasons:
         identity = palace_identity(mg['zhi'])
         rel = relation(phase, identity['palace_lord_element'])
         out['claims'].append({
@@ -134,7 +181,7 @@ def analyze(chart, profile=PROFILE, temporal_uncertainty=False):
             'counterconditions': ['宫主体系不同须另设profile', '未合并日夜、四时、会合及强弱条件'],
             'source_ids': ['qizheng-project-rules', 'qizheng-states-local']})
     else:
-        out['claims'].append({'rule_id': 'QZ02', 'status': 'withheld', 'reason': '缺少有效立命宫或太阳靠近未校准宿宫界，不推造宫主。'})
+        out['claims'].append({'rule_id': 'QZ02', 'status': 'withheld', 'reason': ''.join(palace_reasons)})
     return out
 
 
@@ -153,5 +200,6 @@ def format_reading(result):
         if claim.get('source_ids'):
             lines.append('  来源标识：' + '、'.join(claim['source_ids']))
     lines.extend('- ' + note for note in result['limitations'])
-    lines.append('- 出处：docs/qizheng-rule-profiles.md（项目规则释义）；原典归属未校勘，不作古籍逐字引文。')
+    if result.get('sources'):
+        lines.append('- 出处：docs/qizheng-rule-profiles.md（项目规则释义）；原典归属未校勘，不作古籍逐字引文。')
     return '\n'.join(lines)

@@ -2,9 +2,9 @@
 """Prepare blind, case-separated reading evaluations; never call a chart engine.
 
 All dataset-derived files must live outside this repository.  ``prepare`` keeps
-the unmodified source and answer key in a private evaluation directory.  Only
-``export`` output may be passed to an analyst.  A holdout export requires an
-explicit flag; this program never runs an analyst or adds cases to knowledge/.
+the unmodified source and answer key in a private evaluation directory.
+``export`` freezes the full scoring pack; ``prompt`` extracts one item for
+an independent analyst context. A holdout export requires an explicit flag.
 """
 
 import argparse
@@ -39,9 +39,21 @@ def external_path(value):
     return path
 
 
+def _unique_json_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise BenchmarkError("duplicate JSON object key: %r" % key)
+        result[key] = value
+    return result
+
+
+def _decode_json(raw):
+    return json.loads(raw, object_pairs_hook=_unique_json_object)
+
+
 def read_json(path):
-    with Path(path).open(encoding="utf-8") as handle:
-        return json.load(handle)
+    return _decode_json(Path(path).read_text(encoding="utf-8"))
 
 
 def write_json(path, value):
@@ -224,20 +236,15 @@ def source_records(payload):
     if isinstance(payload, list):
         return payload
     if isinstance(payload, dict):
-        for key in ("questions", "items", "data"):
-            if isinstance(payload.get(key), list):
-                return payload[key]
+        collections = [key for key in ("questions", "items", "data") if isinstance(payload.get(key), list)]
+        if len(collections) == 1:
+            return payload[collections[0]]
+        if collections:
+            raise BenchmarkError("source contains multiple supported question arrays: " + ", ".join(collections))
     raise BenchmarkError("source must be a JSON array, or contain questions/items/data array")
 
 
-def prepare(source_path, output_dir, source_repo, source_ref, source_license, seed=DEFAULT_SEED):
-    source_path, output_dir = external_path(source_path), external_path(output_dir)
-    if output_dir.exists() and any(output_dir.iterdir()):
-        raise BenchmarkError("evaluation output directory must be empty")
-    if not all(isinstance(value, str) and value.strip() for value in (source_repo, source_ref, source_license, seed)):
-        raise BenchmarkError("source repo, ref, license citation and seed are required")
-    source_bytes = source_path.read_bytes()
-    payload = json.loads(source_bytes.decode("utf-8"))
+def prepare_entries(payload, seed):
     entries, seen = [], set()
     for index, record in enumerate(source_records(payload)):
         if not isinstance(record, dict):
@@ -276,6 +283,17 @@ def prepare(source_path, output_dir, source_repo, source_ref, source_license, se
             "exclusion_reasons": reasons, "uncertainty_flags": flags,
             "birth": birth, "question": question, "options": options, "answer": answer,
         })
+    return entries
+
+
+def prepare(source_path, output_dir, source_repo, source_ref, source_license, seed=DEFAULT_SEED):
+    source_path, output_dir = external_path(source_path), external_path(output_dir)
+    if output_dir.exists() and any(output_dir.iterdir()):
+        raise BenchmarkError("evaluation output directory must be empty")
+    if not all(isinstance(value, str) and value.strip() for value in (source_repo, source_ref, source_license, seed)):
+        raise BenchmarkError("source repo, ref, license citation and seed are required")
+    source_bytes = source_path.read_bytes()
+    entries = prepare_entries(_decode_json(source_bytes.decode("utf-8")), seed)
     metadata = {
         "source_sha256": hashlib.sha256(source_bytes).hexdigest(),
         "source_repository": source_repo, "source_ref": source_ref,
@@ -293,8 +311,10 @@ def prepare(source_path, output_dir, source_repo, source_ref, source_license, se
     # Keep exact bytes, including every excluded record and source field.
     with (output_dir / "source.json").open("xb") as handle:
         handle.write(source_bytes)
-    write_json(output_dir / "evaluation.json", evaluation)
-    report = preparation_report(evaluation)
+    evaluation_path = output_dir / "evaluation.json"
+    write_json(evaluation_path, evaluation)
+    report = dict(preparation_report(evaluation),
+                  evaluation_sha256=hashlib.sha256(evaluation_path.read_bytes()).hexdigest())
     write_json(output_dir / "preparation-report.json", report)
     return report
 
@@ -314,22 +334,128 @@ def preparation_report(evaluation):
     return {"schema_version": VERSION, "metadata": evaluation["metadata"],
             "total_items": len(entries), "eligible_items": len(eligible),
             "excluded_items": len(entries) - len(eligible), "exclusion_reason_counts": exclusions,
-            "splits": splits}
+            "splits": splits, "cross_split_duplicates": cross_split_duplicates(eligible),
+            "cross_split_rearranged_choices": cross_split_rearranged_choices(eligible),
+            "cross_split_birth_matches": cross_split_birth_matches(eligible)}
 
 
 def load_evaluation(directory):
+    return _load_evaluation(directory)[0]
+
+
+def _load_evaluation(directory, expected_sha256=None, *, record="export"):
     directory = external_path(directory)
-    evaluation = read_json(directory / "evaluation.json")
-    actual_hash = hashlib.sha256((directory / "source.json").read_bytes()).hexdigest()
-    if evaluation.get("schema_version") != VERSION or actual_hash != evaluation["metadata"]["source_sha256"]:
+    evaluation_bytes = (directory / "evaluation.json").read_bytes()
+    evaluation_sha256 = hashlib.sha256(evaluation_bytes).hexdigest()
+    verified = _verify_sha256(evaluation_sha256, expected_sha256, "prepared evaluation", record=record)
+    evaluation = _decode_json(evaluation_bytes.decode("utf-8"))
+    if not isinstance(evaluation, dict) or evaluation.get("schema_version") != VERSION:
         raise BenchmarkError("evaluation source checksum or schema mismatch")
-    return evaluation
+    metadata = evaluation.get("metadata")
+    if not isinstance(metadata, dict) or not isinstance(metadata.get("seed"), str) or not metadata["seed"].strip():
+        raise BenchmarkError("evaluation metadata must include a valid preparation seed")
+    source_bytes = (directory / "source.json").read_bytes()
+    if hashlib.sha256(source_bytes).hexdigest() != metadata.get("source_sha256"):
+        raise BenchmarkError("evaluation source checksum or schema mismatch")
+    # The checksum covers the original source. Re-derive the entries so a
+    # changed answer or split in evaluation.json cannot affect export or score.
+    entries = prepare_entries(_decode_json(source_bytes.decode("utf-8")), metadata["seed"])
+    if evaluation.get("entries") != entries:
+        raise BenchmarkError("prepared entries do not match the fixed source and seed")
+    evaluation["entries"] = entries
+    return evaluation, evaluation_sha256, verified
 
 
 def blind_item(entry):
     return {"item_id": entry["item_id"], "case_id": entry["case_id"],
             "birth": dict(entry["birth"]), "uncertainty_flags": list(entry["uncertainty_flags"]),
             "question": entry["question"], "options": entry["options"]}
+
+
+def cross_split_duplicates(eligible, scored_item_ids=None):
+    groups = {}
+    for entry in eligible:
+        content = json.dumps([entry["birth"], entry["question"], entry["options"]],
+                             ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+        by_split = groups.setdefault(content, {})
+        by_split.setdefault(entry["split"], []).append(entry["item_id"])
+    overlaps = [group for group in groups.values() if len(group) == 2]
+    affected = {split: {item_id for group in overlaps for item_id in group[split]}
+                for split in ("development", "holdout")}
+    report = {"groups": len(overlaps), "affected_items": {split: len(items) for split, items in affected.items()},
+              "interpretation": "Affected holdout items repeat development questions. Evaluate unseen-question performance separately."}
+    if scored_item_ids is not None:
+        report["scored_item_ids"] = sorted(scored_item_ids & (affected["development"] | affected["holdout"]))
+    return report
+
+
+def cross_split_rearranged_choices(eligible, scored_item_ids=None):
+    """Find exact question repeats across splits with different option layouts."""
+    groups = {}
+    splits = ("development", "holdout")
+    for entry in eligible:
+        layout = tuple((option["letter"], option["text"]) for option in entry["options"])
+        content = json.dumps([entry["birth"], entry["question"], sorted(text for _, text in layout)],
+                             ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+        by_split = groups.setdefault(content, {})
+        by_split.setdefault(entry["split"], {}).setdefault(layout, []).append(entry["item_id"])
+
+    group_count = 0
+    affected = {split: set() for split in splits}
+    for group in groups.values():
+        if len(group) != 2:
+            continue
+        if len(group["development"].keys() | group["holdout"].keys()) == 1:
+            continue
+        group_count += 1
+        for split, other in (splits, splits[::-1]):
+            for layout, items in group[split].items():
+                if group[other].keys() != {layout}:
+                    affected[split].update(items)
+
+    report = {"groups": group_count, "affected_items": {split: len(items) for split, items in affected.items()},
+              "interpretation": "Affected items match a question in the other split with reordered or relabeled choices."}
+    if scored_item_ids is not None:
+        report["scored_item_ids"] = sorted(scored_item_ids & (affected["development"] | affected["holdout"]))
+    return report
+
+
+def cross_split_birth_matches(eligible, scored_item_ids=None):
+    """Flag distinct case IDs in opposite splits with the same recorded birth input."""
+    groups, items_by_case = {}, {}
+    splits = ("development", "holdout")
+    required = ("year", "month", "day", "sex", "clock_hour", "clock_minute", "location")
+    for entry in eligible:
+        case_id = entry["case_id"]
+        items_by_case.setdefault(case_id, set()).add(entry["item_id"])
+        birth = entry["birth"]
+        if (birth["calendar_type"] not in ("solar", "lunar")
+                or not all(key in birth for key in required)
+                or "contradictory_time_fields" in entry["uncertainty_flags"]):
+            continue
+        # A redundant consistent branch or range can differ between exports of
+        # the same recorded minute. A missing minute cannot establish this match.
+        key = (birth["calendar_type"], *(birth[name] for name in required), birth.get("country"))
+        by_split = groups.setdefault(key, {})
+        by_split.setdefault(entry["split"], set()).add(case_id)
+    overlaps = [group for group in groups.values() if len(group) == 2]
+    group_case_ids = [{split: sorted(group[split]) for split in splits} for group in overlaps]
+    group_case_ids.sort(key=lambda group: (group["development"], group["holdout"]))
+    affected_cases = {split: {case_id for group in overlaps for case_id in group[split]} for split in splits}
+    affected_items = {
+        split: {item_id for case_id in cases for item_id in items_by_case[case_id]}
+        for split, cases in affected_cases.items()
+    }
+    report = {
+        "groups": len(overlaps),
+        "affected_cases": {split: len(ids) for split, ids in affected_cases.items()},
+        "affected_items": {split: len(ids) for split, ids in affected_items.items()},
+        "group_case_ids": group_case_ids,
+        "interpretation": "Matching recorded birth inputs require manual identity review. A match does not establish that two case IDs identify the same person.",
+    }
+    if scored_item_ids is not None:
+        report["scored_item_ids"] = sorted(scored_item_ids & (affected_items["development"] | affected_items["holdout"]))
+    return report
 
 
 def make_pack(evaluation, system, split="development", case_limit=None, case_ids=None, allow_holdout=False):
@@ -359,22 +485,71 @@ def make_pack(evaluation, system, split="development", case_limit=None, case_ids
             "items": [blind_item(entry) for entry in entries]}
 
 
-def export_pack(evaluation_dir, output, system, split="development", case_limit=None, case_ids=None, allow_holdout=False):
+def export_pack(evaluation_dir, output, system, split="development", case_limit=None, case_ids=None,
+                allow_holdout=False, *, expected_evaluation_sha256=None):
     output = external_path(output)
-    pack = make_pack(load_evaluation(evaluation_dir), system, split, case_limit, case_ids, allow_holdout)
+    evaluation, evaluation_sha256, verified = _load_evaluation(
+        evaluation_dir, expected_evaluation_sha256, record="preparation")
+    pack = make_pack(evaluation, system, split, case_limit, case_ids, allow_holdout)
     write_json(output, pack)
     return {"system": system, "split": split, "items": len(pack["items"]),
-            "cases": len({item["case_id"] for item in pack["items"]}), "output": str(output)}
+            "cases": len({item["case_id"] for item in pack["items"]}), "output": str(output),
+            "pack_sha256": hashlib.sha256(output.read_bytes()).hexdigest(),
+            "source_sha256": evaluation["metadata"]["source_sha256"],
+            "evaluation_sha256": evaluation_sha256, "evaluation_sha256_verified": verified}
 
 
-def score(evaluation_dir, pack_path, responses_path, output=None):
-    evaluation = load_evaluation(evaluation_dir)
-    pack = read_json(external_path(pack_path))
+def _verify_sha256(actual, expected, description, *, record="export"):
+    if expected is None:
+        return False
+    if not isinstance(expected, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", expected):
+        raise BenchmarkError("expected %s SHA-256 must contain 64 hexadecimal digits" % description)
+    if actual != expected.lower():
+        raise BenchmarkError("%s SHA-256 does not match the frozen %s" % (description, record))
+    return True
+
+
+def _load_pack(path, expected_sha256):
+    raw = external_path(path).read_bytes()
+    sha256 = hashlib.sha256(raw).hexdigest()
+    verified = _verify_sha256(sha256, expected_sha256, "analyst pack")
+    pack = _decode_json(raw.decode("utf-8"))
     if not isinstance(pack, dict) or pack.get("schema_version") != VERSION or not isinstance(pack.get("items"), list) or not pack["items"]:
         raise BenchmarkError("invalid or empty analyst pack")
-    system = pack.get("task", {}).get("system")
-    if system not in ("bazi", "ziwei"):
+    task = pack.get("task")
+    if not isinstance(task, dict) or task.get("system") not in ("bazi", "ziwei"):
         raise BenchmarkError("invalid analyst system")
+    return pack, sha256, verified
+
+
+def item_prompt(pack_path, item_id, *, expected_pack_sha256):
+    """Read only the frozen pack and produce the selected item for a fresh context."""
+    pack, _, verified = _load_pack(pack_path, expected_pack_sha256)
+    if not verified:
+        raise BenchmarkError("item prompt requires the SHA-256 from the frozen export")
+    matches = [item for item in pack["items"] if isinstance(item, dict) and item.get("item_id") == item_id]
+    if len(matches) != 1:
+        raise BenchmarkError("item ID must identify exactly one question in the analyst pack")
+    item = blind_item(matches[0])
+    del item["case_id"]
+    return {
+        "system": pack["task"]["system"],
+        "instruction": "Use only this item and the specified system. Verify the supplied birth facts before reading. "
+                       "Return one response with this item_id and an answer letter, or abstain=true with a reason. "
+                       "If essential context is missing, abstain. Do not look up the case, other questions or answers.",
+        "item": item,
+    }
+
+
+def score(evaluation_dir, pack_path, responses_path, output=None, *,
+          expected_pack_sha256=None, expected_source_sha256=None, expected_evaluation_sha256=None,
+          expected_response_sha256=None, allow_unbound_responses=False):
+    evaluation, evaluation_sha256, evaluation_verified = _load_evaluation(
+        evaluation_dir, expected_evaluation_sha256)
+    source_verified = _verify_sha256(evaluation["metadata"]["source_sha256"],
+                                     expected_source_sha256, "evaluation source")
+    pack, pack_sha256, pack_verified = _load_pack(pack_path, expected_pack_sha256)
+    system = pack["task"]["system"]
     known = {entry["item_id"]: entry for entry in evaluation["entries"] if entry["eligible"]}
     requested, splits = {}, set()
     for item in pack["items"]:
@@ -396,9 +571,21 @@ def score(evaluation_dir, pack_path, responses_path, output=None):
     complete_ids = {entry["item_id"] for entry in known.values() if entry["case_id"] in selected_cases}
     if set(requested) != complete_ids:
         raise BenchmarkError("analyst pack omits eligible questions from a selected case")
-    responses = read_json(external_path(responses_path))
-    if isinstance(responses, dict):
-        responses = responses.get("responses")
+    response_bytes = external_path(responses_path).read_bytes()
+    response_sha256 = hashlib.sha256(response_bytes).hexdigest()
+    response_verified = _verify_sha256(response_sha256, expected_response_sha256,
+                                       "analyst responses", record="submission")
+    submission = _decode_json(response_bytes.decode("utf-8"))
+    response_bound = isinstance(submission, dict) and bool({"system", "pack_sha256"} & submission.keys())
+    if response_bound:
+        if submission.get("system") is None or submission.get("pack_sha256") is None:
+            raise BenchmarkError("responses must specify both system and pack_sha256")
+        if submission["system"] != system:
+            raise BenchmarkError("response system does not match the analyst pack")
+        _verify_sha256(pack_sha256, submission["pack_sha256"], "response analyst pack")
+    elif not allow_unbound_responses:
+        raise BenchmarkError("responses must specify system and pack_sha256; use --allow-unbound-responses only for legacy replay")
+    responses = submission.get("responses") if isinstance(submission, dict) else submission
     if not isinstance(responses, list):
         raise BenchmarkError("responses must be an array or {responses: [...]} object")
     received, results = set(), []
@@ -449,7 +636,19 @@ def score(evaluation_dir, pack_path, responses_path, output=None):
               "accuracy_answered": correct / answered if answered else None,
               "random_guess_expectation": {"correct": expected, "accuracy": expected / total},
               "case_counts": case_counts,
-              "metadata": dict(evaluation["metadata"], scoring_tool_sha256=tool_sha256()),
+              "cross_split_duplicates": cross_split_duplicates(known.values(), received),
+              "cross_split_rearranged_choices": cross_split_rearranged_choices(known.values(), received),
+              "cross_split_birth_matches": cross_split_birth_matches(known.values(), received),
+              "metadata": dict(evaluation["metadata"], scoring_tool_sha256=tool_sha256(),
+                               pack_sha256=pack_sha256,
+                               pack_sha256_verified=pack_verified,
+                               source_sha256_verified=source_verified,
+                               evaluation_sha256=evaluation_sha256,
+                               evaluation_sha256_verified=evaluation_verified,
+                               response_sha256=response_sha256,
+                               response_sha256_verified=response_verified,
+                               response_system_verified=response_bound,
+                               response_pack_sha256_verified=response_bound),
               "results": sorted(results, key=lambda result: result["item_id"])}
     if output is not None:
         write_json(output, report)
@@ -474,19 +673,39 @@ def main(argv=None):
     command.add_argument("--case-limit", type=int)
     command.add_argument("--case-id", action="append", dest="case_ids")
     command.add_argument("--allow-holdout", action="store_true")
+    command.add_argument("--expected-evaluation-sha256", help="evaluation.json SHA-256 saved at preparation time")
+    command = commands.add_parser("prompt", help="print one question from the frozen pack for an isolated context")
+    command.add_argument("--pack", required=True)
+    command.add_argument("--expected-pack-sha256", required=True, help="pack SHA-256 saved by the evaluator at export time")
+    command.add_argument("--item-id", required=True)
     command = commands.add_parser("score", help="require one valid response per exported question")
     command.add_argument("--evaluation-dir", required=True)
     command.add_argument("--pack", required=True)
+    command.add_argument("--expected-pack-sha256", help="pack SHA-256 saved by the evaluator at export time")
+    command.add_argument("--expected-source-sha256", help="answer-source SHA-256 saved by the evaluator at export time")
+    command.add_argument("--expected-evaluation-sha256", help="evaluation.json SHA-256 saved at export time")
     command.add_argument("--responses", required=True)
+    command.add_argument("--expected-response-sha256", help="responses SHA-256 saved before scoring")
     command.add_argument("--output", required=True)
+    command.add_argument("--allow-unbound-responses", action="store_true",
+                         help="replay a legacy response file without verifying its system or pack binding")
     args = parser.parse_args(argv)
     try:
         if args.command == "prepare":
             result = prepare(args.source, args.output_dir, args.source_repo, args.source_ref, args.source_license, args.seed)
         elif args.command == "export":
-            result = export_pack(args.evaluation_dir, args.output, args.system, args.split, args.case_limit, args.case_ids, args.allow_holdout)
+            result = export_pack(args.evaluation_dir, args.output, args.system, args.split, args.case_limit,
+                                 args.case_ids, args.allow_holdout,
+                                 expected_evaluation_sha256=args.expected_evaluation_sha256)
+        elif args.command == "prompt":
+            result = item_prompt(args.pack, args.item_id, expected_pack_sha256=args.expected_pack_sha256)
         else:
-            result = score(args.evaluation_dir, args.pack, args.responses, args.output)
+            result = score(args.evaluation_dir, args.pack, args.responses, args.output,
+                           expected_pack_sha256=args.expected_pack_sha256,
+                           expected_source_sha256=args.expected_source_sha256,
+                           expected_evaluation_sha256=args.expected_evaluation_sha256,
+                           expected_response_sha256=args.expected_response_sha256,
+                           allow_unbound_responses=args.allow_unbound_responses)
         print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
     except (BenchmarkError, OSError, ValueError, KeyError, TypeError) as error:
         parser.exit(2, "reading_benchmark: %s\n" % error)

@@ -1,5 +1,7 @@
 import copy
+import json
 import sys
+import tempfile
 import unittest
 from unittest.mock import patch
 from pathlib import Path
@@ -74,6 +76,36 @@ class RuleProfiles(unittest.TestCase):
         with patch.object(Path, "read_bytes", return_value=b"modified source"):
             with self.assertRaises(ValueError):
                 rules.analyze(self.chart())
+
+    def test_incomplete_or_mislabeled_manifest_cannot_authorize_claims(self):
+        relative = Path('knowledge/qizheng-rule-sources.json')
+        manifest = json.loads((rules.ROOT / relative).read_text())
+        cases = (
+            [],
+            [manifest['sources'][0]],
+            [manifest['sources'][0]] * 2,
+            [dict(manifest['sources'][0], classical_quote_authorized=True), manifest['sources'][1]],
+            [dict(manifest['sources'][0], path=manifest['sources'][1]['path']), manifest['sources'][1]],
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            path = root / relative
+            path.parent.mkdir()
+            for entry in manifest['sources']:
+                target = root / entry['path']
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.symlink_to(rules.ROOT / entry['path'])
+            with patch.object(rules, 'ROOT', root):
+                for rows in cases:
+                    with self.subTest(rows=rows):
+                        path.write_text(json.dumps(dict(manifest, sources=rows)))
+                        with self.assertRaises(ValueError):
+                            rules.analyze(self.chart())
+                        panel = rules.analyze(self.chart(), withhold_on_source_error=True)
+                        self.assertEqual(panel['status'], 'withheld')
+                        self.assertEqual(panel['claims'], [])
+                        self.assertEqual(panel['sources'], [])
+                        self.assertNotIn('出处：', rules.format_reading(panel))
 
     def test_real_legacy_engine_output(self):
         chart, _ = engine.compute((1990, 1, 1), 12, 0, 39.9, 116.4, profile='legacy-v1')

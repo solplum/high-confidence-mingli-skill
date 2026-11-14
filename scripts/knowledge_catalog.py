@@ -14,6 +14,57 @@ SYSTEMS = {'bazi', 'ziwei', 'qizheng'}
 MODES = {'paraphrase', 'source_excerpt', 'classical_quote'}
 MODULE_ONLY = 'conditional_module_only'
 REVIEWED_PROFILES = {
+    'bazi-officer-luck-v1': {
+        'system': 'bazi', 'source_id': 'bazi-officer-luck-v1',
+        'records': {'bazi-officer-luck-OL01': 'BZ-OL01'},
+    },
+    'bazi-primary-spouse-v1': {
+        'system': 'bazi', 'source_id': 'bazi-primary-spouse-source',
+        'records': {'bazi-primary-spouse-' + rid: rid for rid in ('BZ-P01', 'BZ-R01')},
+    },
+    'ziwei-stage-relationship-v1': {
+        'system': 'ziwei', 'source_id': 'ziwei-stage-relationship-source',
+        'records': {'ziwei-stage-relationship-' + rid: rid for rid in
+                    [*('ZW-ST%02d' % i for i in range(1, 10)), 'ZW-RL01']},
+    },
+    'ziwei-lianfu-marriage-v1': {
+        'system': 'ziwei', 'source_id': 'ziwei-lianfu-marriage-source',
+        'records': {'ziwei-lianfu-marriage-ZW-RL02': 'ZW-RL02'},
+    },
+    'ziwei-zifu-marriage-v1': {
+        'system': 'ziwei', 'source_id': 'ziwei-zifu-marriage-source',
+        'records': {'ziwei-zifu-marriage-ZW-RL03': 'ZW-RL03'},
+    },
+    'ziwei-zixiang-marriage-v1': {
+        'system': 'ziwei', 'source_id': 'ziwei-zixiang-marriage-source',
+        'records': {'ziwei-zixiang-marriage-ZW-RL04': 'ZW-RL04'},
+    },
+    'bazi-qiong-xin-zi-v1': {
+        'system': 'bazi', 'source_id': 'bazi-qiong-xin-zi-source',
+        'records': {'bazi-qiong-QX%02d' % i: 'BZ-QX%02d' % i for i in range(1, 4)},
+    },
+    'bazi-qiong-xin-chou-v1': {
+        'system': 'bazi', 'source_id': 'bazi-qiong-xin-chou-source',
+        'records': {'bazi-qiong-chou-QXC01': 'BZ-QXC01'},
+    },
+    'bazi-qiong-jia-yin-v1': {
+        'system': 'bazi', 'source_id': 'bazi-qiong-jia-yin-source',
+        'records': {'bazi-qiong-jia-yin-BZ-QJY01': 'BZ-QJY01'},
+    },
+    'ziwei-judgment-cases-v1': {
+        'system': 'ziwei', 'source_id': 'ziwei-judgment-cases-source',
+        'records': {'ziwei-cases-ZW-RC%02d' % i: 'ZW-RC%02d' % i for i in range(1, 4)},
+    },
+    'bazi-purpose-extensions-v1': {
+        'system': 'bazi', 'source_id': 'bazi-purpose-extensions-source',
+        'records': {'bazi-purpose-BZ-M%02d' % i: 'BZ-M%02d' % i for i in range(1, 4)},
+    },
+    'ziwei-life-domains-v1': {
+        'system': 'ziwei', 'source_id': 'ziwei-life-domains-source',
+        'records': {('ziwei-life-' + rid): rid for rid in
+                    [*('ZW-D%02d' % i for i in range(1, 9)),
+                     *('ZW-E%02d' % i for i in range(1, 6)), 'ZW-S01', 'ZW-T02']},
+    },
     'ziwei-dynamic-reading-v1': {
         'system': 'ziwei', 'source_id': 'ziwei-dynamic-reading-source',
         'records': {
@@ -252,9 +303,12 @@ def validate(catalog, root):
 
 def query(catalog, system, profile, term=''):
     """Exact profile match. Unknown profiles are not wildcards."""
+    needle = term.casefold()
     return [r for r in catalog['records']
             if r['status'] == 'usable' and r['system'] == system and r['profile'] == profile
-            and (not term or term.casefold() in (' '.join(r['topics']) + r['title'] + r['summary']).casefold())]
+            and (not needle or needle == r['id'].casefold()
+                 or needle == r.get('rule_id', '').casefold()
+                 or needle in (' '.join(r['topics']) + r['title'] + r['summary']).casefold())]
 
 
 def citation(catalog, root, source_id, mode='paraphrase', start=None, end=None):

@@ -54,6 +54,14 @@ class ReadingBenchmarkTest(unittest.TestCase):
         path.write_text(json.dumps(value, ensure_ascii=False), encoding="utf-8")
         return path
 
+    def write_responses(self, name, pack_path, responses):
+        pack_bytes = pack_path.read_bytes()
+        return self.write(name, {
+            "system": json.loads(pack_bytes)["task"]["system"],
+            "pack_sha256": hashlib.sha256(pack_bytes).hexdigest(),
+            "responses": responses,
+        })
+
     def prepare(self, records):
         self.source.write_text(json.dumps(records, ensure_ascii=False), encoding="utf-8")
         report = benchmark.prepare(self.source, self.evaluation,
@@ -75,6 +83,151 @@ class ReadingBenchmarkTest(unittest.TestCase):
         pack_path = self.write("pack.json", pack)
         return data, pack, pack_path
 
+    def test_source_question_collections_must_be_unambiguous(self):
+        question = synthetic_item(self.development_case())
+        for key in ("questions", "items", "data"):
+            with self.subTest(key=key):
+                self.assertEqual(benchmark.source_records({key: [question]}), [question])
+        self.assertEqual(benchmark.source_records([question]), [question])
+
+        self.source.write_text(json.dumps({"questions": [question], "items": [dict(question, answer="B")]}))
+        with self.assertRaisesRegex(benchmark.BenchmarkError, "multiple supported question arrays"):
+            benchmark.prepare(self.source, self.evaluation, "synthetic://source", "fixed", "Synthetic test only")
+        self.assertFalse(self.evaluation.exists())
+
+    def test_report_marks_identical_questions_across_splits_without_changing_scores(self):
+        development = synthetic_item(self.development_case())
+        holdout_case = next(number for number in range(100) if benchmark.split_for_case(
+            "synthetic-person-outcome-%d" % number, benchmark.DEFAULT_SEED) == "holdout")
+        duplicate = synthetic_item(holdout_case)
+        duplicate["answer"] = "B"
+        duplicate["birth_info"]["shichen_derived_from_clock"] = True
+        other = synthetic_item(holdout_case, item_number=1)
+        data, preparation = self.prepare([development, duplicate, other])
+
+        summary = preparation["cross_split_duplicates"]
+        self.assertEqual(summary["groups"], 1)
+        self.assertEqual(summary["affected_items"], {"development": 1, "holdout": 1})
+        pack_path = self.directory / "held-pack.json"
+        receipt = benchmark.export_pack(self.evaluation, pack_path, "bazi", "holdout", allow_holdout=True)
+        pack = benchmark.read_json(pack_path)
+        self.assertEqual(pack, benchmark.make_pack(data, "bazi", "holdout", allow_holdout=True))
+        self.assertEqual(set(pack), {"schema_version", "task", "items"})
+        responses = self.write_responses("held-responses.json", pack_path,
+                                         [{"item_id": item["item_id"], "answer": "A"} for item in pack["items"]])
+        score = benchmark.score(self.evaluation, pack_path, responses,
+                                expected_pack_sha256=receipt["pack_sha256"],
+                                expected_source_sha256=receipt["source_sha256"])
+        duplicate_id = next(item["item_id"] for item in pack["items"] if item["question"] == duplicate["question"])
+        self.assertEqual(score["cross_split_duplicates"], dict(summary, scored_item_ids=[duplicate_id]))
+        self.assertEqual((score["total"], score["correct"], score["wrong"]), (2, 1, 1))
+
+    def test_rearranged_choices_are_flagged_without_changing_pack_or_score(self):
+        development = synthetic_item(self.development_case())
+        holdout_case = next(number for number in range(100) if benchmark.split_for_case(
+            "synthetic-person-outcome-%d" % number, benchmark.DEFAULT_SEED) == "holdout")
+        records = [synthetic_item(holdout_case, number) for number in range(7)]
+        exact, reordered, relabeled, changed_text, changed_birth, duplicate_text, changed_question = records
+        for repeated in (exact, reordered, relabeled, changed_text, changed_birth, duplicate_text):
+            repeated["question"] = development["question"]
+        reordered["options"].reverse()
+        relabeled["options"][0]["letter"] = "C"
+        relabeled["options"][2]["letter"] = "A"
+        relabeled["answer"] = "C"
+        changed_text["options"][0]["text"] += "变更"
+        changed_birth["birth_info"]["clock_minute"] = 13
+        duplicate_text["options"][0]["text"] = duplicate_text["options"][1]["text"]
+        _, preparation = self.prepare([development, *records])
+        self.assertEqual(preparation["cross_split_duplicates"]["groups"], 1)
+        overlap = preparation["cross_split_rearranged_choices"]
+        self.assertEqual(overlap["groups"], 1)
+        self.assertEqual(overlap["affected_items"], {"development": 1, "holdout": 2})
+        pack_path = self.directory / "held-pack.json"
+        receipt = benchmark.export_pack(self.evaluation, pack_path, "bazi", "holdout", allow_holdout=True)
+        pack = benchmark.read_json(pack_path)
+        responses = self.write_responses("held-responses.json", pack_path,
+                                         [{"item_id": item["item_id"], "answer": "A"} for item in pack["items"]])
+        scored = benchmark.score(self.evaluation, pack_path, responses, expected_pack_sha256=receipt["pack_sha256"])
+        affected = sorted(item["item_id"] for item in pack["items"] if
+                          item["options"][0]["letter"] == "C")
+        self.assertEqual(len(affected), 2)
+        self.assertEqual(scored["cross_split_rearranged_choices"], dict(overlap, scored_item_ids=affected))
+        self.assertEqual((scored["total"], scored["correct"], scored["wrong"]), (7, 6, 1))
+
+    def test_birth_match_flags_all_questions_for_overlapping_case_ids(self):
+        dev_case = self.development_case()
+        held = [number for number in range(100) if benchmark.split_for_case(
+            "synthetic-person-outcome-%d" % number, benchmark.DEFAULT_SEED) == "holdout"]
+        development = synthetic_item(dev_case)
+        alias = synthetic_item(held[0], 1)
+        alias["birth_info"].pop("shichen")
+        alias["birth_info"].pop("hour_start")
+        alias["birth_info"].pop("hour_end")
+        sibling = synthetic_item(held[0], 2)
+        sibling["birth_info"].pop("clock_minute")
+        different = synthetic_item(held[1], 3)
+        different["birth_info"]["clock_minute"] += 1
+        incomplete = synthetic_item(held[2], 4)
+        incomplete["birth_info"].pop("clock_minute")
+        contradictory = synthetic_item(held[3], 5)
+        contradictory["birth_info"]["shichen"] = "午"
+        _, prepared = self.prepare([development, alias, sibling, different, incomplete, contradictory])
+
+        match = prepared["cross_split_birth_matches"]
+        self.assertEqual(match["groups"], 1)
+        self.assertEqual(match["affected_cases"], {"development": 1, "holdout": 1})
+        self.assertEqual(match["affected_items"], {"development": 1, "holdout": 2})
+        self.assertEqual(match["group_case_ids"][0]["development"], prepared["splits"]["development"]["case_ids"])
+        pack_path = self.directory / "held-pack.json"
+        receipt = benchmark.export_pack(self.evaluation, pack_path, "ziwei", "holdout", allow_holdout=True)
+        pack = benchmark.read_json(pack_path)
+        self.assertEqual(set(pack), {"schema_version", "task", "items"})
+        expected = sorted(item["item_id"] for item in pack["items"] if item["question"] in
+                          {alias["question"], sibling["question"]})
+        response = self.write_responses("held-response.json", pack_path,
+                                        [{"item_id": item["item_id"], "answer": "A"} for item in pack["items"]])
+        scored = benchmark.score(self.evaluation, pack_path, response, expected_pack_sha256=receipt["pack_sha256"])
+        self.assertEqual(scored["cross_split_birth_matches"], dict(match, scored_item_ids=expected))
+        self.assertEqual((scored["cross_split_duplicates"]["groups"],
+                          scored["cross_split_rearranged_choices"]["groups"]), (0, 0))
+        self.assertEqual((scored["total"], scored["correct"]), (5, 5))
+
+    def test_conflicting_json_keys_fail_before_evaluation_or_scoring(self):
+        _, pack, pack_path = self.prepare_pack((2,))
+        item_id = pack["items"][0]["item_id"]
+        response_path = self.write_responses("responses.json", pack_path, [{"item_id": item_id, "answer": "A"}])
+        clean_response = response_path.read_text()
+        output = self.directory / "score.json"
+
+        duplicate_source = self.directory / "duplicate-source.json"
+        duplicate_source.write_text(self.source.read_text().replace('"answer": "A"', '"answer": "B", "answer": "A"', 1))
+        rejected_evaluation = self.directory / "rejected-evaluation"
+        with self.assertRaisesRegex(benchmark.BenchmarkError, "duplicate JSON object key"):
+            benchmark.prepare(duplicate_source, rejected_evaluation, "https://synthetic.invalid/",
+                              "synthetic-ref", "Synthetic fixture")
+        self.assertFalse(rejected_evaluation.exists())
+
+        response_path.write_text(clean_response.replace('"answer": "A"', '"answer": "B", "answer": "A"', 1))
+        with self.assertRaisesRegex(benchmark.BenchmarkError, "duplicate JSON object key"):
+            benchmark.score(self.evaluation, pack_path, response_path, output)
+        self.assertFalse(output.exists())
+
+        duplicate_pack = self.directory / "duplicate-pack.json"
+        duplicate_pack.write_text(pack_path.read_text().replace('"system": "bazi"', '"system": "ziwei", "system": "bazi"', 1))
+        fingerprint = hashlib.sha256(duplicate_pack.read_bytes()).hexdigest()
+        response_path.write_text(json.dumps({"system": "bazi", "pack_sha256": fingerprint,
+                                             "responses": [{"item_id": item_id, "answer": "A"}]}))
+        with self.assertRaisesRegex(benchmark.BenchmarkError, "duplicate JSON object key"):
+            benchmark.score(self.evaluation, duplicate_pack, response_path, output, expected_pack_sha256=fingerprint)
+        self.assertFalse(output.exists())
+
+        response_path.write_text(clean_response)
+        prepared = self.evaluation / "evaluation.json"
+        prepared.write_text(prepared.read_text().replace('"answer": "A"', '"answer": "B", "answer": "A"', 1))
+        with self.assertRaisesRegex(benchmark.BenchmarkError, "duplicate JSON object key"):
+            benchmark.score(self.evaluation, pack_path, response_path, output)
+        self.assertFalse(output.exists())
+
     def test_blind_export_whitelist_drops_raw_answer_and_source_metadata(self):
         data, _, _ = self.prepare_pack()
         for system in ("bazi", "ziwei"):
@@ -92,6 +245,27 @@ class ReadingBenchmarkTest(unittest.TestCase):
                 self.assertIn("birth_time_is_range", item["uncertainty_flags"])
                 for option in item["options"]:
                     self.assertEqual(set(option), {"letter", "text"})
+
+    def test_item_prompt_uses_only_the_selected_question_from_the_frozen_pack(self):
+        case = self.development_case()
+        target, sibling = synthetic_item(case, 0), synthetic_item(case, 1)
+        sibling["question"] = "This sibling stem discloses the requested outcome."
+        data, _ = self.prepare([target, sibling])
+        pack = benchmark.make_pack(data, "ziwei")
+        path = self.write("pack.json", pack)
+        fingerprint = hashlib.sha256(path.read_bytes()).hexdigest()
+        question = next(item for item in pack["items"] if item["question"] == target["question"])
+        command = [sys.executable, str(SCRIPT), "prompt", "--pack", str(path),
+                   "--item-id", question["item_id"], "--expected-pack-sha256"]
+        result = subprocess.run(command + [fingerprint], check=True, capture_output=True, text=True)
+        prompt = json.loads(result.stdout)
+        self.assertEqual(prompt["system"], "ziwei")
+        self.assertEqual(prompt["item"], {key: value for key, value in question.items() if key != "case_id"})
+        self.assertNotIn(sibling["question"], result.stdout)
+        rejected = subprocess.run(command + ["0" * 64], capture_output=True, text=True)
+        self.assertEqual(rejected.returncode, 2)
+        self.assertEqual(rejected.stdout, "")
+        self.assertIn("does not match", rejected.stderr)
 
     def test_original_bytes_answers_and_excluded_records_are_preserved_externally(self):
         record = synthetic_item()
@@ -210,7 +384,7 @@ class ReadingBenchmarkTest(unittest.TestCase):
         responses = [{"item_id": items[0]["item_id"], "answer": "A"},
                      {"item_id": items[1]["item_id"], "answer": "B"},
                      {"item_id": items[2]["item_id"], "abstain": True, "reason": "合成资料不足"}]
-        response_path = self.write("responses.json", {"responses": responses})
+        response_path = self.write_responses("responses.json", pack_path, responses)
         report = benchmark.score(self.evaluation, pack_path, response_path)
         self.assertEqual((report["total"], report["answered"], report["correct"], report["wrong"], report["abstained"]),
                          (3, 2, 1, 1, 1))
@@ -224,11 +398,177 @@ class ReadingBenchmarkTest(unittest.TestCase):
         self.assertEqual(len(report["results"]), 3)
         self.assertEqual(next(result for result in report["results"] if result["status"] == "abstained")["reason"],
                          "合成资料不足")
+        self.assertTrue(report["metadata"]["response_system_verified"])
+        self.assertTrue(report["metadata"]["response_pack_sha256_verified"])
+        self.assertEqual(report["metadata"]["response_sha256"], hashlib.sha256(response_path.read_bytes()).hexdigest())
+        self.assertFalse(report["metadata"]["response_sha256_verified"])
+
+    def test_frozen_response_digest_rejects_replacement_bound_to_same_pack(self):
+        _, pack, pack_path = self.prepare_pack((2,))
+        item_id = pack["items"][0]["item_id"]
+        response = self.write_responses("frozen-response.json", pack_path,
+                                        [{"item_id": item_id, "answer": "B"}])
+        expected = hashlib.sha256(response.read_bytes()).hexdigest()
+        report = benchmark.score(self.evaluation, pack_path, response, expected_response_sha256=expected.upper())
+        self.assertEqual((report["correct"], report["wrong"]), (0, 1))
+        self.assertTrue(report["metadata"]["response_sha256_verified"])
+
+        replacement = self.write_responses("replacement-response.json", pack_path,
+                                           [{"item_id": item_id, "answer": "A"}])
+        output = self.directory / "score.json"
+        with self.assertRaisesRegex(benchmark.BenchmarkError, "analyst responses SHA-256 .* frozen submission"):
+            benchmark.score(self.evaluation, pack_path, replacement, output, expected_response_sha256=expected)
+        self.assertFalse(output.exists())
+        legacy = benchmark.score(self.evaluation, pack_path, replacement)
+        self.assertEqual((legacy["correct"], legacy["wrong"]), (1, 0))
+        self.assertTrue(legacy["metadata"]["response_pack_sha256_verified"])
+        self.assertFalse(legacy["metadata"]["response_sha256_verified"])
+
+    def test_frozen_export_digest_rejects_omitting_an_entire_case(self):
+        cases = [number for number in range(100) if benchmark.split_for_case(
+            "synthetic-person-outcome-%d" % number, benchmark.DEFAULT_SEED) == "development"][:2]
+        self.prepare([synthetic_item(number) for number in cases])
+        pack_path = self.directory / "frozen-pack.json"
+        exported = benchmark.export_pack(self.evaluation, pack_path, "bazi")
+        self.assertEqual((exported["cases"], exported["items"]), (2, 2))
+        expected_digest = hashlib.sha256(pack_path.read_bytes()).hexdigest()
+        self.assertEqual(exported["pack_sha256"], expected_digest)
+        pack = json.loads(pack_path.read_text())
+        responses = [{"item_id": item["item_id"], "answer": answer}
+                     for item, answer in zip(pack["items"], ("A", "B"))]
+        response_path = self.write_responses("responses.json", pack_path, responses)
+        report = benchmark.score(self.evaluation, pack_path, response_path,
+                                 expected_pack_sha256=expected_digest)
+        self.assertEqual((report["total"], report["correct"], report["wrong"]), (2, 1, 1))
+        self.assertEqual(report["metadata"]["pack_sha256"], expected_digest)
+        self.assertTrue(report["metadata"]["pack_sha256_verified"])
+
+        pack["items"] = pack["items"][:1]
+        smaller_pack = self.write("smaller-pack.json", pack)
+        smaller_responses = self.write("smaller-responses.json", responses[:1])
+        with self.assertRaisesRegex(benchmark.BenchmarkError, "does not match the frozen export"):
+            benchmark.score(self.evaluation, smaller_pack, smaller_responses,
+                            expected_pack_sha256=expected_digest)
+        legacy = benchmark.score(self.evaluation, smaller_pack, smaller_responses, allow_unbound_responses=True)
+        self.assertEqual(legacy["accuracy_all"], 1)
+        self.assertFalse(legacy["metadata"]["pack_sha256_verified"])
+
+    def test_frozen_source_rejects_answer_revision_with_identical_blind_pack(self):
+        record = synthetic_item(self.development_case())
+        self.prepare([record])
+        pack_path = self.directory / "original-pack.json"
+        original = benchmark.export_pack(self.evaluation, pack_path, "ziwei")
+        self.assertEqual(original["source_sha256"], hashlib.sha256(self.source.read_bytes()).hexdigest())
+        pack = json.loads(pack_path.read_text())
+        responses = self.write_responses("responses.json", pack_path,
+                                         [{"item_id": pack["items"][0]["item_id"], "answer": "A"}])
+        correct = benchmark.score(self.evaluation, pack_path, responses,
+                                  expected_pack_sha256=original["pack_sha256"],
+                                  expected_source_sha256=original["source_sha256"])
+        self.assertEqual(correct["correct"], 1)
+        self.assertTrue(correct["metadata"]["source_sha256_verified"])
+
+        revised_source = self.write("revised-source.json", [dict(record, answer="B")])
+        revised_evaluation = self.directory / "revised-evaluation"
+        benchmark.prepare(revised_source, revised_evaluation, "https://synthetic.invalid/repository",
+                          "revised-synthetic-ref", "Synthetic fixture license citation")
+        revised = benchmark.export_pack(revised_evaluation, self.directory / "revised-pack.json", "ziwei")
+        self.assertEqual(revised["pack_sha256"], original["pack_sha256"])
+        self.assertNotEqual(revised["source_sha256"], original["source_sha256"])
+        with self.assertRaisesRegex(benchmark.BenchmarkError, "evaluation source SHA-256 does not match"):
+            benchmark.score(revised_evaluation, pack_path, responses,
+                            expected_pack_sha256=original["pack_sha256"],
+                            expected_source_sha256=original["source_sha256"])
+        pack_only = benchmark.score(revised_evaluation, pack_path, responses,
+                                    expected_pack_sha256=original["pack_sha256"])
+        self.assertEqual(pack_only["wrong"], 1)
+        self.assertTrue(pack_only["metadata"]["pack_sha256_verified"])
+        self.assertFalse(pack_only["metadata"]["source_sha256_verified"])
+
+    def test_frozen_preparation_binds_provenance_through_export_and_score(self):
+        data, prepared = self.prepare([synthetic_item(self.development_case())])
+        private_record = self.evaluation / "evaluation.json"
+        expected = hashlib.sha256(private_record.read_bytes()).hexdigest()
+        self.assertEqual(prepared["evaluation_sha256"], expected)
+        pack_path = self.directory / "pack.json"
+        exported = benchmark.export_pack(self.evaluation, pack_path, "bazi",
+                                         expected_evaluation_sha256=expected.upper())
+        self.assertEqual(exported["evaluation_sha256"], expected)
+        self.assertTrue(exported["evaluation_sha256_verified"])
+        pack = benchmark.read_json(pack_path)
+        self.assertNotIn("evaluation_sha256", pack)
+        responses = self.write_responses("responses.json", pack_path,
+                                         [{"item_id": pack["items"][0]["item_id"], "answer": "A"}])
+        binding = dict(expected_pack_sha256=exported["pack_sha256"],
+                       expected_source_sha256=exported["source_sha256"])
+        report = benchmark.score(self.evaluation, pack_path, responses,
+                                 expected_evaluation_sha256=expected, **binding)
+        self.assertTrue(report["metadata"]["evaluation_sha256_verified"])
+        self.assertEqual(report["metadata"]["evaluation_sha256"], expected)
+
+        data["metadata"]["source_ref"] = "changed-after-preparation"
+        data["metadata"]["preparation_tool_sha256"] = "0" * 64
+        private_record.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        self.assertEqual(hashlib.sha256(pack_path.read_bytes()).hexdigest(), exported["pack_sha256"])
+        self.assertEqual(hashlib.sha256(self.source.read_bytes()).hexdigest(), exported["source_sha256"])
+        new_pack, output = self.directory / "new-pack.json", self.directory / "score.json"
+        with self.assertRaisesRegex(benchmark.BenchmarkError, "prepared evaluation SHA-256 .* frozen preparation"):
+            benchmark.export_pack(self.evaluation, new_pack, "bazi", expected_evaluation_sha256=expected)
+        self.assertFalse(new_pack.exists())
+        with self.assertRaisesRegex(benchmark.BenchmarkError, "prepared evaluation SHA-256 .* frozen export"):
+            benchmark.score(self.evaluation, pack_path, responses, output,
+                            expected_evaluation_sha256=expected, **binding)
+        self.assertFalse(output.exists())
+        legacy = benchmark.score(self.evaluation, pack_path, responses, **binding)
+        self.assertEqual(legacy["correct"], report["correct"])
+        self.assertFalse(legacy["metadata"]["evaluation_sha256_verified"])
+
+    def test_bound_responses_reject_wrong_system_or_pack_with_identical_items(self):
+        data, pack, pack_path = self.prepare_pack()
+        ziwei_pack = benchmark.make_pack(data, "ziwei")
+        self.assertEqual(pack["items"], ziwei_pack["items"])
+        ziwei_path = self.write("ziwei-pack.json", ziwei_pack)
+        answers = [{"item_id": item["item_id"], "answer": "A"} for item in pack["items"]]
+        response_path = self.write_responses("bazi-responses.json", pack_path, answers)
+        expected = {
+            "expected_pack_sha256": hashlib.sha256(ziwei_path.read_bytes()).hexdigest(),
+            "expected_source_sha256": data["metadata"]["source_sha256"],
+        }
+        score_path = self.directory / "misattributed-score.json"
+        with self.assertRaisesRegex(benchmark.BenchmarkError, "response system does not match"):
+            benchmark.score(self.evaluation, ziwei_path, response_path, score_path, **expected)
+        wrong_pack = self.write("wrong-pack-responses.json", dict(benchmark.read_json(response_path), system="ziwei"))
+        with self.assertRaisesRegex(benchmark.BenchmarkError, "response analyst pack SHA-256 does not match"):
+            benchmark.score(self.evaluation, ziwei_path, wrong_pack, score_path, **expected)
+        self.assertFalse(score_path.exists())
+
+        ziwei_response = self.write_responses("ziwei-responses.json", ziwei_path, answers)
+        report = benchmark.score(self.evaluation, ziwei_path, ziwei_response, **expected)
+        self.assertEqual(report["correct"], len(answers))
+        self.assertTrue(report["metadata"]["response_system_verified"])
+        self.assertTrue(report["metadata"]["response_pack_sha256_verified"])
+
+    def test_unbound_responses_require_explicit_legacy_replay(self):
+        _, pack, pack_path = self.prepare_pack()
+        answers = [{"item_id": item["item_id"], "answer": "A"} for item in pack["items"]]
+        for payload in (answers, {"responses": answers}):
+            with self.subTest(payload_type=type(payload)):
+                legacy_path = self.write("legacy-responses.json", payload)
+                with self.assertRaisesRegex(benchmark.BenchmarkError, "allow-unbound-responses"):
+                    benchmark.score(self.evaluation, pack_path, legacy_path)
+                legacy = benchmark.score(self.evaluation, pack_path, legacy_path, allow_unbound_responses=True)
+                self.assertEqual(legacy["correct"], len(answers))
+                self.assertFalse(legacy["metadata"]["response_system_verified"])
+                self.assertFalse(legacy["metadata"]["response_pack_sha256_verified"])
+        partial = self.write("partial-responses.json", {"system": "bazi", "responses": answers})
+        with self.assertRaisesRegex(benchmark.BenchmarkError, "specify both system and pack_sha256"):
+            benchmark.score(self.evaluation, pack_path, partial, allow_unbound_responses=True)
 
     def test_all_abstained_has_zero_coverage_and_no_answered_accuracy(self):
         _, pack, pack_path = self.prepare_pack()
-        response_path = self.write("responses.json", [{"item_id": item["item_id"], "abstain": True,
-                                                     "reason": "合成时区不确定"} for item in pack["items"]])
+        response_path = self.write_responses("responses.json", pack_path, [
+            {"item_id": item["item_id"], "abstain": True, "reason": "合成时区不确定"} for item in pack["items"]
+        ])
         report = benchmark.score(self.evaluation, pack_path, response_path)
         self.assertEqual(report["total"], 3)
         self.assertEqual(report["abstained"], 3)
@@ -240,8 +580,8 @@ class ReadingBenchmarkTest(unittest.TestCase):
         data, pack, pack_path = self.prepare_pack()
         expected_hash = hashlib.sha256(SCRIPT.read_bytes()).hexdigest()
         self.assertEqual(data["metadata"]["preparation_tool_sha256"], expected_hash)
-        responses = self.write("responses.json", [{"item_id": item["item_id"], "answer": "A"}
-                                                  for item in pack["items"]])
+        responses = self.write_responses("responses.json", pack_path,
+                                         [{"item_id": item["item_id"], "answer": "A"} for item in pack["items"]])
         with mock.patch.object(benchmark, "tool_sha256", return_value="different-scoring-implementation"):
             report = benchmark.score(self.evaluation, pack_path, responses)
         self.assertEqual(report["metadata"]["preparation_tool_sha256"], expected_hash)
@@ -257,15 +597,16 @@ class ReadingBenchmarkTest(unittest.TestCase):
                         [{"item_id": valid[0]["item_id"], "abstain": "true", "reason": "uncertain"}] + valid[1:]]
         for index, responses in enumerate(invalid_sets):
             with self.subTest(index=index):
-                response_path = self.write("invalid-%d.json" % index, responses)
+                response_path = self.write_responses("invalid-%d.json" % index, pack_path, responses)
                 score_path = self.directory / ("score-%d.json" % index)
                 with self.assertRaises(benchmark.BenchmarkError):
                     benchmark.score(self.evaluation, pack_path, response_path, score_path)
                 self.assertFalse(score_path.exists())
 
     def test_dropping_hard_question_or_altering_pack_is_rejected(self):
-        _, pack, _ = self.prepare_pack()
-        responses = self.write("responses.json", [{"item_id": item["item_id"], "answer": "A"} for item in pack["items"]])
+        _, pack, pack_path = self.prepare_pack()
+        responses = self.write_responses("responses.json", pack_path,
+                                         [{"item_id": item["item_id"], "answer": "A"} for item in pack["items"]])
         variants = []
         reduced = copy.deepcopy(pack)
         reduced["items"].pop()
@@ -276,10 +617,11 @@ class ReadingBenchmarkTest(unittest.TestCase):
         duplicate = copy.deepcopy(pack)
         duplicate["items"].append(duplicate["items"][0])
         variants.append(duplicate)
-        for index, variant in enumerate(variants):
+        for index, (variant, error) in enumerate(zip(variants, ("omits eligible questions", "does not match prepared source",
+                                                              "duplicate item"))):
             with self.subTest(index=index):
                 path = self.write("changed-%d.json" % index, variant)
-                with self.assertRaises(benchmark.BenchmarkError):
+                with self.assertRaisesRegex(benchmark.BenchmarkError, error):
                     benchmark.score(self.evaluation, path, responses)
 
     def test_source_tampering_and_duplicate_source_ids_are_rejected(self):
@@ -292,6 +634,31 @@ class ReadingBenchmarkTest(unittest.TestCase):
         with self.assertRaisesRegex(benchmark.BenchmarkError, "duplicate source id"):
             benchmark.prepare(duplicate_source, self.directory / "duplicates", "repo", "ref", "license")
         self.assertFalse((self.directory / "duplicates").exists())
+
+    def test_score_rejects_modified_prepared_answer_with_unchanged_source(self):
+        data, pack, pack_path = self.prepare_pack()
+        responses = self.write_responses("responses.json", pack_path, [
+            {"item_id": item["item_id"], "answer": "A"} for item in pack["items"]
+        ])
+        self.assertEqual(benchmark.score(self.evaluation, pack_path, responses)["correct"], len(pack["items"]))
+        data["entries"][0]["answer"] = "B"
+        (self.evaluation / "evaluation.json").write_text(json.dumps(data), encoding="utf-8")
+        score_path = self.directory / "forged-score.json"
+        with self.assertRaisesRegex(benchmark.BenchmarkError, "prepared entries do not match"):
+            benchmark.score(self.evaluation, pack_path, responses, score_path)
+        self.assertFalse(score_path.exists())
+
+    def test_export_rejects_modified_prepared_scope_with_unchanged_source(self):
+        data, _, _ = self.prepare_pack()
+        for field, value in (("eligible", False), ("split", "holdout"), ("case_id", "changed-case")):
+            with self.subTest(field=field):
+                changed = copy.deepcopy(data)
+                changed["entries"][0][field] = value
+                (self.evaluation / "evaluation.json").write_text(json.dumps(changed), encoding="utf-8")
+                pack_path = self.directory / "forged-pack.json"
+                with self.assertRaisesRegex(benchmark.BenchmarkError, "prepared entries do not match"):
+                    benchmark.export_pack(self.evaluation, pack_path, "bazi")
+                self.assertFalse(pack_path.exists())
 
     def test_outputs_cannot_overwrite_sources_existing_files_or_repository_paths(self):
         data, _, _ = self.prepare_pack()
@@ -370,14 +737,19 @@ class ReadingBenchmarkTest(unittest.TestCase):
                           "--system", "ziwei", "--case-limit", "1")
         self.assertEqual(exported.returncode, 0, exported.stderr)
         pack = benchmark.read_json(pack_path)
-        response_path = self.write("cli-responses.json", [{"item_id": pack["items"][0]["item_id"],
-                                                          "abstain": True, "reason": "合成案例不足"}])
+        response_path = self.write_responses("cli-responses.json", pack_path, [
+            {"item_id": pack["items"][0]["item_id"], "abstain": True, "reason": "合成案例不足"}
+        ])
         score_path = self.directory / "cli-score.json"
+        response_digest = hashlib.sha256(response_path.read_bytes()).hexdigest()
         scored = invoke("score", "--evaluation-dir", str(self.evaluation), "--pack", str(pack_path),
-                        "--responses", str(response_path), "--output", str(score_path))
+                        "--responses", str(response_path), "--expected-response-sha256", response_digest,
+                        "--output", str(score_path))
         self.assertEqual(scored.returncode, 0, scored.stderr)
-        self.assertEqual(benchmark.read_json(score_path)["abstained"], 1)
-        missing = self.write("cli-missing.json", [])
+        report = benchmark.read_json(score_path)
+        self.assertEqual(report["abstained"], 1)
+        self.assertTrue(report["metadata"]["response_sha256_verified"])
+        missing = self.write_responses("cli-missing.json", pack_path, [])
         rejected = invoke("score", "--evaluation-dir", str(self.evaluation), "--pack", str(pack_path),
                           "--responses", str(missing), "--output", str(self.directory / "bad-score.json"))
         self.assertEqual(rejected.returncode, 2)

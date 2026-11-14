@@ -6,10 +6,13 @@ import io
 import json
 from pathlib import Path
 import sys
+import tempfile
 import unittest
+from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import build_chart
 import pai_pan_qizheng as q
+import qizheng_provenance as provenance
 import qizheng_rule_profiles as rules
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -125,5 +128,192 @@ class IntegrationTests(unittest.TestCase):
             out=io.StringIO()
             with contextlib.redirect_stdout(out): build_chart.main(argv+['--format','json','--uncertainty-minutes','5'])
             self.assertEqual('withheld',json.loads(out.getvalue())['qizheng_rule_reading']['status'])
+
+    def test_build_reports_distinct_withholding_reasons_from_native_evidence(self):
+        location = ['--lat', '35', '--lon', '120']
+        cases = (
+            ('missing_longitude', '2000-01-01', '12:00', ['--lat', '35'], (),
+             ('地平计算未取得',), ('缺少有效立命宫',)),
+            ('undefined_ascendant', '2000-01-01', '12:00', ['--lat', '90', '--lon', '120'], (),
+             ('东方上升交点未定义',), ()),
+            ('natal_boundary', '2000-01-01', '00:28', location, (),
+             ('命度靠近未校准宿界',), ()),
+            ('boundary_and_time_error', '2000-01-01', '00:28', location, ('--uncertainty-minutes', '2'),
+             ('出生时间存在误差', '命度靠近未校准宿界'), ()),
+            ('solar_palace_boundary', '2000-02-22', '12:00', location, (),
+             (), ('太阳靠近未校准宿宫界',)),
+            ('solar_boundary_and_time_error', '2000-02-22', '12:00', location, ('--uncertainty-minutes', '2'),
+             ('出生时间存在误差',), ('太阳靠近未校准宿宫界',)),
+        )
+        for name, day, clock, coordinates, extra, degree_reasons, palace_reasons in cases:
+            with self.subTest(name=name):
+                out = io.StringIO()
+                with contextlib.redirect_stdout(out):
+                    build_chart.main(['--solar', day, '--hour', clock, *coordinates, *extra,
+                                      '--sex', '男', '--analysis-year', '2026',
+                                      '--qizheng-tradition', 'qianyuan-palace-v1', '--format', 'json'])
+                snapshot = json.loads(out.getvalue())
+                native = snapshot['qizheng']
+                degree = snapshot['qizheng_rule_reading']
+                traditional = snapshot['qizheng_traditional_reading']
+                self.assertEqual(traditional['status'], 'withheld')
+                self.assertEqual(len(native['bodies']), 11)
+                if degree_reasons:
+                    self.assertEqual(degree['status'], 'withheld')
+                    self.assertEqual(degree['claims'], [])
+                    for expected in degree_reasons:
+                        self.assertIn(expected, degree['reason'])
+                else:
+                    self.assertTrue(native['bodies']['日']['classification_quality']['near_boundary'])
+                    self.assertIsNotNone(native['ming_gong'])
+                    self.assertEqual(degree['claims'][0]['status'], 'conditional')
+                    self.assertEqual(degree['claims'][1]['status'], 'withheld')
+                    self.assertIn(palace_reasons[0], degree['claims'][1]['reason'])
+                for expected in degree_reasons + palace_reasons:
+                    self.assertIn(expected, traditional['reason'])
+                self.assertNotIn('或靠近', traditional['reason'])
+
+    def test_text_only_renders_admitted_degree_groups(self):
+        boundary = ['--solar', '1990-01-01', '--hour', '00:43', '--lat', '39.9', '--lon', '116.4']
+        normal = ['--solar', '2000-01-01', '--hour', '12:00', '--lat', '35', '--lon', '120']
+        for argv, extra, gate in (
+                (boundary, [], '靠近未校准宿界'),
+                (normal, ['--uncertainty-minutes', '5', '--qizheng-sensitivity'], '出生时间存在误差'),
+                (normal, [], None)):
+            with self.subTest(argv=argv, extra=extra):
+                out = io.StringIO()
+                with contextlib.redirect_stdout(out):
+                    build_chart.main(argv + ['--sex', '男', '--analysis-year', '2026'] + extra)
+                text = out.getvalue()
+                self.assertIn('| 日 |', text)
+                self.assertIn('**立命宫**', text)
+                if gate:
+                    self.assertNotIn('**难仇恩用**', text)
+                    self.assertIn(gate, text)
+                else:
+                    self.assertIn('**难仇恩用**', text)
+                if extra:
+                    self.assertIn('七政时间敏感性', text)
+
+        for argv, gate in ((boundary, '靠近未校准宿界'), (normal, None)):
+            with self.subTest(standalone=argv):
+                out = io.StringIO()
+                with contextlib.redirect_stdout(out):
+                    self.assertEqual(q.run(argv), 0)
+                text = out.getvalue()
+                self.assertIn('## 七政四余躔度', text)
+                self.assertIn('### 七政规则释义', text)
+                self.assertNotIn('印贵扶持', text)
+                self.assertNotIn('压力侵害', text)
+                if gate:
+                    self.assertIn(gate, text)
+                    self.assertNotIn('恩=', text)
+                else:
+                    self.assertIn('恩=', text)
+
+    def test_text_labels_legacy_ascendant_as_replay_in_both_entries(self):
+        args = ['--solar', '1990-05-15', '--hour', '14:00', '--lat', '31.23', '--lon', '121.47']
+        cases = (
+            (q.run, args + ['--profile', 'legacy-v1'], '命度（旧版复现值'),
+            (q.run, args, '命度（几何东方上升交点'),
+            (build_chart.main, args + ['--sex', '男', '--analysis-year', '2026',
+                                       '--qizheng-profile', 'legacy-v1'], '升点及昼夜计算存在已知错误'),
+        )
+        for entry, argv, expected in cases:
+            with self.subTest(entry=entry.__module__, argv=argv):
+                out = io.StringIO()
+                with contextlib.redirect_stdout(out):
+                    self.assertEqual(entry(argv), 0)
+                text = out.getvalue()
+                self.assertIn(expected, text)
+                self.assertNotIn('命度（真升点', text)
+                if 'legacy-v1' in argv:
+                    self.assertIn('暂不解释', text)
+                    self.assertNotIn('恩=', text)
+
+    def test_degree_phase_text_distinguishes_luminary_mansion_hosts(self):
+        for hour, host, phase in (('14:00', '日', '火'), ('15:00', '月', '水')):
+            with self.subTest(hour=hour):
+                args = ['--solar', '2000-01-01', '--hour', hour, '--lat', '35', '--lon', '120']
+                for entry, argv in (
+                        (build_chart.main, args + ['--sex', '男', '--analysis-year', '2026']),
+                        (q.run, args)):
+                    out = io.StringIO()
+                    with contextlib.redirect_stdout(out):
+                        self.assertEqual(entry(argv), 0)
+                    text = out.getvalue()
+                    self.assertIn(f'宿主：{host}，度主五行：{phase}', text)
+                    self.assertIn(f'则以{phase}为我', text)
+                    self.assertIn('| 入宿度 | 宿主 |', text)
+                    self.assertNotIn(f'度主五行：{host}', text)
+
+    def test_standalone_place_label_keeps_stars_when_coordinates_are_missing(self):
+        argv = ['--solar', '2000-01-03', '--hour', '07:01', '--place', '上海']
+        for coordinates, coordinate_text in (
+                ([], '- 经纬度：未提供'),
+                (['--lat', '31.23'], '- 经纬度：纬 31.23，经度未提供'),
+                (['--lon', '121.47'], '- 经纬度：纬度未提供，经 121.47')):
+            with self.subTest(coordinates=coordinates):
+                output = io.StringIO()
+                with contextlib.redirect_stdout(output):
+                    self.assertEqual(q.run(argv + coordinates), 0)
+                text = output.getvalue()
+                self.assertIn('- 出生地：上海', text)
+                self.assertIn(coordinate_text, text)
+                for name in q.LUMINARIES:
+                    self.assertIn('| %s |' % name, text)
+                self.assertIn('命度/恩用难仇：未计算', text)
+                self.assertIn('暂不解释', text)
+                self.assertNotIn('恩=', text)
+
+        for coordinate, reason in ((['--lat', '91'], 'latitude must be finite'),
+                                   (['--lon', 'inf'], 'longitude must be finite')):
+            with self.subTest(coordinate=coordinate):
+                stderr, stdout = io.StringIO(), io.StringIO()
+                with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr), self.assertRaises(SystemExit) as error:
+                    q.run(argv + coordinate)
+                self.assertEqual(error.exception.code, 2)
+                self.assertIn(reason, stderr.getvalue())
+                self.assertEqual(stdout.getvalue(), '')
+
+    def test_missing_qizheng_manifest_preserves_chart_and_numeric_witnesses(self):
+        manifest = 'knowledge/qizheng-rule-sources.json'
+        argv = ['--solar', '2000-01-01', '--hour', '12:00', '--sex', '男', '--lat', '35', '--lon', '120',
+                '--analysis-year', '2026', '--qizheng-sensitivity', '--uncertainty-minutes', '1',
+                '--qizheng-tradition', 'qianyuan-palace-v1', '--format', 'json']
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for path in (*provenance.FILES, *rules.SOURCE_PATHS.values()):
+                if path == manifest or (root / path).exists():
+                    continue
+                (root / path).parent.mkdir(parents=True, exist_ok=True)
+                (root / path).symlink_to(ROOT / path)
+            out = io.StringIO()
+            rendered = io.StringIO()
+            with patch.object(provenance, 'ROOT', root), patch.object(rules, 'ROOT', root):
+                with contextlib.redirect_stdout(out):
+                    build_chart.main(argv)
+                with contextlib.redirect_stdout(rendered):
+                    build_chart.main(argv[:-2])
+        self.assertIn('七政规则来源无法核验', rendered.getvalue())
+        self.assertIn('| 日 |', rendered.getvalue())
+        self.assertNotIn('**难仇恩用**', rendered.getvalue())
+        snapshot = json.loads(out.getvalue())
+        self.assertEqual(len(snapshot['bazi']['pillars']), 4)
+        self.assertEqual(len(snapshot['ziwei']['chart']['palaces']), 12)
+        self.assertEqual(len(snapshot['qizheng']['bodies']), 11)
+        evidence = snapshot['qizheng']['model_provenance']
+        self.assertIsNone(evidence['source_sha256'][manifest])
+        self.assertEqual(evidence['unavailable_sources'][manifest], 'FileNotFoundError')
+        for field in ('qizheng_rule_reading', 'qizheng_traditional_reading'):
+            self.assertEqual(snapshot[field]['status'], 'withheld')
+            self.assertEqual(snapshot[field]['claims'], [])
+        candidates = snapshot['qizheng_sensitivity']['candidates']
+        self.assertTrue(candidates)
+        for candidate in candidates:
+            self.assertEqual(len(candidate['chart']['bodies']), 11)
+            self.assertEqual(candidate['rule_reading']['status'], 'withheld')
+            self.assertEqual(candidate['rule_reading']['claims'], [])
+            self.assertEqual(candidate['traditional_reading']['status'], 'withheld')
 
 if __name__ == '__main__': unittest.main()

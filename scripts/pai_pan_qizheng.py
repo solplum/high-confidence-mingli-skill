@@ -549,10 +549,12 @@ def legacy_ascendant_tropical(jd_ut, jd_tt, lat_deg, lon_deg, eot_minutes):
     return norm_deg(math.degrees(asc))
 
 
-def _validate_location(lat_deg, lon_deg):
-    if not (math.isfinite(lat_deg) and -90 <= lat_deg <= 90):
+def _validate_location(lat_deg, lon_deg, *, allow_missing=False):
+    if ((lat_deg is not None or not allow_missing) and
+            not (math.isfinite(lat_deg) and -90 <= lat_deg <= 90)):
         raise ValueError("latitude must be finite and in [-90, 90]")
-    if not (math.isfinite(lon_deg) and -180 <= lon_deg <= 180):
+    if ((lon_deg is not None or not allow_missing) and
+            not (math.isfinite(lon_deg) and -180 <= lon_deg <= 180)):
         raise ValueError("longitude must be finite and in [-180, 180]")
 
 
@@ -689,6 +691,7 @@ def compute(solar_date, hour, minute, lat, lon, place=None, birth_instant=None,
         raise ValueError("dut1_seconds must be finite and within +/-0.9 s (modern UTC)")
     if profile == "legacy-v1" and dut1_seconds != 0:
         raise ValueError("legacy-v1 requires dut1_seconds=0 for reproducibility")
+    _validate_location(lat, lon, allow_missing=True)
     warnings = ["physical-v2 materially changes old 命度/恩用难仇/昼夜 results; legacy-v1 only reproduces known bugs"
                 if profile == "physical-v2" else "legacy-v1: known incorrect horizon and clock calculations retained for reproduction only"]
     dt_bj = datetime(solar_date[0], solar_date[1], solar_date[2], hour, minute, tzinfo=BJ)
@@ -776,7 +779,6 @@ def compute(solar_date, hour, minute, lat, lon, place=None, birth_instant=None,
         result.update({"ming_du": None, "ming_gong": None, "day_night": None, "en_yong": None})
         return result, warnings
 
-    _validate_location(lat, lon)
     if lat < 0:
         warnings.append("南半球几何可计算；传统命理解读适用性未验证")
 
@@ -849,12 +851,19 @@ def format_report(result, warnings, meta):
     lines = []
     lines.append("## 输入")
     lines.append("- 阳历：%s %02d:%02d（北京时间）" % (meta["solar"], meta["hour"], meta["minute"]))
-    if meta.get("place"):
-        lines.append("- 出生地：%s（纬 %.2f，经 %.2f）" % (meta["place"], meta["lat"], meta["lon"]))
-    elif meta.get("lat") is not None and meta.get("lon") is not None:
-        lines.append("- 经纬度：纬 %.2f，经 %.2f" % (meta["lat"], meta["lon"]))
+    place, lat, lon = (meta.get(key) for key in ("place", "lat", "lon"))
+    if lat is not None and lon is not None:
+        coordinates = "纬 %.2f，经 %.2f" % (lat, lon)
+        lines.append("- 出生地：%s（%s）" % (place, coordinates) if place else "- 经纬度：" + coordinates)
     else:
-        lines.append("- 经纬度：未提供")
+        if place:
+            lines.append("- 出生地：" + place)
+        if lat is not None:
+            lines.append("- 经纬度：纬 %.2f，经度未提供" % lat)
+        elif lon is not None:
+            lines.append("- 经纬度：纬度未提供，经 %.2f" % lon)
+        else:
+            lines.append("- 经纬度：未提供")
     lines.append("")
     lines.append("## 口径声明（详见文件头）")
     lines.append("- 恒星制，角宿一=0°，ayanamsa=%.4f°" % result["ayanamsa"])
@@ -862,7 +871,7 @@ def format_report(result, warnings, meta):
     lines.append("- 计算配置：%s；几何/时间近似见 horizon_contract，不承诺统一角分精度" % result["calculation_profile"])
     lines.append("")
     lines.append("## 七政四余躔度")
-    lines.append("| 星 | 黄道经度 | 恒星黄经 | 躔宿 | 入宿度 | 宿五行 | 躔宫 |")
+    lines.append("| 星 | 黄道经度 | 恒星黄经 | 躔宿 | 入宿度 | 宿主 | 躔宫 |")
     lines.append("|---|---|---|---|---|---|---|")
     for name in LUMINARIES:
         b = result["bodies"][name]
@@ -889,10 +898,13 @@ def format_report(result, warnings, meta):
 
     md = result["ming_du"]
     mg = result["ming_gong"]
-    lines.append("## 命度（真升点，恒星制）")
+    if result["calculation_profile"] == "legacy-v1":
+        lines.append("## 命度（旧版复现值，旧算法存在已知错误）")
+    else:
+        lines.append("## 命度（几何东方上升交点，恒星制）")
     lines.append("- 黄道经度：%.4f → 恒星 %.4f" % (md["tropical"], md["sidereal"]))
-    lines.append("- 命躔：%s宿%.2f度（度主五行：%s，距星 %s，所在 %s宫）" % (
-        md["mansion"], md["mansion_deg"], md["wuxing"], md["star"], palace_of(md["sidereal"])))
+    lines.append("- 命躔：%s宿%.2f度（宿主：%s，度主五行：%s，距星 %s，所在 %s宫）" % (
+        md["mansion"], md["mansion_deg"], md["wuxing"], result["du_zhu_wuxing"], md["star"], palace_of(md["sidereal"])))
     lines.append("")
     lines.append("## 立命宫（果老安命法）")
     lines.append("- 太阳踞 %s 宫，生时 %s 时 → 命宫在 %s 宫（支五行 %s；宫主五行见果老宫分所属）" % (
@@ -908,22 +920,7 @@ def format_report(result, warnings, meta):
         lines.append("- 日出（当地平太阳时）：%02d:%02d｜日落：%02d:%02d" % (
             int(dn["sunrise_local"]), int(round((dn["sunrise_local"] % 1) * 60)),
             int(dn["sunset_local"]), int(round((dn["sunset_local"] % 1) * 60))))
-        lines.append("- 判定：%s（昼生重日，夜生重月）" % dn["type"])
-    lines.append("")
-    lines.append("## 恩用难仇（以命度宿五行为我：%s；日宿取火、月宿取水）" % result["du_zhu_wuxing"])
-    ey = result["en_yong"]
-    meaning = {"恩": "生我者——印贵扶持", "用": "我生者——才华施展",
-               "难": "克我者——压力侵害", "仇": "我克者——消耗争斗", "同": "同我者——命度同气"}
-    lines.append("| 关系 | 五行 | 对应星曜 | 含义 |")
-    lines.append("|---|---|---|---|")
-    for key in ("恩", "用", "难", "仇", "同"):
-        members = ey.get(key, [])
-        wx = {"恩": None, "用": None, "难": None, "仇": None, "同": md["wuxing"]}[key]
-        if key != "同":
-            wxs = {LUMINARIES_WUXING[m] for m in members}
-            wx = "、".join(sorted(wxs)) if wxs else "—"
-        lines.append("| %s | %s | %s | %s |" % (
-            key, wx or "—", "、".join(members) if members else "—", meaning[key]))
+        lines.append("- 判定：%s" % dn["type"])
     lines.append("")
     lines.append("## 真太阳时副产品")
     lines.append("- 均时差：%.2f 分钟（真太阳时 = 平太阳时 %+d 分）" % (result["eot_minutes"], round(result["eot_minutes"])))
@@ -972,7 +969,11 @@ def run(argv=None):
         parser.error(str(exc))
     report = format_report(result, warnings, {"solar": args.solar, "hour": hh, "minute": mm,
                                               "lat": args.lat, "lon": args.lon, "place": args.place})
-    sys.stdout.write(report)
+    # The CLI uses the same source and condition checks as the combined chart.
+    from qizheng_rule_profiles import analyze, format_reading
+
+    reading = analyze(result, withhold_on_source_error=True)
+    sys.stdout.write(report + "\n" + format_reading(reading) + "\n")
     return 0
 
 

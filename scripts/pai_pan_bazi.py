@@ -948,6 +948,16 @@ def format_canggan(zhi):
     return "、".join("%s%s" % (g, wx) for g, wx in parts)
 
 
+def pillar_fact(stem, branch, day_gan, *, is_day=False):
+    """Derive a pillar's structured facts from the native stem, branch and day stem index."""
+    return {
+        'pillar': stem + branch, 'stem': stem, 'branch': branch,
+        'ten_god': shishen_of(day_gan, None if is_day else GAN.index(stem)),
+        'hidden': [dict(stem=hidden, element=element, ten_god=shishen_of(day_gan, GAN.index(hidden)))
+                   for hidden, element in CANGGAN[branch]],
+    }
+
+
 def _shensha_positions(needles, values, labels):
     if isinstance(needles, str):
         needles = (needles,)
@@ -1159,6 +1169,15 @@ def qiyun_from_days(days):
     return years, months
 
 
+def resolve_qiyun(birth_dt, year_gan, prev_jie, next_jie, sex):
+    forward = (GAN.index(year_gan) % 2 == 0) == (sex == "男")
+    term = next_jie if forward else prev_jie
+    if term is None:
+        raise ValueError("无法定位起运所用的节")
+    years, months = qiyun_from_days((term - birth_dt).total_seconds() / 86400.0)
+    return forward, years, months
+
+
 def build_dayun(month_gan, month_zhi, forward, qiyun_years, qiyun_months, steps=8):
     """从月柱下一柱（顺）或上一柱（逆）起排。月柱本身是起运前小运。"""
     gi = GAN.index(month_gan)
@@ -1179,6 +1198,49 @@ def build_dayun(month_gan, month_zhi, forward, qiyun_years, qiyun_months, steps=
         a1 = a0 + 9
         rows.append((str(n), "%d-%d岁" % (a0, a1), GAN[gi] + ZHI[zi]))
     return rows
+
+
+def dayun_age_windows(rows, start_months, birth_time_is_reference):
+    """Attach rounded model ages without converting them into civil dates."""
+    windows = []
+    start = 0
+    for sequence, _, pillar in rows:
+        end = start_months if sequence == "起运前" else start + 120
+        windows.append(dict(sequence=sequence, pillar=pillar,
+                            start_months_inclusive=start, end_months_exclusive=end))
+        start = end
+    return dict(basis="rounded_engine_age_months", birth_time_is_reference=birth_time_is_reference,
+                windows=windows)
+
+
+def dayun_age_note(result):
+    text = "- 按原折月年龄窗选运，左含右不含。第一步大运按折月模型约从%s开始，以后每十年换运。公历交运日期另核。" % result["qiyun_text"]
+    if result.get("dayun_age_windows", {}).get("birth_time_is_reference"):
+        text += " 此起运年龄基于参考时刻。"
+    return text
+
+
+def _age_months_text(total_months):
+    years, months = divmod(total_months, 12)
+    return "%d 岁 %d 个月" % (years, months) if months else "%d 岁" % years
+
+
+def render_dayun_age_windows(windows, legacy_rows=None):
+    """Render native half-open age windows without deriving new bounds."""
+    header = "| 大运序 | 折月年龄窗 | 月数区间 | 干支 |"
+    separator = "|---|---|---|---|"
+    if legacy_rows is not None:
+        header += " 旧整岁索引 |"
+        separator += "---|"
+    lines = [header, separator]
+    for index, window in enumerate(windows):
+        start, end = window["start_months_inclusive"], window["end_months_exclusive"]
+        line = "| %s | [%s, %s) | [%d, %d) | %s |" % (
+            window["sequence"], _age_months_text(start), _age_months_text(end), start, end, window["pillar"])
+        if legacy_rows is not None:
+            line += " %s |" % legacy_rows[index][1]
+        lines.append(line)
+    return lines
 
 
 def liunian_gz(year):
@@ -1255,23 +1317,7 @@ def compute(
         ),
     }
 
-    year_gan_i = GAN.index(year_gan)
-    yang_year = year_gan_i % 2 == 0
-    if sex == "男":
-        forward = yang_year
-    else:
-        forward = not yang_year
-    # 1990-05-15 男（庚午阳年）必须顺排
-
-    if forward:
-        jie_for_qiyun = next_jie_dt
-    else:
-        jie_for_qiyun = prev_jie_dt
-    if jie_for_qiyun is None:
-        raise ValueError("无法定位起运所用的节")
-    delta_sec = (jie_for_qiyun - birth_dt).total_seconds()
-    qiyun_days = abs(delta_sec) / 86400.0
-    qy, qm = qiyun_from_days(qiyun_days)
+    forward, qy, qm = resolve_qiyun(birth_dt, year_gan, prev_jie_dt, next_jie_dt, sex)
     dayun_rows = build_dayun(month_gan, month_zhi, forward, qy, qm)
 
     nearby_terms = [prev_jie_dt, next_jie_dt, lichun]
@@ -1390,6 +1436,8 @@ def compute(
         "qiyun_years": qy,
         "qiyun_months": qm,
         "dayun_rows": dayun_rows,
+        "dayun_age_windows": dayun_age_windows(dayun_rows, qy * 12 + qm,
+                                               birth_instant is None and not clock_known),
         "liunian_years": liunian_years,
         "current_year": show_current_year,
         "current_gz": liunian_gz(show_current_year),
@@ -1409,6 +1457,8 @@ def format_report(result):
     lines.append("- 阳历：%s" % result["solar_text"])
     lines.append("- 农历：%s" % result["lunar_text"])
     lines.append("- 时辰：%s" % result["shichen_text"])
+    if result.get("hour_unknown"):
+        lines.append("- 时辰未知。下列三柱使用参考时刻。用 bazi_scenario_reading.py --birth-date 分段核对整个民用生日。")
     lines.append("- 性别：%s" % result["sex"])
     if result["place"]:
         lines.append("- 出生地：%s" % result["place"])
@@ -1433,13 +1483,12 @@ def format_report(result):
     lines.append("## 大运")
     lines.append("- 方向：%s" % ("顺排" if result["forward"] else "逆排"))
     lines.append("- 起运：%s" % result["qiyun_text"])
-    lines.append("| 大运序 | 年龄范围 | 干支 |")
-    lines.append("|---|---|---|")
-    for seq, ages, gz in result["dayun_rows"]:
-        lines.append("| %s | %s | %s |" % (seq, ages, gz))
+    lines.append(dayun_age_note(result))
+    lines.extend(render_dayun_age_windows(result["dayun_age_windows"]["windows"], result["dayun_rows"]))
     lines.append("")
     lines.append("## 流年")
-    lines.append("- 当前：%d年%s" % (result["current_year"], result["current_gz"]))
+    lines.append("- 所选公历年度标签为 %d 年%s。" % (result["current_year"], result["current_gz"]))
+    lines.append("- 具体时点的年柱按实际立春换年。")
     for y in result["liunian_years"]:
         lines.append("- %d年%s" % (y, liunian_gz(y)))
     lines.append("")

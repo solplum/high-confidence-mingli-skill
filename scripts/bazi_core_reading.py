@@ -4,28 +4,21 @@ Only accepts canonical engine pillar tuples. No new dependencies or network call
 Rule definitions and exclusions: docs/bazi-core-reading.md, version 2.
 """
 import hashlib
-from itertools import combinations
 from pathlib import Path
 
 import pai_pan_bazi as engine
 import bazi_pattern_reasoning as pattern_reasoning
 import bazi_strength_reasoning as strength_reasoning
 import bazi_reviewed_structure as reviewed_structure
+import bazi_purpose_extensions as purpose_extensions
+import bazi_qiong_xin_zi as qiong_xin_zi
+import bazi_primary_spouse as primary_spouse
+from bazi_reviewed_structure import GROUP_RULES, PAIR_RULES
 
 VERSION = 'bazi-structure-v2'
 KEYS = ('year', 'month', 'day', 'hour')
 LABELS = dict(zip(KEYS, ('年', '月', '日', '时')))
 ELEMENTS = '木火土金水'
-PAIR_RULES = {
-    '六冲': ('子午', '丑未', '寅申', '卯酉', '辰戌', '巳亥'),
-    '六合配对': ('子丑', '寅亥', '卯戌', '辰酉', '巳申', '午未'),
-    '相害': ('子未', '丑午', '寅巳', '卯辰', '申亥', '酉戌'),
-    '子卯刑': ('子卯',),
-    '自刑配对': ('辰辰', '午午', '酉酉', '亥亥'),
-}
-GROUP_RULES = {'三合齐字': ('申子辰', '亥卯未', '寅午戌', '巳酉丑'),
-               '三会齐字': ('寅卯辰', '巳午未', '申酉戌', '亥子丑'),
-               '三刑齐字': ('寅巳申', '丑戌未')}
 
 
 def element(gan):
@@ -41,9 +34,13 @@ def describe(items):
     return '、'.join(items) if items else '未见（仅限已知柱）'
 
 
-def analyze(result, temporal_uncertainty=False):
+def analyze(result, temporal_uncertainty=False, *, candidate_temporal_uncertainty=False):
     if not isinstance(result, dict) or not isinstance(result.get('pillars'), dict):
         raise ValueError('需要四柱映射')
+    uncertain = temporal_uncertainty or bool(result.get('temporal_uncertainty', False))
+    # The old comparison panels evaluate the witness as an exact four-pillar
+    # input. These newer models carry the original uncertainty into follow-ups.
+    model_uncertainty = uncertain or candidate_temporal_uncertainty
     p = result['pillars']
     for key in KEYS:
         row = p.get(key)
@@ -53,7 +50,9 @@ def analyze(result, temporal_uncertainty=False):
             continue
         if row[0] not in engine.GAN or row[1] not in engine.ZHI:
             raise ValueError('非规范四柱字段：' + key)
-    known, missing = {}, []
+    day = p['day'][0]
+    day_index = engine.GAN.index(day)
+    known, missing, facts = {}, [], {}
     for key in KEYS:
         row = p[key]
         if key == 'hour' and row[0] == '未知':
@@ -62,37 +61,13 @@ def analyze(result, temporal_uncertainty=False):
         if len(row) != 4 or row[0] not in engine.GAN or row[1] not in engine.ZHI:
             raise ValueError('非规范四柱字段：' + key)
         expected_hidden = engine.format_canggan(row[1])
-        expected_god = '—' if key == 'day' else engine.shishen_of(
-            engine.GAN.index(p['day'][0]), engine.GAN.index(row[0]))
-        if row[3] != expected_hidden or row[2] != expected_god:
+        fact = engine.pillar_fact(row[0], row[1], day_index, is_day=key == 'day')
+        if row[3] != expected_hidden or row[2] != fact['ten_god']:
             raise ValueError('藏干或十神与引擎口径不一致：' + key)
         known[key] = row
-    day = p['day'][0]
+        facts[key] = fact
     wx = element(day)
-    facts = {key: {'pillar': row[0] + row[1], 'stem': row[0], 'branch': row[1],
-                  'ten_god': row[2], 'hidden': [{'stem': g, 'element': w,
-                    'ten_god': engine.shishen_of(engine.GAN.index(day), engine.GAN.index(g))}
-                    for g, w in engine.CANGGAN[row[1]]]}
-             for key, row in known.items()}
-    pairs = []
-    for a, b in combinations(known, 2):
-        za, zb = p[a][1], p[b][1]
-        for kind, patterns in PAIR_RULES.items():
-            if any(sorted(za + zb) == sorted(pattern) for pattern in patterns):
-                pairs.append({'kind': kind, 'positions': [a, b], 'symbols': za + zb,
-                              'adjacent': abs(KEYS.index(a) - KEYS.index(b)) == 1})
-        if any(sorted(p[a][0] + p[b][0]) == sorted(pair)
-               for pair in ('甲己', '乙庚', '丙辛', '丁壬', '戊癸')):
-            pairs.append({'kind': '天干五合配对', 'positions': [a, b],
-                          'symbols': p[a][0] + p[b][0],
-                          'adjacent': abs(KEYS.index(a) - KEYS.index(b)) == 1})
-    groups = []
-    branches = {row[1] for row in known.values()}
-    for kind, patterns in GROUP_RULES.items():
-        for pattern in patterns:
-            if set(pattern) <= branches:
-                groups.append({'kind': kind, 'symbols': pattern,
-                               'positions': [k for k in known if p[k][1] in pattern]})
+    pairs, groups = reviewed_structure.relations_from_facts(facts)
     month = p['month'][1]
     exposures = []
     for g, w in engine.CANGGAN[month]:
@@ -166,8 +141,7 @@ def analyze(result, temporal_uncertainty=False):
         ['季节按月支分类，不按公历月份或出生地天气'],
         ['火与水均按透干及藏干保留，没有用计数决定寒暖'],
         ['未量化寒暖燥湿；未确定调候用神，不据此推荐颜色、饰物、医疗或投资'])
-    strength = strength_reasoning.evaluate(facts, pairs, groups, missing,
-                                          temporal_uncertainty=temporal_uncertainty or bool(result.get('temporal_uncertainty', False)))
+    strength = strength_reasoning.evaluate(facts, pairs, groups, missing, temporal_uncertainty=uncertain)
     add('strength', '日主强弱', strength['text'],
         ['根气仅为藏干含同五行的项目操作定义；窄条件不等于通用强弱算法'],
         [e['text'] for e in strength['facts'] if e['id'] in strength['counterevidence_fact_ids']],
@@ -175,14 +149,28 @@ def analyze(result, temporal_uncertainty=False):
     sections[-1]['status'] = strength['status']
     reviewed = reviewed_structure.evaluate(
         facts, exposures, pairs, groups, pattern, strength, missing,
-        temporal_uncertainty=temporal_uncertainty or bool(result.get('temporal_uncertainty', False)),
+        temporal_uncertainty=uncertain,
+        scenario_id=result.get('scenario_id'))
+    purpose = purpose_extensions.evaluate(
+        facts, pairs, groups, pattern, strength, missing,
+        temporal_uncertainty=uncertain,
+        scenario_id=result.get('scenario_id'))
+    qiong = qiong_xin_zi.evaluate(
+        facts, pairs, groups, missing,
+        temporal_uncertainty=model_uncertainty,
+        scenario_id=result.get('scenario_id'))
+    primary_spouse_panel = primary_spouse.evaluate_bazi_primary_spouse(
+        facts, pairs, groups, pattern, missing, sex=result.get('sex'),
+        temporal_uncertainty=model_uncertainty,
         scenario_id=result.get('scenario_id'))
     root = Path(__file__).resolve().parents[1]
     return {'schema_version': 1, 'rule_version': VERSION,
             'scope': '单一输入候选的本命结构解释，非完整人生详批、非预测验证',
             'facts': facts, 'missing_pillars': missing, 'relations': pairs, 'groups': groups,
             'month_exposure': exposures, 'pattern_reasoning': pattern, 'strength_reasoning': strength,
-            'reviewed_structure': reviewed, 'paths': paths, 'support': support,
+            'reviewed_structure': reviewed, 'purpose_extensions': purpose,
+            'qiong_xin_zi_model': qiong, 'primary_spouse': primary_spouse_panel,
+            'paths': paths, 'support': support,
             'opposing': opposing, 'roots': roots, 'sections': sections,
             'source': {'kind': 'project_structural_definitions', 'path': 'docs/bazi-core-reading.md',
                        'version': VERSION, 'sha256': hashlib.sha256((root / 'docs/bazi-core-reading.md').read_bytes()).hexdigest()},
@@ -201,6 +189,10 @@ def render(analysis):
     lines += render_pattern_attribution(analysis['pattern_reasoning']['attribution'])
     lines += strength_reasoning.render_attribution(analysis['strength_reasoning']['attribution'])
     lines += reviewed_structure.render(analysis['reviewed_structure'])
+    lines += purpose_extensions.render(analysis['purpose_extensions'])
+    lines += qiong_xin_zi.render(analysis['qiong_xin_zi_model'])
+    if 'primary_spouse' in analysis:
+        lines += primary_spouse.render(analysis['primary_spouse'])
     return lines
 
 

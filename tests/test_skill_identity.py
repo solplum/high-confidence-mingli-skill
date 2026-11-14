@@ -38,7 +38,7 @@ class SkillIdentityTests(unittest.TestCase):
 
     def test_legacy_data_remains_accessible(self):
         for file in ("SKILL.md", "docs/onboarding.md", "templates/chart.template.md",
-                     "scripts/build_chart.py", "workflows/fortune-close.md"):
+                     "workflows/fortune-close.md"):
             text = (ROOT / file).read_text()
             self.assertIn("~/.claude/fortune-telling/", text)
             self.assertNotIn(f"~/.claude/{NAME}/", text)

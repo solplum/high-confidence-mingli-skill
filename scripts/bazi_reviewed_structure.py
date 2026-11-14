@@ -4,7 +4,7 @@ This module consumes canonical core facts. It neither chooses a pattern nor
 changes strength, stem/branch facts, combination effects, or ledger permissions.
 """
 from copy import deepcopy
-from itertools import product
+from itertools import combinations, product
 import json
 
 import pai_pan_bazi as engine
@@ -16,10 +16,43 @@ RECORD_IDS = tuple('bazi-reviewed-' + rule for rule in RULE_IDS)
 KEYS = ('year', 'month', 'day', 'hour')
 LABELS = dict(zip(KEYS, ('年', '月', '日', '时')))
 ELEMENTS = '木火土金水'
+PAIR_RULES = {
+    '六冲': ('子午', '丑未', '寅申', '卯酉', '辰戌', '巳亥'),
+    '六合配对': ('子丑', '寅亥', '卯戌', '辰酉', '巳申', '午未'),
+    '相害': ('子未', '丑午', '寅巳', '卯辰', '申亥', '酉戌'),
+    '子卯刑': ('子卯',),
+    '自刑配对': ('辰辰', '午午', '酉酉', '亥亥'),
+}
+GROUP_RULES = {'三合齐字': ('申子辰', '亥卯未', '寅午戌', '巳酉丑'),
+               '三会齐字': ('寅卯辰', '巳午未', '申酉戌', '亥子丑'),
+               '三刑齐字': ('寅巳申', '丑戌未')}
 RESOURCE = ('正印', '偏印')
 WEALTH = ('正财', '偏财')
 TITLES = dict(zip(RULE_IDS, ('官、伤、印的候选分支', '食、杀、印、财的反向作用链',
                               '五合的自身、他干、隔位与共享角色', '月令用神、相神与扶抑的语义对象')))
+
+
+def relations_from_facts(facts):
+    """Derive the original pair and group observations in fixed pillar order."""
+    known = {key: facts[key] for key in KEYS if key in facts}
+    pairs = []
+    for left, right in combinations(known, 2):
+        branches = known[left]['branch'] + known[right]['branch']
+        stems = known[left]['stem'] + known[right]['stem']
+        adjacent = abs(KEYS.index(left) - KEYS.index(right)) == 1
+        for kind, patterns in PAIR_RULES.items():
+            if any(sorted(branches) == sorted(pattern) for pattern in patterns):
+                pairs.append(dict(kind=kind, positions=[left, right], symbols=branches, adjacent=adjacent))
+        if any(sorted(stems) == sorted(pattern) for pattern in ('甲己', '乙庚', '丙辛', '丁壬', '戊癸')):
+            pairs.append(dict(kind='天干五合配对', positions=[left, right], symbols=stems, adjacent=adjacent))
+    groups = []
+    branches = {row['branch'] for row in known.values()}
+    for kind, patterns in GROUP_RULES.items():
+        for pattern in patterns:
+            if set(pattern) <= branches:
+                groups.append(dict(kind=kind, symbols=pattern,
+                                   positions=[key for key, row in known.items() if row['branch'] in pattern]))
+    return pairs, groups
 
 
 def _element(stem):
