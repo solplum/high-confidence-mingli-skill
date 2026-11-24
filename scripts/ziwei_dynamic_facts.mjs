@@ -149,9 +149,8 @@ const targetLunar = solar2lunar(args['target-date']);
 const sourceFiles = [
   'scripts/pai_pan_ziwei/pai_pan.ts','scripts/pai_pan_ziwei/vendor/algorithm.ts',
   'scripts/pai_pan_ziwei/vendor/constants.ts','scripts/pai_pan_ziwei/vendor/sihua.ts',
-  'scripts/pai_pan_ziwei/package-lock.json','knowledge/catalog.json','docs/time-contract.md',
-  'docs/interpretation-standard.md','references/vendor/iztro-docs/learn/horoscope.md',
-  'references/vendor/iztro-docs/learn/mutagen.md',
+  'scripts/pai_pan_ziwei/package-lock.json','references/corpus/manifest.json','docs/time-contract.md',
+  'references/corpus/ziwei_stars_patterns.jsonl','references/ziwei/sihua-tables.md',
   'scripts/pai_pan_ziwei/node_modules/iztro/lib/astro/FunctionalAstrolabe.js',
   'scripts/pai_pan_ziwei/node_modules/iztro/lib/astro/astro.js',
   'scripts/pai_pan_ziwei/node_modules/iztro/lib/data/heavenlyStems.js',

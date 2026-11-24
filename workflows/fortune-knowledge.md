@@ -1,76 +1,24 @@
-# Fortune-Knowledge — 通用知识 Workflow
+# Fortune-Knowledge — 命理概念与原典知识问答流程
 
-> **知识来源门**：按 `knowledge/README.md` 校验目录、核对引用用途及资料属性。旧摘要只在来源登记允许的范围内使用，隔离条目不用于解读，未核版本不作逐字古籍引用。
+> 适用于「《子平真诠》的用神和《滴天髓》的用神有什么区别？」「紫微里化忌一定坏吗？」「七政四余的命度和立命宫怎么看？」「《穷通宝鉴》怎么看庚金生巳月？」。
 
-由 SKILL.md §0 路由触发。按所问概念和体系查资料。演示盘例时可用标明输入与口径的合成盘。用户明确请求对照个人盘时，先进入个人严格层，再读取该部分需要的档案。
+## 原则：纯知识讲解无需建档，绝不凭记忆编古文
 
-## 与共鸣溯源的边界
+1. **不要强行拉用户去建档排盘**：纯探讨命理概念、古籍原文或三术体系差异时，直接高质量解答；仅当用户追问“那我自己这个盘怎么算”时，再切入 `docs/onboarding.md` 建档流程。
+2. **先用 `scripts/mingli_query.py` 检索再作答**：
+   ```bash
+   # 查八字特定日干月令原典
+   python3 scripts/mingli_query.py bazi-lookup --day-stem 庚 --month-branch 巳
 
-| | 共鸣溯源 | 通用知识(本workflow) |
-|---|---|---|
-| 用户请求 | 核对命题是否适用于本人 | 解释概念、规则或体系差异 |
-| 分析锚点 | 个人命盘 | 通用命理体系 |
-| 输出方向 | 溯源解释 | 知识解答 |
+   # 跨三盘/单体系查原典原文（加 --full 可输出完整未截断原文）
+   python3 scripts/mingli_query.py search --system bazi --query "用神 相神 格局" --full --limit 6
+   python3 scripts/mingli_query.py search --system ziwei --query "化忌" --include-feixing
+   python3 scripts/mingli_query.py search --system qizheng --query "命度 度主 宫主"
+   ```
+3. 辅助参考静态速查表：`references/bazi/classical-texts.md`、`references/bazi/dayun-rules.md`、`references/ziwei/sihua-tables.md`、`references/ziwei/patterns.md`、`references/qizheng/reading.md` 与 `references/qizheng/states-tables.md`。
 
-模糊边界: "偏印是什么？我是不是？" → 先本 workflow 解释概念，再走共鸣溯源对照，两段合一输出。
+## 回答结构
 
-## Phase 1: 知识检索（references 查表优先）
-
-先按 `knowledge/README.md` 校验并检索实际适用的登记条目，说明定义、条件、学派差异与资料属性。以下文件只是检索导航，读取前检查来源登记和隔离状态：
-- `references/ziwei/patterns.md` + `classics.md`: 格局/星曜资料；标题不代表已核原书或已授权个人解读
-- `references/bazi/classical-texts.md`: 十神/格局/调候类概念的典籍摘要
-- 七政的命度宿主、宫主与恩用难仇，按 [QZ01–04](../docs/qizheng-rule-profiles.md) 检索。运行 `python3 scripts/knowledge_catalog.py query --system qizheng --profile qizheng-degree-relations-v1`，也可加 `--term QZ01` 等规则编号定位。讨论乾元的宫主参照时，另查[独立研究登记](../docs/qizheng-traditional-study.md)与[接入说明](../docs/qizheng-traditional-integration.md)。明确选择 `qianyuan-palace-v1` 才用 QZT04 演算该参照，保留其结构比较用途。
-- SKILL.md §7 推算规则（降级路径）: 四化表、年上起月法、十神判定、藏干表等通用规则
-- `references/domain-signals.md`: 该概念在各领域中的对应
-- 口语说法或常用 profile 未命中时，先按所问体系和条件定位来源门列出的相关已登记规则，用登记词或规则 ID 重查相应 profile。复核条目的条件和用途后再解释。仍没有适用条目时，说明已查范围与资料缺口；模型记忆只可提出待查术语，不能补造权威定义或获准规则。
-
-解释同时遵循 [解释标准 v3](../docs/interpretation-standard.md)：已有概念可作清楚标明作者身份的现代转译和综合，不因现代措辞没有同字检索结果而自动拒绝。确实缺少传统定义或关键规则时仍保留该缺口。
-
-涉及完整模型评价时读取 [M0](../docs/model-judgment.md)，分清源文通用条件、评注选读、作者时间适配与现实效度；正支、特指反条及会改变结果的异读一并解释。只在用户要求个人应用后接入个人严格层，不为知识说明读取私人档案。
-
-解释大限推进、本命婚姻配置、官印主兼或官用下配偶支持时，按[条件模型入口](../docs/stage-and-spouse-models.md)检索具体卡和异读。合成例可演示匹配与退出；个人应用才核本人盘。
-
-先回答概念是什么、成立条件及常见误解，再解释在何种结构、目标或时间层下可能有利或不利、代价和改变评价的条件。概念本无固定吉凶时直接说明，不能仅凭生助、克冲、化禄或吉煞名称填好坏；有争议或无法比较的效力明确未定，不称中性或相抵。缺口只限制对应内容，其余已支持的解释继续展开。
-
-输出: { definitions: string[], rules: string[], citations: string[], cross_references: string[] }
-
-## Phase 2: 按所问体系解释与对照
-
-单一体系的问题直接解释该体系。需要跨体系比较时，按所问体系分别核查。有子 agent 工具时可并行。
-- **八字**: 该概念在八字体系中的表现
-  - 任务: 定义/条件/常见误解，按已登记的实际条目标注资料名、版本、文件行号及项目释义/数字摘录
-  - schema: `{ plate: "八字", manifestation: string, citation: string, key_features: string[], has_direct_match: boolean }`
-
-- **紫微**: 该概念在紫微体系中的表现
-  - 任务: 定义/条件/常见误解，按实际登记的资料属性与用途引用
-  - schema: 同上（含 citation）
-
-- **七政**: 该概念在七政体系中的表现
-  - 任务: 用上面实际匹配的登记解释定义、参照与常见误解。同一示例中分别说明谁是参照、谁是比较曜及五行关系，保留各规则自己的标签。
-  - schema: 同上（含 citation）
-
-用户要求比较的体系缺直接对应时，明确说明。
-
-## Phase 3: 输出格式化
-
-按 SKILL.md §16 模板 + §9 斯多葛语气:
-
-```
-### [概念]是什么
-[前两段直接回答：体系归属、核心定义、成立条件及是否有固定吉凶；再澄清常见误解]
-
-### 在什么条件下有利或不利
-[评价对象与目标 + 具体支持与制约 + 主次理由、代价及翻转条件；无适用规则时明确该项不能定性]
-
-[涉及跨体系比较时，列出所问各体系的定义、对应关系与差异。]
-
-[仅当用户希望对照个人盘面时增加该部分，并先执行个人严格层；明确支持、不支持、部分符合或无法核实]
-```
-
-## 约束
-
-- 不以个人盘为分析锚点（区别于共鸣溯源）
-- 个人盘对照是可选附加，不强加
-- 一旦接受个人盘对照，先读取 `workflows/fortune-auditable-reading.md`，使用相同的证据与复审标准；知识解释本身不要求读取私人档案。
-- 解释性格差异的通用示例须标明假设；涉及个人时才使用有来源的自述、偏好或可撤回的性情假设，并分清结构、策略适配与体感，不由偏好补出外部好运。
-- 完成前检查是否已直接解释概念及适用利弊、资料与作者综合的身份是否清楚；只有定义、术语表或通用建议不足以回答用户所问的利弊。
+1. **一句话清晰界定概念**（用现代汉语讲透本质，不故弄玄虚）。
+2. **原典出处与逐句解析**：附上 `mingli_query.py` 实际检索到的经典原句（注明书名与篇名）并白话疏通。
+3. **实战使用边界与流派差异**：说明该概念在不同经典/流派中的分歧点（例如《子平真诠》重月令格神 vs《穷通宝鉴》重气候调候；《天纪》固定四化 vs 飞星四化；七政命度重度主 vs 乾元派重立命宫）及常见误区。

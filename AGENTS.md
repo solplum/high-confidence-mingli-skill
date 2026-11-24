@@ -1,24 +1,26 @@
-# AGENTS.md — high-confidence-mingli-skill
+# AGENTS.md — high-confidence-mingli-skill 维护指南
 
-八字、紫微斗数和七政四余的命理文化分析技能。由确定性引擎排盘，按登记来源给条件解释，单盘复审后再对照。
+> 八字、紫微斗数、七政四余三引擎排盘 + 清洗验证后的三体系古典原典库。
 
 ## 运行与验证
 
-- 标准库脚本使用 Python 3.8+。IANA 历史时区需要 Python 3.9+ 和时区数据库。紫微使用 Node.js 18.19+，首次在 `scripts/pai_pan_ziwei` 执行 `npm ci`。
-- 总控合成示例 `python3 scripts/build_chart.py --solar 1990-05-15 --hour 14:00 --sex 男 --lat 31.23 --lon 121.47 --utc-offset 8 --analysis-year 2026 --format json`。只确认出生日期或时辰时按[建档流程](docs/onboarding.md)选候选入口。
-- 单跑紫微时在 `scripts/pai_pan_ziwei` 用 `node --import tsx pai_pan.ts --solar 1990-05-15 --hour 14:00 --sex 男 --age-year 2026`。独立七政入口使用北京时间，时区换算和各盘口径见[时间契约](docs/time-contract.md)。
-- 改引擎跑 `python3 -m unittest discover -s scripts -p 'test_*.py' -v` 和 `python3 -m unittest discover -s tests -v`，先备齐锁定的紫微依赖。改知识库另跑 `python3 scripts/knowledge_catalog.py validate` 和仓库 `tests` 全套。记录跳过项。
+- **Python 环境**：Python 3.8+（全标准库，零第三方依赖；IANA 历史时区需 Python 3.9+ 及系统 `zoneinfo`）。
+- **Node 环境（紫微引擎）**：Node.js 18.19+，首次在 `scripts/pai_pan_ziwei` 运行 `npm ci` 安装锁定依赖 `iztro 2.6.1`。
+- **三盘合排入口**：
+  `python3 scripts/build_chart.py --solar 1990-05-15 --hour 14:00 --sex 男 --lat 31.23 --lon 121.47 --place 上海 --analysis-year 2026 --format json`
+- **原典检索入口**：
+  `python3 scripts/mingli_query.py stats`
+  `python3 scripts/mingli_query.py bazi-lookup --day-stem 庚 --month-branch 巳`
+  `python3 scripts/mingli_query.py chart-lookup --chart-json - --topic career`
+- **完整测试集**：
+  `python3 -B -m unittest discover -s scripts -p 'test_*.py' -v`
+  `python3 -B -m unittest discover -s tests -p 'test_*.py' -v`
 
-## 目录与约定
+## 目录结构
 
-- `SKILL.md` 路由到 `workflows/` 六个模式及共享流程。`scripts/` 负责排盘，`references/` 存放来源及登记释义，`knowledge/` 决定可用范围。维护人读 [README](README.md) 的使用文档，修改时同步中英文。
-- 排盘数字取实际引擎输出。个人分析按[共享流程](workflows/fortune-auditable-reading.md)和[工作记录模板](templates/reading-workpad.template.md)保存范围、依据和复审。按原问先给有依据的结论与适用范围，完整正文默认发在对话。
-- [v3](docs/interpretation-standard.md)、[M0](docs/model-judgment.md)和[综合判读方法](docs/conditional-judgment.md)定义现行解释、反条及时间适配。证据核查、原问题是否已答和现实预测效度分别验收。
-- 所有模式遵循[知识来源门](knowledge/README.md)。八份同步参考按[来源记录](references/README.md)保留原字节。按登记的来源身份、许可和用途引用，受限模块另存人工记录。`proposals/` 只作审查材料。
-- 修改既有分析标准、计算学派或口径、来源隔离或规则启用范围前，先列具体变化与影响并获得用户确认。计算口径获准变更后重跑对应对拍。已批准的标准可直接执行。
-- 个人 `chart.md`、`memory.md` 和归档留在技能仓库之外。赛事资料和答案按[外部案例评测](docs/reading-benchmark.md)分组、隔离，完整保留答错和拒答。
-
-## 当前能力与版本核对
-
-- 现行用途及缺口查[判势能力说明](docs/judgment-capabilities.md)，七政同口径对拍和未启用规则查[七政来源与规则](docs/qizheng-rule-profiles.md)。
-- 在技能独立 Git 仓库核对提交与工作树。本地工作树、全局安装和 GitHub 分支分别用实际文件、安装回执及远端引用核实，推送范围以用户当次授权为准。
+- `SKILL.md`：主入口与标准 4 步分析流，路由到 `workflows/` 六个具体场景文件。
+- `scripts/`：确定性排盘引擎（`pai_pan_bazi.py`、`pai_pan_qizheng.py`、`pai_pan_ziwei/pai_pan.ts`、`ziwei_dynamic_facts.mjs`、`build_chart.py`、`time_scenarios.py`）＋ 原典检索引擎 `mingli_query.py` ＋ 回归测试。
+- `references/corpus/`：7 份清洗完毕的结构化 JSONL 原典语料（1,351 条）与 `manifest.json`。修改语料须同步更新 `manifest.json` 的计数与 SHA-256，并通过 `scripts/test_mingli_query.py`。
+- `references/` 其他文件：四领域信号指引与三盘静态速查表；开源归属见 `THIRD_PARTY_LICENSES.md`。
+- `docs/`：`onboarding.md`（建档流程）、`time-contract.md`（时间/历法/边界契约）、`corpus-audit.md`（语料来源与清洗审计记录）。
+- **隐私边界**：个人档案保存在 `~/.claude/fortune-telling/`（仓库外），切勿提交任何真实命主数据或隐私文件到仓库。

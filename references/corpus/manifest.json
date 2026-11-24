@@ -1,0 +1,94 @@
+{
+  "schema_version": 2,
+  "built_at": "2026-11-24T09:20:58Z",
+  "total_records": 1351,
+  "qiongtong_stem_month_coverage": "120/120",
+  "systems": {
+    "bazi": 666,
+    "ziwei": 405,
+    "qizheng": 280
+  },
+  "books": {
+    "穷通宝鉴": 125,
+    "子平真诠": 60,
+    "滴天髓阐微": 241,
+    "渊海子平": 113,
+    "千里命稿": 127,
+    "紫微斗数全书·卷一": 22,
+    "紫微斗数全书·卷二": 46,
+    "紫微斗数全书·卷三": 33,
+    "紫微斗数全书·诸星问答论": 41,
+    "十四主星详解": 54,
+    "辅煞曜详解": 15,
+    "杂曜神煞详解": 46,
+    "十二宫职详解": 26,
+    "四化释义": 9,
+    "紫微常见格局汇编": 68,
+    "运限流年基础": 4,
+    "引擎内置41格局表": 41,
+    "张果星宗·总纲与星学大成": 73,
+    "张果星宗·星辰庙旺喜忌": 10,
+    "张果星宗·十一曜逐曜断": 96,
+    "张果星宗·十二宫体系": 24,
+    "张果星宗·格局库": 77
+  },
+  "files": {
+    "bazi_qiongtong.jsonl": {
+      "count": 125,
+      "bytes": 136106,
+      "sha256": "c26476e16f65688f6d68afe9704223fd50bfe7c920e0bf6fc1a783fbc3029d56"
+    },
+    "bazi_classics.jsonl": {
+      "count": 541,
+      "bytes": 1053842,
+      "sha256": "4d55bbebb6ec6771edbb05fbd8ff3a5dfd5c4d49e2d61af1535cc0ed400d1f83"
+    },
+    "ziwei_quanshu.jsonl": {
+      "count": 142,
+      "bytes": 228290,
+      "sha256": "6f516af91e2fc000fc12da230c45d8ff9e23be5e79ee83922cedeae6f1bccfa6"
+    },
+    "ziwei_stars_patterns.jsonl": {
+      "count": 263,
+      "bytes": 306514,
+      "sha256": "198e61afe8b91896eecc75fb9578c0ca7b09a72d5d59cde47668952d3bc8178c"
+    },
+    "qizheng_classics.jsonl": {
+      "count": 83,
+      "bytes": 172434,
+      "sha256": "e632a78586ee5b545a164045b3acbab110c0c73d9818c1493bb25b00829d9471"
+    },
+    "qizheng_stars.jsonl": {
+      "count": 96,
+      "bytes": 204309,
+      "sha256": "8ad95cc1e3831e37e2d6f23b3c92bbfaf928554a8d3ad0fe30cf3f36f7d3ef75"
+    },
+    "qizheng_palaces_geju.jsonl": {
+      "count": 101,
+      "bytes": 189592,
+      "sha256": "48509f6d2778b2984ff4e9977e276329b00ae17de69f5182f14883b026597c71"
+    }
+  },
+  "sources": [
+    {
+      "name": "穷通宝鉴 / 子平真诠 / 滴天髓阐微 / 渊海子平 / 千里命稿",
+      "upstream": "https://github.com/ycc77cn/skills",
+      "license": "MIT"
+    },
+    {
+      "name": "紫微斗数全书（卷一至三、诸星问答）及星曜格局释义",
+      "upstream": "https://github.com/SylarLong/iztro-docs",
+      "license": "MIT"
+    },
+    {
+      "name": "引擎内置41格局表",
+      "upstream": "scripts/pai_pan_ziwei/vendor/patterns.ts",
+      "license": "MIT"
+    },
+    {
+      "name": "张果星宗 / 星学大成 / 乾元秘旨",
+      "upstream": "daizhigev20 via references/qizheng",
+      "license": "Public Domain"
+    }
+  ]
+}

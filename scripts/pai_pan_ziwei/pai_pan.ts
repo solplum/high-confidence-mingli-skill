@@ -17,17 +17,15 @@
  *   --sex 男|女           必填（决定大限顺逆）
  *   --name  姓名（可选，仅展示）
  *   --place 出生地（可选，仅展示）
- *   --explain-rules     显示实现规则的解释及局限（不启用事件预测）
- *   --temporal-uncertainty  出生时间存在非零误差，暂缓已审增补观察主题
- *   --format text|json  默认 text；两种格式共享 rule_output
+ *   --explain-rules     显示引擎格局匹配的条件明细
+ *   --temporal-uncertainty  存在出生时间误差时的提示标记
+ *   --format text|json  默认 text
  *   --age-year YYYY      查询该公历年的虚岁和所处大限（默认当年）
  */
 
 import { generateChart, getLunarInfo } from './vendor/algorithm';
-import { renderDomainReading } from './domain_reading';
-import { renderReviewedStructure } from './reviewed_structure';
-import { buildRuleOutput } from './rule_output';
-import { getSiHuaByStem, getLiuNianSiHua, getYearStemIndex, getYearBranchIndex } from './vendor/sihua';
+import { detectPatterns } from './vendor/patterns';
+import { getSiHuaByStem, getLiuNianSiHua, getYearBranchIndex } from './vendor/sihua';
 import { STEMS, BRANCHES } from './vendor/constants';
 
 interface Args {
@@ -140,11 +138,19 @@ function run() {
   }, ageYear, birthYear);
 
   const lunar = getLunarInfo(year, month, day);
+  const patterns = detectPatterns(chart);
+  const mingStars = chart.palaces.find(p => p.branch === chart.mingGongBranch)?.stars
+    .filter(s => s.type === 'major').map(s => s.name) ?? [];
 
-  const ruleOutput = buildRuleOutput(chart, args.explainRules, {temporalUncertainty:!!args.temporalUncertainty});
   if (args.format === 'json') {
-    console.log(JSON.stringify({ schema_version: 1, engine: 'iztro 2.6.1 / vendored wrapper',
-      input: { solar: args.solar, shichenIndex, gender, ageYear, birthYear, temporalUncertainty:!!args.temporalUncertainty }, lunar, chart, rule_output: ruleOutput }, null, 2));
+    console.log(JSON.stringify({
+      schema_version: 1,
+      engine: 'iztro 2.6.1 / vendored wrapper',
+      input: { solar: args.solar, shichenIndex, gender, ageYear, birthYear, temporalUncertainty: !!args.temporalUncertainty },
+      lunar,
+      chart,
+      patterns,
+    }, null, 2));
     return;
   }
   // ── 输出 ──
@@ -210,25 +216,19 @@ function run() {
     console.log(dx.startAge + '-' + dx.endAge + '　' + dx.palaceName + '(' + BRANCHES[dx.palaceBranch] + ')' + marker + window);
   });
 
-  console.log('\n## 格局（实现规则匹配）');
-  console.log(ruleOutput.scope);
-  console.log('实现来源：' + ruleOutput.source);
-  console.log(ruleOutput.terminology);
-  if (!ruleOutput.patterns.length) console.log('（无匹配格局，不表示现实中缺乏某种能力或机会）');
-  for (const pat of ruleOutput.patterns) {
-    console.log(pat.name + '｜旧规则分类 ' + pat.level + '（不是风险或置信度评级）');
-    console.log('  ' + pat.description);
-    if (pat.conditions.bonus.length) console.log('  附加条件：' + pat.conditions.bonus.join('；'));
-    if (pat.conditions.breaking.length) console.log('  限制条件：' + pat.conditions.breaking.join('；'));
-    if (pat.explanation) {
-      for (const value of Object.values(pat.explanation)) console.log('  说明：' + value);
+  console.log('\n## 格局（iztro 格局识别器参考）');
+  if (!patterns.length) console.log('（无匹配内置格局；需结合三方四正与诸星细看）');
+  for (const pat of patterns) {
+    console.log(pat.name + '｜' + pat.level + (pat.source ? '｜' + pat.source : ''));
+    if (pat.description) console.log('  ' + pat.description);
+    if (args.explainRules && pat.conditions) {
+      if (pat.conditions.required?.length) console.log('  条件：' + pat.conditions.required.join('；'));
+      if (pat.conditions.bonus?.length) console.log('  加分：' + pat.conditions.bonus.join('；'));
+      if (pat.conditions.breaking?.length) console.log('  破格：' + pat.conditions.breaking.join('；'));
     }
   }
-  console.log(renderDomainReading(ruleOutput.domain_reading));
-  console.log(renderReviewedStructure(ruleOutput.reviewed_structure));
-  console.log('\n## 命宫小结（排布事实）');
-  console.log('主星：' + (ruleOutput.ming_summary.stars.join('、') || '空宫（借星另列）'));
-  console.log(ruleOutput.ming_summary.meaning);
+  console.log('\n## 命宫主星');
+  console.log('主星：' + (mingStars.join('、') || '空宫（借星见十二宫）'));
 
   console.log(`\n## 流年（公历年度索引 ${ageYear} 年，虚岁口径：${chart.currentAge}）`);
   const ln = getLiuNianSiHua(ageYear);

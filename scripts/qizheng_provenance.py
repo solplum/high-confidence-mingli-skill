@@ -4,10 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 FILES = ('scripts/pai_pan_qizheng.py', 'scripts/qizheng_star_frame.py',
-         'scripts/qizheng_provenance.py', 'scripts/qizheng_rule_profiles.py',
-         'knowledge/qizheng-rule-sources.json', 'docs/qizheng-ephemeris.md',
-         'docs/qizheng-horizon-contract.md', 'docs/qizheng-star-frame.md',
-         'docs/qizheng-rule-profiles.md')
+         'scripts/qizheng_provenance.py', 'references/qizheng/states-tables.md')
 
 
 def model_provenance(profile):

@@ -19,7 +19,7 @@ import argparse
 import json
 import hashlib
 import sys
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime
 import math
 from pathlib import Path
 
@@ -27,18 +27,13 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
 import pai_pan_bazi as bazi  # noqa: E402
-import bazi_core_reading as core_reading
 import pai_pan_qizheng as qz  # noqa: E402
-import qizheng_rule_profiles as qz_rules
-import qizheng_traditional_reading as qz_tradition
-import qizheng_sensitivity
-import bazi_scenario_reading as scenario_reading
-import ziwei_life_reading
 from ziwei_native import ZIWEI_DIR, run_ziwei
 from time_scenarios import (
-    MAX_UNCERTAINTY_MINUTES, UnsupportedUtcInterval, enumerate_scenarios, parse_birth_date, resolve_civil,
+    UnsupportedUtcInterval, enumerate_scenarios, parse_birth_date, resolve_civil,
     solar_clock, timezone_provenance,
 )
+
 
 def parse_hour(text):
     hh, mm = (int(x) for x in text.split(":"))
@@ -48,7 +43,7 @@ def parse_hour(text):
 
 
 def ziwei_scenario_comparison(scenarios, sex, name, place, analysis_year):
-    """Replay enumerated Ziwei inputs for conditional stage and relationship use."""
+    """Replay enumerated Ziwei inputs for time-uncertainty comparison."""
     candidates = {}
     for number, variant in enumerate(scenarios["variants"], 1):
         fields = variant["fields"]
@@ -62,28 +57,21 @@ def ziwei_scenario_comparison(scenarios, sex, name, place, analysis_year):
             "id": "ziwei-candidate-%d" % (len(candidates) + 1), "scenario_ids": [scenario_id],
             "witness_utc": variant["witness_utc"], "chart_clock": variant["chart_clock"],
             "input": {"solar_date": solar_date, "shichen_index": shichen_index, "birth_year": birth_year},
-            "chart": None, "stage_relationship": None, "case_judgments": None, "degradation": None,
+            "chart": None, "degradation": None,
         }
         candidates[identity] = candidate
         if analysis_year < birth_year:
-            candidate["degradation"] = ziwei_life_reading.birth_candidate_year_gap(analysis_year, birth_year)
+            candidate["degradation"] = "分析年份 %d 早于该候选公历出生年 %d，未排紫微流年" % (analysis_year, birth_year)
             continue
-        # The enumerator already resolved the witness's calendar date and clock,
-        # including subminute solar corrections or any DST fold. Feed the engine
-        # that clock directly rather than converting the UTC witness again.
         clock = datetime.fromisoformat(variant["chart_clock"])
         output, note = run_ziwei(clock.year, clock.month, clock.day, clock.hour, clock.minute,
                                  sex, name, place, analysis_year, birth_year, output_format="json")
         candidate["degradation"] = note
         if output is None:
             continue
-        chart = json.loads(output)["chart"]
-        candidate["chart"] = chart
-        panel = ziwei_life_reading.analyze(chart, birth_year, analysis_year)
-        candidate["stage_relationship"] = panel["stage_relationship"]
-        candidate["case_judgments"] = panel["case_judgments"]
+        candidate["chart"] = json.loads(output)["chart"]
     return {
-        "scope": "candidate_stage_and_relationship_only", "coverage": scenarios["coverage"],
+        "scope": "candidate_charts", "coverage": scenarios["coverage"],
         "analysis_year": analysis_year, "candidates": list(candidates.values()),
     }
 
@@ -99,13 +87,25 @@ def true_solar_time_text(hh, mm, lon, eot_minutes):
 
 def bazi_section(bazi_res, temporal_uncertainty=False):
     p = bazi_res["pillars"]
-    lines = ["## 八字", "", "| 柱 | 干支 | 十神 | 藏干 | 备注 |", "|----|------|------|------|------|"]
+    day_gan, day_zhi, _, _ = p["day"]
+    lines = [
+        "## 八字",
+        "",
+        "- 公历：%s｜农历：%s｜真太阳/排盘：%s｜节气：%s" % (
+            bazi_res.get("solar_text", ""), bazi_res.get("lunar_text", ""),
+            bazi_res.get("shichen_text", ""), bazi_res.get("jie_name", "")),
+        "- 日主：**%s**（月令：%s%s；%s）" % (
+            day_gan, p["month"][0], p["month"][1],
+            "时辰未知，时柱待定" if temporal_uncertainty or bazi_res.get("hour_unknown") else "四柱完整"),
+        "",
+        "| 柱 | 干支 | 十神 | 藏干 | 备注 |",
+        "|----|------|------|------|------|",
+    ]
     labels = ("年", "月", "日", "时")
     for i, key in enumerate(("year", "month", "day", "hour")):
         gan, zhi, shishen, canggan = p[key]
         note = "时间不确定时标注置信度" if key == "hour" and gan == "未知" else ""
         lines.append("| %s | %s%s | %s | %s | %s |" % (labels[i], gan, zhi, shishen, canggan, note))
-    lines += core_reading.render(core_reading.analyze(bazi_res, temporal_uncertainty=temporal_uncertainty))
     lines += ["", "### 神煞（脚本口径）"]
     if bazi_res["shensha_lines"]:
         lines += ["- " + s for s in bazi_res["shensha_lines"]]
@@ -201,8 +201,6 @@ def main(argv=None):
     parser.add_argument("--sex", required=True, choices=("男", "女"))
     parser.add_argument("--lat", type=float, help="纬度（北正，七政命度及昼夜等需经纬度）")
     parser.add_argument("--lon", type=float, help="经度（东正，太阳时及七政地平计算需要）")
-    parser.add_argument("--qizheng-tradition", choices=(qz_tradition.SCHEME,))
-    parser.add_argument("--qizheng-other-body", choices=qz_tradition.BODIES, default="金")
     parser.add_argument("--qizheng-profile", choices=("physical-v2", "legacy-v1"), default="physical-v2")
     parser.add_argument("--dut1-seconds", type=float, default=0.0, help="七政及真太阳钟面的 UT1−UTC 秒，默认 0 为近似")
     parser.add_argument("--place", help="出生地")
@@ -214,17 +212,13 @@ def main(argv=None):
     parser.add_argument("--fold", type=int, choices=(0, 1), help="重复民用时间：0 较早，1 较晚；不默认选择")
     parser.add_argument("--enumerate-scenarios", action="store_true", help="枚举四柱与紫微离散输入，±120 分钟内；apparent-solar 仅数值候选，不证明穷尽")
     zone_group.add_argument("--utc-offset", type=float, default=8, help="出生钟表的固定 UTC 偏移小时；默认 +08，不自动推断历史夏令时")
-    parser.add_argument("--qizheng-sensitivity-evidence", action="store_true", help="启用七政敏感性并在文本中附完整证据；JSON始终保留完整结构")
-    parser.add_argument("--qizheng-sensitivity", action="store_true", help="独立七政时间敏感性：±120 分钟内采样并细化观察到的边界，不证明完整或稳定")
     parser.add_argument("--uncertainty-minutes", type=float, default=0, help="出生时刻正负误差分钟；未开启枚举时仅为中心候选")
     parser.add_argument("--age-year", type=int, help="紫微目标年份（默认当年）")
     parser.add_argument("--analysis-year", type=int, help="显式统一八字年度字段与紫微目标年；不指定时保留旧行为")
-    parser.add_argument("--format", choices=("text", "json"), default="text", help="输出到标准输出，默认文本；JSON 快照供 ledger 引用")
-    parser.add_argument("--explain-rules", action="store_true", help="展开紫微实现规则说明，不启用事件预测")
+    parser.add_argument("--format", choices=("text", "json"), default="text", help="输出到标准输出，默认文本")
+    parser.add_argument("--explain-rules", action="store_true", help="展开紫微内置格局匹配条件")
     args = parser.parse_args(argv)
-    qizheng_sensitivity_requested = args.qizheng_sensitivity or args.qizheng_sensitivity_evidence
-    has_coordinates = args.lat is not None and args.lon is not None
-    scenarios = qz_comparison = None
+    scenarios = None
     comparison_degradation = {}
 
     try:
@@ -264,26 +258,10 @@ def main(argv=None):
                                                 args.sex, scenario_now, dut1_seconds=args.dut1_seconds)
             except UnsupportedUtcInterval as exc:
                 comparison_degradation["scenarios"] = "未执行出生时刻候选枚举：" + str(exc)
-        if qizheng_sensitivity_requested and has_coordinates:
-            try:
-                qz_comparison = qizheng_sensitivity.compare(
-                    civil, args.uncertainty_minutes, args.lat, args.lon, args.qizheng_profile,
-                    args.dut1_seconds, args.qizheng_tradition, args.qizheng_other_body)
-            except UnsupportedUtcInterval as exc:
-                comparison_degradation["qizheng_sensitivity"] = "未执行七政时间敏感性比较：" + str(exc)
-        elif qizheng_sensitivity_requested:
-            if args.uncertainty_minutes > MAX_UNCERTAINTY_MINUTES:
-                raise ValueError("七政敏感性误差须在 0 至 %d 分钟之间" % MAX_UNCERTAINTY_MINUTES)
-            missing = " 和 ".join(flag for flag, value in (("--lat", args.lat), ("--lon", args.lon)) if value is None)
-            comparison_degradation["qizheng_sensitivity"] = "未执行七政时间敏感性比较，缺少出生地坐标 " + missing
     except (ValueError, OverflowError) as exc:
         parser.error(str(exc))
         return 2
 
-    scenario_comparison = scenario_reading.analyze(scenarios, sex=args.sex) if scenarios else None
-    qz_traditional = qz_tradition.analyze(qz_res, args.qizheng_tradition, args.qizheng_other_body, bool(args.uncertainty_minutes))
-    qz_reading = qz_rules.analyze(qz_res, temporal_uncertainty=bool(args.uncertainty_minutes),
-                                  withhold_on_source_error=True)
     target_year = args.analysis_year if args.analysis_year is not None else args.age_year
     resolved_age_year = target_year if target_year is not None else date.today().year
     bazi_res = bazi.compute(
@@ -327,20 +305,10 @@ def main(argv=None):
                              "apparent_solar": apparent.isoformat() if apparent is not None else None,
                              "mean_solar": mean.isoformat() if mean is not None else None, "chart_clock": clock.isoformat(),
                              "iana_zone": args.timezone, "fold": civil.fold},
-                    "scenarios": scenarios, "bazi_scenario_comparison": scenario_comparison,
-                    "bazi": bazi_res, "bazi_core_reading": core_reading.analyze(bazi_res, temporal_uncertainty=bool(args.uncertainty_minutes)), "qizheng": qz_res, "qizheng_rule_reading": qz_reading, "qizheng_traditional_reading": qz_traditional, "qizheng_sensitivity": qz_comparison,
+                    "scenarios": scenarios,
+                    "bazi": bazi_res, "qizheng": qz_res,
                     "ziwei": json.loads(ziwei_out) if ziwei_out else None,
                     "degradation": {"ziwei": ziwei_note, **comparison_degradation}, "warnings": warnings}
-        if snapshot["ziwei"] is not None:
-            native_chart = snapshot["ziwei"]["chart"]
-            life_reading = ziwei_life_reading.analyze(
-                native_chart, civil.year, resolved_age_year,
-                temporal_uncertainty=bool(args.uncertainty_minutes))
-            life_reading['natal_stage_basis'] = ziwei_life_reading.natal_stage_basis(native_chart)
-            birth_utc = civil.astimezone(timezone.utc)
-            delta = timedelta(minutes=args.uncertainty_minutes)
-            life_reading['birth_time_bounds'] = ziwei_life_reading.physical_birth_bounds(birth_utc - delta, birth_utc + delta)
-            snapshot["ziwei"]["life_reading"] = life_reading
         if scenarios and args.uncertainty_minutes:
             snapshot["ziwei_scenario_comparison"] = ziwei_scenario_comparison(
                 scenarios, args.sex, args.name, args.place, resolved_age_year)
@@ -383,7 +351,6 @@ def main(argv=None):
                 "变化字段：" + "、".join(scenarios["changing_fields"])]
         for index, variant in enumerate(scenarios["variants"], 1):
             out.append("- 候选 %d：%s；实际可达样本 UTC %s" % (index, json.dumps(variant["fields"], ensure_ascii=False), variant["witness_utc"]))
-        out += scenario_reading.render(scenario_comparison)
         out += ["", "### 出生误差下的八字折月起运", "",
                 "各表按原折月年龄选运，左含右不含。公历交运日期另核。"]
         if scenarios["coverage"] == "numerical_witnesses_not_exhaustive":
@@ -405,15 +372,8 @@ def main(argv=None):
             out.append("以下三盘与大运数据为中心时刻；边界两侧的八字解释请以上述候选对照为准。")
     out += bazi_section(bazi_res, temporal_uncertainty=bool(args.uncertainty_minutes))
     out += ziwei_section(ziwei_out, ziwei_note)
-    if qz_comparison:
-        out += qizheng_sensitivity.render(qz_comparison, full_evidence=args.qizheng_sensitivity_evidence,
-                                          local_timezone=civil.tzinfo)
-    show_qz_degree = any(claim["rule_id"] == "QZ01" and claim["status"] == "conditional"
-                         for claim in qz_reading["claims"])
-    out += qizheng_section(qz_res, show_degree_relations=show_qz_degree)
-    out += ["", qz_rules.format_reading(qz_reading), ""]
-    if args.qizheng_tradition:
-        out += [qz_tradition.render(qz_traditional), ""]
+    out += qizheng_section(qz_res, show_degree_relations=(qz_res.get("en_yong") is not None))
+    out.append("")
     out += dayun_section(bazi_res, center_only=bool(args.uncertainty_minutes))
     if warnings:
         out.append("## 警告")

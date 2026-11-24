@@ -969,11 +969,7 @@ def run(argv=None):
         parser.error(str(exc))
     report = format_report(result, warnings, {"solar": args.solar, "hour": hh, "minute": mm,
                                               "lat": args.lat, "lon": args.lon, "place": args.place})
-    # The CLI uses the same source and condition checks as the combined chart.
-    from qizheng_rule_profiles import analyze, format_reading
-
-    reading = analyze(result, withhold_on_source_error=True)
-    sys.stdout.write(report + "\n" + format_reading(reading) + "\n")
+    sys.stdout.write(report + "\n")
     return 0
 
 

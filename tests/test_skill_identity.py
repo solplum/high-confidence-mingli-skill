@@ -23,8 +23,9 @@ class SkillIdentityTests(unittest.TestCase):
             discovered = list((Path(home) / ".claude" / "skills").glob("*/SKILL.md"))
             self.assertEqual(discovered, [install / "SKILL.md"])
             self.assertEqual(discovered[0].parent.name, name)
-            for resource in ("scripts/build_chart.py", "docs/onboarding.md",
-                             "knowledge/catalog.json", "workflows/fortune-close.md"):
+            for resource in ("scripts/build_chart.py", "scripts/mingli_query.py",
+                             "docs/onboarding.md", "references/corpus/manifest.json",
+                             "workflows/fortune-close.md"):
                 self.assertTrue((install / resource).is_file(), resource)
 
     def test_bilingual_install_and_invocation_examples(self):

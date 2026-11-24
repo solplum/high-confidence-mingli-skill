@@ -193,15 +193,17 @@ class ZiweiContractTests(unittest.TestCase):
         self.assertTrue(snapshot['time']['chart_clock'].startswith('1999-12-31'))
         text = subprocess.check_output(command, text=True)
         self.assertIn('公历年度窗以原民用出生年 2000 为准', text)
-        rows = snapshot['ziwei']['life_reading']['stage_relationship']['stages']
+        rows = snapshot['ziwei']['chart']['daXians']
+        current_idx = snapshot['ziwei']['chart']['currentDaXianIndex']
+        birth_year = snapshot['ziwei']['input']['birthYear']
         self.assertEqual(len(rows), 12)
         printed_windows = [line for line in text.splitlines() if '｜[' in line and '-01-01)' in line]
         expected_windows = []
-        for row in rows:
-            legacy = row['legacy_stage']
-            window = legacy['window']
-            marker = ' ←目标年所在' if legacy['current'] else ''
-            expected_windows.append(marker + '｜[' + window['start_inclusive'] + ', ' + window['end_exclusive'] + ')')
+        for idx, dx in enumerate(rows):
+            marker = ' ←目标年所在' if idx == current_idx else ''
+            start_win = f"{birth_year + dx['startAge'] - 1:04d}-01-01"
+            end_win = f"{birth_year + dx['endAge']:04d}-01-01"
+            expected_windows.append(marker + '｜[' + start_win + ', ' + end_win + ')')
         self.assertEqual(len(printed_windows), len(expected_windows))
         for printed, expected in zip(printed_windows, expected_windows):
             self.assertTrue(printed.endswith(expected), printed)
