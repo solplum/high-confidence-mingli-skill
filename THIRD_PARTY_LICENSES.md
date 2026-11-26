@@ -10,6 +10,6 @@ This repository (`high-confidence-mingli-skill`, MIT License) builds upon the fo
 ## 2. Classical Corpus Sources (`references/corpus/`)
 - **Bazi Classical Texts** (`穷通宝鉴`, `子平真诠`, `滴天髓阐微`, `渊海子平`, `千里命稿`): sourced from `ycc77cn/skills` (MIT License) — cleaned, chapter/month-tagged, and indexed in `bazi_qiongtong.jsonl` and `bazi_classics.jsonl`.
 - **Ziwei Classical Texts & Star/Pattern Docs** (`紫微斗数全书` 卷一至三, `诸星问答论`, 十四主星/辅煞/十二宫/四化/格局说明): sourced from `SylarLong/iztro-docs` (MIT License, Copyright (c) 2023 Sylar Long) — stripped of VitePress/Vue UI tags, tagged by school (`feixing_reference` isolated from fixed natal four-transformations), and indexed in `ziwei_quanshu.jsonl` and `ziwei_stars_patterns.jsonl`.
-- **Qizheng Siyu Classical Texts** (`张果星宗`, `星学大成`, `乾元秘旨`): sourced from Public Domain texts via `daizhigev20` (`references/qizheng/`) — Unicode PUA characters verified and repaired, indexed in `qizheng_classics.jsonl`, `qizheng_stars.jsonl`, and `qizheng_palaces_geju.jsonl`.
+- **Qizheng Siyu Classical Texts** (`张果星宗`, `星学大成`, `乾元秘旨`): sourced from Public Domain texts via `daizhigev20` (`references/qizheng/` & `daizhigev20/易藏/术数/张果星宗.txt`) — Unicode PUA characters and verified OCR glyphs repaired, indexed in `qizheng_classics.jsonl`, `qizheng_stars.jsonl`, `qizheng_palaces_geju.jsonl`, `qizheng_bianyao_shensha.jsonl`, and `qizheng_dongwei_liunian.jsonl`.
 
 Note: Historical texts themselves are in the Public Domain; modern digital compilations, annotations, and software wrappers retain their respective MIT licenses above.

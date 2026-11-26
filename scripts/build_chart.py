@@ -126,8 +126,8 @@ def qizheng_section(qz_res, *, show_degree_relations=True):
     lines.append("计算配置：%s。" % profile)
     if profile == "legacy-v1":
         lines.append("下列数值仅用于旧版复现。旧算法的升点及昼夜计算存在已知错误。")
-    elif profile == "physical-v2":
-        lines.append("角宿一原点已改为日期平黄经；宿界/宫界仍是误差未知的近似表，命度、立命宫、度主和恩用难仇均为条件结果。")
+    elif profile == "calibrated-v3":
+        lines.append("已启用 SIMBAD 28 宿逐星实时岁差校准、十二次分野同步宫界与 VSOP87 太阳星历（角宿一=0°，紫气沿用 1975-03-13 28 年通用锚点）。")
     if qz_res["day_night"] is None:
         lines.append("**命度**：缺经纬度，未计算。")
     elif qz_res["ming_du"] is None:
@@ -136,16 +136,40 @@ def qizheng_section(qz_res, *, show_degree_relations=True):
         lines.append("**命度**：%s宿%.2f度（宿主：%s，度主五行：%s，距星 %s，所在 %s宫）" % (
             qz_res["ming_du"]["mansion"], qz_res["ming_du"]["mansion_deg"],
             qz_res["ming_du"]["wuxing"], qz_res["du_zhu_wuxing"], qz_res["ming_du"]["star"],
-            qz.palace_of(qz_res["ming_du"]["sidereal"])))
-    lines.append("**躔**：十一曜恒星黄经躔宿躔宫见下表")
+            qz_res["ming_du"].get("palace") or qz.palace_of(qz_res["ming_du"]["sidereal"])))
+    lines.append("**躔**：十一曜恒星黄经躔宿躔宫与状态见下表")
     lines.append("")
-    lines.append("| 星 | 黄道经度 | 恒星黄经 | 躔宿 | 入宿度 | 宿主 | 躔宫 |")
-    lines.append("|---|---|---|---|---|---|---|")
-    for name in qz.LUMINARIES:
-        b = qz_res["bodies"][name]
-        lines.append("| %s | %.4f | %.4f | %s宿 | %.2f | %s | %s宫 |" % (
-            name, b["tropical"], b["sidereal"], b["mansion"], b["mansion_deg"],
-            b["mansion_wx"], qz.palace_of(b["sidereal"])))
+    star_states = qz_res.get("star_states") or {}
+    if star_states:
+        lines.append("| 星 | 黄道经度 | 恒星黄经 | 躔宿 | 入宿度 | 宿主 | 躔宫 | 状态（升殿/喜宫/明晦） |")
+        lines.append("|---|---|---|---|---|---|---|---|")
+        for name in qz.LUMINARIES:
+            b = qz_res["bodies"][name]
+            st = star_states.get(name, {})
+            tags = []
+            if st.get("shengdian"):
+                tags.append("升殿")
+            if st.get("xigong_relation"):
+                tags.append(st["xigong_relation"])
+            if st.get("ru_miao"):
+                tags.append("入庙")
+            if st.get("shixian"):
+                tags.append(st["shixian"])
+            if st.get("ming_hui"):
+                tags.append(st["ming_hui"])
+            lines.append("| %s | %.4f | %.4f | %s宿 | %.2f | %s | %s宫 | %s |" % (
+                name, b["tropical"], b["sidereal"], b["mansion"], b["mansion_deg"],
+                b["mansion_wx"], b.get("palace") or qz.palace_of(b["sidereal"]),
+                "·".join(tags) or "—",
+            ))
+    else:
+        lines.append("| 星 | 黄道经度 | 恒星黄经 | 躔宿 | 入宿度 | 宿主 | 躔宫 |")
+        lines.append("|---|---|---|---|---|---|---|")
+        for name in qz.LUMINARIES:
+            b = qz_res["bodies"][name]
+            lines.append("| %s | %.4f | %.4f | %s宿 | %.2f | %s | %s宫 |" % (
+                name, b["tropical"], b["sidereal"], b["mansion"], b["mansion_deg"],
+                b["mansion_wx"], b.get("palace") or qz.palace_of(b["sidereal"])))
     lines.append("")
     dn = qz_res["day_night"]
     if dn is None:
@@ -161,22 +185,78 @@ def qizheng_section(qz_res, *, show_degree_relations=True):
     if mg is None:
         lines.append("**立命宫**：缺经纬度，未计算。")
     else:
-        lines.append("**立命宫**：%s宫（支五行 %s；果老安命法：太阳 %s 宫 + %s 时顺数至卯；宫主五行查 references/qizheng 宫分所属）" % (
-            mg["zhi"], mg["wuxing"], mg["sun_palace"], mg["hour_zhi"]))
+        ruler_txt = ("，宫主 %s/%s" % (mg["ruler"], mg["ruler_wuxing"])) if mg.get("ruler") else ""
+        lines.append("**立命宫**：%s宫（支五行 %s%s；果老安命法：太阳 %s 宫 + %s 时顺数至卯）" % (
+            mg["zhi"], mg["wuxing"], ruler_txt, mg["sun_palace"], mg["hour_zhi"]))
+    sg = qz_res.get("shen_gong")
+    if sg:
+        sd = sg["shen_du"]
+        house_txt = ("，落%s" % sg["house_name"]) if sg.get("house_name") else ""
+        lines.append("**身宫/身主**：%s宫（身主 %s/%s%s；身度 %s宿%.2f度，度主 %s）" % (
+            sg["zhi"], sg["shen_zhu"], sg["shen_zhu_wuxing"], house_txt,
+            sd["mansion"], sd["mansion_deg"], sd["du_zhu_wuxing"]))
     lines.append("")
-    if qz_res["en_yong"] is None or not show_degree_relations:
-        return lines
-    lines.append("**难仇恩用**（以命度宿五行为我）：")
-    lines.append("")
-    lines.append("| 关系 | 五行 | 对应 | 含义 |")
-    lines.append("|------|------|------|------|")
-    meaning = {"恩": "生我", "用": "我生",
-               "难": "克我", "仇": "我克", "同": "同我"}
-    for key in ("恩", "用", "难", "仇"):
-        members = qz_res["en_yong"].get(key, [])
-        wxs = sorted({qz.LUMINARIES_WUXING[m2] for m2 in members})
-        lines.append("| %s | %s | %s | %s |" % (
-            key, "、".join(wxs) if wxs else "—", "、".join(members) if members else "—", meaning[key]))
+    if qz_res.get("en_yong") is not None and show_degree_relations:
+        lines.append("**难仇恩用**（以命度宿五行为我）：")
+        lines.append("")
+        lines.append("| 关系 | 五行 | 对应 | 含义 |")
+        lines.append("|------|------|------|------|")
+        meaning = {"恩": "生我", "用": "我生",
+                   "难": "克我", "仇": "我克", "同": "同我"}
+        for key in ("恩", "用", "难", "仇"):
+            members = qz_res["en_yong"].get(key, [])
+            wxs = sorted({qz.LUMINARIES_WUXING[m2] for m2 in members})
+            lines.append("| %s | %s | %s | %s |" % (
+                key, "、".join(wxs) if wxs else "—", "、".join(members) if members else "—", meaning[key]))
+        lines.append("")
+    bs = qz_res.get("bianyao_shensha")
+    if bs:
+        ps = bs["palace_shensha"]
+        ren_key = "阳刃" if "阳刃" in ps else "阴刃"
+        by_pairs = "、".join("%s=%s(%s)" % (r, i["star"], i["palace"] or "—") for r, i in bs["bianyao"].items())
+        lines.append("**年干变曜（%s年 · 果老卷二）**：%s" % (bs["year_gz"], by_pairs))
+        ss = bs["stem_stars"]
+        lines.append("**年干支核心神煞**：科名=%s、科甲=%s、文星=%s、官星=%s、印星=%s、天乙=%s、玉堂=%s、文昌=%s、禄勋=%s、%s=%s、唐符=%s、国印=%s、劫杀=%s、亡神=%s、红鸾=%s、空亡=%s" % (
+            ss["科名"]["star"], ss["科甲"]["star"] or "—", ss["文星"]["star"], ss["官星"]["star"], ss["印星"]["star"],
+            ps["天乙昼贵"], ps["玉堂夜贵"], ps["文昌"], ps["禄勋"], ren_key, ps[ren_key],
+            ps["唐符飞刃"], ps["国印"], ps["劫杀"], ps["亡神"], bs["jiahou"]["红鸾"], "".join(ps["空亡"]),
+        ))
+        lines.append("")
+    dw = qz_res.get("dongwei_daxian")
+    if dw:
+        lines.append("**洞微大限（出童限 %.2f 岁 / %s）**：" % (dw["chutongxian_age"], dw["chutongxian_date"]))
+        lines.append("")
+        lines.append("| 序 | 限宫 | 支宫 | 限主 | 岁数窗 | 公历窗 | 宿度 |")
+        lines.append("|----|------|------|------|--------|--------|------|")
+        active_step = dw["active"]["palace_limit"]["step"] if dw.get("active") else None
+        for st in dw["stages"]:
+            mark = " ←目标" if st["step"] == active_step else ""
+            lines.append("| %d | %s%s | %s | %s(%s) | %.1f~%.1f | %s~%s | %s |" % (
+                st["step"], st["house_name"], mark, st["zhi"], st["ruler"], st["ruler_wuxing"],
+                st["start_age"], st["end_age"], st["start_date"], st["end_date"],
+                "→".join(st["mansions_traversed"]),
+            ))
+        if dw.get("active"):
+            act = dw["active"]
+            pl, dl, xx = act["palace_limit"], act["degree_limit"], act["xiaoxian"]
+            lines.append("")
+            tongxian_txt = ("｜童限行%s" % act["tongxian_house"]) if act["in_tongxian"] else ""
+            cycle_txt = (
+                "｜第 %d 周回绕（%.1f~%.1f岁 / %s~%s）"
+                % (act["cycle_index"] + 1, pl["start_age"], pl["end_age"], pl["start_date"], pl["end_date"])
+                if act.get("cycle_index", 0) > 0
+                else ""
+            )
+            lines.append("- 目标年限度（%s）：限宫 %s(%s)｜限度 %s宿%.2f°(%s·%s)｜小限 %s(%s)%s%s" % (
+                act["target_bj"][:10], pl["house_name"], pl["zhi"],
+                dl["mansion"], dl["mansion_deg"], dl["du_zhu_wuxing"],
+                dl["relation_to_natal_duzhu"] or "—", xx["house_name"], xx["zhi"], tongxian_txt, cycle_txt,
+            ))
+            if act["risk_signals"]:
+                lines.append("- 行限提示：" + "；".join(act["risk_signals"]))
+        ov = qz_res.get("dynamic_overview")
+        if ov and ov.get("taisui_alerts"):
+            lines.append("- 流年太岁（%s年）：%s" % (ov["year_gz"]["year_gz"], "；".join(ov["taisui_alerts"])))
     return lines
 
 
@@ -201,7 +281,7 @@ def main(argv=None):
     parser.add_argument("--sex", required=True, choices=("男", "女"))
     parser.add_argument("--lat", type=float, help="纬度（北正，七政命度及昼夜等需经纬度）")
     parser.add_argument("--lon", type=float, help="经度（东正，太阳时及七政地平计算需要）")
-    parser.add_argument("--qizheng-profile", choices=("physical-v2", "legacy-v1"), default="physical-v2")
+    parser.add_argument("--qizheng-profile", choices=("calibrated-v3", "legacy-v1"), default="calibrated-v3")
     parser.add_argument("--dut1-seconds", type=float, default=0.0, help="七政及真太阳钟面的 UT1−UTC 秒，默认 0 为近似")
     parser.add_argument("--place", help="出生地")
     parser.add_argument("--name", help="称呼")
@@ -244,10 +324,12 @@ def main(argv=None):
         civil = resolve_civil(datetime(y, m, d, hh, mm), args.utc_offset, args.timezone, args.fold)
         instant_bj = civil.astimezone(bazi.BJ)
         # Compute ephemerides from the original instant, never the corrected clock.
+        qz_target_year = args.analysis_year if args.analysis_year is not None else args.age_year
         qz_res, qz_warnings = qz.compute(
             (instant_bj.year, instant_bj.month, instant_bj.day), instant_bj.hour,
             instant_bj.minute, args.lat, args.lon, args.place, birth_instant=civil,
-            profile=args.qizheng_profile, dut1_seconds=args.dut1_seconds)
+            profile=args.qizheng_profile, dut1_seconds=args.dut1_seconds,
+            analysis_year=qz_target_year)
         apparent = solar_clock(civil, args.lon, qz_res["eot_minutes"]) if args.lon is not None else None
         mean = solar_clock(civil, args.lon, 0) if args.lon is not None else None
         clock = {"apparent-solar": apparent, "mean-solar": mean, "civil": civil.replace(tzinfo=None)}[args.time_basis]

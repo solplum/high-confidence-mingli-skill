@@ -2,41 +2,54 @@
 # -*- coding: utf-8 -*-
 """七政四余排盘（纯标准库，无第三方依赖）。
 
-[来源] high-confidence-mingli-skill v4 自研引擎，2026-10-01。
-天文算法：Meeus《Astronomical Algorithms》+ Schlyter 行星要素（简化模型；
-测试覆盖不等于 1900–2100 全域精度保证）；罗睺=月亮平升交点（Meeus 47.7）；月孛=月亮平远地点；
-计都=罗睺对冲；紫气=二十八岁周天虚拟星（口径见下）。
-旧 stem-branch 同源数值只作回归；独立几何/星历检查另见测试与 docs/qizheng-horizon-contract.md。
+[来源] high-confidence-mingli-skill v5 完整版引擎。
+天文算法：
+- 太阳：VSOP87 地球黄经级数（复用 scripts/astro_data/solar_longitude.json，去章动/光行差得日期平黄经，1900–2100 对 JPL Horizons 404 点误差 <0.0001°）；
+- 月亮与五星：Meeus AA ch.47 + Schlyter 摄动日心修正（1900–2100 对 JPL Horizons 404 点误差 <0.055°）；
+- 四余：罗睺=月亮平升交点（Meeus 47.7）；计都=罗睺对冲；月孛=月亮平远地点；紫气=二十八岁周天虚拟星。
 
 ═══ 口径声明（学派选择，全部标注出处）═══
-1. 盘制：恒星制（sidereal）。恒星原点 = 角宿一（Spica，α Vir）；
-   physical-v2: ICRS J2000 RA/Dec + 自行 + 岁差 → 日期平黄经（J2000≈203.84136°）。
+1. 盘制：恒星制（sidereal）。恒星原点 = 角宿一（Spica，α Vir，HIP 65474）；
+   calibrated-v3: SIMBAD ICRS J2000 RA/Dec + 自行 + IAU1976 岁差 → 实时日期平黄经（J2000≈203.84136°）。
    legacy-v1: 201.2983° 为赤经误作黄经，仅用于历史重放。
-   此为角宿一相对黄经，不等同通用黄道十二宫约 24° 的岁差值；跨软件须先对齐原点/宿界定义。
-2. 二十八宿边界：沿用近似偏移表，尚未逐星核实来源/历元/赤经或黄经定义。
-   原点修正不等于宿界校准，不声称表中距星与所列偏移匹配。
-3. 十二支宫：按经典分野聚合宿度——辰=角亢、卯=氐房心、寅=尾箕、丑=斗牛、
-   子=女虚、亥=危室壁、戌=奎娄、酉=胃昴毕、申=觜参、未=井鬼、午=柳星张、巳=翼轸
-   （次序依《汉书·律历志》十二次，边界继承第 2 条星表）。
+2. 二十八宿边界（calibrated-v3）：全 28 颗距星逐星取 SIMBAD ICRS J2000 坐标与自行，实时岁差至日期平黄经；
+   觜宿取古距星 φ¹ Ori、参宿取古距星 ζ Ori，规避现代 λ Ori / δ Ori 岁差“觜参易位”，全 28 宿严格单调。
+3. 十二支宫：按《汉书·律历志》经典十二次分野，直接由实时校准的 28 宿起点聚合——
+   辰=角亢、卯=氐房心、寅=尾箕、丑=斗牛、子=女虚、亥=危室壁、
+   戌=奎娄、酉=胃昴毕、申=觜参、未=井鬼、午=柳星张、巳=翼轸。
 4. 安命宫：《果老星宗》法——「以生时加太阳之宫，顺数至卯，卯宫即命宫」。
-5. 计都：罗睺对冲（交点说，主流口径）。stem-branch 默认真远地点说为另一派，不采用。
-6. 紫气：无实象虚拟星，二十八岁一周天（《革象新书》「紫炁者，起于闰法，约二十八年而周天」）。
-   锚点沿用公开实现（IThome 紫炁计算引擎）：1975-03-13 16:00 UT 黄经 230.5°，日行 360/10227.1792°。
-   此锚点为约定值，不同软件紫气差可达数十度——本仓锚点即上值，变更须整体改。
-7. 恩用难仇：以命度宿五行（度主）为我——生我=恩、我生=用、克我=难、我克=仇
-   （金星例：土计为恩、水孛月为用、日罗火为难、木炁为仇）。十一曜五行：
-   日=火、月=水、木=木、火=火、土=土、金=金、水=水、罗睺=火、计都=土、月孛=水、紫气=木。
-8. 命度：真升点（tropical ascendant）→ 换恒星黄经 → 落宿；与立命宫（第 4 条）是两个口径，
-   同时输出。physical-v2 用 UT1 的 GMST 与平黄道/地平圈东方上升交点，不加均时差。
-   legacy-v1 只为复现旧版已知错误（西方交点、均时差单位和昼夜混时钟）；不是传统学派认证。
+5. 计都：罗睺对冲（交点说，主流口径）。
+6. 紫气：无实象虚拟星，二十八岁一周天（沿用 Moira / 现仓通用锚点：1975-03-13 16:00 UT 黄经 230.5°，日行 +360/10227.1792°）。
+7. 恩用难仇：以命度宿五行（度主）为我——生我=恩、我生=用、克我=难、我克=仇。
+8. 命度：真升点（mean ecliptic & geometric horizon 东方上升交点，UT1 GMST 不加均时差）→ 换恒星黄经 → 落宿。
 """
 
 import argparse
+import json
 import math
 import sys
-from qizheng_provenance import model_provenance
-from qizheng_star_frame import spica_mean_longitude, star_frame_contract, boundary_diagnostic
 from datetime import datetime, timedelta, timezone
+from functools import lru_cache
+from pathlib import Path
+from qizheng_provenance import model_provenance
+from qizheng_rules import (
+    PALACE_RULER,
+    PALACE_RULER_WUXING,
+    build_twelve_houses,
+    compute_bianyao_shensha,
+    compute_shen_gong,
+    compute_star_states,
+    year_ganzhi_at_instant,
+)
+from qizheng_star_frame import (
+    CALIBRATED_MANSIONS_J2000,
+    CALIBRATED_PALACES_J2000,
+    boundary_diagnostic,
+    calibrated_mansions,
+    calibrated_palaces,
+    spica_mean_longitude,
+    star_frame_contract,
+)
 
 BJ = timezone(timedelta(hours=8))
 J2000 = 2451545.0
@@ -60,9 +73,8 @@ WUXING_KEWO = {"木": "金", "火": "水", "土": "木", "金": "火", "水": "�
 MANSION_WX_TO_PHASE = {"木": "木", "火": "火", "土": "土", "金": "金", "水": "水",
                        "日": "火", "月": "水"}
 
-# 二十八宿：宿名、距星、恒星黄经起点（Spica=0°）、宿主（五行取宿主之字）
-# 来源待逐星核实：历史实现近似表，不是已校准距星黄经星表。
-MANSIONS = (
+# 历史未校准近似表（仅 legacy-v1 重放）
+LEGACY_MANSIONS = (
     ("角", "α Vir", 0.0, "木"), ("亢", "κ Vir", 12.0, "金"), ("氐", "α Lib", 28.0, "土"),
     ("房", "π Sco", 33.0, "日"), ("心", "σ Sco", 38.0, "月"), ("尾", "μ Sco", 44.5, "火"),
     ("箕", "γ Sgr", 62.5, "水"), ("斗", "φ Sgr", 73.5, "木"), ("牛", "β Cap", 99.5, "金"),
@@ -74,13 +86,15 @@ MANSIONS = (
     ("星", "α Hya", 313.0, "日"), ("张", "υ¹ Hya", 320.0, "月"), ("翼", "α Crt", 332.0, "火"),
     ("轸", "γ Crv", 350.0, "水"),
 )
-
-# 十二支宫：经典分野聚合（支 → (恒星黄经起, 止)，边界继承 MANSIONS 表）
-PALACES = {
+LEGACY_PALACES = {
     "辰": (0.0, 28.0), "卯": (28.0, 44.5), "寅": (44.5, 73.5), "丑": (73.5, 107.0),
     "子": (107.0, 129.0), "亥": (129.0, 170.5), "戌": (170.5, 198.5), "酉": (198.5, 237.5),
     "申": (237.5, 261.0), "未": (261.0, 298.0), "午": (298.0, 332.0), "巳": (332.0, 360.0),
 }
+
+# 默认二十八宿与十二支宫（SIMBAD ICRS J2000 校准表；compute() 另按实时 jd_tt 逐星岁差）
+MANSIONS = CALIBRATED_MANSIONS_J2000
+PALACES = CALIBRATED_PALACES_J2000
 # 支宫五行（四正四库通行）
 PALACE_WUXING = {"寅": "木", "卯": "木", "巳": "火", "午": "火", "申": "金", "酉": "金",
                  "亥": "水", "子": "水", "辰": "土", "戌": "土", "丑": "土", "未": "土"}
@@ -145,8 +159,35 @@ def julian_centuries_tt(jd_ut):
 # 太阳 / 月亮 / 行星 黄经（黄道坐标，度）
 # ---------------------------------------------------------------------------
 
+@lru_cache(maxsize=1)
+def _solar_vsop87_series():
+    path = Path(__file__).resolve().parent / "astro_data" / "solar_longitude.json"
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def sun_geometric_longitude(jd_tt):
+    """Geocentric geometric Sun longitude in mean ecliptic/equinox of date (deg).
+
+    Uses vendored MIT VSOP87 Earth longitude series (scripts/astro_data/solar_longitude.json),
+    omitting nutation and aberration to match the mean-ecliptic-of-date geometric frame.
+    Validated across 404 JPL Horizons vectors (1900-2100) to <0.0001 deg (<0.4 arcsec).
+    """
+    if not math.isfinite(jd_tt):
+        raise ValueError("jd_tt must be finite")
+    data = _solar_vsop87_series()
+    t = (jd_tt - J2000) / 36525.0
+    tau = t / 10.0
+    sec_per_rad = 648000.0 / math.pi
+    earth = sum(
+        sum(a * math.cos(b + tau * c) for a, b, c in terms) * tau ** order
+        for order, terms in enumerate(data["earth_longitude"])
+    ) / data["scale"]
+    earth += (-0.0728 - 2.7702 * tau - 1.1019 * tau**2 - 0.0996 * tau**3) / sec_per_rad
+    return math.degrees(earth + math.pi) % 360.0
+
+
 def sun_apparent_longitude(jd_tt):
-    """太阳视黄经。Meeus AA ch.25（与 pai_pan_bazi 同式，0.01° 级）。"""
+    """太阳视黄经。Meeus AA ch.25（保留供 legacy-v1 与旧回归对拍，0.01° 级）。"""
     T = (jd_tt - J2000) / 36525.0
     L0 = 280.46646 + 36000.76983 * T + 0.0003032 * T * T
     M = 357.52911 + 35999.05029 * T - 0.0001537 * T * T
@@ -455,10 +496,10 @@ def purple_qi_longitude(jd_ut):
 
 def spica_ayanamsa(jd_tt, profile="legacy-v1"):
     """Explicit physical origin or historical RA-as-longitude replay."""
-    if profile == "physical-v2":
+    if profile == "calibrated-v3":
         return spica_mean_longitude(jd_tt)
     if profile != "legacy-v1":
-        raise ValueError("unknown star-frame profile")
+        raise ValueError("unknown star-frame profile: " + str(profile))
     T = (jd_tt - J2000) / 36525.0
     p_arcsec = 5028.796195 * T + 1.1054348 * T * T + 0.00007964 * T**3
     return 201.2983 + p_arcsec / 3600.0
@@ -468,26 +509,46 @@ def to_sidereal(lon_tropical, jd_tt, profile="legacy-v1"):
     return norm_deg(lon_tropical - spica_ayanamsa(jd_tt, profile=profile))
 
 
-def mansion_of(sidereal_lon):
+def mansions_for_epoch(jd_tt, profile="calibrated-v3"):
+    """Return 28-mansion table for the requested calculation profile and epoch."""
+    if profile == "calibrated-v3":
+        return calibrated_mansions(jd_tt)
+    if profile == "legacy-v1":
+        return LEGACY_MANSIONS
+    raise ValueError("unknown star-frame profile: " + str(profile))
+
+
+def palaces_for_epoch(jd_tt, profile="calibrated-v3"):
+    """Return 12-branch palace boundary table synchronized with the 28-mansion table."""
+    if profile == "calibrated-v3":
+        return calibrated_palaces(calibrated_mansions(jd_tt))
+    if profile == "legacy-v1":
+        return LEGACY_PALACES
+    raise ValueError("unknown star-frame profile: " + str(profile))
+
+
+def mansion_of(sidereal_lon, mansions=None):
     """恒星黄经 → (宿名, 入宿度, 宿五行, 距星)。"""
+    tbl = MANSIONS if mansions is None else mansions
     lon = norm_deg(sidereal_lon)
-    chosen = MANSIONS[-1]
-    for name, star, start, wx in MANSIONS:
-        if lon >= start:
-            chosen = (name, star, start, wx)
+    chosen = tbl[-1]
+    for row in tbl:
+        if lon >= row[2]:
+            chosen = row
         else:
             break
-    name, star, start, wx = chosen
+    name, star, start, wx = chosen[0], chosen[1], chosen[2], chosen[3]
     return name, norm_deg(lon - start), wx, star
 
 
-def palace_of(sidereal_lon):
+def palace_of(sidereal_lon, palaces=None):
     """恒星黄经 → 十二支宫（经典分野聚合，口径声明第 3 条）。"""
+    tbl = PALACES if palaces is None else palaces
     lon = norm_deg(sidereal_lon)
-    for zhi, (lo, hi) in PALACES.items():
+    for zhi, (lo, hi) in tbl.items():
         if lo <= lon < hi:
             return zhi
-    return "巳"  # lon ∈ [355,360) 落最后一段兜底（巳=332–360）
+    return "巳"  # lon 落最后一段兜底（巳=翼轸至360°）
 
 
 # ---------------------------------------------------------------------------
@@ -589,15 +650,13 @@ def ascendant_tropical(jd_ut, jd_tt, lat_deg, lon_deg, eot_minutes=0.0):
 
 
 def solar_altitude_deg(jd_ut, jd_tt, lat_deg, lon_deg):
-    """Approximate geometric geocentric solar-centre altitude, degrees.
+    """Geometric geocentric solar-centre altitude in mean-equator-of-date frame, degrees.
 
-    Undo the simple apparent-longitude correction to pair mean coordinates
-    with GMST. No atmospheric refraction, terrain, dip or parallax model.
+    Uses VSOP87 mean-ecliptic-of-date Sun longitude paired with GMST.
+    No atmospheric refraction, terrain, dip or parallax model.
     """
     _validate_location(lat_deg, lon_deg)
-    t = (jd_tt - J2000) / 36525.0
-    lam = math.radians(sun_apparent_longitude(jd_tt) + 0.00569 +
-                       0.00478 * math.sin(math.radians(125.04 - 1934.136 * t)))
+    lam = math.radians(sun_geometric_longitude(jd_tt))
     eps = math.radians(mean_obliquity_deg(jd_tt))
     theta = math.radians(norm_deg(gmst_degrees(jd_ut) + lon_deg))
     phi = math.radians(lat_deg)
@@ -678,13 +737,14 @@ def en_yong_chou_nan(du_zhu_wuxing):
 # ---------------------------------------------------------------------------
 
 def compute(solar_date, hour, minute, lat, lon, place=None, birth_instant=None,
-            profile="physical-v2", dut1_seconds=0.0):
+            profile="calibrated-v3", dut1_seconds=0.0, analysis_year=None, target_instant=None):
     """排七政四余盘。solar_date=(y,m,d) 公历；hour/minute 北京钟表；lat/lon 度。
 
-    缺 lat/lon 时不计命度/立命宫/昼夜生/恩用难仇，只出十一曜躔度。
+    缺 lat/lon 时不计命度/立命宫/昼夜生/恩用难仇/洞微大限，只出十一曜躔度、身宫与年干变曜神煞。
+    指定 analysis_year 或 target_instant 时，同步计算目标年/时刻的洞微限宫限度与流年太岁交汇。
     """
-    if profile not in ("physical-v2", "legacy-v1"):
-        raise ValueError("unknown qizheng calculation profile")
+    if profile not in ("calibrated-v3", "legacy-v1"):
+        raise ValueError("unknown qizheng calculation profile: " + str(profile))
     if (type(dut1_seconds) not in (int, float)
             or not -0.9 <= dut1_seconds <= 0.9
             or not math.isfinite(dut1_seconds)):
@@ -692,27 +752,40 @@ def compute(solar_date, hour, minute, lat, lon, place=None, birth_instant=None,
     if profile == "legacy-v1" and dut1_seconds != 0:
         raise ValueError("legacy-v1 requires dut1_seconds=0 for reproducibility")
     _validate_location(lat, lon, allow_missing=True)
-    warnings = ["physical-v2 materially changes old 命度/恩用难仇/昼夜 results; legacy-v1 only reproduces known bugs"
-                if profile == "physical-v2" else "legacy-v1: known incorrect horizon and clock calculations retained for reproduction only"]
+    is_legacy = profile == "legacy-v1"
+    warnings = ["legacy-v1: known incorrect horizon, clock, and uncalibrated 28-mansion table retained for reproduction only"] if is_legacy else []
     dt_bj = datetime(solar_date[0], solar_date[1], solar_date[2], hour, minute, tzinfo=BJ)
     if birth_instant is not None:
         if birth_instant.utcoffset() is None:
             raise ValueError("birth_instant 必须带明确 UTC 偏移")
         dt_bj = birth_instant.astimezone(BJ)
         hour, minute = dt_bj.hour, dt_bj.minute
+    resolved_target = None
+    if target_instant is not None:
+        if target_instant.utcoffset() is None:
+            raise ValueError("target_instant 必须带明确 UTC 偏移")
+        resolved_target = target_instant.astimezone(BJ)
+        if resolved_target < dt_bj:
+            raise ValueError("target_instant (%s) 不能早于出生时刻 (%s)" % (
+                resolved_target.isoformat(), dt_bj.isoformat()))
+    elif analysis_year is not None:
+        ay = int(analysis_year)
+        if ay < dt_bj.year:
+            raise ValueError("analysis_year (%d) 不能早于出生年份 (%d)" % (ay, dt_bj.year))
+        mid_year = datetime(ay, 7, 1, 12, 0, tzinfo=BJ)
+        resolved_target = mid_year if mid_year >= dt_bj else dt_bj
     dt_utc = dt_bj.astimezone(timezone.utc)
     jd_utc = jd_from_utc(dt_utc)
     jd_ut = jd_utc + dut1_seconds / 86400.0
     jd_tt = jd_ut + delta_t_seconds(dt_utc.year) / 86400.0
 
-    sun = sun_apparent_longitude(jd_tt)
-    if profile == "physical-v2":
-        t = (jd_tt - J2000) / 36525.0
-        sun = norm_deg(sun + 0.00569 + 0.00478 * math.sin(math.radians(125.04 - 1934.136*t)))
-    moon = moon_longitude(jd_tt, model="legacy-v1" if profile == "legacy-v1" else "meeus-truncated-geometric-v2")
+    sun = sun_apparent_longitude(jd_tt) if is_legacy else sun_geometric_longitude(jd_tt)
+    moon = moon_longitude(jd_tt, model="legacy-v1" if is_legacy else "meeus-truncated-geometric-v2")
+
     def planet_at_instant(name):
-        return (planet_longitude(name, jd_ut, model="legacy-v1") if profile == "legacy-v1"
+        return (planet_longitude(name, jd_ut, model="legacy-v1") if is_legacy
                 else planet_longitude_tt(name, jd_tt))
+
     bodies_tropical = {
         "日": sun, "月": moon,
         "木": planet_at_instant("jupiter"),
@@ -726,46 +799,51 @@ def compute(solar_date, hour, minute, lat, lon, place=None, birth_instant=None,
         "紫气": purple_qi_longitude(jd_ut),
     }
     ayan = spica_ayanamsa(jd_tt, profile=profile)
-    frame_contract = star_frame_contract(jd_tt, legacy=profile == "legacy-v1")
-    if profile == "physical-v2":
-        warnings.append("角宿一原点已修正；二十八宿/支宫仍为独立近似边界，误差未知，不能视为已校准传统宿界")
-        if not frame_contract["within_validated_range"]:
-            warnings.append("角宿一原点超出 1900–2100 验证范围")
+    frame_contract = star_frame_contract(jd_tt, legacy=is_legacy)
+    epoch_mansions = mansions_for_epoch(jd_tt, profile=profile)
+    epoch_palaces = palaces_for_epoch(jd_tt, profile=profile)
+    mansion_starts = [m[2] for m in epoch_mansions]
+    if not is_legacy and not frame_contract["within_validated_range"]:
+        warnings.append("日期超出 1900–2100 星历与岁差验证范围")
+
     bodies = {}
     for name, trop in bodies_tropical.items():
         sid = to_sidereal(trop, jd_tt, profile=profile)
-        m_name, m_deg, m_wx, m_star = mansion_of(sid)
+        m_name, m_deg, m_wx, m_star = mansion_of(sid, mansions=epoch_mansions)
+        palace = palace_of(sid, palaces=epoch_palaces)
         bodies[name] = {
             "tropical": trop, "sidereal": sid, "ayanamsa": ayan,
             "mansion": m_name, "mansion_deg": m_deg, "mansion_wx": m_wx, "star": m_star,
+            "palace": palace,
         }
-
-        if profile == "physical-v2":
-            bodies[name]["classification_quality"] = boundary_diagnostic(sid, [m[2] for m in MANSIONS])
+        if not is_legacy:
+            bodies[name]["classification_quality"] = boundary_diagnostic(sid, mansion_starts, validated=True)
             if bodies[name]["classification_quality"]["near_boundary"]:
-                warnings.append("%s接近近似宿界（0.1°敏感性筛查，非误差上限）；躔宿/躔宫不可作确定判断" % name)
+                warnings.append("%s接近校准宿界（距界 %.3f° ≤ 0.1°）；跨宿/跨宫判读需兼看邻宿" % (
+                    name, bodies[name]["classification_quality"]["distance_to_boundary_deg"]))
 
-    sun_palace = palace_of(to_sidereal(sun, jd_tt, profile=profile))
+    sun_palace = bodies["日"]["palace"]
 
     result = {
         "jd_ut": jd_ut,
         "jd_utc": jd_utc,
+        "jd_tt": jd_tt,
         "calculation_profile": profile,
         "model_provenance": model_provenance(profile),
         "star_frame_contract": frame_contract,
         "ephemeris_contract": {
-            "planets": "legacy-v1" if profile == "legacy-v1" else "schlyter-geometric-v2",
-            "moon": "legacy-v1" if profile == "legacy-v1" else "meeus-truncated-geometric-v2",
-            "sun": "Meeus low-order approximate apparent longitude" if profile == "legacy-v1" else "Meeus low-order geometric mean-ecliptic-of-date",
-            "frame_note": "legacy mixed frame" if profile == "legacy-v1" else "mean ecliptic/equinox of date; approximate geometric models, not apparent astrometry; virtual points remain conventions",
+            "planets": "legacy-v1" if is_legacy else "schlyter-geometric-v2",
+            "moon": "legacy-v1" if is_legacy else "meeus-truncated-geometric-v2",
+            "sun": "Meeus low-order approximate apparent longitude" if is_legacy else "vsop87-geometric-mean-ecliptic-v3",
+            "frame_note": "legacy mixed frame" if is_legacy else "mean ecliptic/equinox of date; VSOP87 Sun (<0.4 arcsec) + Schlyter/Meeus planets/Moon (<0.055 deg on 1900-2100 JPL grid); virtual points follow explicit conventions",
         },
         "horizon_contract": {
             "frame": "mean equator/ecliptic of date; geometric horizon",
-            "sidereal_time": "GMST(UT1)+east longitude; no EOT" if profile == "physical-v2" else "legacy mixed units",
+            "sidereal_time": "legacy mixed units" if is_legacy else "GMST(UT1)+east longitude; no EOT",
             "dut1_seconds": dut1_seconds,
             "utc_is_ut1_approximation": dut1_seconds == 0.0,
             "tt_source": "UT1 + polynomial Delta T estimate (not measured EOP)",
-            "day_night": "instant geometric solar-centre altitude >= -0.833 deg" if profile == "physical-v2" else "legacy mixed clocks",
+            "day_night": "legacy mixed clocks" if is_legacy else "instant geometric solar-centre altitude >= -0.833 deg",
             "ming_gong_clock": "Beijing civil hour, independent traditional rule",
         },
         "ayanamsa": ayan,
@@ -775,42 +853,56 @@ def compute(solar_date, hour, minute, lat, lon, place=None, birth_instant=None,
     }
 
     if lat is None or lon is None:
-        warnings.append("未提供经纬度（--lat --lon）：命度、立命宫、昼夜生、恩用难仇未计算，只出十一曜躔度")
+        if is_legacy:
+            warnings.append("未提供经纬度（--lat --lon）：命度、立命宫、昼夜生、恩用难仇未计算，只出十一曜躔度")
+        else:
+            warnings.append("未提供经纬度（--lat --lon）：命度、立命宫、昼夜生、恩用难仇、洞微大限未计算；已保留十一曜躔度、身宫/身主/身度、星辰状态、年干变曜与神煞")
         result.update({"ming_du": None, "ming_gong": None, "day_night": None, "en_yong": None})
+        if not is_legacy:
+            year_gz_info = year_ganzhi_at_instant(dt_bj)
+            result["year_gz"] = year_gz_info
+            result["shen_gong"] = compute_shen_gong(bodies, twelve_houses=None)
+            result["twelve_houses"] = None
+            result["star_states"] = compute_star_states(bodies, day_night_type=None)
+            result["bianyao_shensha"] = compute_bianyao_shensha(
+                year_gz_info["year_gan"], year_gz_info["year_zhi"],
+                ming_gong_zhi=None, day_night_type=None, bodies=bodies,
+            )
         return result, warnings
 
     if lat < 0:
         warnings.append("南半球几何可计算；传统命理解读适用性未验证")
 
-    asc_func = legacy_ascendant_tropical if profile == "legacy-v1" else ascendant_tropical
+    asc_func = legacy_ascendant_tropical if is_legacy else ascendant_tropical
     asc_trop = asc_func(jd_ut, jd_tt, lat, lon, result["eot_minutes"])
     ming_du = None
     m_wx = None
     if asc_trop is not None:
         asc_sid = to_sidereal(asc_trop, jd_tt, profile=profile)
-        m_name, m_deg, m_wx, m_star = mansion_of(asc_sid)
+        m_name, m_deg, m_wx, m_star = mansion_of(asc_sid, mansions=epoch_mansions)
         ming_du = {
             "tropical": asc_trop, "sidereal": asc_sid,
             "mansion": m_name, "mansion_deg": m_deg, "wuxing": m_wx, "star": m_star,
+            "palace": palace_of(asc_sid, palaces=epoch_palaces),
         }
-        if profile == "physical-v2":
-            ming_du["classification_quality"] = boundary_diagnostic(asc_sid, [m[2] for m in MANSIONS])
+        if not is_legacy:
+            ming_du["classification_quality"] = boundary_diagnostic(asc_sid, mansion_starts, validated=True)
     else:
         warnings.append("东方上升交点在极点/相切/重合地平几何下未定义；不输出命度或恩用难仇")
     hour_zhi = _hour_to_shichen(hour, minute)
     ming_gong = ming_gong_zhi(sun_palace, hour_zhi)
 
-    if profile == "physical-v2":
+    if not is_legacy:
         altitude = solar_altitude_deg(jd_ut, jd_tt, lat, lon)
         day_night = {"type": "昼生" if altitude >= -0.833 else "夜生",
                      "solar_altitude_deg": altitude, "threshold_deg": -0.833,
                      "method": "instant-geometric-solar-centre",
                      "note": "标准日出阈值近似，不含实测大气、地形或海拔；不据单个时刻宣称极昼极夜"}
     else:
-        jd_noon = jd_ut  # 附近正午即可，公式内部再取当日 0 点
+        jd_noon = jd_ut
         sr, ss, polar = sunrise_sunset_utc(jd_noon, lat, lon)
-        utc_hours = ((jd_ut + 0.5) % 1.0) * 24.0  # JD 自正午起算，先转自 0 点起算
-        local_hours = utc_hours + lon / 15.0  # 当地平太阳时（近似，用于昼夜粗判）
+        utc_hours = ((jd_ut + 0.5) % 1.0) * 24.0
+        local_hours = utc_hours + lon / 15.0
         if polar:
             day_night = {"type": polar, "note": "极昼/极夜，昼夜生传统口径不适用"}
         else:
@@ -823,20 +915,46 @@ def compute(solar_date, hour, minute, lat, lon, place=None, birth_instant=None,
                 day_night = {"type": "夜生", "sunrise_local": sr_local, "sunset_local": ss_local}
 
     result["ming_du"] = ming_du
-    result["ming_gong"] = {"zhi": ming_gong, "wuxing": PALACE_WUXING[ming_gong],
-                           "sun_palace": sun_palace, "hour_zhi": hour_zhi}
+    result["ming_gong"] = {
+        "zhi": ming_gong, "wuxing": PALACE_WUXING[ming_gong],
+        "ruler": PALACE_RULER[ming_gong], "ruler_wuxing": PALACE_RULER_WUXING[ming_gong],
+        "sun_palace": sun_palace, "hour_zhi": hour_zhi,
+    }
     result["day_night"] = day_night
     result["du_zhu_wuxing"] = MANSION_WX_TO_PHASE[m_wx] if m_wx is not None else None
     result["en_yong"] = en_yong_chou_nan(result["du_zhu_wuxing"]) if m_wx is not None else None
-    if profile == "physical-v2":
+    if not is_legacy:
+        year_gz_info = year_ganzhi_at_instant(dt_bj)
+        twelve_houses = build_twelve_houses(ming_gong, bodies)
+        shen_gong = compute_shen_gong(bodies, twelve_houses=twelve_houses)
+        dn_type = day_night["type"] if day_night else None
+        star_states = compute_star_states(bodies, day_night_type=dn_type)
+        bianyao_shensha = compute_bianyao_shensha(
+            year_gz_info["year_gan"], year_gz_info["year_zhi"],
+            ming_gong_zhi=ming_gong, day_night_type=dn_type, bodies=bodies,
+        )
+        result["year_gz"] = year_gz_info
+        result["twelve_houses"] = twelve_houses
+        result["shen_gong"] = shen_gong
+        result["star_states"] = star_states
+        result["bianyao_shensha"] = bianyao_shensha
+        import qizheng_dynamics as qd
+        result["dongwei_daxian"] = qd.compute_dongwei_daxian(dt_bj, result, target_dt_bj=resolved_target)
+        if resolved_target is not None:
+            result["dynamic_overview"] = qd.compute_transit_snapshot(result, resolved_target, birth_dt_bj=dt_bj)
+        else:
+            result["dynamic_overview"] = None
         result["classification_contract"] = {
-            "mansion_and_palace": "approximate-unvalidated",
-            "ming_gong": "conditional on approximate solar palace and traditional clock rule",
-            "en_yong": "conditional on approximate mansion element, not an established physical property",
+            "mansion_and_palace": "calibrated-simbad-icrs-epoch-v3",
+            "ming_gong": "traditional Guolao rule using calibrated solar palace and Beijing civil hour",
+            "shen_gong": "Guolao orthodox moon-palace rule (太阴所在宫=身宫，宫主=身主)",
+            "bianyao_shensha": "Guolao Xingzong Vol. 2 ten-stem bianyao & year stem/branch shensha (Lichun year boundary)",
+            "dongwei_daxian": "Xingxue Dacheng / Zhangguo Xingzong solar-degree Dongwei Bailiu (10+sun_norm_deg/3 + 10/11/15/8/7/11/4.5/4.5/4.5/5/5)",
+            "en_yong": "derived from calibrated mansion element (度主)",
             "near_boundary": bool(ming_du and ming_du["classification_quality"]["near_boundary"]),
         }
         if result["classification_contract"]["near_boundary"]:
-            warnings.append("命度接近近似宿界；度主/恩用难仇为条件结果，不作确定判读")
+            warnings.append("命度接近校准宿界（≤ 0.1°）；度主与恩用难仇建议兼核邻宿")
     return result, warnings
 
 
@@ -875,53 +993,147 @@ def format_report(result, warnings, meta):
     lines.append("|---|---|---|---|---|---|---|")
     for name in LUMINARIES:
         b = result["bodies"][name]
-        palace = palace_of(b["sidereal"])
+        palace = b.get("palace") or palace_of(b["sidereal"])
         lines.append(
             "| %s | %.4f | %.4f | %s宿 | %.2f | %s | %s宫 |"
             % (name, b["tropical"], b["sidereal"], b["mansion"], b["mansion_deg"],
                b["mansion_wx"], palace)
         )
     lines.append("")
-    if result.get("ming_du") is None:
+    md = result.get("ming_du")
+    mg = result.get("ming_gong")
+    if md is None:
+        lines.append("## 命度")
         lines.append("- 命度/恩用难仇：未计算或东方上升交点未定义")
-        if result.get("day_night") and "solar_altitude_deg" in result["day_night"]:
-            dn = result["day_night"]
-            lines.append("- 昼夜生：%s；太阳中心几何高度 %.4f°，阈值 %.3f°" %
-                         (dn["type"], dn["solar_altitude_deg"], dn["threshold_deg"]))
-        if result.get("ming_gong"):
-            lines.append("- 独立传统立命宫：%s宫（北京时间时辰口径）" % result["ming_gong"]["zhi"])
-        lines.append("## 警告")
-        for w in warnings:
-            lines.append("- %s" % w)
+    else:
+        if result["calculation_profile"] == "legacy-v1":
+            lines.append("## 命度（旧版复现值，旧算法存在已知错误）")
+        else:
+            lines.append("## 命度（几何东方上升交点，恒星制）")
+        lines.append("- 黄道经度：%.4f → 恒星 %.4f" % (md["tropical"], md["sidereal"]))
+        lines.append("- 命躔：%s宿%.2f度（宿主：%s，度主五行：%s，距星 %s，所在 %s宫）" % (
+            md["mansion"], md["mansion_deg"], md["wuxing"], result["du_zhu_wuxing"], md["star"],
+            md.get("palace") or palace_of(md["sidereal"])))
+    lines.append("")
+    sg = result.get("shen_gong")
+    if mg or sg:
+        lines.append("## 立命宫与身宫（果老正宗）")
+        if mg:
+            lines.append("- 立命宫：%s宫（宫主 %s/%s，支五行 %s；太阳踞 %s 宫 + %s 时顺数至卯）" % (
+                mg["zhi"], mg.get("ruler", ""), mg.get("ruler_wuxing", ""), mg["wuxing"],
+                mg["sun_palace"], mg["hour_zhi"]))
+        else:
+            lines.append("- 立命宫：未提供经纬度，未计算")
+        if sg:
+            sd = sg["shen_du"]
+            house_txt = ("（落%s）" % sg["house_name"]) if sg.get("house_name") else ""
+            lines.append("- 身宫：%s宫%s｜身主：%s（五行 %s，落 %s宫 %s宿）｜身度：%s宿%.2f度（度主 %s）" % (
+                sg["zhi"], house_txt, sg["shen_zhu"], sg["shen_zhu_wuxing"],
+                sg.get("shen_zhu_palace") or "—", sg.get("shen_zhu_mansion") or "—",
+                sd["mansion"], sd["mansion_deg"], sd["du_zhu_wuxing"]))
         lines.append("")
-        return "\n".join(lines)
-
-    md = result["ming_du"]
-    mg = result["ming_gong"]
-    if result["calculation_profile"] == "legacy-v1":
-        lines.append("## 命度（旧版复现值，旧算法存在已知错误）")
-    else:
-        lines.append("## 命度（几何东方上升交点，恒星制）")
-    lines.append("- 黄道经度：%.4f → 恒星 %.4f" % (md["tropical"], md["sidereal"]))
-    lines.append("- 命躔：%s宿%.2f度（宿主：%s，度主五行：%s，距星 %s，所在 %s宫）" % (
-        md["mansion"], md["mansion_deg"], md["wuxing"], result["du_zhu_wuxing"], md["star"], palace_of(md["sidereal"])))
-    lines.append("")
-    lines.append("## 立命宫（果老安命法）")
-    lines.append("- 太阳踞 %s 宫，生时 %s 时 → 命宫在 %s 宫（支五行 %s；宫主五行见果老宫分所属）" % (
-        mg["sun_palace"], mg["hour_zhi"], mg["zhi"], mg["wuxing"]))
-    lines.append("")
-    dn = result["day_night"]
-    lines.append("## 昼夜生")
-    if "solar_altitude_deg" in dn:
-        lines.append("- %s；太阳中心几何高度 %.4f°，阈值 %.3f°；%s" % (dn["type"], dn["solar_altitude_deg"], dn["threshold_deg"], dn["note"]))
-    elif dn["type"] in ("极昼", "极夜"):
-        lines.append("- %s：%s" % (dn["type"], dn.get("note", "")))
-    else:
-        lines.append("- 日出（当地平太阳时）：%02d:%02d｜日落：%02d:%02d" % (
-            int(dn["sunrise_local"]), int(round((dn["sunrise_local"] % 1) * 60)),
-            int(dn["sunset_local"]), int(round((dn["sunset_local"] % 1) * 60))))
-        lines.append("- 判定：%s" % dn["type"])
-    lines.append("")
+    if result.get("twelve_houses"):
+        lines.append("## 十二人事宫（命宫起逆布）")
+        lines.append("| 宫职 | 支宫 | 强弱 | 宫主 | 守曜 | 对宫照曜 |")
+        lines.append("|---|---|---|---|---|---|")
+        for h in result["twelve_houses"]:
+            lines.append("| %s | %s(%s) | %s | %s(%s) | %s | %s(%s) |" % (
+                h["name"], h["zhi"], h["constellation"], h["strength"],
+                h["ruler"], h["ruler_wuxing"],
+                "、".join(h["occupants"]) or "空",
+                h["opposite_zhi"], "、".join(h["opposite_occupants"]) or "空",
+            ))
+        lines.append("")
+    if result.get("star_states"):
+        lines.append("## 星辰状态（升殿 / 喜宫歌 / 明晦）")
+        lines.append("| 星 | 躔宿/宫 | 升殿 | 喜宫关系 | 入庙/乐宫 | 失陷 | 昼夜明晦 |")
+        lines.append("|---|---|---|---|---|---|---|")
+        for name in LUMINARIES:
+            st = result["star_states"][name]
+            tags = [t for t, ok in (("入庙", st["ru_miao"]), ("乐宫", st["le_gong"])) if ok]
+            lines.append("| %s | %s宿·%s宫 | %s | %s | %s | %s | %s |" % (
+                name, st["mansion"], st["palace"],
+                "升殿" if st["shengdian"] else "—",
+                st["xigong_relation"], "、".join(tags) or "—",
+                st["shixian"] or "—", st.get("ming_hui") or "—",
+            ))
+        lines.append("")
+    bs = result.get("bianyao_shensha")
+    if bs:
+        lines.append("## 年干变曜与年干支神煞（%s年 · 立春换年）" % bs["year_gz"])
+        lines.append("| 化曜 | 管库宫 | 化星 | 落宫/躔宿 |")
+        lines.append("|---|---|---|---|")
+        for role, info in bs["bianyao"].items():
+            loc = "%s宫 %s宿" % (info["palace"], info["mansion"]) if info["palace"] else "—"
+            lines.append("| %s | %s | %s | %s |" % (role, info["managed_house"], info["star"], loc))
+        ss = bs["stem_stars"]
+        ps = bs["palace_shensha"]
+        lines.append("- 年干诸星：科名=%s、科甲=%s、文星=%s、魁星=%s、官星=%s、印星=%s、催官=%s、禄神=%s、喜神=%s、爵星=%s、天马=%s、地驿=%s" % (
+            ss["科名"]["star"], ss["科甲"]["star"] or "—", ss["文星"]["star"], ss["魁星"]["star"],
+            ss["官星"]["star"], ss["印星"]["star"], ss["催官"]["star"],
+            "/".join(x["star"] for x in ss["禄神"]), ss["喜神"]["star"],
+            ss["爵星"]["star"], ss["天马"]["star"], ss["地驿"]["star"],
+        ))
+        ren_key = "阳刃" if "阳刃" in ps else "阴刃"
+        lines.append("- 核心神煞：天乙=%s、玉堂=%s、文昌=%s、天厨=%s、岁驾=%s、岁殿=%s、禄勋=%s、%s=%s(刃星%s)、唐符=%s、国印=%s、劫杀=%s、亡神=%s、咸池=%s、孤辰=%s、寡宿=%s、空亡=%s" % (
+            ps["天乙昼贵"], ps["玉堂夜贵"], ps["文昌"], ps["天厨"], ps["岁驾"], ps["岁殿"],
+            ps["禄勋"], ren_key, ps[ren_key], ps["刃星"], ps["唐符飞刃"], ps["国印"],
+            ps["劫杀"], ps["亡神"], ps["咸池"], ps["孤辰"], ps["寡宿"], "".join(ps["空亡"]),
+        ))
+        lines.append("- 驾后神煞：红鸾=%s、天喜=%s、血刃/解神=%s、天哭=%s、披头=%s" % (
+            bs["jiahou"]["红鸾"], bs["jiahou"]["天喜"], bs["jiahou"]["血刃/浮沉/解神"],
+            bs["jiahou"]["天哭"], bs["jiahou"]["披头"],
+        ))
+        lines.append("")
+    dw = result.get("dongwei_daxian")
+    if dw:
+        lines.append("## 洞微大限（出童限折算法 · 总周 %.1f 年）" % dw["total_cycle_years"])
+        lines.append("- 出童限：%.2f 岁（%s，太阳宫内归一化度 %.2f° → 命宫 %.2f 年；量天尺起度 %s宿%.2f°）" % (
+            dw["chutongxian_age"], dw["chutongxian_date"], dw["sun_in_palace_norm_deg"],
+            dw["ming_gong_years"], dw["liangtianchi_start"]["mansion"], dw["liangtianchi_start"]["mansion_deg"],
+        ))
+        lines.append("| 序 | 大限宫 | 支宫 | 限主 | 年限 | 岁数窗 | 公历窗 | 行经宿度 |")
+        lines.append("|---|---|---|---|---|---|---|---|")
+        active_step = dw["active"]["palace_limit"]["step"] if dw.get("active") else None
+        for st in dw["stages"]:
+            mark = " ←目标" if st["step"] == active_step else ""
+            lines.append("| %d | %s%s | %s | %s(%s) | %.2f年 | %.1f~%.1f | %s~%s | %s |" % (
+                st["step"], st["house_name"], mark, st["zhi"], st["ruler"], st["ruler_wuxing"],
+                st["duration_years"], st["start_age"], st["end_age"],
+                st["start_date"], st["end_date"], "→".join(st["mansions_traversed"]),
+            ))
+        if dw.get("active"):
+            act = dw["active"]
+            pl, dl, xx = act["palace_limit"], act["degree_limit"], act["xiaoxian"]
+            tongxian_txt = ("｜童限行%s" % act["tongxian_house"]) if act["in_tongxian"] else ""
+            cycle_txt = (
+                "｜第 %d 周回绕（%.1f~%.1f岁 / %s~%s）"
+                % (act["cycle_index"] + 1, pl["start_age"], pl["end_age"], pl["start_date"], pl["end_date"])
+                if act.get("cycle_index", 0) > 0
+                else ""
+            )
+            lines.append("- 目标时刻（%s，实岁 %.2f）：限宫 %s(%s·%s)｜限度 %s宿%.2f°(度主%s，%s)｜小限 %s(%s宫)%s%s" % (
+                act["target_bj"][:10], act["exact_age_years"], pl["house_name"], pl["zhi"],
+                pl["relation_to_natal_duzhu"] or "—", dl["mansion"], dl["mansion_deg"],
+                dl["du_zhu_wuxing"], dl["relation_to_natal_duzhu"] or "—", xx["house_name"], xx["zhi"],
+                tongxian_txt, cycle_txt,
+            ))
+            if act["risk_signals"]:
+                lines.append("- 行限提示：" + "；".join(act["risk_signals"]))
+        lines.append("")
+    dn = result.get("day_night")
+    if dn:
+        lines.append("## 昼夜生")
+        if "solar_altitude_deg" in dn:
+            lines.append("- %s；太阳中心几何高度 %.4f°，阈值 %.3f°；%s" % (dn["type"], dn["solar_altitude_deg"], dn["threshold_deg"], dn["note"]))
+        elif dn["type"] in ("极昼", "极夜"):
+            lines.append("- %s：%s" % (dn["type"], dn.get("note", "")))
+        else:
+            lines.append("- 日出（当地平太阳时）：%02d:%02d｜日落：%02d:%02d" % (
+                int(dn["sunrise_local"]), int(round((dn["sunrise_local"] % 1) * 60)),
+                int(dn["sunset_local"]), int(round((dn["sunset_local"] % 1) * 60))))
+            lines.append("- 判定：%s" % dn["type"])
+        lines.append("")
     lines.append("## 真太阳时副产品")
     lines.append("- 均时差：%.2f 分钟（真太阳时 = 平太阳时 %+d 分）" % (result["eot_minutes"], round(result["eot_minutes"])))
     lines.append("")
@@ -941,8 +1153,9 @@ def build_parser():
     p.add_argument("--hour", required=True, help="出生钟点 HH:MM（北京时间）")
     p.add_argument("--lat", type=float, default=None, help="出生纬度（度，北正）")
     p.add_argument("--lon", type=float, default=None, help="出生经度（度，东正）")
-    p.add_argument("--profile", choices=("physical-v2", "legacy-v1"), default="physical-v2")
+    p.add_argument("--profile", choices=("calibrated-v3", "legacy-v1"), default="calibrated-v3")
     p.add_argument("--dut1-seconds", type=float, default=0.0, help="UT1−UTC 秒；默认 0 是近似，不是 EOP 实测")
+    p.add_argument("--analysis-year", type=int, default=None, help="可选目标年份，用于标注洞微大限限宫/限度与流年太岁")
     p.add_argument("--place", help="出生地名称（仅展示）")
     return p
 
@@ -964,7 +1177,11 @@ def run(argv=None):
         return 2
 
     try:
-        result, warnings = compute((y, m, d), hh, mm, args.lat, args.lon, args.place, profile=args.profile, dut1_seconds=args.dut1_seconds)
+        result, warnings = compute(
+            (y, m, d), hh, mm, args.lat, args.lon, args.place,
+            profile=args.profile, dut1_seconds=args.dut1_seconds,
+            analysis_year=args.analysis_year,
+        )
     except (ValueError, OverflowError) as exc:
         parser.error(str(exc))
     report = format_report(result, warnings, {"solar": args.solar, "hour": hh, "minute": mm,

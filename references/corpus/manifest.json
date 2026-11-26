@@ -1,12 +1,12 @@
 {
   "schema_version": 2,
-  "built_at": "2026-11-24T09:20:58Z",
-  "total_records": 1351,
+  "built_at": "2026-11-26T10:43:48Z",
+  "total_records": 1508,
   "qiongtong_stem_month_coverage": "120/120",
   "systems": {
     "bazi": 666,
     "ziwei": 405,
-    "qizheng": 280
+    "qizheng": 437
   },
   "books": {
     "穷通宝鉴": 125,
@@ -30,7 +30,9 @@
     "张果星宗·星辰庙旺喜忌": 10,
     "张果星宗·十一曜逐曜断": 96,
     "张果星宗·十二宫体系": 24,
-    "张果星宗·格局库": 77
+    "张果星宗·格局库": 77,
+    "张果星宗·变曜神煞": 86,
+    "张果星宗·洞微限度与流年": 71
   },
   "files": {
     "bazi_qiongtong.jsonl": {
@@ -67,6 +69,16 @@
       "count": 101,
       "bytes": 189592,
       "sha256": "48509f6d2778b2984ff4e9977e276329b00ae17de69f5182f14883b026597c71"
+    },
+    "qizheng_bianyao_shensha.jsonl": {
+      "count": 86,
+      "bytes": 72341,
+      "sha256": "582151df19407b82a1676d0f9b2ec2d80ebeda96e71398213fd67a2f952f0917"
+    },
+    "qizheng_dongwei_liunian.jsonl": {
+      "count": 71,
+      "bytes": 111431,
+      "sha256": "2e5581341d31fcf7ec8813957d0d618715aea441f812e3223372d9f0f8daa1bb"
     }
   },
   "sources": [

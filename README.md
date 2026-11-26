@@ -3,7 +3,7 @@
 ![Code license: MIT](https://img.shields.io/badge/Code-MIT-yellow.svg)
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
 ![Node.js](https://img.shields.io/badge/node-18.19%2B-green)
-![Corpus](https://img.shields.io/badge/corpus-1351_cleaned_records-orange)
+![Corpus](https://img.shields.io/badge/corpus-1508_cleaned_records-orange)
 
 **简体中文** | [English](#english)
 
@@ -20,7 +20,7 @@
 | 组件 | 作用 | 技术细节 |
 |------|------|----------|
 | 🔢 **三盘确定性引擎** (`scripts/`) | 八字、紫微、七政独立精确排盘与多时间候选对比 | Python 3 纯标准库 + Node 18.19+ (`iztro 2.6.1`)；覆盖真太阳时、IANA 历史夏令时、1901–2099 时间误差边界枚举、七档原始亮度 `brightnessRaw` |
-| 📜 **三体系原典语料库** (`references/corpus/`) | 7 份 JSONL 共 **1,351** 条实录古籍与格局条文 + SHA-256 清单 | 收录《穷通宝鉴》（**120/120 全覆盖**）、《子平真诠》《滴天髓阐微》《渊海子平》《千里命稿》、《紫微斗数全书》卷一至三与《诸星问答论》、引擎 41 格局与星宫释义、《张果星宗》《星学大成》《乾元秘旨》 |
+| 📜 **三体系原典语料库** (`references/corpus/`) | 9 份 JSONL 共 **1,508** 条实录古籍与格局条文 + SHA-256 清单 | 收录《穷通宝鉴》（**120/120 全覆盖**）、《子平真诠》《滴天髓阐微》《渊海子平》《千里命稿》、《紫微斗数全书》卷一至三与《诸星问答论》、引擎 41 格局与星宫释义、《张果星宗》（含卷二～三变曜神煞、卷十六～十七洞微百六限/倒限/流年论）《星学大成》《乾元秘旨》 |
 | 🔎 **统一原典检索引擎** (`scripts/mingli_query.py`) | 将任意命盘 JSON 一键关联三盘原典与主题断法 | 支持 `stats`（SHA-256 核验）、`bazi-lookup`（日干×月支精查）、`search`（近义词展开、均衡跨书选条、默认隔离飞星条目）、`chart-lookup`（对接 `build_chart.py`） |
 | 🧭 **务实对话与场景流** (`workflows/`) | 覆盖全盘详批、具体决策、日/月/年运、网传说法核对、纯知识问答 | 先立单盘逻辑，再看三盘共鸣与分歧，最后落实到现实处境与行动选择；明确标注未知时辰与学派边界 |
 
@@ -79,7 +79,7 @@ python3 -B -m unittest discover -s tests -p 'test_*.py' -v
 
 ### 重要边界说明
 1. 传统命理是文化符号与经验结构模型，不提供统计学意义上的预测概率保证，重大现实决策应结合客观事实独立判断。
-2. 七政四余采用声明的恒星制与近似二十八宿/十二宫边界（与回归制软件差约 24°）；本仓未实现七政洞微百六限/倒限及年干变曜，解读中不凭空补推流年应期。
+2. 七政四余采用声明的恒星制与逐星校准二十八宿/十二宫边界（`calibrated-v3`，角宿一为 0°，与回归制软件差约 24°）；紫气沿用 Moira 通用 1975-03-13 28 年回归锚点，洞微大限采出童限折算法并支持 `qizheng_dynamic_facts.py` 实算流年/流月/流日过宫。
 3. 本仓紫微默认使用固定生年四化（《天纪》/三合口径）；若查阅飞星宫干四化，需显式传入 `--include-feixing` 仅作旁参。
 4. 遇到急性躯体不适或心理危机信号时，优先提示现实就医与求助，不用命理推算替代医疗判断。
 
@@ -89,17 +89,17 @@ python3 -B -m unittest discover -s tests -p 'test_*.py' -v
 
 > **Deterministic Astrological Calculation + Audited Classical Corpus + Grounded Practical Interpretation.**
 >
-> `high-confidence-mingli-skill` integrates three traditional Chinese astrological systems—**BaZi (Four Pillars)**, **Ziwei Doushu**, and **Qizheng Siyu (Seven Governors and Four Remainders)**—into coding agents via `/high-confidence-mingli-skill`. All chart math is executed deterministically by Python stdlib & pinned Node.js engines, and every classical citation is retrieved from an audited 1,351-record corpus (`references/corpus/`) using `scripts/mingli_query.py` instead of LLM memory.
+> `high-confidence-mingli-skill` integrates three traditional Chinese astrological systems—**BaZi (Four Pillars)**, **Ziwei Doushu**, and **Qizheng Siyu (Seven Governors and Four Remainders)**—into coding agents via `/high-confidence-mingli-skill`. All chart math is executed deterministically by Python stdlib & pinned Node.js engines, and every classical citation is retrieved from an audited 1,508-record corpus (`references/corpus/`) using `scripts/mingli_query.py` instead of LLM memory.
 
 ### Architecture
 
 - **Deterministic Three-Chart Engines (`scripts/`)**:
   - **BaZi** (`pai_pan_bazi.py`): Pure Python stdlib Meeus solar terms & lunations (1900–2100), dayun exact-month windows, Shensha tables.
   - **Ziwei Doushu** (`pai_pan_ziwei/pai_pan.ts` + `ziwei_dynamic_facts.mjs`): Pinned `iztro 2.6.1`, exact 7-level `brightnessRaw`, 41 pattern recognizers, and independent yearly/monthly/daily dynamic layers.
-  - **Qizheng Siyu** (`pai_pan_qizheng.py`): Sidereal ecliptic ephemeris anchored to Spica (`physical-v2`), 28 mansions, Guolao Minggong, geometric solar-altitude day/night rule.
+  - **Qizheng Siyu** (`pai_pan_qizheng.py`, `qizheng_rules.py`, `qizheng_dynamics.py`, `qizheng_dynamic_facts.py`): Sidereal ecliptic ephemeris (`calibrated-v3`) with SIMBAD ICRS epoch-precessed 28 mansions, VSOP87 Sun, Guolao Minggong/Shengong, Vol. 2 ten-stem Bianyao & Shensha, solar-degree Dongwei Daxian (palace & degree limits), and yearly/monthly/daily ingress transits.
   - **Time Contract & Uncertainty Enumeration** (`build_chart.py`, `time_scenarios.py`): Supports `civil`, `mean-solar`, and `apparent-solar` clocks, IANA `--timezone` / `--fold`, and `--uncertainty-minutes N --enumerate-scenarios` over reachable UTC intervals.
 - **Cleaned & Verified Classical Corpus (`references/corpus/`)**:
-  - **1,351** audited entries across 7 JSONL files with SHA-256 `manifest.json`, covering *Qiongtong Baojian* (**120/120** stem × month coverage), *Ziping Zhenquan*, *Ditansui Chanwei*, *Yuanhai Ziping*, *Qianli Minggao*, *Ziwei Doushu Quanshu*, and *Zhangguo Xingzong* / *Xingxue Dacheng* / *Qianyuan Mizhi* (PUA glyphs & VitePress/HTML artifacts repaired).
+  - **1,508** audited entries across 9 JSONL files with SHA-256 `manifest.json`, covering *Qiongtong Baojian* (**120/120** stem × month coverage), *Ziping Zhenquan*, *Ditansui Chanwei*, *Yuanhai Ziping*, *Qianli Minggao*, *Ziwei Doushu Quanshu*, and *Zhangguo Xingzong* (including Vol. 2–3 Bianyao/Shensha and Vol. 16–17 Dongwei/Daoxian/Liunian) / *Xingxue Dacheng* / *Qianyuan Mizhi* (PUA glyphs & VitePress/HTML artifacts repaired).
 - **Unified Query CLI (`scripts/mingli_query.py`)**:
   - Zero-dependency retrieval (`stats`, `search`, `bazi-lookup`, `chart-lookup`) with alias expansion, balanced multi-book selection, and explicit isolation of *Feixing* rules unless `--include-feixing` is passed.
 

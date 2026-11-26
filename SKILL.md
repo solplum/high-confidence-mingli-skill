@@ -21,10 +21,11 @@ description: 高置信度传统命理分析伙伴（八字、紫微斗数、七�
 | 独立八字 | 未知时辰（仅查年月日六字）或单查八字 | `python3 scripts/pai_pan_bazi.py --solar YYYY-MM-DD --sex 男` |
 | 独立紫微 | 锁定 `iztro 2.6.1`；需先在 `scripts/pai_pan_ziwei` 运行 `npm ci` | `node --import tsx pai_pan.ts --solar YYYY-MM-DD --hour HH:MM --sex 男 --age-year YYYY` |
 | 紫微动态事实 | 查询流年/流月/流日动态四化与宫位坐标 | `node scripts/ziwei_dynamic_facts.mjs --solar <生> --birth-year <年> --shichen-index <0-11> --sex <男女> --target-date YYYY-MM-DD --target-time-index <0-12> --source-label check` |
-| 独立七政 | 恒星制黄经、二十八宿命度、果老安命与昼夜 | `python3 scripts/pai_pan_qizheng.py --solar YYYY-MM-DD --hour HH:MM --lat <纬> --lon <经>` |
+| 独立七政 | 校准恒星制 28 宿、三主（命度/立命/身主）、变曜神煞与洞微大限 | `python3 scripts/pai_pan_qizheng.py --solar YYYY-MM-DD --hour HH:MM --lat <纬> --lon <经> --analysis-year YYYY` |
+| 七政动态流运 | 查询洞微大限限宫限度、小限、太岁与流年/流月/流日行度过宫 | `python3 scripts/qizheng_dynamic_facts.py --solar <生> --hour HH:MM --lat <纬> --lon <经> --target-date YYYY-MM-DD --scope all --format json` |
 
 ### 2. 古籍原典统一检索（`scripts/mingli_query.py`）
-所有原典条文均经清洗并保存在 `references/corpus/`（7 份 JSONL 共 **1,351** 条，`manifest.json` 附 SHA-256 校验），**禁止凭借记忆编造古文或套用未查证的格言**：
+所有原典条文均经清洗并保存在 `references/corpus/`（9 份 JSONL 共 **1,508** 条，`manifest.json` 附 SHA-256 校验），**禁止凭借记忆编造古文或套用未查证的格言**：
 ```bash
 # 按三盘 JSON 快照自动关联原典（支持 --topic general|career|love|wealth|health）
 python3 scripts/mingli_query.py chart-lookup --chart-json ~/.claude/fortune-telling/snapshot.json --topic career
@@ -48,7 +49,7 @@ python3 scripts/mingli_query.py search --system ziwei --query "紫微 官禄"
 |----------|--------------|----------|
 | 一生运势、详批、看命盘大局 | `workflows/fortune-full-reading.md` | 三盘立论 → 四维度精读 → 大运节奏与长远策略 |
 | 具体问题（工作/换岗/感情/合作/置业等） | `workflows/fortune-specific.md` | 澄清现实约束 → 三盘聚焦查原典 → 利弊权衡与决策建议 |
-| 今日/本周/本月/今年流年运势 | `workflows/fortune-daily-weekly-monthly.md` | 八字流年干支＋紫微 `ziwei_dynamic_facts.mjs` 节律核查 |
+| 今日/本周/本月/今年流年运势 | `workflows/fortune-daily-weekly-monthly.md` | 八字流年干支＋紫微 `ziwei_dynamic_facts.mjs`＋七政 `qizheng_dynamic_facts.py` 节律核查 |
 | 刷到某命理说法 / 核对“我是不是某格” | `workflows/fortune-resonance.md` | 核验原盘事实与原典出处，拆解网传简化标签 |
 | 纯概念 / 古籍含义 / 学派差异问答 | `workflows/fortune-knowledge.md` | `mingli_query.py` 查原典直答，不做个人占断 |
 | 结束对话或要求记录反馈 | `workflows/fortune-close.md` | 在用户授权范围内更新 `memory.md` |
@@ -75,7 +76,7 @@ python3 scripts/mingli_query.py search --system ziwei --query "紫微 官禄"
 **三盘独立立论（互不污染学派口径）：**
 - **八字**：先看《穷通宝鉴》寒暖调候与月令气象 → 《子平真诠》月令格局清纯与相神配合 → 《滴天髓》整体流通与旺衰喜忌 → 看当前大运/流年引动哪一柱十神与宫位。
 - **紫微**：先看命宫、身宫及三方四正星曜庙旺（以 `brightnessRaw` 七档为准，空宫看借星）与固定本命四化（`sihua-tables.md`，默认不用飞星混入；仅参考则须标明）→ 再对照具体事项宫位（如官禄/夫妻/财帛/疾厄）与当前公历大限、`ziwei_dynamic_facts.mjs` 流年/流月坐标。
-- **七政四余**：先分昼夜定太阳/太阴取重 → 查命度度主与难仇恩用 → 看立命宫与强宫守曜状态（升殿/入庙/明晦）。注意七政行限/倒限与年干变曜本引擎未算，解读不强行补充。
+- **七政四余**：先分昼夜定太阳（命度主）/太阴（身度主）取重 → 查命度、立命宫与身宫/身主三主配合及难仇恩用 → 看十二人事宫强宫守曜状态（升殿/喜宫五律/明晦/失陷）与年干变曜神煞（天禄/天权/天福/天囚/贵禄刃）→ 结合洞微大限（限宫/限度）、小限及 `qizheng_dynamic_facts.py` 流年/流月/流日行度过宫与太岁引动。
 
 **交叉互参与现实结合：**
 - 对比三盘指向一致处（例如三盘同见财官流通、或同显变动与沟通压力）与**分歧处**（如八字偏稳但紫微命迁变动强），解释各自反映的是**外在机遇结构、角色推进代价，还是内在性格体感**。

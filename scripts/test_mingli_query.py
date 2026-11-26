@@ -23,7 +23,10 @@ class CorpusAndQueryTests(unittest.TestCase):
     def test_manifest_sha256_and_stats_cli(self):
         res = mq.verify_manifest()
         self.assertTrue(res["ok"], f"Manifest mismatch: {res['files']}")
-        self.assertEqual(res["manifest"]["total_records"], 1351)
+        self.assertEqual(res["manifest"]["total_records"], 1508)
+        self.assertEqual(res["manifest"]["systems"], {"bazi": 666, "ziwei": 405, "qizheng": 437})
+        self.assertIn("qizheng_bianyao_shensha.jsonl", res["files"])
+        self.assertIn("qizheng_dongwei_liunian.jsonl", res["files"])
         self.assertEqual(res["manifest"]["qiongtong_stem_month_coverage"], "120/120")
 
         proc = subprocess.run(
@@ -37,7 +40,7 @@ class CorpusAndQueryTests(unittest.TestCase):
 
     def test_zero_pollution_leaks_across_all_records(self):
         recs = mq.load_records("all", include_feixing=True)
-        self.assertEqual(len(recs), 1351)
+        self.assertEqual(len(recs), 1508)
         bad_vue = re.compile(r"<script|:::|<Donate|<Badge")
         pua_re = re.compile(r"[\ue000-\uf8ff]")
         stub_re = re.compile(r"^见\s*\[")
@@ -49,6 +52,8 @@ class CorpusAndQueryTests(unittest.TestCase):
             self.assertNotIn("知识来源门", txt, r["id"])
             self.assertNotRegex(txt, pua_re, r["id"])
             self.assertNotRegex(txt, stub_re, r["id"])
+            if r["id"].startswith(("qzbs-", "qzdl-")):
+                self.assertNotIn("?", txt, r["id"])
             for fake in ("逆袭", "企业高管", "紫微化忌", "紫微星化忌"):
                 self.assertNotIn(fake, txt, r["id"])
 
@@ -91,6 +96,17 @@ class CorpusAndQueryTests(unittest.TestCase):
 
         geju_hits = mq.search_records("官禄 格局", system="qizheng", limit=6)
         self.assertGreaterEqual(len(geju_hits), 2)
+
+        bianyao_hits = mq.search_records("变曜 天禄 管库", system="qizheng", layer="bianyao_shensha", limit=6)
+        self.assertGreaterEqual(len(bianyao_hits), 2)
+        self.assertTrue(any(r["id"].startswith("qzbs-") for r in bianyao_hits))
+
+        dongwei_hits = mq.search_records("洞微 百六 限度", system="qizheng", layer="dongwei_liunian", limit=6)
+        self.assertGreaterEqual(len(dongwei_hits), 2)
+        self.assertTrue(any(r["id"].startswith("qzdl-") for r in dongwei_hits))
+
+        liunian_hits = mq.search_records("流年 太岁 倒限", system="qizheng", layer="dongwei_liunian", limit=6)
+        self.assertGreaterEqual(len(liunian_hits), 2)
 
     def test_e2e_build_chart_to_chart_lookup_pipe(self):
         build_proc = subprocess.run(
@@ -146,6 +162,11 @@ class CorpusAndQueryTests(unittest.TestCase):
         self.assertGreaterEqual(len(payload["ziwei"]["records"]), 2)
         self.assertTrue(all(r["school"] != "feixing_reference" for r in payload["ziwei"]["records"]))
         self.assertGreaterEqual(len(payload["qizheng"]["records"]), 2)
+        self.assertEqual(payload["qizheng"]["shen_gong"], "丑")
+        self.assertEqual(payload["qizheng"]["shen_zhu"], "土")
+        self.assertEqual(payload["qizheng"]["year_gz"], "庚午")
+        self.assertEqual(payload["qizheng"]["active_dongwei"]["palace"], "官禄")
+        self.assertEqual(payload["qizheng"]["active_dongwei"]["zhi"], "申")
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 # 原典知识库清洗与审计记录（Corpus Audit）
 
-> 本文档记录 `references/corpus/`（共 7 份 JSONL、1,351 条记录，索引见 `references/corpus/manifest.json`）的数据来源、许可、清洗修复与自动化防回退测试。
+> 本文档记录 `references/corpus/`（共 9 份 JSONL、1,508 条记录，索引见 `references/corpus/manifest.json`）的数据来源、许可、清洗修复与自动化防回退测试。
 
 ## 1. 上游来源与许可
 
@@ -13,6 +13,8 @@
 | `qizheng_classics.jsonl` (83 条) | 《张果星宗》总纲/宫度主/生杀/性情/阴阳并明/躔次喜忌/星辰庙旺喜忌＋《星学大成·磨赋》 | `daizhigev20` 点校本 | Public Domain |
 | `qizheng_stars.jsonl` (96 条) | 《张果星宗》卷九～十五十一曜逐曜断＋《星学大成》 | `daizhigev20` 点校本 | Public Domain |
 | `qizheng_palaces_geju.jsonl` (101 条) | 《张果星宗》十二宫体系与格局库＋《乾元秘旨》 | `daizhigev20` 点校本 | Public Domain |
+| `qizheng_bianyao_shensha.jsonl` (86 条) | 《张果星宗》卷二～三：十干变曜（天禄～天权管库星）、年干诸星与年干支/驾前驾后神煞 | `daizhigev20` 点校本 | Public Domain |
+| `qizheng_dongwei_liunian.jsonl` (71 条) | 《张果星宗》卷三、卷十六～十七：定行限度法、洞微百六限、倒限直指与流年太岁论 | `daizhigev20` 点校本 | Public Domain |
 
 完整版权文本见根目录 [THIRD_PARTY_LICENSES.md](../THIRD_PARTY_LICENSES.md)。
 
@@ -57,6 +59,6 @@
 ## 3. 回归护栏
 
 运行 `python3 -B -m unittest scripts/test_mingli_query.py -v` 每次自动核查：
-- `manifest.json` 内 7 份 JSONL 的文件大小、条目数与 **SHA-256 哈希**一致；
-- 全库 **1,351** 条记录 **0** 处 Vue/HTML 标签、**0** 处 `<!--` 注释、**0** 处 PUA 私用区码位、**0** 处已知伪古籍污染词、**0** 处纯跳转空条目；
-- 《穷通宝鉴》**120 / 120**（`日干 × 月支`）完整命中，飞星默认隔离与 `build_chart.py -> mingli_query.py chart-lookup` 端到端管道畅通。
+- `manifest.json` 内 9 份 JSONL 的文件大小、条目数与 **SHA-256 哈希**一致；
+- 全库 **1,508** 条记录 **0** 处 Vue/HTML 标签、**0** 处 `<!--` 注释、**0** 处 PUA 私用区码位、新增卷次 **0** 处未修复 `?`、**0** 处已知伪古籍污染词、**0** 处纯跳转空条目；
+- 《穷通宝鉴》**120 / 120**（`日干 × 月支`）完整命中，飞星默认隔离，七政变曜/洞微/流年层检索与 `build_chart.py -> mingli_query.py chart-lookup` 端到端管道畅通。

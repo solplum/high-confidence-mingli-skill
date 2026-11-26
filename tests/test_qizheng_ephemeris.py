@@ -87,6 +87,27 @@ class IndependentEphemerisTests(unittest.TestCase):
         self.assertAlmostEqual(q.planet_longitude('jupiter',2451545,model='legacy-v1'),25.43595904129409,places=9)
         self.assertAlmostEqual(q.moon_longitude(2451545,model='legacy-v1'),223.31977577369756,places=9)
 
+    def test_sun_vsop87_404_jpl_vectors_and_observer_day_night(self):
+        sun_obs = json.loads((FIXTURE.parent / 'sun-and-observer-reference.json').read_text())
+        raw = (FIXTURE.parent / 'sun-horizons.txt').read_bytes()
+        self.assertEqual(hashlib.sha256(raw).hexdigest(), sun_obs['sun_vectors']['sha256'])
+        self.assertEqual(len(sun_obs['sun_vectors']['vectors']), 404)
+        errs = [
+            abs(q.lon_delta(q.sun_geometric_longitude(jd), mean_date_longitude(jd, xyz)))
+            for jd, *xyz in sun_obs['sun_vectors']['vectors']
+        ]
+        # VSOP87 mean-ecliptic geometric Sun stays well below 0.001 deg (~3.6 arcsec) across 1900-2100.
+        self.assertLess(max(errs), 0.001)
+        from datetime import datetime
+        for row in sun_obs['observer_sun_benchmarks']:
+            dt = datetime.fromisoformat(row['utc'].replace('Z', '+00:00'))
+            dt_bj = dt.astimezone(q.BJ)
+            res, _ = q.compute((dt_bj.year, dt_bj.month, dt_bj.day), dt_bj.hour, dt_bj.minute,
+                               row['lat'], row['lon'], birth_instant=dt)
+            expected_dn = '昼生' if row['jpl_airless_sun_alt_deg'] >= -0.833 else '夜生'
+            self.assertEqual(res['day_night']['type'], expected_dn, row['name'])
+            self.assertLess(abs(res['day_night']['solar_altitude_deg'] - row['jpl_airless_sun_alt_deg']), 0.02, row['name'])
+
 
 if __name__=='__main__':
     print(json.dumps(residual_summary(),indent=2))

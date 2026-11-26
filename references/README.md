@@ -4,7 +4,7 @@
 
 ## 1. 结构化经典原典语料（`references/corpus/`）
 
-共 **7 份清理加工后的 JSONL 语料 + `manifest.json`**（总计 **1,351 条**），通过 `scripts/mingli_query.py` 进行 SHA-256 校验、日干月支精查与三盘自动检索：
+共 **9 份清理加工后的 JSONL 语料 + `manifest.json`**（总计 **1,508 条**），通过 `scripts/mingli_query.py` 进行 SHA-256 校验、日干月支精查与三盘自动检索：
 
 | 文件 | 条数 | 内容与许可 |
 |------|------|------------|
@@ -15,6 +15,8 @@
 | `qizheng_classics.jsonl` | 83 | 《张果星宗》《星学大成》总纲与星辰庙旺喜忌；Public Domain (`daizhigev20`) |
 | `qizheng_stars.jsonl` | 96 | 《张果星宗》《星学大成》十一曜逐曜断（已修复 PUA 造字缺字，未考一字标 `[缺字:U+EF6E]`）；Public Domain |
 | `qizheng_palaces_geju.jsonl` | 101 | 《张果星宗》《乾元秘旨》十二宫体系与格局库；Public Domain |
+| `qizheng_bianyao_shensha.jsonl` | 86 | 《张果星宗》卷二～三：十干变曜（管库星）、年干诸星与年干支/驾前驾后神煞；Public Domain (`daizhigev20`) |
+| `qizheng_dongwei_liunian.jsonl` | 71 | 《张果星宗》卷三、十六～十七：定行限度法、洞微百六限、倒限直指与流年太岁论；Public Domain (`daizhigev20`) |
 
 详细数据源、清洗修复与边界说明见 [docs/corpus-audit.md](../docs/corpus-audit.md) 与 [THIRD_PARTY_LICENSES.md](../THIRD_PARTY_LICENSES.md)。
 

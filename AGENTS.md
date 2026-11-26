@@ -19,8 +19,8 @@
 ## 目录结构
 
 - `SKILL.md`：主入口与标准 4 步分析流，路由到 `workflows/` 六个具体场景文件。
-- `scripts/`：确定性排盘引擎（`pai_pan_bazi.py`、`pai_pan_qizheng.py`、`pai_pan_ziwei/pai_pan.ts`、`ziwei_dynamic_facts.mjs`、`build_chart.py`、`time_scenarios.py`）＋ 原典检索引擎 `mingli_query.py` ＋ 回归测试。
-- `references/corpus/`：7 份清洗完毕的结构化 JSONL 原典语料（1,351 条）与 `manifest.json`。修改语料须同步更新 `manifest.json` 的计数与 SHA-256，并通过 `scripts/test_mingli_query.py`。
+- `scripts/`：确定性排盘引擎（`pai_pan_bazi.py`、`pai_pan_qizheng.py`、`qizheng_star_frame.py`、`qizheng_rules.py`、`qizheng_dynamics.py`、`qizheng_dynamic_facts.py`、`pai_pan_ziwei/pai_pan.ts`、`ziwei_dynamic_facts.mjs`、`build_chart.py`、`time_scenarios.py`）＋ 原典检索引擎 `mingli_query.py` ＋ 回归测试。
+- `references/corpus/`：9 份清洗完毕的结构化 JSONL 原典语料（1,508 条）与 `manifest.json`。修改语料须同步更新 `manifest.json` 的计数与 SHA-256，并通过 `scripts/test_mingli_query.py`。
 - `references/` 其他文件：四领域信号指引与三盘静态速查表；开源归属见 `THIRD_PARTY_LICENSES.md`。
 - `docs/`：`onboarding.md`（建档流程）、`time-contract.md`（时间/历法/边界契约）、`corpus-audit.md`（语料来源与清洗审计记录）。
 - **隐私边界**：个人档案保存在 `~/.claude/fortune-telling/`（仓库外），切勿提交任何真实命主数据或隐私文件到仓库。

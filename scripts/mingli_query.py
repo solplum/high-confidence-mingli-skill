@@ -32,6 +32,8 @@ CORPUS_FILES = (
     "qizheng_classics.jsonl",
     "qizheng_stars.jsonl",
     "qizheng_palaces_geju.jsonl",
+    "qizheng_bianyao_shensha.jsonl",
+    "qizheng_dongwei_liunian.jsonl",
 )
 
 # Domain, synonym, and classical alias expansions used during retrieval
@@ -68,6 +70,17 @@ ALIASES: dict[str, tuple[str, ...]] = {
     "计都": ("计都", "罗计", "尾"),
     "月孛": ("月孛", "孛"),
     "紫气": ("紫气", "紫炁", "气"),
+    "身宫": ("身宫", "身主", "太阴", "安身"),
+    "身主": ("身主", "身宫", "太阴", "宫度主"),
+    "变曜": ("变曜", "化曜", "十干化曜", "天禄", "天暗", "天福", "天耗", "天荫", "天贵", "天刑", "天印", "天囚", "天权", "管库"),
+    "化曜": ("变曜", "化曜", "十干化曜", "天禄", "天权", "天囚"),
+    "洞微": ("洞微", "百六", "大限", "限宫", "限度", "行限"),
+    "大限": ("洞微", "百六", "大限", "限度", "倒限", "行限"),
+    "倒限": ("倒限", "划度", "限度", "大限", "阳刃", "劫煞"),
+    "流年": ("流年", "太岁", "小限", "行限", "过宫"),
+    "太岁": ("太岁", "流年", "岁驾", "岁破", "丧门", "白虎"),
+    "阳刃": ("阳刃", "阴刃", "飞刃", "唐符", "禄勋"),
+    "禄勋": ("禄勋", "天禄", "禄神", "国印"),
 }
 
 EN_YONG_STAR_NAME: dict[str, str] = {
@@ -162,7 +175,13 @@ def load_records(
     elif system == "ziwei":
         files = ["ziwei_quanshu.jsonl", "ziwei_stars_patterns.jsonl"]
     elif system == "qizheng":
-        files = ["qizheng_classics.jsonl", "qizheng_stars.jsonl", "qizheng_palaces_geju.jsonl"]
+        files = [
+            "qizheng_classics.jsonl",
+            "qizheng_stars.jsonl",
+            "qizheng_palaces_geju.jsonl",
+            "qizheng_bianyao_shensha.jsonl",
+            "qizheng_dongwei_liunian.jsonl",
+        ]
     else:
         raise ValueError(f"Unsupported system: {system}")
 
@@ -460,6 +479,36 @@ def lookup_chart(
             wuxing = qz["ming_du"].get("wuxing")
             if wuxing in EN_YONG_STAR_NAME:
                 qz_terms.append(EN_YONG_STAR_NAME[wuxing])
+        sg = qz.get("shen_gong")
+        if sg:
+            qz_terms.append("身主")
+            if sg.get("shen_zhu") in EN_YONG_STAR_NAME:
+                qz_terms.append(EN_YONG_STAR_NAME[sg["shen_zhu"]])
+            if sg.get("shen_du", {}).get("mansion"):
+                qz_terms.append(f"{sg['shen_du']['mansion']}宿")
+        bs = qz.get("bianyao_shensha")
+        if bs and bs.get("bianyao"):
+            topic_roles = {
+                "general": ("天禄", "天权"),
+                "career": ("天禄", "天权"),
+                "wealth": ("天福", "天印"),
+                "love": ("天荫",),
+                "health": ("天囚", "天刑"),
+            }.get(topic, ("天禄",))
+            for role in topic_roles:
+                qz_terms.append(role)
+                st_name = bs["bianyao"].get(role, {}).get("star")
+                if st_name in EN_YONG_STAR_NAME:
+                    qz_terms.append(EN_YONG_STAR_NAME[st_name])
+        dw = qz.get("dongwei_daxian") or {}
+        dw_active = dw.get("active")
+        if dw_active:
+            qz_terms.extend(["洞微", "限度"])
+            pl_house = dw_active.get("palace_limit", {}).get("house_name")
+            if pl_house:
+                qz_terms.append(pl_house)
+            if dw_active.get("risk_signals"):
+                qz_terms.append("倒限")
         en_yong = qz.get("en_yong") or {}
         for rel in ("恩", "难"):
             for m in en_yong.get(rel, []):
@@ -473,7 +522,18 @@ def lookup_chart(
         out["qizheng"] = {
             "ming_du": qz.get("ming_du", {}).get("mansion") if qz.get("ming_du") else None,
             "ming_gong": qz.get("ming_gong", {}).get("zhi") if qz.get("ming_gong") else None,
+            "shen_gong": sg.get("zhi") if sg else None,
+            "shen_zhu": sg.get("shen_zhu") if sg else None,
             "day_night": qz.get("day_night", {}).get("type") if qz.get("day_night") else None,
+            "year_gz": (qz.get("year_gz") or {}).get("year_gz"),
+            "active_dongwei": (
+                {
+                    "palace": dw_active["palace_limit"]["house_name"],
+                    "zhi": dw_active["palace_limit"]["zhi"],
+                    "degree_mansion": dw_active["degree_limit"]["mansion"],
+                }
+                if dw_active else None
+            ),
             "query_terms": list(dict.fromkeys(qz_terms)),
             "records": qz_hits,
         }
@@ -612,8 +672,13 @@ def main(argv: list[str] | None = None) -> int:
                 print()
         if "qizheng" in res:
             qz = res["qizheng"]
+            dw_txt = ""
+            if qz.get("active_dongwei"):
+                adw = qz["active_dongwei"]
+                dw_txt = f" / 大限 {adw['palace']}({adw['zhi']}·{adw['degree_mansion']}度)"
+            sg_txt = f" / 身宫 {qz['shen_gong']}({qz['shen_zhu']}主)" if qz.get("shen_gong") else ""
             print(
-                f"\n### 七政：命度 {qz['ming_du'] or '未算'} / 立命 {qz['ming_gong'] or '未算'} / {qz['day_night'] or '未分昼夜'}"
+                f"\n### 七政：命度 {qz['ming_du'] or '未算'} / 立命 {qz['ming_gong'] or '未算'}{sg_txt} / {qz['day_night'] or '未分昼夜'}{dw_txt}"
             )
             for rec in qz["records"]:
                 print(format_record(rec, full_text=False))

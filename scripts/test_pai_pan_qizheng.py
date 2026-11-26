@@ -119,19 +119,20 @@ class AstronomyTests(unittest.TestCase):
 
 class MansionPalaceTests(unittest.TestCase):
     def test_mansion_boundaries(self):
-        """角宿起点 0°；昴宿起点 210°；宿度循环归一。"""
+        """校准宿界：角宿起点 0°、胃宿约 203.09°、昴宿约 215.57°、轸宿终点 360° 循环归一。"""
         self.assertEqual(q.mansion_of(0.0)[0], "角")
-        self.assertEqual(q.mansion_of(210.0)[0], "昴")
+        self.assertEqual(q.mansion_of(210.0)[0], "胃")
+        self.assertEqual(q.mansion_of(216.0)[0], "昴")
         self.assertEqual(q.mansion_of(359.9)[0], "轸")
         name, deg, _, _ = q.mansion_of(365.0)
         self.assertEqual(name, "角")
         self.assertAlmostEqual(deg, 5.0, places=6)
 
     def test_palace_aggregation(self):
-        """十二支宫分野：角亢=辰、氐房心=卯、井鬼=未、翼轸=巳。"""
+        """十二支宫分野：角亢=辰、氐房心=卯、井鬼=未、翼轸=巳（同步 SIMBAD 校准宿界）。"""
         self.assertEqual(q.palace_of(5.0), "辰")     # 角
-        self.assertEqual(q.palace_of(30.0), "卯")    # 氐
-        self.assertEqual(q.palace_of(40.0), "卯")    # 心
+        self.assertEqual(q.palace_of(25.0), "卯")    # 氐
+        self.assertEqual(q.palace_of(45.0), "卯")    # 心
         self.assertEqual(q.palace_of(270.0), "未")   # 井
         self.assertEqual(q.palace_of(340.0), "巳")   # 翼
         self.assertEqual(q.palace_of(359.0), "巳")
@@ -160,8 +161,11 @@ class ClassicalRuleTests(unittest.TestCase):
 
 class EndToEndTests(unittest.TestCase):
     def test_sample_a_sun_palace_you(self):
-        """样本 A（1990-05-15 14:00 北京时，上海）：太阳恒星黄经落昴宿 → 酉宫。"""
+        """样本 A（1990-05-15 14:00 北京时，上海）：校准后太阳落胃宿 → 酉宫，命度落翼宿，木星落井宿升殿。"""
         result, warnings = q.compute((1990, 5, 15), 14, 0, 31.23, 121.47)
+        self.assertEqual(result["bodies"]["日"]["mansion"], "胃")
+        self.assertEqual(result["bodies"]["木"]["mansion"], "井")
+        self.assertEqual(result["ming_du"]["mansion"], "翼")
         self.assertEqual(result["sun_palace_zhi"], "酉")
         # 未时生，太阳酉宫 → 命宫 = 酉 + (卯−未) = 巳
         self.assertEqual(result["ming_gong"]["zhi"], "巳")
@@ -170,7 +174,7 @@ class EndToEndTests(unittest.TestCase):
         self.assertNotIn("Traceback", str(warnings))
 
     def test_chan_gong_full_mansion_mapping(self):
-        """躔宫（v7 新增列）：二十八宿逐宿落宫 == 引擎文件头口径 3 的十二次分野聚合。"""
+        """躔宫：二十八宿逐宿落宫 == 引擎文件头口径 3 的十二次分野聚合。"""
         expect = {
             "角": "辰", "亢": "辰", "氐": "卯", "房": "卯", "心": "卯",
             "尾": "寅", "箕": "寅", "斗": "丑", "牛": "丑", "女": "子", "虚": "子",
@@ -180,19 +184,17 @@ class EndToEndTests(unittest.TestCase):
             "翼": "巳", "轸": "巳",
         }
         for name, _star, start, _wx in q.MANSIONS:
-            got = q.palace_of(start + 0.5)  # 宿内取点，避边界
+            got = q.palace_of(start + 0.25)  # 宿内取点（最小宿宽 >1°）
             self.assertEqual(got, expect[name], msg=f"{name}宿起点 {start}°")
 
     def test_palace_boundaries_twelve_ci(self):
-        """十二次宫界边界点（引擎口径 3，未校准的近似宿界表）。"""
-        cases = ((0.0, "辰"), (27.9, "辰"), (28.0, "卯"), (44.4, "卯"), (44.5, "寅"),
-                 (73.4, "寅"), (73.5, "丑"), (106.9, "丑"), (107.0, "子"),
-                 (128.9, "子"), (129.0, "亥"), (170.4, "亥"), (170.5, "戌"),
-                 (198.4, "戌"), (198.5, "酉"), (237.4, "酉"), (237.5, "申"),
-                 (260.9, "申"), (261.0, "未"), (297.9, "未"), (298.0, "午"),
-                 (331.9, "午"), (332.0, "巳"), (359.9, "巳"))
-        for lon, zhi in cases:
-            self.assertEqual(q.palace_of(lon), zhi, msg=f"palace_of({lon})")
+        """十二次宫界边界点（与 SIMBAD 校准宿界完全一致，首尾无缝覆盖 0..360°）。"""
+        for zhi, (lo, hi) in q.PALACES.items():
+            self.assertEqual(q.palace_of(lo + 1e-4), zhi, msg=f"{zhi} start {lo}")
+            self.assertEqual(q.palace_of(hi - 1e-4), zhi, msg=f"{zhi} end {hi}")
+            # Legacy boundaries remain frozen for legacy-v1 replay
+        self.assertEqual(q.palace_of(27.9, palaces=q.LEGACY_PALACES), "辰")
+        self.assertEqual(q.palace_of(28.0, palaces=q.LEGACY_PALACES), "卯")
 
 
 if __name__ == "__main__":
